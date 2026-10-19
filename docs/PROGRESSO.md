@@ -17,8 +17,9 @@ Atualizado em 2026-10-19.
 | 5. Antes e depois, e quem escreveu | aprovada |
 | 6. Resultados e para quem é | aprovada |
 | 7. Oferta | aprovada |
-| **8. Garantia, FAQ, fechamento, rodapé e barra fixa** | **próxima** |
-| 9 a 11 | a fazer |
+| 8. Garantia, FAQ, fechamento, rodapé e barra fixa | aprovada |
+| **9. Checkout e rastreamento** | **próxima** |
+| 10 e 11 | a fazer |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -134,6 +135,17 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
   - Painel a 12px da borda da tela (`margin-inline: -10px` dentro do `.wrap`), recuo interno de 16px, sobe 50px.
   - Botão do painel: 13,5px, espaço de 10px, anel com 4px. Uma linha a partir de 385px (folga de 4,6px em 390px); abaixo, duas linhas parelhas.
 - Ponto de luz atrás do painel (`.oferta::before`; `::after` ficaria por cima do conteúdo).
+
+### Etapa 8: garantia, FAQ, fechamento, rodapé e barra fixa
+
+- Espaço inseparável depois de "R$" em todo valor da página (`R$&nbsp;97`), para o valor não quebrar entre linhas. Manter em texto novo.
+- Garantia e FAQ empilhados no tablet (até 1023px, FAQ com no máximo 680px); duas colunas a partir de 1024px. Selo com 150px até 1023px e 200px (coluna de 220px) no desktop.
+- Assinatura provisória: `<p class="sign pendente">`, fonte Mrs Saint Delafield pedida com `text=Marcello%20Gomes`, carregada sem bloquear (`media="print"` + `onload`).
+- FAQ: + e − por `::after` com texto alternativo vazio (`content:"+" / ""`), escondidos do leitor de tela.
+- Rodapé: "Termos de uso" e "Política de privacidade" são `<span class="pendente">` até existirem as páginas (viram links depois). Pendências do rodapé com `display:inline-block`, para o contorno não invadir a linha de cima. Links com 44px de altura.
+- Frase final e rodapé sem `.reveal`. Conferido: no fim da rolagem, botão e parágrafos do fechamento ficam nítidos (390x844, 390x664, 1440x900, 1440x760).
+- Barra fixa (só até 760px): escondida por padrão (`visibility:hidden` e fora da tela); o JS põe `.visivel` quando nem o hero, nem a #oferta, nem o botão do #fechamento (`.fecho-cta`) estão na tela (um `IntersectionObserver`). Desliza em 0,35s, sem transição com movimento reduzido. Testada no toque, com o Lenis (mouse em 390px) e sem JS.
+- Rodapé no celular com espaço inferior de `calc(90px + env(safe-area-inset-bottom))`: barra de 66px + 12px da borda + 12px de folga. No desktop, 120px como no mockup.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

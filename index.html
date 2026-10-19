@@ -14,6 +14,9 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;display=swap"></noscript>
+<!-- Assinatura provisória da #garantia: só as letras de "Marcello Gomes". Sai quando chegar a assinatura real em imagem. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&amp;text=Marcello%20Gomes&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&amp;text=Marcello%20Gomes&amp;display=swap"></noscript>
 <style>
 /* Tokens */
 :root{
@@ -443,7 +446,73 @@ html:has(dialog[open]){overflow:hidden}
   .b1 .ti{text-wrap:balance}
 }
 
+/* Garantia */
+.garantia{position:relative;padding:0 0 100px;background:var(--abismo)}
+.garantia::before{content:"";position:absolute;left:-20%;top:-10%;width:70%;height:110%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.22),rgba(30,58,104,0))}
+.g-card{max-width:980px;margin:0 auto;border-radius:30px;padding:30px 22px;display:grid;grid-template-columns:minmax(0,1fr);gap:24px;justify-items:start;align-items:center;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(9,17,31,.85));border:1px solid rgba(169,184,203,.16);box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+.medal{width:150px;height:auto}
+.g-card .h2{margin:16px 0}
+.g-card .body{max-width:56ch}
+.g-card .body p:last-child{margin-bottom:0;color:var(--gelo)}
+/* Assinatura: fonte provisória (só as letras de "Marcello Gomes") até chegar a assinatura real em imagem. */
+.sign{display:inline-block;margin-top:22px;font-family:'Mrs Saint Delafield',cursive;font-size:52px;line-height:1;color:#D9E2EE}
+
+/* FAQ: <details> nativos, o primeiro aberto. */
+.faq{position:relative;padding:20px 0 110px;background:var(--abismo)}
+.faq::before{content:"";position:absolute;right:-25%;top:10%;width:80%;height:80%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
+.faq-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:start}
+.faq .h2{margin-top:16px}
+.qa{display:flex;flex-direction:column;gap:12px}
+.qa details{border-radius:18px;padding:0 18px;background:rgba(12,23,41,.55);border:1px solid rgba(169,184,203,.13)}
+.qa details[open]{background:linear-gradient(180deg,rgba(30,48,76,.6),rgba(12,23,41,.75));border-color:rgba(201,211,224,.24)}
+.qa summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px;padding:12px 0;font-size:16px;font-weight:500;line-height:1.4;color:var(--gelo);-webkit-tap-highlight-color:transparent}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+" / "";flex:none;width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-weight:300;font-size:20px;color:#D9E2EE;background:rgba(169,184,203,.1);transition:background-color .2s}
+.qa details[open] summary::after{content:"\2212" / "";color:#0A1424;background:linear-gradient(180deg,#FBFCFE,#AFBDD0)}
+@media (hover:hover){.qa details:not([open]) summary:hover::after{background:rgba(169,184,203,.22)}}
+.qa p{margin:0 0 22px;font-size:16px;line-height:1.65;color:var(--nevoa);max-width:60ch}
+
+/* Fechamento e rodapé. A frase final e o rodapé ficam sem .reveal (a rolagem acaba antes de eles chegarem a 35% da tela). */
+.fecho{position:relative;padding:110px 0 100px;text-align:center;background:radial-gradient(50% 60% at 50% 45%,#0F2142 0%,#070F1F 55%,#050A14 85%)}
+.fecho-escudo{margin:0 auto}
+.fecho .h2{max-width:20ch;margin:26px auto}
+.fecho .body{max-width:54ch;margin:0 auto}
+.fecho .body p:last-child{color:var(--gelo)}
+.fecho-cta{margin-top:18px}
+.motto{margin-top:56px;font-weight:300;font-size:18px;line-height:1.3;letter-spacing:-.01em;color:#C9D3E0}
+.motto strong{font-weight:500}
+/* Celular: o espaço de baixo é a área da barra fixa (66px + 12px da borda), 12px de folga e a margem de segurança. */
+.foot{border-top:1px solid rgba(169,184,203,.1);padding:24px 0 calc(90px + env(safe-area-inset-bottom));font-size:13.5px;line-height:1.5;color:#7E8FA6}
+.foot .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:4px 28px;justify-content:space-between}
+.foot-links{display:flex;flex-wrap:wrap;align-items:center;gap:0 22px}
+/* Pendências do rodapé inteiras numa linha, para o contorno não invadir a linha de cima. */
+.foot .pendente{display:inline-block;line-height:1.4}
+.foot p{line-height:2}
+.foot a{display:inline-flex;align-items:center;min-height:44px;color:var(--nevoa-2);text-decoration:none}
+@media (hover:hover){.foot a:hover{color:#FFFFFF}}
+
+/* Barra fixa do celular. Escondida por padrão: só o JS a mostra (depois do hero e fora da oferta). */
+.barra{display:none}
+@media (max-width:760px){
+  .barra{position:fixed;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:999px;background:rgba(10,20,36,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -12px rgba(0,0,0,.9);transform:translateY(calc(100% + 24px + env(safe-area-inset-bottom)));visibility:hidden;transition:transform .35s ease,visibility 0s .35s}
+  .barra.visivel{transform:none;visibility:visible;transition:transform .35s ease,visibility 0s}
+  .barra span{font-size:13px;line-height:1.25;color:var(--nevoa)}
+  .barra b{display:block;font-size:16px;font-weight:600;color:#FFFFFF}
+  .barra a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:13.5px;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF}
+}
+
 @media (min-width:761px){
+  .garantia{padding-bottom:140px}
+  /* Tablet: garantia e FAQ empilhados (lado a lado, as colunas de texto ficariam com ~230px). */
+  .g-card{gap:28px;padding:40px 44px}
+  .faq{padding-bottom:160px}
+  .faq-grid{max-width:680px;margin:0 auto}
+  .qa details{padding:0 24px}
+  .qa summary{font-size:17px}
+  .fecho{padding:170px 0 150px}
+  .fecho-cta .cta-ring{display:inline-flex}
+  .motto{margin-top:80px;font-size:22px}
+  .foot{padding:34px 0 120px}
   .result{padding:40px 0 140px}
   .prints{margin:0 -64px;padding:0 64px 8px;scroll-padding:0 64px;gap:20px}
   .print{flex-basis:42%}
@@ -473,6 +542,9 @@ html:has(dialog[open]){overflow:hidden}
   .pcol:nth-child(3) .print{--rv-atraso:10svh}
   .ep-grid{max-width:1040px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
   .ep-yes{--rv-atraso:5svh}
+  .g-card{grid-template-columns:220px minmax(0,1fr);gap:clamp(36px,4vw,56px);padding:48px clamp(36px,4vw,56px)}
+  .medal{width:200px}
+  .faq-grid{max-width:none;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,6vw,80px)}
   .panel{max-width:980px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,3.4vw,48px);padding:44px clamp(36px,3.4vw,48px)}
   .card{padding:clamp(36px,3.6vw,46px);grid-template-columns:clamp(280px,30vw,380px) minmax(0,1fr);gap:clamp(40px,4vw,56px)}
   .stat{padding:18px clamp(16px,1.4vw,20px)}
@@ -481,6 +553,7 @@ html:has(dialog[open]){overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
   .cta::after{animation:none;display:none}
+  .barra,.barra.visivel{transition:none}
 }
 </style>
 </head>
@@ -785,9 +858,9 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 </ul>
 </div>
 <div>
-<p class="price-old">De <s>R$ 297</s> por</p>
-<p class="price-main"><small>12x de</small> <b class="silver">R$ 10,03</b></p>
-<p class="price-alt">ou R$ 97 à vista</p>
+<p class="price-old">De <s>R$&nbsp;297</s> por</p>
+<p class="price-main"><small>12x de</small> <b class="silver">R$&nbsp;10,03</b></p>
+<p class="price-alt">ou R$&nbsp;97 à vista</p>
 <p class="compare">Menos do que um jantar a dois. E pode te poupar anos.</p>
 <span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
 </div>
@@ -801,10 +874,76 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 </div>
 </div>
 </section>
-<section id="garantia"></section>
-<section id="faq"></section>
-<section id="fechamento"></section>
+<section id="garantia" class="garantia">
+<div class="wrap">
+<div class="g-card reveal">
+<svg class="medal" width="200" height="240" viewBox="0 0 200 240" role="img" aria-label="Garantia de 7 dias">
+<defs>
+<linearGradient id="medalha-borda" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBFCFE"/><stop offset=".45" stop-color="#9FB2CB"/><stop offset="1" stop-color="#3A4D6B"/></linearGradient>
+<linearGradient id="medalha-fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2C48"/><stop offset="1" stop-color="#070F1F"/></linearGradient>
+<linearGradient id="medalha-texto" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#A9B8CB"/></linearGradient>
+</defs>
+<path d="M100 8 L188 40 C188 124 162 188 100 234 C38 188 12 124 12 40 Z" fill="url(#medalha-fundo)" stroke="url(#medalha-borda)" stroke-width="7" stroke-linejoin="round"/>
+<path d="M100 26 L172 52 C172 122 150 174 100 212 C50 174 28 122 28 52 Z" fill="none" stroke="rgba(201,211,224,.28)" stroke-width="1.5"/>
+<text x="100" y="140" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="300" font-size="92" fill="url(#medalha-texto)">7</text>
+<text x="100" y="172" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="500" font-size="17" fill="#B7C7DC">dias</text>
+</svg>
+<div>
+<span class="pill">Garantia</span>
+<h2 class="h2">Leia por 7 dias. <strong class="silver">Se não valer, seu dinheiro volta.</strong></h2>
+<div class="body">
+<p>Leia os quatro manuais. Se em até 7 dias você achar que não valeu os R$&nbsp;97, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Você não precisa me explicar nada.</p>
+<p>Eu faço isso porque sei o que está nesses manuais.</p>
+</div>
+<p class="sign pendente">Marcello Gomes</p>
+</div>
+</div>
+</div>
+</section>
+<section id="faq" class="faq">
+<div class="wrap">
+<div class="faq-grid">
+<div>
+<span class="pill reveal">Dúvidas</span>
+<h2 class="h2 reveal">Perguntas que chegam <strong class="silver">toda semana.</strong></h2>
+</div>
+<div class="qa">
+<details class="reveal" open><summary>Em que formato vem o material?</summary><p>Os quatro manuais são em PDF. Você lê no celular, no computador ou imprime, se preferir papel.</p></details>
+<details class="reveal"><summary>Quanto tempo leva para chegar?</summary><p>O acesso vai para o seu e-mail assim que o pagamento é aprovado. No Pix e no cartão, isso leva poucos minutos.</p></details>
+<details class="reveal"><summary>Alguém vai saber que eu comprei?</summary><p>Não. O acesso chega só no seu e-mail, e na fatura do cartão aparece <span class="pendente">[nome na fatura, confirmar na Eduzz]</span>.</p></details>
+<details class="reveal"><summary>Serve para quem está casado ou namorando?</summary><p>Serve. Boa parte do conteúdo é sobre postura e limite dentro do relacionamento que você já tem, e não só sobre escolher a próxima pessoa.</p></details>
+<details class="reveal"><summary>Acabei de passar por uma traição. Vale a pena ler agora?</summary><p>Vale. É justamente quando você está tentando entender o que aconteceu, e quando corre mais risco de repetir a mesma escolha.</p></details>
+<details class="reveal"><summary>Quanto tempo leva para ler tudo?</summary><p>Dá para ler os quatro em poucos dias. O Arsenal Homem Blindado, que é o principal, dá para ler numa noite.</p></details>
+<details class="reveal"><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o reembolso pela Eduzz e recebe tudo de volta.</p></details>
+</div>
+</div>
+</div>
+</section>
+<section id="fechamento" class="fecho">
+<div class="wrap">
+<svg class="fecho-escudo reveal" width="34" height="40" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="url(#prata-escudo)" stroke-width="10" stroke-linejoin="round"/></svg>
+<h2 class="h2 reveal">Quanto vale evitar um relacionamento que pode <strong class="silver">custar anos da sua vida?</strong></h2>
+<div class="body">
+<p class="reveal">Você pode continuar aprendendo do jeito que a maioria aprende. Errando, sofrendo e entendendo tudo quando já passou.</p>
+<p class="reveal">Ou pode ler em poucos dias o que outros homens levaram anos e alguns relacionamentos para descobrir.</p>
+<p class="reveal">São 12x de R$&nbsp;10,03. Com 7 dias para devolver se não valer.</p>
+</div>
+<div class="fecho-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<p class="motto">Torne-se o homem que você <strong class="silver">respeitaria.</strong></p>
+</div>
+</section>
 </main>
+<footer class="foot">
+<div class="wrap">
+<p>Arsenal Homem Blindado, por Marcello Gomes. <span class="pendente">[CNPJ ou responsável]</span></p>
+<!-- Termos de uso e Política de privacidade viram links quando as páginas existirem. -->
+<p class="foot-links"><a href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener">Instagram</a><span class="pendente">Termos de uso</span><span class="pendente">Política de privacidade</span></p>
+</div>
+</footer>
+<div class="barra" id="barra">
+<span>Arsenal Homem Blindado<b>12x de R$&nbsp;10,03</b></span>
+<a href="https://chk.eduzz.com/7WXGDYN20A">Quero o Arsenal</a>
+</div>
 <dialog class="lightbox" aria-label="Print em tela cheia">
 <div class="lb-corpo"><div class="lb-conteudo"></div></div>
 <button type="button" class="lb-fechar" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -919,6 +1058,22 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
     conteudo.replaceChildren();
     if (origem) origem.focus({ preventScroll: true });
   });
+})();
+
+// Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a #oferta
+// ou o botão de compra do #fechamento estiverem visíveis. O CSS só a mostra até 760px;
+// sem JS ela nunca recebe .visivel.
+(function () {
+  var barra = document.getElementById('barra');
+  var hero = document.getElementById('hero');
+  var escondem = [hero, document.getElementById('oferta'), document.querySelector('.fecho-cta')];
+  if (!barra || escondem.indexOf(null) !== -1 || !('IntersectionObserver' in window)) return;
+  var naTela = new Map([[hero, true]]);
+  var observador = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) { naTela.set(e.target, e.isIntersecting); });
+    barra.classList.toggle('visivel', !escondem.some(function (el) { return naTela.get(el); }));
+  });
+  escondem.forEach(function (el) { observador.observe(el); });
 })();
 </script>
 </body>
