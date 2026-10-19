@@ -10,7 +10,6 @@ Nada marcado com `.pendente` vai ao ar. Atualize esta lista conforme as resposta
 - [ ] 6 a 9 prints reais de DM, tratados, com autorização de cada aluno.
 - [ ] Assinatura manuscrita digitalizada (seção Garantia). Sem ela, fica a fonte provisória.
 - [ ] Dados legais do rodapé: CNPJ ou responsável, termos de uso, política de privacidade.
-- [ ] O Pixel da Meta já dispara dentro do GTM? (define se o código base entra na página)
 - [ ] Onde a página vai ser hospedada e como é feita a publicação.
 
 ## Opcional
@@ -23,4 +22,5 @@ Estes itens aparecem na página sem a classe `.pendente`, então nada na tela av
 
 - [ ] "+12 mil homens transformados" (hero e Quem escreveu) e "milhares de homens" (texto da Quem escreveu): de onde vêm o número e a afirmação.
 - [ ] Garantia de 7 dias (oferta, garantia, FAQ, fechamento): prazo configurado na Eduzz e como funciona o reembolso.
+- [ ] O pixel já envia os eventos da página pelo Conversions API Gateway (configurado na Meta, independe do WordPress). Confirmar com o gestor de tráfego: (a) que o Gateway está ativo e deduplicando com o pixel do navegador; (b) que o pixel está configurado no produto dentro da Eduzz para o evento de compra; (c) se o checkout da Eduzz também dispara InitiateCheckout ao abrir. Se disparar, remover o InitiateCheckout do clique na página, para não contar duas vezes.
 - [ ] Originais em maior resolução do hero (desktop e celular) e da mesa da oferta, se existirem. As atuais têm 1672 px no lado maior e aparecem ampliadas em telas retina.

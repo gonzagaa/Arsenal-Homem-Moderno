@@ -3,6 +3,34 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+// Rastreio desligado no localhost (Live Server), para as conferências não virarem dados reais no GTM, no pixel
+// e no Gateway. Para testar no "Testar eventos" do Gerenciador de Eventos, abra com ?rastreio=1.
+var rastrear = !/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]rastreio=1(&|$)/.test(location.search);
+</script>
+<!-- Google Tag Manager (leva o GA4; não criar tag do pixel da Meta aqui) -->
+<script>if (rastrear) (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5KX5J7J6');</script>
+<!-- End Google Tag Manager -->
+<!-- Meta Pixel Code (só aqui, nunca no GTM: PageView duplicado estraga a otimização das campanhas) -->
+<script>
+if (rastrear) {
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1434833234924777');
+fbq('track', 'PageView');
+}
+</script>
+<!-- End Meta Pixel Code -->
 <title>Arsenal Homem Blindado, por Marcello Gomes</title>
 <meta name="description" content="Quatro manuais escritos por Marcello Gomes para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.">
 <meta name="theme-color" content="#01050F">
@@ -558,6 +586,13 @@ html:has(dialog[open]){overflow:hidden}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript). Os <noscript> só carregam com o JS desligado; aí não há como saber o hostname
+     num HTML estático, então no localhost com JS desligado eles carregam. Com JS ligado, nunca carregam. -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KX5J7J6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Meta Pixel (noscript) -->
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1434833234924777&amp;ev=PageView&amp;noscript=1"></noscript>
 <main>
 <section id="hero" class="hero">
 <picture class="hero-bg">
@@ -956,6 +991,44 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 </svg>
 <script src="assets/js/lenis.min.js" defer></script>
 <script>
+// Checkout: todo botão de compra aponta para a Eduzz. Os parâmetros que chegaram na URL da página
+// (utm_*, src, sck, fbclid e qualquer outro) são repassados para o link, sem duplicar os que ele já tem,
+// para o tráfego pago não perder a origem da venda. O clique dispara o InitiateCheckout do pixel.
+// Sem JS, os links levam ao checkout sem os parâmetros.
+// O pixel só envia o evento uns 50ms depois do fbq() (agrupa envios e espera até 200ms por dados do navegador).
+// Se a página sair antes, o evento se perde: por isso, com o pixel carregado, a navegação espera 300ms
+// (setTimeout fixo, sem depender de callback do pixel). Sem o pixel (localhost, bloqueador, falha de rede),
+// o clique navega na hora. Ctrl/Cmd+clique, clique do meio e nova aba seguem normais.
+(function () {
+  var CHECKOUT = 'a[href^="https://chk.eduzz.com/"]';
+  var params = new URLSearchParams(location.search);
+  params.delete('rastreio'); // chave de teste do rastreio no localhost, não vai para o checkout
+  if (params.toString()) {
+    document.querySelectorAll(CHECKOUT).forEach(function (a) {
+      var url = new URL(a.href);
+      params.forEach(function (valor, nome) {
+        if (!url.searchParams.has(nome)) url.searchParams.append(nome, valor);
+      });
+      a.href = url.toString();
+    });
+  }
+  var saindo = false;
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest(CHECKOUT);
+    // O trecho do pixel cria um fbq provisório na hora; callMethod só existe quando o fbevents.js carregou de fato.
+    if (!a || !window.fbq || !window.fbq.callMethod) return;
+    var novaAba = e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank';
+    if (novaAba) { fbq('track', 'InitiateCheckout'); return; }
+    e.preventDefault();
+    if (saindo) return; // clique duplo: um evento e uma navegação só
+    saindo = true;
+    fbq('track', 'InitiateCheckout');
+    setTimeout(function () { location.href = a.href; }, 300);
+  });
+  // Voltando do checkout pelo histórico (página restaurada do cache), os botões voltam a funcionar.
+  window.addEventListener('pageshow', function () { saindo = false; });
+})();
+
 // Rolagem suave (Lenis): só com mouse/trackpad e sem movimento reduzido. No toque, rolagem nativa.
 (function () {
   var semMovimento = matchMedia('(prefers-reduced-motion: reduce)');
