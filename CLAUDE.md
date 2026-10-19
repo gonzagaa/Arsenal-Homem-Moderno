@@ -124,6 +124,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - Tudo dentro de `@supports (animation-timeline: view())` e de `prefers-reduced-motion: no-preference`. Sem suporte, o elemento aparece normal, sem efeito e sem JS de fallback.
 - Nunca aplicar num elemento que contém vidro (`backdrop-filter`): o `filter` do pai corta o fundo que o vidro desfoca. Aplique no próprio vidro ou nos filhos.
 - Nunca aplicar no elemento sticky; aplique nos filhos dele.
+- Nunca aplicar dentro de um elemento com `overflow: hidden` (nem `auto` ou `scroll`): ele vira contêiner de rolagem, o `view()` mede contra ele e a animação não roda. Para cortar, use `overflow: clip`. Numa fileira que rola de verdade (scroll-snap), use uma `view-timeline` com nome na própria fileira, como na #resultados.
 - Nunca aplicar nos blocos do fim da página (frase final do fechamento, rodapé): a rolagem acaba antes de eles chegarem a 35% da tela e ficariam desfocados.
 - Nunca aplicar em fotos grandes, palco de imagem ou seção inteira. O Chrome não leva animação de `blur` para a GPU: ela roda na thread principal e o custo cresce com a área desfocada. Use em blocos de texto e cards.
 

@@ -384,6 +384,65 @@ html:has(dialog[open]){overflow:hidden}
 .big-quote{max-width:18ch;margin:70px auto 0;text-align:center;font-weight:300;font-size:34px;line-height:1.08;letter-spacing:-.04em;text-wrap:balance}
 .big-quote strong{font-weight:500}
 
+/* Oferta. Palco com a mesa (dissolvendo nas bordas e no topo), os quatro livros em pé montados em HTML
+   e o painel de preço em vidro subindo por cima da borda de baixo do palco.
+   Celular: palco de 300px cortando a parede de cima (a foto mantém a escala de 380px, presa embaixo)
+   e livros em leque, cada um avançando 22% sobre o vizinho, o Arsenal à frente.
+   A partir de 761px, altura do palco e largura dos livros escalam juntas até 720px e 172/204px. */
+.oferta{position:relative;padding:20px 0 120px;background:var(--abismo)}
+.oferta::before{content:"";position:absolute;left:50%;bottom:0;width:1100px;height:700px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
+.oferta .sec-head{margin-bottom:8px}
+/* overflow:clip, não hidden: hidden faria do palco um contêiner de rolagem e o view() dos livros mediria contra ele. */
+.stage{position:relative;height:300px;max-width:1600px;margin:0 auto;overflow:clip}
+.stage-bg img{position:absolute;left:0;bottom:0;width:100%;height:380px;object-fit:cover;object-position:40% 50%}
+.stage-fade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#050A14 0%,rgba(5,10,20,0) 22%,rgba(5,10,20,0) 70%,#050A14 100%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,0) 14%,rgba(5,10,20,0) 86%,#050A14 100%)}
+.books{--lado:min(104px,26vw);--centro:min(124px,31vw);position:absolute;left:0;right:0;bottom:70px;z-index:2;display:flex;align-items:flex-end;justify-content:center;perspective:1800px}
+.book{position:relative;width:var(--lado)}
+.book.big{width:var(--centro)}
+.book+.book{margin-left:calc(var(--lado) * -.22)}
+.b1{z-index:3;transform:rotateY(18deg)}.b2{z-index:4;transform:rotateY(6deg)}.b3{z-index:3;transform:rotateY(-6deg)}.b4{z-index:2;transform:rotateY(-18deg)}
+.book::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-16px;height:28px;z-index:-1;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0))}
+.cover{position:relative;container-type:inline-size;aspect-ratio:2/3;overflow:hidden;background:#02060F;border-radius:2px 5px 5px 2px;box-shadow:-18px 24px 40px -14px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,15,.88) 0%,rgba(2,6,15,.45) 32%,rgba(2,6,15,0) 50%),linear-gradient(0deg,rgba(2,6,15,.8) 0%,rgba(2,6,15,0) 22%)}
+/* Luz de lombada na borda esquerda e contorno fino da capa. */
+.cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5cqw;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(255,255,255,.14) 30%,rgba(255,255,255,0) 100%)}
+.cover::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid rgba(201,211,224,.12);border-radius:inherit;pointer-events:none}
+.ct{position:absolute;inset:0;z-index:2;padding:9cqw 8cqw 8cqw 10cqw;display:flex;flex-direction:column;color:var(--gelo)}
+.ti{font-weight:300;font-size:10.6cqw;line-height:1.02;letter-spacing:-.035em}
+.ti strong{display:block;font-weight:600}
+.ti.long{font-size:8.8cqw}
+.au{margin-top:auto;font-size:4.6cqw;font-weight:500;line-height:1.2;letter-spacing:.005em;color:#D9E2EE}
+
+/* Celular: 12px entre o painel e a borda da tela (o .wrap tem 22px). */
+.panel{position:relative;z-index:3;max-width:980px;margin:-50px -10px 0;border-radius:24px;padding:26px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;background:linear-gradient(180deg,rgba(24,38,60,.66),rgba(9,17,31,.9));-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(169,184,203,.18);box-shadow:0 50px 100px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.07)}
+.items{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.items li{display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(169,184,203,.1);font-size:16.5px;line-height:1.4;color:#D9E2EE}
+.items li:last-child{border-bottom:0;padding-bottom:0}
+.items svg{flex:none}
+.price-old{font-size:15px;color:#8EA0B8}
+.price-main{display:flex;align-items:baseline;gap:10px;margin:6px 0 4px}
+.price-main small{font-size:18px;color:var(--nevoa);font-weight:400}
+.price-main b{font-weight:300;font-size:52px;line-height:1;letter-spacing:-.04em}
+.price-alt{font-size:15.5px;color:#B7C7DC}
+.compare{margin:18px 0 24px;font-size:16px;line-height:1.5;color:#C9D3E0}
+.details{grid-column:1 / -1;list-style:none;padding:24px 0 0;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(169,184,203,.12);font-size:13.5px;line-height:1.4;color:var(--nevoa-2)}
+.details li{display:inline-flex;align-items:center;gap:8px}
+.details svg{flex:none}
+.note{grid-column:1 / -1;margin-top:-8px;font-size:13px;line-height:1.5;color:#7E8FA6}
+@media (max-width:760px){
+  /* Botão do painel: como o do hero abaixo de 385px, e o anel 1px mais justo, para o rótulo caber
+     em uma linha a partir de 385px. Abaixo disso, quebra em duas linhas parelhas. */
+  .panel .cta-ring{padding:4px}
+  .panel .cta{gap:10px;font-size:13.5px}
+  /* Leque simétrico: nas duas capas à direita do Arsenal, a borda esquerda fica coberta pelo vizinho,
+     então título e nome vão para a direita, com o recuo espelhado. */
+  .b3 .ct,.b4 .ct{padding:9cqw 10cqw 8cqw 8cqw;text-align:right}
+  /* Na capa da esquerda, a borda coberta (pelo Arsenal) é a direita: o recuo direito cobre os 22%. */
+  .b1 .ct{padding-right:24cqw}
+  .b1 .ti{text-wrap:balance}
+}
+
 @media (min-width:761px){
   .result{padding:40px 0 140px}
   .prints{margin:0 -64px;padding:0 64px 8px;scroll-padding:0 64px;gap:20px}
@@ -393,6 +452,18 @@ html:has(dialog[open]){overflow:hidden}
   .ep-grid{max-width:680px}
   .ep{padding:36px}
   .big-quote{margin-top:110px;font-size:clamp(34px,4.4vw,64px)}
+  .oferta{padding:40px 0 180px}
+  .stage{height:clamp(380px,50vw,720px)}
+  .stage-bg img{top:0;height:100%;object-position:50% 50%}
+  .books{bottom:25%;gap:clamp(8px,1.8vw,26px)}
+  .book{width:clamp(72px,11.9vw,172px)}
+  .book.big{width:clamp(86px,14.17vw,204px)}
+  .book+.book{margin-left:0}
+  /* Tablet: o painel fica em uma coluna, centrado. */
+  /* O painel sobe 21% da altura do palco (-150px em 720px, como no mockup) e não cobre o pé dos livros. */
+  .panel{max-width:640px;margin:calc(clamp(380px,50vw,720px) * -.21) auto 0;border-radius:30px;padding:40px 44px;gap:36px}
+  .price-main b{font-size:68px}
+  .details{flex-direction:row;flex-wrap:wrap;gap:12px 28px}
 }
 
 @media (min-width:1024px){
@@ -402,6 +473,7 @@ html:has(dialog[open]){overflow:hidden}
   .pcol:nth-child(3) .print{--rv-atraso:10svh}
   .ep-grid{max-width:1040px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
   .ep-yes{--rv-atraso:5svh}
+  .panel{max-width:980px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,3.4vw,48px);padding:44px clamp(36px,3.4vw,48px)}
   .card{padding:clamp(36px,3.6vw,46px);grid-template-columns:clamp(280px,30vw,380px) minmax(0,1fr);gap:clamp(40px,4vw,56px)}
   .stat{padding:18px clamp(16px,1.4vw,20px)}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
@@ -680,7 +752,55 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 <p class="big-quote reveal">Conhecimento custa muito menos <strong class="silver">do que arrependimento.</strong></p>
 </div>
 </section>
-<section id="oferta"></section>
+<section id="oferta" class="oferta">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill reveal">A oferta</span>
+<h2 class="h2 reveal">Tudo o que você <strong class="silver">recebe hoje.</strong></h2>
+</div>
+</div>
+<div class="stage">
+<picture class="stage-bg">
+<source type="image/avif" srcset="assets/img/opt/oferta-mesa-960.avif 960w, assets/img/opt/oferta-mesa-1280.avif 1280w, assets/img/opt/oferta-mesa-1672.avif 1672w" sizes="max(min(100vw, 1600px), 676px)">
+<source type="image/webp" srcset="assets/img/opt/oferta-mesa-960.webp 960w, assets/img/opt/oferta-mesa-1280.webp 1280w, assets/img/opt/oferta-mesa-1672.webp 1672w" sizes="max(min(100vw, 1600px), 676px)">
+<img src="assets/img/opt/oferta-mesa-1280.jpg" srcset="assets/img/opt/oferta-mesa-960.jpg 960w, assets/img/opt/oferta-mesa-1280.jpg 1280w, assets/img/opt/oferta-mesa-1672.jpg 1672w" sizes="max(min(100vw, 1600px), 676px)" width="1672" height="941" loading="lazy" decoding="async" alt="">
+</picture>
+<div class="stage-fade" aria-hidden="true"></div>
+<div class="books reveal" role="img" aria-label="As capas dos quatro manuais do Arsenal Homem Blindado">
+<div class="book b1"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-traicao-260.avif 260w, assets/img/opt/capa-traicao-440.avif 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><source type="image/webp" srcset="assets/img/opt/capa-traicao-260.webp 260w, assets/img/opt/capa-traicao-440.webp 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><img src="assets/img/opt/capa-traicao-260.jpg" srcset="assets/img/opt/capa-traicao-260.jpg 260w, assets/img/opt/capa-traicao-440.jpg 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti long">Manual Secreto da <strong class="silver">Traição para Homens</strong></p><p class="au">Marcello Gomes</p></div></div></div>
+<div class="book big b2"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-arsenal-260.avif 260w, assets/img/opt/capa-arsenal-440.avif 440w" sizes="(min-width: 761px) clamp(86px, 14.17vw, 204px), min(124px, 31vw)"><source type="image/webp" srcset="assets/img/opt/capa-arsenal-260.webp 260w, assets/img/opt/capa-arsenal-440.webp 440w" sizes="(min-width: 761px) clamp(86px, 14.17vw, 204px), min(124px, 31vw)"><img src="assets/img/opt/capa-arsenal-260.jpg" srcset="assets/img/opt/capa-arsenal-260.jpg 260w, assets/img/opt/capa-arsenal-440.jpg 440w" sizes="(min-width: 761px) clamp(86px, 14.17vw, 204px), min(124px, 31vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti">Arsenal <strong class="silver">Homem Blindado</strong></p><p class="au">Marcello Gomes</p></div></div></div>
+<div class="book b3"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-honra-260.avif 260w, assets/img/opt/capa-honra-440.avif 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><source type="image/webp" srcset="assets/img/opt/capa-honra-260.webp 260w, assets/img/opt/capa-honra-440.webp 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><img src="assets/img/opt/capa-honra-260.jpg" srcset="assets/img/opt/capa-honra-260.jpg 260w, assets/img/opt/capa-honra-440.jpg 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti">A Força <strong class="silver">da Honra</strong></p><p class="au">Marcello Gomes</p></div></div></div>
+<div class="book b4"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-iluda-260.avif 260w, assets/img/opt/capa-iluda-440.avif 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><source type="image/webp" srcset="assets/img/opt/capa-iluda-260.webp 260w, assets/img/opt/capa-iluda-440.webp 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><img src="assets/img/opt/capa-iluda-260.jpg" srcset="assets/img/opt/capa-iluda-260.jpg 260w, assets/img/opt/capa-iluda-440.jpg 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti long">Nunca se Iluda <strong class="silver">com as Mulheres</strong></p><p class="au">Marcello Gomes</p></div></div></div>
+</div>
+</div>
+<div class="wrap">
+<div class="panel reveal">
+<div>
+<span class="pill">Arsenal Homem Blindado</span>
+<ul class="items">
+<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>Arsenal Homem Blindado</li>
+<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>Manual Secreto da Traição para Homens</li>
+<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>A Força da Honra</li>
+<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>Nunca se Iluda com as Mulheres</li>
+</ul>
+</div>
+<div>
+<p class="price-old">De <s>R$ 297</s> por</p>
+<p class="price-main"><small>12x de</small> <b class="silver">R$ 10,03</b></p>
+<p class="price-alt">ou R$ 97 à vista</p>
+<p class="compare">Menos do que um jantar a dois. E pode te poupar anos.</p>
+<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
+</div>
+<ul class="details">
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>Acesso imediato no seu e-mail</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Leitura no celular, tablet ou computador</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Pagamento seguro pela Eduzz</li>
+<li><svg width="14" height="16" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="#A9B8CB" stroke-width="16" stroke-linejoin="round"/></svg>Garantia de 7 dias</li>
+</ul>
+<p class="note">Material digital em PDF. Nada é enviado pelo correio.</p>
+</div>
+</div>
+</section>
 <section id="garantia"></section>
 <section id="faq"></section>
 <section id="fechamento"></section>

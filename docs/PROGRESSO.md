@@ -16,8 +16,9 @@ Atualizado em 2026-10-19.
 | 4. O sistema | aprovada |
 | 5. Antes e depois, e quem escreveu | aprovada |
 | 6. Resultados e para quem é | aprovada |
-| **7. Oferta** | **próxima** |
-| 8 a 11 | a fazer |
+| 7. Oferta | aprovada |
+| **8. Garantia, FAQ, fechamento, rodapé e barra fixa** | **próxima** |
+| 9 a 11 | a fazer |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -119,6 +120,20 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 - Lightbox: um `<dialog>` só, que recebe uma cópia do conteúdo da moldura e pede a versão maior do `srcset` (`sizes` 520px). Fecha no X, no Esc e tocando fora; o foco volta para a moldura. `html:has(dialog[open]){overflow:hidden}` trava a página atrás também sem o Lenis (toque). Testado no desktop com o Lenis e no celular com toque.
 - Para quem é: cards empilhados até 1023px (largura máxima 680px), lado a lado a partir de 1024px, com `--rv-atraso: 5svh` no "É para você se".
 - Moldura de print com brilho no hover (é clicável).
+
+### Etapa 7: oferta
+
+- `.reveal` só na fileira de livros (`.books`), nunca na foto da mesa (o CLAUDE.md proíbe em palco de imagem), e no painel de vidro (nele mesmo).
+- Palco com `overflow: clip`. Com `hidden`, o palco vira contêiner de rolagem e o `view()` dos livros não anima (regra registrada no CLAUDE.md).
+- Desktop e tablet (a partir de 761px): altura do palco `clamp(380px, 50vw, 720px)`, livros `clamp(72px, 11.9vw, 172px)` e `clamp(86px, 14.17vw, 204px)` com espaço `clamp(8px, 1.8vw, 26px)`, pé dos livros a 25% do palco. O painel sobe 21% da altura do palco (-150px em 720px).
+- Painel: uma coluna, centrado, com no máximo 640px no tablet; duas colunas a partir de 1024px.
+- Celular (até 760px):
+  - Palco de 300px; a foto mantém a escala de 380px, presa embaixo, e o corte sai da parede de cima. Pé dos livros a 70px do fundo do palco, sobre o tampo da mesa.
+  - Livros em leque: `min(104px, 26vw)` nos laterais e `min(124px, 31vw)` no Arsenal; cada livro avança 22% (da largura lateral) sobre o vizinho. Camadas: Arsenal 4, vizinhos 3, "Nunca se Iluda" 2. Giros com `perspective` mantidos.
+  - Capas à direita do Arsenal com título e nome alinhados à direita e recuo espelhado (10% à direita, 8% à esquerda). Capa da esquerda com recuo direito de 24% e `text-wrap: balance`. Conferido em 360 a 414px: nenhum texto coberto.
+  - Painel a 12px da borda da tela (`margin-inline: -10px` dentro do `.wrap`), recuo interno de 16px, sobe 50px.
+  - Botão do painel: 13,5px, espaço de 10px, anel com 4px. Uma linha a partir de 385px (folga de 4,6px em 390px); abaixo, duas linhas parelhas.
+- Ponto de luz atrás do painel (`.oferta::before`; `::after` ficaria por cima do conteúdo).
 
 ## Pendências técnicas (do projeto, não do cliente)
 
