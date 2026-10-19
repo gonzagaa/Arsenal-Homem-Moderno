@@ -19,8 +19,8 @@ Atualizado em 2026-10-19.
 | 7. Oferta | aprovada |
 | 8. Garantia, FAQ, fechamento, rodapé e barra fixa | aprovada |
 | 9. Checkout e rastreamento | aprovada |
-| **10. SEO e compartilhamento** | **próxima** |
-| 11 | a fazer |
+| 10. SEO e compartilhamento | aprovada |
+| **11. Revisão final** | **próxima** |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -158,10 +158,15 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 - Clique de compra com o pixel carregado (`fbq.callMethod` existe): `preventDefault`, InitiateCheckout e navegação por `setTimeout` de 300ms, porque o pixel envia o evento ~50ms depois (agrupa e espera até 200ms) e a navegação imediata o perdia. Sem o pixel (localhost, bloqueador, rede), navega na hora. Ctrl/Cmd+clique, clique do meio e nova aba seguem normais; clique duplo gera um evento só; `pageshow` reativa os botões ao voltar pelo histórico.
 - Testes de rastreio sempre interceptando e bloqueando `facebook.com/tr`, os endpoints do Gateway e `/g/collect`, e com user agent sem "HeadlessChrome" (o pixel descarta navegadores automatizados).
 
+### Etapa 10: SEO e compartilhamento
+
+- `<title>`: "Arsenal Homem Blindado: você pode aprender antes" (o H1 inteiro, com 77 caracteres, seria cortado no Google). Meta description: a subheadline.
+- Open Graph e Twitter Card com o H1 inteiro como título e a subheadline como descrição. `og:url`, `og:image` e canonical com endereço absoluto em `https://arsenal-homem-blindado.com.br/`.
+- `assets/img/og.jpg` (1200x630): foto do hero desktop, sombra à esquerda, rótulo "Arsenal Homem Blindado" com o escudo (aprovado) e o H1 na Geist. Gerada por `scripts/gerar-og.mjs` (puppeteer-core com o Chrome da máquina; `CHROME_PATH` se estiver em outro lugar; precisa de internet para a Geist).
+- Favicons na raiz, gerados por `scripts/gerar-favicons.mjs` (sharp): `favicon.svg` (desenho de referência: escudo prateado sobre quadrado #050A14 com cantos de 14/64), `favicon-32.png`, `apple-touch-icon.png` (180, sem cantos) e `favicon.ico` (16, 32 e 48).
+
 ## Pendências técnicas (do projeto, não do cliente)
 
-- O `favicon.ico` dá 404 até a etapa 10.
-- Barra fixa (etapa 8) e lightbox dos prints (etapa 6): conferir com o Lenis ativo. O JS já para o Lenis com qualquer `<dialog>` aberto e deixa a rolagem dentro dele com o navegador.
 - As pendências do cliente estão em `PENDENCIAS.md`.
 
 ## Medições de referência
@@ -185,8 +190,11 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 
 1. Clone o repositório e abra a pasta no VS Code.
 2. Instale a extensão Live Server (Ritwick Dey) e clique em "Go Live". A página abre em http://127.0.0.1:5500/index.html. Todo caminho é relativo, então qualquer servidor estático na raiz também serve (por exemplo, `npx live-server --port=5500`).
-3. Não é preciso gerar nada: `assets/img/opt/` e `assets/js/lenis.min.js` estão no repositório.
-4. O Node (versão 20 ou mais nova; foi usada a 24) só é necessário para regenerar arquivos:
-   - `npm install --prefix scripts`: baixa o sharp e o Lenis para `scripts/node_modules`, que fica fora do git.
+3. Não é preciso gerar nada: `assets/img/opt/`, `assets/img/og.jpg`, os favicons e `assets/js/lenis.min.js` estão no repositório.
+4. No localhost, o GTM e o pixel não carregam. Para testar o rastreio, abra com `?rastreio=1`.
+5. O Node (versão 20 ou mais nova; foram usadas a 24 e a 22) só é necessário para regenerar arquivos:
+   - `npm install --prefix scripts`: baixa o sharp, o Lenis e o puppeteer-core para `scripts/node_modules`, que fica fora do git.
    - `node scripts/otimizar-imagens.mjs`: gera as imagens que mudaram; `--tudo` refaz todas.
    - `npm run lenis --prefix scripts`: recopia o Lenis para `assets/js/`.
+   - `npm run og --prefix scripts`: refaz `assets/img/og.jpg` (precisa do Chrome instalado e de internet).
+   - `npm run favicons --prefix scripts`: refaz os favicons PNG e ICO.
