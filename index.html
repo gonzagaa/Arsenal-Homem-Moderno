@@ -74,6 +74,11 @@ html.lenis{scroll-behavior:auto!important}
   @media (prefers-reduced-motion:no-preference) and (min-width:761px){
     .reveal{animation-name:rv-entra,rv-sai}
   }
+  /* Na fileira horizontal dos prints, o view() mediria contra a própria fileira (que não rola na vertical).
+     Os prints usam a linha do tempo da fileira inteira na rolagem da página (view-timeline --prints). */
+  @media (prefers-reduced-motion:no-preference) and (max-width:1023px){
+    .prints .reveal{animation-timeline:--prints,--prints}
+  }
 }
 
 /* Peças reutilizáveis (valores do mockup, celular primeiro) */
@@ -309,7 +314,6 @@ html.lenis{scroll-behavior:auto!important}
 @media (hover:hover){.perfil:hover{color:#FFFFFF}}
 .autor .body{max-width:60ch}
 .autor .body p:last-child{margin-bottom:0}
-.autor .pendente{margin-bottom:20px;font-size:15px;line-height:1.5}
 .stats{list-style:none;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-top:30px}
 .stat{display:flex;align-items:baseline;gap:12px;padding:18px 20px;border-radius:16px;background:rgba(5,10,20,.5);border:1px solid rgba(169,184,203,.13)}
 .stat b{display:block;font-weight:500;font-size:30px;line-height:1;letter-spacing:-.03em}
@@ -333,7 +337,71 @@ html.lenis{scroll-behavior:auto!important}
 @media (min-width:761px) and (max-width:1023px){
   .frame{justify-self:center;width:min(100%,340px)}
 }
+/* Resultados. Celular e tablet: fileira horizontal com scroll-snap, mostrando um pedaço do próximo print.
+   Desktop: mosaico em três colunas explícitas (.pcol), para o --rv-atraso saber a coluna de cada print. */
+.result{position:relative;padding:20px 0 100px;background:var(--abismo)}
+.result::before{content:"";position:absolute;left:50%;top:0;width:1000px;height:600px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
+.prints{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 22px;margin:0 -22px;padding:0 22px 8px;scrollbar-width:none;view-timeline:--prints block}
+.prints::-webkit-scrollbar{display:none}
+.pcol{display:contents}
+.print{flex:0 0 78%;scroll-snap-align:center;display:block;width:100%;padding:10px;border:0;border-radius:24px;text-align:left;cursor:zoom-in;background:linear-gradient(180deg,rgba(201,211,224,.22),rgba(169,184,203,.05));box-shadow:0 30px 60px -30px rgba(0,0,0,.9);-webkit-tap-highlight-color:transparent;transition:box-shadow .2s}
+@media (hover:hover){.print:hover{box-shadow:0 30px 60px -30px rgba(0,0,0,.9),0 0 50px -12px rgba(150,180,225,.45)}}
+.print img{width:100%;border-radius:16px}
+/* Espaço reservado do print (sai quando a imagem chegar). Também é copiado para o lightbox. */
+.screen{position:relative;overflow:hidden;background:#0A1322;display:flex;flex-direction:column;gap:9px}
+.screen.pendente{margin:0;padding:16px 14px 18px;border-radius:16px}
+.dm-head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid rgba(169,184,203,.08);margin-bottom:4px}
+.av{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,#3A4A63,#1A2436);filter:blur(1.5px)}
+.nm{width:96px;height:9px;border-radius:9px;background:rgba(169,184,203,.25);filter:blur(2px)}
+.bub{display:block;max-width:86%;border-radius:16px;padding:10px 12px}
+.bub.in{align-self:flex-start;background:#1A2638}
+.bub.out{align-self:flex-end;background:#2B3D58}
+.ph{display:block;max-width:100%;height:8px;border-radius:8px;background:rgba(201,211,224,.22);margin:4px 0}
+.screen .tag{position:absolute;right:10px;top:10px;font-size:11px;line-height:1.4;padding:4px 8px;border-radius:999px;color:#FFD9A0;background:rgba(245,165,36,.14);border:1px dashed rgba(245,165,36,.6)}
+
+/* Lightbox dos prints (<dialog> em tela cheia). A rolagem dentro dele fica com o navegador. */
+html:has(dialog[open]){overflow:hidden}
+.lightbox{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;color:inherit;background:rgba(1,5,15,.94);overflow-y:auto;overscroll-behavior:contain}
+.lightbox::backdrop{background:transparent}
+.lb-corpo{min-height:100%;display:flex;align-items:center;justify-content:center;padding:max(76px,calc(env(safe-area-inset-top) + 68px)) max(16px,env(safe-area-inset-right)) max(32px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.lb-conteudo{width:min(100%,520px)}
+.lb-conteudo img{width:100%;border-radius:16px}
+.lb-fechar{position:fixed;top:max(16px,env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right));z-index:1;width:48px;height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 30px rgba(120,155,205,.25)}
+@media (hover:hover){.lb-fechar:hover{border-color:rgba(201,211,224,.6)}}
+
+/* Para quem é */
+.epara{position:relative;padding:10px 0 90px;background:var(--abismo)}
+.epara::before{content:"";position:absolute;right:-25%;top:0;width:85%;height:70%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.22),rgba(30,58,104,0))}
+.ep-grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:stretch}
+.ep{border-radius:26px;padding:26px 22px}
+.ep h3{margin:0 0 20px;font-weight:300;font-size:26px;line-height:1.2;letter-spacing:-.02em}
+.ep ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:16px}
+.ep li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px;line-height:1.5}
+.ep li svg{flex:none;margin-top:3px}
+.ep-no{background:rgba(12,23,41,.4);border:1px solid rgba(169,184,203,.09);color:#8EA0B8}
+.ep-no h3{color:var(--nevoa)}
+.ep-yes{background:linear-gradient(180deg,rgba(30,48,76,.6),rgba(10,19,34,.85));border:1px solid rgba(201,211,224,.22);box-shadow:0 0 70px -24px rgba(150,180,225,.45),inset 0 1px 0 rgba(255,255,255,.07);color:var(--gelo)}
+.big-quote{max-width:18ch;margin:70px auto 0;text-align:center;font-weight:300;font-size:34px;line-height:1.08;letter-spacing:-.04em;text-wrap:balance}
+.big-quote strong{font-weight:500}
+
+@media (min-width:761px){
+  .result{padding:40px 0 140px}
+  .prints{margin:0 -64px;padding:0 64px 8px;scroll-padding:0 64px;gap:20px}
+  .print{flex-basis:42%}
+  .epara{padding:20px 0 120px}
+  /* Tablet: lado a lado, as linhas ficariam com ~22 caracteres. Empilhados até 1023px. */
+  .ep-grid{max-width:680px}
+  .ep{padding:36px}
+  .big-quote{margin-top:110px;font-size:clamp(34px,4.4vw,64px)}
+}
+
 @media (min-width:1024px){
+  .prints{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start;overflow:visible;margin:0;padding:0;view-timeline:none}
+  .pcol{display:flex;flex-direction:column;gap:20px}
+  .pcol:nth-child(2) .print{--rv-atraso:5svh}
+  .pcol:nth-child(3) .print{--rv-atraso:10svh}
+  .ep-grid{max-width:1040px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .ep-yes{--rv-atraso:5svh}
   .card{padding:clamp(36px,3.6vw,46px);grid-template-columns:clamp(280px,30vw,380px) minmax(0,1fr);gap:clamp(40px,4vw,56px)}
   .stat{padding:18px clamp(16px,1.4vw,20px)}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
@@ -540,9 +608,9 @@ html.lenis{scroll-behavior:auto!important}
 <h2 class="h2">Marcello Gomes fala o que a maioria dos homens <strong class="silver">só ouve tarde demais.</strong></h2>
 <a class="perfil" href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener">@marcellopgomes<svg width="15" height="15" viewBox="0 0 24 24" role="img" aria-label="verificado"><path d="M12 2l2.4 2.1 3.2-.3.9 3.1 2.8 1.6-1.1 3 1.1 3-2.8 1.6-.9 3.1-3.2-.3L12 22l-2.4-2.1-3.2.3-.9-3.1-2.8-1.6 1.1-3-1.1-3 2.8-1.6.9-3.1 3.2.3z" fill="#3897F0"/><path d="M8 12.2l2.6 2.6L16 9.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="body">
-<p>São 419 mil seguidores e mais de 2.700 publicações sobre posicionamento masculino, traição, manipulação e honra.</p>
-<p class="pendente">[História pessoal do Marcello em 2 ou 3 frases: o que o levou a falar sobre isso.]</p>
-<p>Ele escreve do jeito que fala nos vídeos. Direto, sem frase de efeito e sem prometer que você vai mudar ninguém. O que ele entrega é visão: você passa a enxergar o que estava na sua frente o tempo todo.</p>
+<p>Marcello Gomes escreve sobre o que a maioria evita falar: posicionamento masculino, traição, ilusão e o preço de viver sem honra. São 419 mil seguidores e mais de 2.700 publicações sobre esses temas.</p>
+<p>Os textos dele já mudaram a forma de enxergar de milhares de homens que estavam perdidos em relacionamentos destrutivos, sem direção e sem respeito próprio.</p>
+<p>A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as verdades que ninguém teve coragem de te dizer antes.</p>
 </div>
 <ul class="stats">
 <li class="stat"><b>419 mil</b><span>seguidores</span></li>
@@ -553,13 +621,74 @@ html.lenis{scroll-behavior:auto!important}
 </div>
 </div>
 </section>
-<section id="resultados"></section>
-<section id="para-quem"></section>
+<section id="resultados" class="result">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill reveal">Direto da DM</span>
+<h2 class="h2 reveal">O que os homens mandam para o Marcello <strong class="silver">depois de ler.</strong></h2>
+<p class="sec-sub reveal">Mensagens reais, enviadas no Instagram. Nomes e fotos cobertos para proteger quem escreveu.</p>
+</div>
+<!-- Prints: quando chegarem, rode node scripts/otimizar-imagens.mjs e troque cada .screen.pendente por:
+<picture>
+<source type="image/avif" srcset="assets/img/opt/print-NOME-400.avif 400w, assets/img/opt/print-NOME-800.avif 800w, assets/img/opt/print-NOME-1200.avif 1200w" sizes="(min-width: 1024px) 371px, (min-width: 761px) 42vw, 78vw">
+<source type="image/webp" srcset="(mesmo, em .webp)" sizes="(o mesmo)">
+<img src="assets/img/opt/print-NOME-800.jpg" srcset="(mesmo, em .jpg)" sizes="(o mesmo)" width="LARGURA" height="ALTURA" loading="lazy" decoding="async" alt="Print de mensagem no Instagram: TEXTO DA MENSAGEM">
+</picture>
+Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1, coluna 2, coluna 3). O lightbox já abre a imagem. -->
+<div class="prints">
+<div class="pcol">
+<button type="button" class="print reveal" aria-label="Abrir print 1 em tela cheia"><span class="screen pendente"><span class="tag">print real</span><span class="dm-head" aria-hidden="true"><span class="av"></span><span class="nm"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:210px"></span><span class="ph" style="width:180px"></span><span class="ph" style="width:120px"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:160px"></span></span><span class="bub out" aria-hidden="true"><span class="ph" style="width:90px"></span></span></span></button>
+<button type="button" class="print reveal" aria-label="Abrir print 2 em tela cheia"><span class="screen pendente"><span class="tag">print real</span><span class="dm-head" aria-hidden="true"><span class="av"></span><span class="nm"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:170px"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:210px"></span><span class="ph" style="width:150px"></span></span><span class="bub out" aria-hidden="true"><span class="ph" style="width:110px"></span></span></span></button>
+</div>
+<div class="pcol">
+<button type="button" class="print reveal" aria-label="Abrir print 3 em tela cheia"><span class="screen pendente"><span class="tag">print real</span><span class="dm-head" aria-hidden="true"><span class="av"></span><span class="nm"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:200px"></span><span class="ph" style="width:214px"></span></span><span class="bub out" aria-hidden="true"><span class="ph" style="width:140px"></span><span class="ph" style="width:70px"></span></span></span></button>
+<button type="button" class="print reveal" aria-label="Abrir print 4 em tela cheia"><span class="screen pendente"><span class="tag">print real</span><span class="dm-head" aria-hidden="true"><span class="av"></span><span class="nm"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:214px"></span><span class="ph" style="width:190px"></span><span class="ph" style="width:140px"></span></span></span></button>
+</div>
+<div class="pcol">
+<button type="button" class="print reveal" aria-label="Abrir print 5 em tela cheia"><span class="screen pendente"><span class="tag">print real</span><span class="dm-head" aria-hidden="true"><span class="av"></span><span class="nm"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:220px"></span><span class="ph" style="width:200px"></span><span class="ph" style="width:214px"></span><span class="ph" style="width:100px"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:130px"></span></span></span></button>
+<button type="button" class="print reveal" aria-label="Abrir print 6 em tela cheia"><span class="screen pendente"><span class="tag">print real</span><span class="dm-head" aria-hidden="true"><span class="av"></span><span class="nm"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:150px"></span><span class="ph" style="width:200px"></span></span><span class="bub out" aria-hidden="true"><span class="ph" style="width:120px"></span></span><span class="bub in" aria-hidden="true"><span class="ph" style="width:180px"></span><span class="ph" style="width:90px"></span></span></span></button>
+</div>
+</div>
+</div>
+</section>
+<section id="para-quem" class="epara">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill reveal">Para quem é</span>
+<h2 class="h2 reveal">Antes de comprar, <strong class="silver">leia isto.</strong></h2>
+</div>
+<div class="ep-grid">
+<div class="ep ep-no reveal">
+<h3>Não é para você se</h3>
+<ul>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Prefere continuar sendo enganado a encarar o que está acontecendo.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Procura uma frase mágica que resolva tudo sem esforço.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Culpa todo mundo pelos próprios erros.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Não quer assumir a responsabilidade pela própria vida.</li>
+</ul>
+</div>
+<div class="ep ep-yes reveal">
+<h3>É para você se</h3>
+<ul>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer crescer como homem, como profissional e como parceiro.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Já entendeu que respeito não se pede. Se conquista com postura e atitude.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Sabe que confiança se constrói com conhecimento e disciplina, e não aparece por acaso.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Prefere aprender agora a se arrepender depois.</li>
+</ul>
+</div>
+</div>
+<p class="big-quote reveal">Conhecimento custa muito menos <strong class="silver">do que arrependimento.</strong></p>
+</div>
+</section>
 <section id="oferta"></section>
 <section id="garantia"></section>
 <section id="faq"></section>
 <section id="fechamento"></section>
 </main>
+<dialog class="lightbox" aria-label="Print em tela cheia">
+<div class="lb-corpo"><div class="lb-conteudo"></div></div>
+<button type="button" class="lb-fechar" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</dialog>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
 <defs>
 <linearGradient id="prata-escudo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#8FA3BE"/></linearGradient>
@@ -637,6 +766,39 @@ html.lenis{scroll-behavior:auto!important}
     });
   });
   atualizar();
+})();
+
+// Lightbox dos prints da #resultados. Abre uma cópia do conteúdo da moldura (a imagem, quando houver),
+// pedindo a versão maior do srcset. Fecha no X, no Esc (nativo do <dialog>) e tocando fora do print.
+(function () {
+  var dialog = document.querySelector('.lightbox');
+  if (!dialog || !dialog.showModal) return;
+  var conteudo = dialog.querySelector('.lb-conteudo');
+  var origem = null;
+
+  document.querySelectorAll('.print').forEach(function (botao) {
+    botao.addEventListener('click', function () {
+      var copia = (botao.querySelector('picture, img') || botao.querySelector('.screen')).cloneNode(true);
+      copia.querySelectorAll('source, img').forEach(ajustar);
+      if (copia.matches('img')) ajustar(copia);
+      conteudo.replaceChildren(copia);
+      origem = botao;
+      dialog.showModal();
+      dialog.scrollTop = 0;
+    });
+  });
+  function ajustar(el) {
+    el.setAttribute('sizes', '(min-width: 561px) 520px, 100vw');
+    el.removeAttribute('loading');
+  }
+  dialog.querySelector('.lb-fechar').addEventListener('click', function () { dialog.close(); });
+  dialog.addEventListener('click', function (e) {
+    if (e.target === dialog || e.target.classList.contains('lb-corpo')) dialog.close();
+  });
+  dialog.addEventListener('close', function () {
+    conteudo.replaceChildren();
+    if (origem) origem.focus({ preventScroll: true });
+  });
 })();
 </script>
 </body>

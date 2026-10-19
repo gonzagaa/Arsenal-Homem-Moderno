@@ -108,11 +108,11 @@ O Arsenal Homem Blindado reúne o que um homem normalmente só entende depois de
 
 **Texto:**
 
-São 419 mil seguidores e mais de 2.700 publicações sobre posicionamento masculino, traição, manipulação e honra.
+Marcello Gomes escreve sobre o que a maioria evita falar: posicionamento masculino, traição, ilusão e o preço de viver sem honra. São 419 mil seguidores e mais de 2.700 publicações sobre esses temas.
 
-[História pessoal do Marcello em 2 ou 3 frases: o que o levou a falar sobre isso.]
+Os textos dele já mudaram a forma de enxergar de milhares de homens que estavam perdidos em relacionamentos destrutivos, sem direção e sem respeito próprio.
 
-Ele escreve do jeito que fala nos vídeos. Direto, sem frase de efeito e sem prometer que você vai mudar ninguém. O que ele entrega é visão: você passa a enxergar o que estava na sua frente o tempo todo.
+A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as verdades que ninguém teve coragem de te dizer antes.
 
 **Números:** 419 mil / seguidores. 2.700+ / publicações. +12 mil / homens transformados.
 

@@ -15,8 +15,9 @@ Atualizado em 2026-10-19.
 | 3.5. Sistema de movimento | aprovada |
 | 4. O sistema | aprovada |
 | 5. Antes e depois, e quem escreveu | aprovada |
-| **6. Resultados e para quem é** | **próxima** |
-| 7 a 11 | a fazer |
+| 6. Resultados e para quem é | aprovada |
+| **7. Oferta** | **próxima** |
+| 8 a 11 | a fazer |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -29,7 +30,7 @@ A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PR
 - Nada de caixa alta com letras espaçadas em lugar nenhum da página, nem em card. Rótulo de card (o `.mlabel` do mockup no #sistema): caixa normal, 14px, peso 500, cor #8FA3BE.
 - O selo de verificado do Instagram fica azul (#3897F0), como no mockup.
 - `.pendente` em toda pendência da copy, inclusive nos links Termos de uso e Política de privacidade. Vale o texto da copy, sem o "Aguardando ele." do mockup.
-- "+12 mil homens transformados", garantia de 7 dias e originais maiores das fotos ficam em `PENDENCIAS.md`, seção "Confirmar antes de publicar", e NÃO recebem `.pendente` na tela.
+- "+12 mil homens transformados", "milhares de homens" (#autor), garantia de 7 dias e originais maiores das fotos ficam em `PENDENCIAS.md`, seção "Confirmar antes de publicar", e NÃO recebem `.pendente` na tela.
 - Fonte provisória da assinatura (Mrs Saint Delafield): pedido separado ao Google Fonts com `text=Marcello Gomes`, para baixar só essas letras.
 - Itens do checklist e perguntas do FAQ com 16px no celular.
 - Oferta: o Arsenal é o 2º livro a partir da esquerda (o maior). Linha de detalhes sem ponto final em cada item.
@@ -108,6 +109,16 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 - `.reveal` no card de vidro do autor (nele mesmo): 0 a 0,2% de quadros lentos com CPU 4x, com e sem o efeito.
 - Luz difusa à direita na #antes-depois (atrás da coluna "Depois") e à esquerda na #autor.
 - `.pendente` em bloco (`p` ou `div`) ganha `padding:14px 16px`.
+
+### Etapa 6: resultados e para quem é
+
+- Texto da #autor trocado pelo cliente (três parágrafos, já no `docs/copy.md`). A história pessoal deixou de ser pendência: é opcional e, se vier, entra entre o 1º e o 2º parágrafo.
+- Prints no desktop (a partir de 1024px): três colunas explícitas (`.pcol`), não `columns`, para o `--rv-atraso` (0, 5, 10svh) saber a coluna. Abaixo de 1024px, `.pcol{display:contents}` e fileira horizontal com `scroll-snap` (78% da largura no celular, 42% no tablet), na ordem coluna 1, 2, 3.
+- Na fileira horizontal, os prints usam a linha do tempo nomeada `--prints` (`view-timeline` na fileira), porque o `view()` mediria contra a própria fileira. Ficam nítidos com a fileira a 35% da tela, contando de baixo.
+- Cada moldura é um `<button>` com `aria-label="Abrir print N em tela cheia"`. O espaço reservado usa `<span>` (conteúdo de botão) com `.screen.pendente` e a etiqueta "print real" do mockup. Há um comentário no HTML com o modelo de `<picture>` para os prints.
+- Lightbox: um `<dialog>` só, que recebe uma cópia do conteúdo da moldura e pede a versão maior do `srcset` (`sizes` 520px). Fecha no X, no Esc e tocando fora; o foco volta para a moldura. `html:has(dialog[open]){overflow:hidden}` trava a página atrás também sem o Lenis (toque). Testado no desktop com o Lenis e no celular com toque.
+- Para quem é: cards empilhados até 1023px (largura máxima 680px), lado a lado a partir de 1024px, com `--rv-atraso: 5svh` no "É para você se".
+- Moldura de print com brilho no hover (é clicável).
 
 ## Pendências técnicas (do projeto, não do cliente)
 
