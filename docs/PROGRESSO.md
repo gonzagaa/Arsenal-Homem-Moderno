@@ -14,8 +14,9 @@ Atualizado em 2026-10-19.
 | 3. Identificação e virada | aprovada |
 | 3.5. Sistema de movimento | aprovada |
 | 4. O sistema | aprovada |
-| **5. Antes e depois, e quem escreveu** | **próxima** |
-| 6 a 11 | a fazer |
+| 5. Antes e depois, e quem escreveu | aprovada |
+| **6. Resultados e para quem é** | **próxima** |
+| 7 a 11 | a fazer |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -97,9 +98,19 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 - Trio no desktop com `--rv-atraso` de 0, 5 e 10svh.
 - Fundo da seção de #0C1729 a #08111F e de volta a #0C1729: emenda com a curva da #virada e com a #antes-depois.
 
+### Etapa 5: antes e depois, e quem escreveu
+
+- Pontos de quebra da página: celular até 760px, tablet de 761 a 1023px, desktop a partir de 1024px. Usar o mesmo 1024px sempre que um layout do mockup não couber no tablet.
+- Antes e depois: no desktop, cada linha do "Depois" tem `--rv-atraso: 4svh` e entra logo depois da linha do "Antes" ao lado. Linhas em `<ul>`.
+- Autor no tablet: foto em cima, centrada, com 340px; texto na largura do card; números lado a lado.
+- Autor de 1024 a 1280px: coluna da foto, espaços e números encolhem com `clamp` (`clamp(280px, 30vw, 380px)` na foto); em 1440px, valores do mockup.
+- Link do Instagram com 44px de altura de toque, margens ajustadas para o espaço visível igual ao mockup. Abre em nova aba.
+- `.reveal` no card de vidro do autor (nele mesmo): 0 a 0,2% de quadros lentos com CPU 4x, com e sem o efeito.
+- Luz difusa à direita na #antes-depois (atrás da coluna "Depois") e à esquerda na #autor.
+- `.pendente` em bloco (`p` ou `div`) ganha `padding:14px 16px`.
+
 ## Pendências técnicas (do projeto, não do cliente)
 
-- A #sistema termina em #0C1729 e só emenda quando a #antes-depois (etapa 5) tiver esse fundo. Até lá aparece uma borda seca embaixo dela.
 - O `favicon.ico` dá 404 até a etapa 10.
 - Barra fixa (etapa 8) e lightbox dos prints (etapa 6): conferir com o Lenis ativo. O JS já para o Lenis com qualquer `<dialog>` aberto e deixa a rolagem dentro dele com o navegador.
 - As pendências do cliente estão em `PENDENCIAS.md`.
