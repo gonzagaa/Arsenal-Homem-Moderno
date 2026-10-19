@@ -1,0 +1,14 @@
+{
+  "name": "arsenal-scripts",
+  "private": true,
+  "type": "module",
+  "description": "Ferramentas locais da landing. Nada aqui vai para a hospedagem.",
+  "scripts": {
+    "imagens": "node otimizar-imagens.mjs",
+    "lenis": "node copiar-lenis.mjs"
+  },
+  "devDependencies": {
+    "lenis": "^1.3.27",
+    "sharp": "^0.35.5"
+  }
+}

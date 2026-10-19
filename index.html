@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arsenal Homem Blindado, por Marcello Gomes</title>
+<meta name="description" content="Quatro manuais escritos por Marcello Gomes para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.">
+<meta name="theme-color" content="#01050F">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(max-width: 760px)" imagesrcset="assets/img/opt/hero-mobile-480.avif 480w, assets/img/opt/hero-mobile-720.avif 720w, assets/img/opt/hero-mobile-941.avif 941w" imagesizes="100vw">
+<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(min-width: 761px)" imagesrcset="assets/img/opt/hero-desktop-960.avif 960w, assets/img/opt/hero-desktop-1280.avif 1280w, assets/img/opt/hero-desktop-1672.avif 1672w" imagesizes="max(100vw, clamp(1137px, 177.7svh, 1635px))">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;display=swap"></noscript>
+<style>
+/* Tokens */
+:root{
+  --abismo:#050A14;
+  --abismo-hero:#01050F;
+  --noite:#0C1729;
+  --aco-1:#16243A;
+  --gelo:#E9EEF5;
+  --nevoa:#AEBBCC;
+  --nevoa-2:#93A3B8;
+  --prata:linear-gradient(180deg,#FFFFFF 0%,#D9E2EE 45%,#9FB2CB 100%);
+}
+
+/* Reset */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body,h1,h2,h3,p,ul,ol,figure,blockquote{margin:0}
+img,picture,svg,video{display:block;max-width:100%}
+img{height:auto}
+button{font:inherit;color:inherit}
+a{color:#B7C7DC}
+a:hover{color:#FFFFFF}
+:focus-visible{outline:2px solid #B7C7DC;outline-offset:3px}
+
+/* Base */
+body{position:relative;overflow-x:clip;font-family:'Geist',system-ui,sans-serif;font-size:16px;line-height:1.6;color:var(--gelo);background:var(--abismo);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body::after{content:"";position:fixed;inset:0;z-index:6;pointer-events:none;background-image:url(assets/img/grain.png);background-image:image-set(url(assets/img/opt/grain.webp) type("image/webp"),url(assets/img/grain.png) type("image/png"));background-size:180px;opacity:.5;mix-blend-mode:overlay}
+
+/* As luzes difusas de cada seção passam da borda da tela; o corte fica na própria seção
+   (clip não cria área de rolagem, então o sticky continua funcionando). */
+main>section{overflow-x:clip}
+
+/* Sistema de movimento (regras completas no CLAUDE.md)
+   Rolagem: Lenis com mouse/trackpad; no toque e sem JS, rolagem nativa.
+   Links internos descontam o que estiver fixo no topo (--topo-fixo). */
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+[id]{scroll-margin-top:var(--topo-fixo,0px)}
+[tabindex="-1"]:focus{outline:none}
+html.lenis,html.lenis body{height:auto}
+html.lenis{scroll-behavior:auto!important}
+.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
+.lenis.lenis-smooth iframe{pointer-events:none}
+
+/* Revelação com desfoque, amarrada à rolagem (nunca a tempo).
+   .reveal: entra por baixo e fica nítido quando o bloco chega a 35% da altura da tela;
+   ao passar pelo topo, desfoca de leve. .reveal-saida: só a saída (hero, que é o LCP).
+   --rv-atraso (em svh) põe em sequência itens lado a lado de uma grade.
+   O Chrome não leva animação de blur para a GPU: ela roda na thread principal. Por isso,
+   só em blocos de texto e cards, nunca em fotos grandes ou seções inteiras. */
+@keyframes rv-entra-cel{from{opacity:0;filter:blur(6px);transform:translateY(16px)}to{opacity:1;filter:none;transform:none}}
+@keyframes rv-entra{from{opacity:0;filter:blur(10px);transform:translateY(24px)}to{opacity:1;filter:none;transform:none}}
+@keyframes rv-sai{from{opacity:1;filter:none}to{opacity:.6;filter:blur(4px)}}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{animation:rv-entra-cel ease-out both,rv-sai ease-in none;animation-timeline:view(),view();animation-range:cover var(--rv-atraso,0svh) cover calc(35svh + var(--rv-atraso,0svh)),exit 0% exit 100%}
+    .reveal-saida{animation:rv-sai ease-in none;animation-timeline:view();animation-range:exit 0% exit 100%}
+  }
+  @media (prefers-reduced-motion:no-preference) and (min-width:761px){
+    .reveal{animation-name:rv-entra,rv-sai}
+  }
+}
+
+/* Peças reutilizáveis (valores do mockup, celular primeiro) */
+.wrap{position:relative;max-width:1280px;margin:0 auto;padding:0 max(22px,env(safe-area-inset-right)) 0 max(22px,env(safe-area-inset-left))}
+
+.silver{background:var(--prata);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;letter-spacing:-.005em;color:#A9B8CB}
+.pill::before{content:"";flex:none;width:11px;height:13px;background:linear-gradient(180deg,#F1F4F8,#8FA3BE);clip-path:polygon(50% 0,100% 13%,100% 46%,86% 74%,50% 100%,14% 74%,0 46%,0 13%)}
+
+.h1{font-weight:300;font-size:36px;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;color:var(--gelo)}
+.h1 strong{font-weight:600}
+.h2{font-weight:300;font-size:clamp(30px,3vw,44px);line-height:1.12;letter-spacing:-.03em;text-wrap:balance}
+.h2 strong{font-weight:600}
+.lead{font-size:16.5px;line-height:1.65;color:var(--nevoa);max-width:46ch}
+.lead b{color:var(--gelo);font-weight:500}
+.body{font-size:16.5px;line-height:1.7;color:var(--nevoa);max-width:50ch}
+.body p{margin:0 0 20px}
+
+.glass{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 10px;border-radius:14px;background:linear-gradient(180deg,rgba(22,36,58,.62),rgba(10,20,36,.55));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.2);box-shadow:0 24px 50px -22px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+.glass-ico{flex:none;width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#2A3F60,#111D30);border:1px solid rgba(169,184,203,.25)}
+.glass b{display:block;font-size:15px;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.glass span{display:block;font-size:11px;color:var(--nevoa-2);margin-top:3px}
+
+.cta-ring{display:flex;padding:5px;border-radius:999px;background:linear-gradient(180deg,rgba(233,238,245,.22),rgba(142,168,200,.06));border:1px solid rgba(169,184,203,.18);box-shadow:0 0 70px -18px rgba(150,180,225,.55)}
+.cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:60px;padding:12px 12px 12px 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;line-height:1.3;letter-spacing:0;text-wrap:balance;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF,inset 0 -3px 8px rgba(40,60,90,.28),0 14px 30px -12px rgba(0,0,0,.7)}
+.cta:hover{color:#0A1424}
+.cta::after{content:"";position:absolute;top:0;bottom:0;left:0;width:30%;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.75),rgba(255,255,255,0));transform:translateX(-133%) skewX(-20deg);animation:sheen 4.5s ease-in-out infinite}
+@keyframes sheen{0%,62%{transform:translateX(-133%) skewX(-20deg)}100%{transform:translateX(433%) skewX(-20deg)}}
+.cta-arrow{flex:none;width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#16243A,#0A1424);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+
+/* Abaixo de 385px o rótulo "Quero me tornar um Homem Blindado" não cabe em uma linha com 14px.
+   Com 13,5px ele mede 241,3px e sobram 241,7px em 375px; o gap menor dá 2px de folga. */
+@media (max-width:384px){
+  .cta{gap:10px;font-size:13.5px}
+}
+
+/* Marca do que falta do cliente. Nada com esta classe vai ao ar. */
+.pendente{outline:2px dashed #F5A524;outline-offset:3px;border-radius:4px;background:rgba(245,165,36,.14);color:#FFD9A0;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pendente:is(span,a){margin:0 .25em;padding:0 .2em}
+
+@media (min-width:761px){
+  .wrap{padding:0 64px}
+  .h1{font-size:clamp(40px,4.3vw,62px)}
+  .lead{font-size:18px}
+  .body{font-size:17.5px}
+  .glass{gap:14px;padding:14px 20px 14px 14px;border-radius:18px}
+  .glass-ico{width:42px;height:42px;border-radius:12px}
+  .glass b{font-size:18px}
+  .glass span{font-size:12.5px}
+  .cta-ring{display:inline-flex}
+  .cta{width:auto;justify-content:flex-start;gap:18px;padding:10px 10px 10px 30px;font-size:15px;letter-spacing:.01em}
+  .cta-arrow{width:42px;height:42px}
+}
+
+/* Hero
+   Celular: a foto ocupa a primeira tela (100svh) e o bloco título + texto + botão fica preso
+   no pé dela, então o botão aparece sem rolar. Os cards de vidro vêm logo abaixo do botão.
+   Com 940px de altura ou mais, eles também cabem na primeira tela sem o texto encostar no rosto. */
+.hero{position:relative;padding-bottom:56px;background:var(--abismo)}
+.hero-bg,.shade{position:absolute;top:0;left:0;width:100%;height:640px;height:100svh}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+.shade{pointer-events:none;background:linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.94) 30%,rgba(5,10,20,.4) 52%,rgba(5,10,20,0) 66%)}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;gap:24px;padding:0 max(22px,env(safe-area-inset-right)) 0 max(22px,env(safe-area-inset-left))}
+.hero-copy{display:flex;flex-direction:column;justify-content:flex-end;gap:24px;min-height:640px;min-height:100svh;padding-bottom:20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.seam{position:absolute;left:0;right:0;bottom:0;z-index:4;height:1px;background:linear-gradient(90deg,transparent,rgba(169,184,203,.45) 50%,transparent)}
+.notch{position:absolute;left:50%;bottom:-29px;z-index:5;transform:translateX(-50%);width:58px;height:58px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 0 8px #050A14,0 0 44px rgba(120,155,205,.3)}
+
+@media (max-width:760px) and (min-height:940px){
+  .hero{display:flex;flex-direction:column;justify-content:flex-end;min-height:100svh}
+  .hero-copy{min-height:0;padding-bottom:0}
+}
+@media (max-width:760px) and (max-height:699px){
+  .hero .h1{font-size:32px;text-shadow:0 1px 3px rgba(1,5,15,.55),0 2px 22px rgba(1,5,15,.75)}
+  .hero .h1 strong{text-shadow:none}
+  .hero-inner,.hero-copy{gap:16px}
+}
+
+/* Desktop: altura da tela entre 640 e 920px (920 é o hero do mockup). */
+@media (min-width:761px){
+  .hero{--hero-h:920px;display:flex;align-items:center;min-height:var(--hero-h);padding:48px 0;background:var(--abismo-hero)}
+  .hero-bg,.shade{height:100%}
+  .hero-bg img{object-position:0% 30%}
+  .shade{background:linear-gradient(90deg,rgba(1,5,15,.85) 0%,rgba(1,5,15,.55) 26%,rgba(1,5,15,0) 44%),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
+  .hero-inner{width:100%;gap:36px;padding:0 0 0 clamp(24px,6.5vw,128px)}
+  .hero-copy{min-height:0;gap:30px;padding-bottom:0}
+  .hero-copy,.chips{max-width:min(520px,38vw)}
+  .chips{gap:12px}
+}
+@supports (height:100svh){
+  @media (min-width:761px){.hero{--hero-h:clamp(640px,100svh,920px)}}
+}
+/* De 761 a 1366px a foto fica mais estreita que a tela e o mockup (presa à esquerda) cortaria o rosto.
+   Aqui o rosto (centro em x=1165 de 1672 na foto) fica centrado no espaço à direita do texto (~72vw),
+   sem deixar a foto descobrir a borda da tela. */
+@media (min-width:761px) and (max-width:1366px){
+  .hero-bg img{object-position:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(72vw - 1.238 * var(--hero-h)), 0px) 30%}
+}
+
+/* Identificação
+   Celular: título, lista e, por último, o contador (o .counter{order:2} do mockup),
+   para o resultado aparecer logo depois de marcar. Desktop: título e contador fixos à esquerda. */
+.ident{position:relative;padding:100px 0 20px}
+.ident::before{content:"";position:absolute;right:-30%;top:6%;width:90%;height:70%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.22),rgba(30,58,104,0))}
+.ident-grid{display:flex;flex-direction:column;gap:20px}
+.ident-side{display:contents}
+.ident .lead{max-width:40ch}
+.counter{order:2;margin-top:8px;padding:26px 28px;border-radius:22px;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(9,17,31,.75));border:1px solid rgba(169,184,203,.16)}
+.counter b{display:block;font-weight:300;font-size:54px;line-height:1;letter-spacing:-.04em}
+.counter p{margin-top:12px;font-size:16.5px;line-height:1.55;color:#C9D3E0}
+.chks{order:1;margin-top:8px;display:flex;flex-direction:column;gap:12px}
+.chk{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:16px;border-radius:18px;font-size:16px;line-height:1.45;text-align:left;color:#C9D3E0;background:rgba(12,23,41,.55);border:1px solid rgba(169,184,203,.13);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s,color .2s,box-shadow .2s}
+.chk[aria-pressed="true"]{color:#FFFFFF;background:linear-gradient(180deg,rgba(30,48,76,.75),rgba(14,26,46,.85));border-color:rgba(201,211,224,.4);box-shadow:0 0 40px -14px rgba(150,180,225,.5)}
+.box{flex:none;width:26px;height:30px;display:flex;align-items:center;justify-content:center}
+.esc-fundo{fill:url(#prata-escudo);opacity:0;transition:opacity .2s}
+.esc-borda{fill:none;stroke:#5E708A;stroke-width:12;stroke-linejoin:round;transition:stroke .2s}
+.esc-check{fill:none;stroke:#0A1424;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;opacity:0;transition:opacity .2s}
+.chk[aria-pressed="true"] .esc-fundo,.chk[aria-pressed="true"] .esc-check{opacity:1}
+.chk[aria-pressed="true"] .esc-borda{stroke:#D9E2EE}
+@media (hover:hover){.chk:hover{border-color:rgba(169,184,203,.3)}}
+
+/* Virada. A opacidade cai palavra a palavra; a mais apagada (.52) ainda tem 5:1 de contraste. */
+.virada{position:relative;padding:110px 0 170px}
+.virada::before{content:"";position:absolute;left:-20%;top:0;width:70%;height:100%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.28),rgba(30,58,104,0))}
+.virada-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
+.words{margin-top:28px;font-weight:300;font-size:min(52px,13.4vw);line-height:1;letter-spacing:-.045em}
+.words span{display:block}
+.words span:nth-child(1){color:var(--gelo)}
+.words span:nth-child(2){color:rgba(233,238,245,.84)}
+.words span:nth-child(3){color:rgba(233,238,245,.68)}
+.words span:nth-child(4){color:rgba(233,238,245,.52)}
+.words span:nth-child(5){font-weight:500}
+.virada-texto{position:relative;z-index:2}
+.virada-texto .body p:last-child{color:var(--gelo)}
+.virada-cta{margin-top:14px}
+.arc{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:90px}
+
+@media (min-width:761px){
+  .ident{padding:150px 0 40px}
+  .ident-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,80px);align-items:start}
+  .ident-side{position:sticky;top:60px;display:flex;flex-direction:column;gap:20px}
+  .chks{order:0;margin-top:0}
+  .counter{order:0;margin-top:18px}
+  .chk{gap:18px;padding:18px 22px;font-size:17px}
+  .virada{padding:160px 0 230px}
+  .virada-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px,6vw,80px);align-items:end}
+  .words{font-size:clamp(54px,6.4vw,100px)}
+  .arc{height:170px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .cta::after{animation:none;display:none}
+}
+</style>
+</head>
+<body>
+<main>
+<section id="hero" class="hero">
+<picture class="hero-bg">
+<source media="(max-width: 760px)" type="image/avif" srcset="assets/img/opt/hero-mobile-480.avif 480w, assets/img/opt/hero-mobile-720.avif 720w, assets/img/opt/hero-mobile-941.avif 941w" sizes="100vw" width="941" height="1672">
+<source media="(max-width: 760px)" type="image/webp" srcset="assets/img/opt/hero-mobile-480.webp 480w, assets/img/opt/hero-mobile-720.webp 720w, assets/img/opt/hero-mobile-941.webp 941w" sizes="100vw" width="941" height="1672">
+<source media="(max-width: 760px)" srcset="assets/img/opt/hero-mobile-480.jpg 480w, assets/img/opt/hero-mobile-720.jpg 720w, assets/img/opt/hero-mobile-941.jpg 941w" sizes="100vw" width="941" height="1672">
+<source type="image/avif" srcset="assets/img/opt/hero-desktop-960.avif 960w, assets/img/opt/hero-desktop-1280.avif 1280w, assets/img/opt/hero-desktop-1672.avif 1672w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="1672" height="941">
+<source type="image/webp" srcset="assets/img/opt/hero-desktop-960.webp 960w, assets/img/opt/hero-desktop-1280.webp 1280w, assets/img/opt/hero-desktop-1672.webp 1672w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="1672" height="941">
+<img src="assets/img/opt/hero-desktop-1280.jpg" srcset="assets/img/opt/hero-desktop-960.jpg 960w, assets/img/opt/hero-desktop-1280.jpg 1280w, assets/img/opt/hero-desktop-1672.jpg 1672w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="1672" height="941" fetchpriority="high" alt="Marcello Gomes sentado em poltrona de couro, no escritório com luz azul">
+</picture>
+<div class="shade" aria-hidden="true"></div>
+<div class="hero-inner">
+<div class="hero-copy">
+<h1 class="h1 reveal-saida">Tem homem que só aprende isso depois de ser traído. <strong class="silver">Você pode aprender antes.</strong></h1>
+<p class="lead reveal-saida">Quatro manuais escritos por <b>Marcello Gomes</b> para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.</p>
+<div class="reveal-saida"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+</div>
+<div class="chips">
+<div class="glass reveal-saida">
+<div class="glass-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></div>
+<div><b>419 mil</b><span>seguidores no Instagram</span></div>
+</div>
+<div class="glass reveal-saida">
+<div class="glass-ico"><svg width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="15" stroke-linejoin="round"/></svg></div>
+<div><b>+12 mil</b><span>homens transformados</span></div>
+</div>
+</div>
+</div>
+<div class="seam" aria-hidden="true"></div>
+<div class="notch" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B7C7DC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
+</section>
+<section id="identificacao" class="ident">
+<div class="wrap">
+<div class="ident-grid">
+<div class="ident-side">
+<span class="pill reveal">Antes de qualquer coisa</span>
+<h2 class="h2 reveal">Marque o que já <strong class="silver">aconteceu com você.</strong></h2>
+<p class="lead reveal">Seja honesto. Ninguém está vendo.</p>
+<div class="counter reveal" aria-live="polite" aria-atomic="true">
+<b class="silver">0 de 7</b>
+<p>Se marcou um, este material foi escrito pensando em você.</p>
+</div>
+</div>
+<div class="chks">
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Foi traído e foi o último a saber.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Pagou as contas, esteve presente, fez tudo o que podia. Mesmo assim ouviu que não era suficiente.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Percebeu que estava sendo manipulado só meses depois, quando já tinha cedido em tudo.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Diz "tudo bem" quando não está nada bem, só para evitar mais uma briga.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Tem medo de entrar num relacionamento novo e viver a mesma história de novo.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Sente que as pessoas te respeitam menos do que você merece.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Quer entender relacionamento do jeito que ele é, e não do jeito que contaram para você.</span></button>
+</div>
+</div>
+</div>
+</section>
+<section id="virada" class="virada">
+<div class="wrap">
+<div class="virada-grid">
+<div>
+<span class="pill reveal">Pare de aprender pela dor</span>
+<h2 class="words">
+<span class="reveal">Traições.</span>
+<span class="reveal">Manipulação.</span>
+<span class="reveal">Joguinhos.</span>
+<span class="reveal">Mentiras.</span>
+<span class="silver reveal">Desrespeito.</span>
+</h2>
+</div>
+<div class="virada-texto">
+<div class="body">
+<p class="reveal">Quase todo homem aprende a reconhecer cada uma dessas coisas do jeito mais caro que existe: vivendo.</p>
+<p class="reveal">Um relacionamento errado leva dois, três, cinco anos. Às vezes leva junto o dinheiro, a casa e a confiança que você tinha em si mesmo. Quando você finalmente entende o que aconteceu, já passou.</p>
+<p class="reveal">O Arsenal Homem Blindado reúne o que um homem normalmente só entende depois de vários relacionamentos fracassados. Você lê em poucos dias e começa a usar na próxima conversa.</p>
+</div>
+<div class="virada-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A">Quero aprender antes<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+</div>
+</div>
+</div>
+<svg class="arc" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
+<defs><linearGradient id="arc-luz" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A9B8CB" stop-opacity="0"/><stop offset=".5" stop-color="#A9B8CB" stop-opacity=".55"/><stop offset="1" stop-color="#A9B8CB" stop-opacity="0"/></linearGradient></defs>
+<path d="M0 170 L0 120 C 420 10, 1020 10, 1440 120 L1440 170 Z" fill="#0C1729"/>
+<path d="M0 120 C 420 10, 1020 10, 1440 120" fill="none" stroke="url(#arc-luz)" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+</svg>
+</section>
+<section id="sistema"></section>
+<section id="antes-depois"></section>
+<section id="autor"></section>
+<section id="resultados"></section>
+<section id="para-quem"></section>
+<section id="oferta"></section>
+<section id="garantia"></section>
+<section id="faq"></section>
+<section id="fechamento"></section>
+</main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="prata-escudo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#8FA3BE"/></linearGradient>
+<path id="escudo" d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z"/>
+</defs>
+</svg>
+<script src="assets/js/lenis.min.js" defer></script>
+<script>
+// Rolagem suave (Lenis): só com mouse/trackpad e sem movimento reduzido. No toque, rolagem nativa.
+(function () {
+  var semMovimento = matchMedia('(prefers-reduced-motion: reduce)');
+  var ponteiroFino = matchMedia('(any-pointer: fine)');
+  var lenis = null;
+
+  function avaliar() {
+    var usar = !semMovimento.matches && ponteiroFino.matches && window.Lenis;
+    if (usar && !lenis) {
+      lenis = new Lenis({
+        autoRaf: true,
+        syncTouch: false,
+        // Rolagem dentro de um <dialog> (lightbox dos prints) fica com o navegador.
+        prevent: function (no) { return !!no.closest('dialog'); }
+      });
+    } else if (!usar && lenis) {
+      lenis.destroy();
+      lenis = null;
+    }
+  }
+  document.addEventListener('DOMContentLoaded', avaliar); // o Lenis vem com defer e já carregou aqui
+  semMovimento.addEventListener('change', avaliar);
+  ponteiroFino.addEventListener('change', avaliar);
+
+  // Links internos rolam pelo Lenis, descontam o que estiver fixo no topo e levam o foco ao destino.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a || !lenis || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var alvo = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+    if (!alvo) return;
+    e.preventDefault();
+    lenis.scrollTo(alvo, {
+      offset: -(parseFloat(getComputedStyle(alvo).scrollMarginTop) || 0),
+      onComplete: function () {
+        if (!alvo.hasAttribute('tabindex')) alvo.setAttribute('tabindex', '-1');
+        alvo.focus({ preventScroll: true });
+      }
+    });
+    history.pushState(null, '', a.hash);
+  });
+
+  // Com um <dialog> aberto, a página atrás dele para de rolar.
+  new MutationObserver(function () {
+    if (lenis) document.querySelector('dialog[open]') ? lenis.stop() : lenis.start();
+  }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open'] });
+})();
+
+// Checklist da #identificacao. Sem JS, os botões ficam parados e o contador mostra a frase de 1 a 2.
+(function () {
+  var botoes = document.querySelectorAll('.chk');
+  var numero = document.querySelector('.counter b');
+  var frase = document.querySelector('.counter p');
+  var FRASES = [
+    'Marque com calma. A maioria dos homens se reconhece em pelo menos um.',
+    'Se marcou um, este material foi escrito pensando em você.',
+    'Você já pagou caro demais por esse aprendizado. Está na hora de parar de aprender pela dor.'
+  ];
+  function atualizar() {
+    var n = document.querySelectorAll('.chk[aria-pressed="true"]').length;
+    numero.textContent = n + ' de ' + botoes.length;
+    frase.textContent = FRASES[n === 0 ? 0 : n < 3 ? 1 : 2];
+  }
+  botoes.forEach(function (b) {
+    b.addEventListener('click', function () {
+      b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      atualizar();
+    });
+  });
+  atualizar();
+})();
+</script>
+</body>
+</html>

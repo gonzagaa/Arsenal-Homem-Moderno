@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup de referência: Arsenal Homem Blindado</title>
+<!-- REFERÊNCIA VISUAL APROVADA. Não é o arquivo de produção. O checklist aqui é estático; a lógica está descrita no CLAUDE.md. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;family=Mrs+Saint+Delafield&amp;display=swap">
+<style>
+body{margin:0;background:#050A14}
+a{color:#B7C7DC}a:hover{color:#FFFFFF}
+.page{font-family:'Geist',system-ui,sans-serif;color:#E9EEF5;background:#050A14;position:relative;overflow:hidden;width:100%;-webkit-font-smoothing:antialiased}
+.grain{position:absolute;inset:0;background-image:url(../assets/img/grain.png);background-size:180px;opacity:.5;mix-blend-mode:overlay;pointer-events:none;z-index:6}
+.wrap{max-width:1280px;margin:0 auto;padding:0 64px;box-sizing:border-box;position:relative}
+.silver{background:linear-gradient(180deg,#FFFFFF 0%,#D9E2EE 45%,#9FB2CB 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;letter-spacing:-.005em;color:#A9B8CB}
+.pill::before{content:"";flex:none;width:11px;height:13px;background:linear-gradient(180deg,#F1F4F8,#8FA3BE);clip-path:polygon(50% 0,100% 13%,100% 46%,86% 74%,50% 100%,14% 74%,0 46%,0 13%)}
+
+.hero{position:relative;min-height:920px;display:flex;align-items:center;background:#01050F}
+.bg-desk{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0% 30%}
+.bg-mob{display:none}
+.shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(1,5,15,.85) 0%,rgba(1,5,15,.55) 26%,rgba(1,5,15,0) 44%),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
+.hero-inner{position:relative;z-index:3;width:100%;padding-left:clamp(24px,6.5vw,128px);box-sizing:border-box}
+.hero-copy{position:relative;z-index:3;max-width:min(520px,38vw);display:flex;flex-direction:column;gap:30px}
+.h1{margin:0;font-weight:300;font-size:clamp(40px,4.3vw,62px);line-height:1.08;letter-spacing:-.03em;text-wrap:balance;color:#E9EEF5}
+.h1 strong{font-weight:600}
+.lead{margin:0;font-size:18px;line-height:1.65;color:#AEBBCC;max-width:46ch}
+.lead b{color:#E9EEF5;font-weight:500}
+
+.cta-ring{display:inline-flex;padding:5px;border-radius:999px;background:linear-gradient(180deg,rgba(233,238,245,.22),rgba(142,168,200,.06));border:1px solid rgba(169,184,203,.18);box-shadow:0 0 70px -18px rgba(150,180,225,.55)}
+.cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:18px;padding:10px 10px 10px 30px;min-height:60px;box-sizing:border-box;border-radius:999px;text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.01em;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF,inset 0 -3px 8px rgba(40,60,90,.28),0 14px 30px -12px rgba(0,0,0,.7)}
+.cta:hover{color:#0A1424}
+.cta::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:30%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.75),rgba(255,255,255,0));transform:skewX(-20deg);animation:sheen 4.5s ease-in-out infinite}
+@keyframes sheen{0%,62%{left:-40%}100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.cta::after{animation:none;display:none}}
+.cta-arrow{width:42px;height:42px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#16243A,#0A1424);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+
+.glass{display:flex;align-items:center;gap:14px;padding:14px 20px 14px 14px;border-radius:18px;background:linear-gradient(180deg,rgba(22,36,58,.62),rgba(10,20,36,.55));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.2);box-shadow:0 24px 50px -22px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+.glass-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#2A3F60,#111D30);border:1px solid rgba(169,184,203,.25)}
+.glass b{display:block;font-size:18px;font-weight:600;line-height:1.1;letter-spacing:-.01em}
+.glass span{display:block;font-size:12.5px;color:#93A3B8;margin-top:3px}
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+
+.sistema{position:relative;padding:120px 0 110px;background:linear-gradient(180deg,#0C1729 0%,#08111F 50%,#0C1729 100%)}
+.sec-head{max-width:760px;margin:0 auto 64px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.sec-sub{margin:0;font-size:17.5px;line-height:1.65;color:#AEBBCC;max-width:56ch}
+.mcard{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(8,15,28,.92));border:1px solid rgba(169,184,203,.14);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.05)}
+.mimg{position:relative;overflow:hidden}
+.mimg img{display:block;width:100%;height:100%;object-fit:cover}
+.mimg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,19,34,1) 0%,rgba(10,19,34,0) 45%)}
+.mbody{position:relative;padding:4px 28px 30px}
+.mlabel{font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#8FA3BE}
+.mtitle{margin:10px 0 10px;font-weight:500;font-size:22px;line-height:1.2;letter-spacing:-.015em}
+.mtext{margin:0;font-size:15.5px;line-height:1.6;color:#AEBBCC}
+.feat{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:stretch;margin-bottom:20px}
+.feat .mimg{min-height:420px}
+.feat .mimg::after{background:linear-gradient(90deg,rgba(10,19,34,0) 55%,rgba(10,19,34,1) 100%),linear-gradient(0deg,rgba(10,19,34,.6) 0%,rgba(10,19,34,0) 30%)}
+.feat .mbody{padding:48px 48px 48px 20px;display:flex;flex-direction:column;justify-content:center}
+.feat .mtitle{font-size:34px;font-weight:300;letter-spacing:-.03em;margin:14px 0 16px}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.trio .mimg{aspect-ratio:4/3}
+.closing{margin:64px auto 0;text-align:center;font-weight:300;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.02em;line-height:1.3;max-width:30ch}
+
+.seam{position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(169,184,203,.45) 50%,transparent);z-index:4}
+.notch{position:absolute;left:50%;bottom:-29px;transform:translateX(-50%);width:58px;height:58px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 0 8px #050A14,0 0 44px rgba(120,155,205,.3);z-index:5}
+
+.virada{position:relative;padding:160px 0 230px}
+.virada-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:80px;align-items:end}
+.words{margin:28px 0 0;font-weight:300;font-size:clamp(54px,6.4vw,100px);line-height:1;letter-spacing:-.045em}
+.words span{display:block}
+.body{font-size:17.5px;line-height:1.7;color:#AEBBCC;max-width:50ch}
+.body p{margin:0 0 20px}
+.arc{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:170px;display:block}
+
+.autor{position:relative;background:linear-gradient(180deg,#0C1729 0%,#08111F 55%,#050A14 100%);padding:0 0 170px}
+.card{position:relative;margin-top:-120px;border-radius:30px;padding:46px;display:grid;grid-template-columns:380px minmax(0,1fr);gap:56px;align-items:center;background:linear-gradient(180deg,rgba(24,38,60,.6),rgba(9,17,31,.82));backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.16);box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+.frame{position:relative;border-radius:22px;padding:3px;background:linear-gradient(160deg,#F1F4F8 0%,#9FB2CB 38%,#2B3C56 100%);box-shadow:0 0 60px -16px rgba(150,180,225,.45)}
+.frame img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;border-radius:19px}
+.badge{position:absolute;left:50%;top:-25px;transform:translateX(-50%)}
+.h2{margin:18px 0 10px;font-weight:300;font-size:clamp(30px,3vw,44px);line-height:1.12;letter-spacing:-.03em}
+.h2 strong{font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:30px}
+.stat{padding:18px 20px;border-radius:16px;background:rgba(5,10,20,.5);border:1px solid rgba(169,184,203,.13)}
+.stat b{display:block;font-weight:500;font-size:30px;line-height:1;letter-spacing:-.03em}
+.stat span{display:block;font-size:13px;color:#93A3B8;margin-top:8px}
+.todo{border:1px dashed rgba(169,184,203,.4);border-radius:12px;padding:14px 16px;color:#C9D3E0;font-size:15px;line-height:1.5;background:rgba(169,184,203,.05);margin-bottom:20px}
+
+.cover{position:relative;container-type:inline-size;aspect-ratio:2/3;overflow:hidden;background:#02060F;border-radius:2px 5px 5px 2px}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,15,.88) 0%,rgba(2,6,15,.45) 32%,rgba(2,6,15,0) 50%),linear-gradient(0deg,rgba(2,6,15,.8) 0%,rgba(2,6,15,0) 22%)}
+.cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5cqw;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(255,255,255,.14) 30%,rgba(255,255,255,0) 100%)}
+.cover::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid rgba(201,211,224,.12);border-radius:inherit;pointer-events:none}
+.ct{position:absolute;inset:0;z-index:2;padding:9cqw 8cqw 8cqw 10cqw;display:flex;flex-direction:column;color:#E9EEF5}
+.au{margin-top:auto;font-size:4.6cqw;font-weight:500;letter-spacing:.005em;color:#D9E2EE}
+.ti{margin:0;font-weight:300;font-size:10.6cqw;line-height:1.02;letter-spacing:-.035em}
+.ti strong{display:block;font-weight:600}
+.ti.long{font-size:8.8cqw}
+
+.oferta{position:relative;padding:40px 0 180px;background:#050A14}
+.stage{position:relative;height:720px;max-width:1600px;margin:0 auto;overflow:hidden}
+.stage>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.stage-fade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#050A14 0%,rgba(5,10,20,0) 22%,rgba(5,10,20,0) 70%,#050A14 100%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,0) 14%,rgba(5,10,20,0) 86%,#050A14 100%)}
+.books{position:absolute;left:50%;bottom:25%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:26px;perspective:1800px;z-index:2}
+.book{position:relative;width:172px}
+.book.big{width:204px}
+.book .cover{box-shadow:-18px 24px 40px -14px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
+.book::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-16px;height:28px;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0));z-index:-1}
+.b1{transform:rotateY(18deg)}.b2{transform:rotateY(6deg)}.b3{transform:rotateY(-6deg)}.b4{transform:rotateY(-18deg)}
+.panel{position:relative;z-index:3;max-width:980px;margin:-150px auto 0;border-radius:30px;padding:44px 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;background:linear-gradient(180deg,rgba(24,38,60,.66),rgba(9,17,31,.9));backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(169,184,203,.18);box-shadow:0 50px 100px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.07)}
+.items{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.items li{display:flex;align-items:center;gap:14px;font-size:16.5px;color:#D9E2EE;padding-bottom:14px;border-bottom:1px solid rgba(169,184,203,.1)}
+.items li:last-child{border-bottom:0;padding-bottom:0}
+.price-old{font-size:15px;color:#8EA0B8}
+.price-main{display:flex;align-items:baseline;gap:10px;margin:6px 0 4px}
+.price-main small{font-size:18px;color:#AEBBCC;font-weight:400}
+.price-main b{font-weight:300;font-size:68px;line-height:1;letter-spacing:-.04em}
+.price-alt{font-size:15.5px;color:#B7C7DC}
+.compare{margin:18px 0 24px;font-size:16px;line-height:1.5;color:#C9D3E0}
+.details{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:12px 28px;padding-top:24px;border-top:1px solid rgba(169,184,203,.12);font-size:13.5px;color:#93A3B8}
+.details span{display:inline-flex;align-items:center;gap:8px}
+.note{grid-column:1 / -1;margin:-8px 0 0;font-size:13px;color:#7E8FA6}
+
+.ident{position:relative;padding:150px 0 40px}
+.ident-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:80px;align-items:start}
+.ident-side{position:sticky;top:60px;display:flex;flex-direction:column;gap:20px}
+.counter{margin-top:18px;padding:26px 28px;border-radius:22px;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(9,17,31,.75));border:1px solid rgba(169,184,203,.16)}
+.counter b{display:block;font-weight:300;font-size:54px;line-height:1;letter-spacing:-.04em}
+.counter p{margin:12px 0 0;font-size:16.5px;line-height:1.55;color:#C9D3E0}
+.chks{display:flex;flex-direction:column;gap:12px}
+.chk{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:18px;width:100%;min-height:64px;padding:18px 22px;border-radius:18px;font-family:inherit;font-size:17px;line-height:1.45;color:#C9D3E0;background:rgba(12,23,41,.55);border:1px solid rgba(169,184,203,.13);transition:background .2s,border-color .2s,color .2s}
+.chk:hover{border-color:rgba(169,184,203,.3)}
+.chk:focus-visible{outline:2px solid #B7C7DC;outline-offset:3px}
+.chk.on{color:#FFFFFF;background:linear-gradient(180deg,rgba(30,48,76,.75),rgba(14,26,46,.85));border-color:rgba(201,211,224,.4);box-shadow:0 0 40px -14px rgba(150,180,225,.5)}
+.box{flex:none;width:26px;height:30px;display:flex;align-items:center;justify-content:center}
+
+.antes{position:relative;padding:40px 0 220px;background:#0C1729}
+.cmp{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.col{border-radius:26px;padding:34px 34px 20px}
+.col-a{background:rgba(5,10,20,.35);border:1px solid rgba(169,184,203,.08)}
+.col-d{background:linear-gradient(180deg,rgba(30,48,76,.6),rgba(10,19,34,.85));border:1px solid rgba(201,211,224,.22);box-shadow:0 0 70px -24px rgba(150,180,225,.45),inset 0 1px 0 rgba(255,255,255,.07)}
+.col h3{margin:0 0 14px;font-weight:500;font-size:15px;color:#8FA3BE}
+.col-d h3{color:#D9E2EE}
+.row{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid rgba(169,184,203,.09);font-size:16.5px;line-height:1.5}
+.col-a .row{color:#7E8FA6}
+.col-d .row{color:#E9EEF5}
+.row svg{flex:none;margin-top:3px}
+.quote{margin:80px auto 34px;text-align:center;font-weight:300;font-size:clamp(28px,3vw,42px);line-height:1.2;letter-spacing:-.03em;max-width:24ch}
+
+.result{position:relative;padding:40px 0 140px;background:#050A14}
+.prints{columns:3 300px;column-gap:20px}
+.print{break-inside:avoid;margin:0 0 20px;border-radius:24px;padding:10px;background:linear-gradient(180deg,rgba(201,211,224,.22),rgba(169,184,203,.05));box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+.screen{position:relative;border-radius:16px;overflow:hidden;background:#0A1322;padding:16px 14px 18px;display:flex;flex-direction:column;gap:9px}
+.dm-head{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid rgba(169,184,203,.08);margin-bottom:4px}
+.av{width:28px;height:28px;border-radius:999px;background:linear-gradient(135deg,#3A4A63,#1A2436);filter:blur(1.5px)}
+.nm{width:96px;height:9px;border-radius:9px;background:rgba(169,184,203,.25);filter:blur(2px)}
+.bub{border-radius:16px;padding:10px 12px;font-size:12.5px;line-height:1.45;max-width:86%}
+.bub.in{align-self:flex-start;background:#1A2638;color:#C9D3E0}
+.bub.out{align-self:flex-end;background:#2B3D58;color:#E9EEF5}
+.ph{display:block;height:8px;border-radius:8px;background:rgba(201,211,224,.22);margin:4px 0}
+.tag{position:absolute;right:10px;top:10px;font-size:11px;color:#E8C59B;background:rgba(208,138,60,.12);border:1px dashed rgba(208,138,60,.5);padding:4px 8px;border-radius:999px}
+
+.epara{position:relative;padding:20px 0 120px;background:#050A14}
+.ep-grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px;align-items:stretch}
+.ep{border-radius:26px;padding:36px}
+.ep h3{margin:0 0 20px;font-weight:300;font-size:26px;letter-spacing:-.02em}
+.ep ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+.ep li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px;line-height:1.5}
+.ep li svg{flex:none;margin-top:3px}
+.ep-no{background:rgba(12,23,41,.4);border:1px solid rgba(169,184,203,.09);color:#8EA0B8}
+.ep-no h3{color:#AEBBCC}
+.ep-yes{background:linear-gradient(180deg,rgba(30,48,76,.6),rgba(10,19,34,.85));border:1px solid rgba(201,211,224,.22);box-shadow:0 0 70px -24px rgba(150,180,225,.45),inset 0 1px 0 rgba(255,255,255,.07);color:#E9EEF5}
+.big-quote{margin:110px auto 0;text-align:center;font-weight:300;font-size:clamp(34px,4.4vw,64px);line-height:1.08;letter-spacing:-.04em;max-width:18ch}
+
+.garantia{position:relative;padding:0 0 140px;background:#050A14}
+.g-card{max-width:980px;margin:0 auto;border-radius:30px;padding:48px 56px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px;align-items:center;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(9,17,31,.85));border:1px solid rgba(169,184,203,.16);box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+.sign{font-family:'Mrs Saint Delafield',cursive;font-size:52px;line-height:1;color:#D9E2EE;margin-top:22px}
+
+.faq{position:relative;padding:20px 0 160px;background:#050A14}
+.faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:80px;align-items:start}
+.qa{display:flex;flex-direction:column;gap:12px}
+.qa details{border-radius:18px;background:rgba(12,23,41,.55);border:1px solid rgba(169,184,203,.13);padding:0 24px}
+.qa details[open]{background:linear-gradient(180deg,rgba(30,48,76,.6),rgba(12,23,41,.75));border-color:rgba(201,211,224,.24)}
+.qa summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px;font-size:17px;font-weight:500;color:#E9EEF5}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";flex:none;width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-weight:300;font-size:20px;color:#D9E2EE;background:rgba(169,184,203,.1)}
+.qa details[open] summary::after{content:"\2212";background:linear-gradient(180deg,#FBFCFE,#AFBDD0);color:#0A1424}
+.qa p{margin:0 0 22px;font-size:16px;line-height:1.65;color:#AEBBCC;max-width:60ch}
+
+.fecho{position:relative;padding:170px 0 150px;text-align:center;background:radial-gradient(50% 60% at 50% 45%,#0F2142 0%,#070F1F 55%,#050A14 85%)}
+.fecho .h2{max-width:20ch;margin:26px auto 26px}
+.fecho .body{margin:0 auto}
+.motto{margin:80px 0 0;font-weight:300;font-size:22px;letter-spacing:-.01em;color:#C9D3E0}
+.foot{border-top:1px solid rgba(169,184,203,.1);padding:34px 0 120px;font-size:13.5px;color:#7E8FA6}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:space-between}
+.foot a{color:#93A3B8;text-decoration:none}
+.sticky{display:none}
+
+@media (max-width:760px){
+.wrap{padding:0 22px}
+.ident{padding:100px 0 20px}
+.ident-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+.ident-side{position:static}
+.counter{order:2}
+.chk{font-size:15.5px;padding:16px 16px;gap:14px}
+.antes{padding:20px 0 160px}
+.cmp{grid-template-columns:minmax(0,1fr)}
+.col{padding:24px 22px 12px}
+.quote{margin:56px auto 26px;font-size:26px}
+.result{padding:20px 0 100px}
+.prints{columns:auto;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -22px;padding:0 22px 8px}
+.print{flex:0 0 78%;scroll-snap-align:center;margin:0}
+.epara{padding:10px 0 90px}
+.ep-grid{grid-template-columns:minmax(0,1fr)}
+.ep{padding:26px 22px}
+.big-quote{margin-top:70px;font-size:34px}
+.garantia{padding-bottom:100px}
+.g-card{grid-template-columns:minmax(0,1fr);gap:24px;padding:30px 22px;justify-items:start}
+.g-card svg.medal{width:150px;height:auto}
+.faq{padding-bottom:110px}
+.faq-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+.qa details{padding:0 18px}
+.qa summary{font-size:15.5px}
+.fecho{padding:110px 0 100px}
+.motto{margin-top:56px;font-size:18px}
+.sticky{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:20;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:999px;background:rgba(10,20,36,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -12px rgba(0,0,0,.9)}
+.sticky span{font-size:13px;color:#AEBBCC;line-height:1.25}
+.sticky b{display:block;font-size:16px;color:#FFFFFF;font-weight:600}
+.sticky a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:13.5px;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #fff}
+.oferta{padding:20px 0 120px}
+.stage{height:380px}
+.stage>img{object-position:40% 50%}
+.books{gap:8px;bottom:22%}
+.book{width:72px}.book.big{width:86px}
+.panel{grid-template-columns:minmax(0,1fr);gap:28px;padding:26px 22px;margin:-60px 14px 0;border-radius:24px}
+.price-main b{font-size:52px}
+.panel .cta-ring,.panel .cta{display:flex;width:100%;box-sizing:border-box}
+.details{flex-direction:column;gap:10px}
+.hero{min-height:820px;align-items:flex-end;padding-bottom:84px;background:#050A14}
+.bg-desk{display:none}
+.bg-mob{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+.shade{background:linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.94) 30%,rgba(5,10,20,.4) 52%,rgba(5,10,20,0) 66%)}
+.hero-copy{gap:24px;max-width:none}
+.hero-inner{padding:0 22px}
+.chips{order:-1;margin-top:0}
+.sistema{padding:90px 0 70px}
+.sec-head{margin-bottom:40px;gap:14px}
+.sec-sub{font-size:16px}
+.feat{grid-template-columns:minmax(0,1fr)}
+.feat .mimg{min-height:0;aspect-ratio:4/3}
+.feat .mimg::after{background:linear-gradient(0deg,rgba(10,19,34,1) 0%,rgba(10,19,34,0) 45%)}
+.feat .mbody{padding:4px 22px 28px}
+.feat .mtitle{font-size:26px}
+.trio{grid-template-columns:minmax(0,1fr);gap:16px}
+.mbody{padding:4px 22px 26px}
+.closing{font-size:22px;margin-top:44px}
+.h1{font-size:36px}
+.lead{font-size:16.5px}
+.chips{position:static;flex-direction:row;gap:10px;margin-bottom:4px}
+.chips .glass:nth-child(2){margin-left:0}
+.glass{padding:10px 12px 10px 10px;gap:10px;border-radius:14px}
+.glass-ico{width:32px;height:32px;border-radius:10px}
+.glass b{font-size:15px}.glass span{font-size:11px}
+.cta-ring{display:flex}
+.cta{width:100%;justify-content:space-between;padding-left:22px;font-size:14px}
+.virada{padding:110px 0 170px}
+.virada-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+.words{font-size:52px}
+.body{font-size:16.5px}
+.arc{height:90px}
+.card{grid-template-columns:minmax(0,1fr);padding:22px;gap:34px;margin-top:-70px;border-radius:24px}
+.stats{grid-template-columns:minmax(0,1fr)}
+.stat{display:flex;align-items:baseline;gap:12px}
+.stat span{margin-top:0}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="grain" aria-hidden="true"></div>
+
+<section class="hero">
+<img class="bg-desk" src="../assets/img/hero-desktop.png" alt="Marcello Gomes sentado em poltrona de couro, no escritório com luz azul">
+<img class="bg-mob" src="../assets/img/hero-mobile.png" alt="Marcello Gomes de frente, sentado em poltrona de couro, no escritório com luz azul">
+<div class="shade" aria-hidden="true"></div>
+<div class="hero-inner">
+<div class="hero-copy">
+<h1 class="h1">Tem homem que só aprende isso depois de ser traído. <strong class="silver">Você pode aprender antes.</strong></h1>
+<p class="lead">Quatro manuais escritos por <b>Marcello Gomes</b> para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.</p>
+<div><span class="cta-ring"><a class="cta" href="#oferta">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></span></div>
+<div class="chips">
+<div class="glass">
+<div class="glass-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".8"></circle></svg></div>
+<div><b>419 mil</b><span>seguidores no Instagram</span></div>
+</div>
+<div class="glass">
+<div class="glass-ico"><svg width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="15" stroke-linejoin="round"></path></svg></div>
+<div><b>+12 mil</b><span>homens transformados</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="seam" aria-hidden="true"></div>
+<div class="notch" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B7C7DC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg></div>
+</section>
+
+<section class="ident">
+<div class="wrap">
+<div class="ident-grid">
+<div class="ident-side">
+<span class="pill">Antes de qualquer coisa</span>
+<h2 class="h2" style="margin: 0">Marque o que já <strong class="silver">aconteceu com você.</strong></h2>
+<p class="lead" style="max-width: 40ch">Seja honesto. Ninguém está vendo.</p>
+<div class="counter" aria-live="polite">
+<b class="silver">0 de 7</b>
+
+<p>Se marcou um, este material foi escrito pensando em você.</p>
+
+</div>
+</div>
+<div class="chks">
+
+<button type="button" class="chk" aria-pressed="false">
+<span class="box">
+
+<svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#5E708A" stroke-width="12" stroke-linejoin="round"></path></svg>
+</span>
+<span>Foi traído e foi o último a saber.</span>
+</button>
+
+<button type="button" class="chk" aria-pressed="false">
+<span class="box">
+
+<svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#5E708A" stroke-width="12" stroke-linejoin="round"></path></svg>
+</span>
+<span>Pagou as contas, esteve presente, fez tudo o que podia. Mesmo assim ouviu que não era suficiente.</span>
+</button>
+
+<button type="button" class="chk" aria-pressed="false">
+<span class="box">
+
+<svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#5E708A" stroke-width="12" stroke-linejoin="round"></path></svg>
+</span>
+<span>Percebeu que estava sendo manipulado só meses depois, quando já tinha cedido em tudo.</span>
+</button>
+
+<button type="button" class="chk" aria-pressed="false">
+<span class="box">
+
+<svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#5E708A" stroke-width="12" stroke-linejoin="round"></path></svg>
+</span>
+<span>Diz "tudo bem" quando não está nada bem, só para evitar mais uma briga.</span>
+</button>
+
+<button type="button" class="chk" aria-pressed="false">
+<span class="box">
+
+<svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#5E708A" stroke-width="12" stroke-linejoin="round"></path></svg>
+</span>
+<span>Tem medo de entrar num relacionamento novo e viver a mesma história de novo.</span>
+</button>
+
+<button type="button" class="chk" aria-pressed="false">
+<span class="box">
+
+<svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#5E708A" stroke-width="12" stroke-linejoin="round"></path></svg>
+</span>
+<span>Sente que as pessoas te respeitam menos do que você merece.</span>
+</button>
+
+<button type="button" class="chk" aria-pressed="false">
+<span class="box">
+
+<svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#5E708A" stroke-width="12" stroke-linejoin="round"></path></svg>
+</span>
+<span>Quer entender relacionamento do jeito que ele é, e não do jeito que contaram para você.</span>
+</button>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="virada">
+<div aria-hidden="true" style="position: absolute; left: -20%; top: 0%; width: 70%; height: 100%; background: radial-gradient(closest-side, rgba(30,58,104,.28), rgba(30,58,104,0)); pointer-events: none"></div>
+<div class="wrap">
+<div class="virada-grid">
+<div>
+<span class="pill">Pare de aprender pela dor</span>
+<h2 class="words">
+<span style="color: #E9EEF5">Traições.</span>
+<span style="color: rgba(233,238,245,.72)">Manipulação.</span>
+<span style="color: rgba(233,238,245,.52)">Joguinhos.</span>
+<span style="color: rgba(233,238,245,.36)">Mentiras.</span>
+<span class="silver" style="font-weight: 500">Desrespeito.</span>
+</h2>
+</div>
+<div style="position: relative; z-index: 2">
+<div class="body">
+<p>Quase todo homem aprende a reconhecer cada uma dessas coisas do jeito mais caro que existe: vivendo.</p>
+<p>Um relacionamento errado leva dois, três, cinco anos. Às vezes leva junto o dinheiro, a casa e a confiança que você tinha em si mesmo. Quando você finalmente entende o que aconteceu, já passou.</p>
+<p style="color: #E9EEF5">O Arsenal Homem Blindado reúne o que um homem normalmente só entende depois de vários relacionamentos fracassados. Você lê em poucos dias e começa a usar na próxima conversa.</p>
+</div>
+<div style="margin-top: 14px"><span class="cta-ring"><a class="cta" href="#oferta">Quero aprender antes<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></span></div>
+</div>
+</div>
+</div>
+<svg class="arc" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
+<defs>
+<linearGradient id="arcl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A9B8CB" stop-opacity="0"></stop><stop offset=".5" stop-color="#A9B8CB" stop-opacity=".55"></stop><stop offset="1" stop-color="#A9B8CB" stop-opacity="0"></stop></linearGradient>
+</defs>
+<path d="M0 170 L0 120 C 420 10, 1020 10, 1440 120 L1440 170 Z" fill="#0C1729"></path>
+<path d="M0 120 C 420 10, 1020 10, 1440 120" fill="none" stroke="url(#arcl)" stroke-width="1.2"></path>
+</svg>
+</section>
+
+<section class="sistema">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: 4%; width: 900px; height: 500px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(40,72,124,.22), rgba(40,72,124,0)); pointer-events: none"></div>
+<div class="wrap">
+<div class="sec-head">
+<span class="pill">Por que quatro manuais</span>
+<h2 class="h2" style="margin: 0">Todo homem enganado deixou pelo menos <strong class="silver">uma destas brechas abertas.</strong></h2>
+<p class="sec-sub">Ninguém é enganado por falta de inteligência. É enganado porque deixou uma porta aberta e não sabia que ela existia. O Arsenal fecha uma por manual.</p>
+</div>
+
+<article class="mcard feat">
+<div class="mimg"><img src="../assets/img/cena-arsenal.png" alt="Peitoral de armadura escuro apoiado numa poltrona de couro"></div>
+<div class="mbody">
+<span class="mlabel">O manual central</span>
+<h3 class="mtitle">Arsenal Homem Blindado</h3>
+<p class="mtext" style="font-size: 17px; color: #C9D3E0; margin-bottom: 14px">Para quem sabe que algo está errado, mas não sabe o que fazer a partir de hoje.</p>
+<p class="mtext">O ponto de partida. Mostra onde você está deixando brecha e transforma o que você leu em postura e decisão, com exercícios para aplicar no mesmo dia.</p>
+</div>
+</article>
+
+<div class="trio">
+<article class="mcard">
+<div class="mimg"><img src="../assets/img/cena-traicao.png" alt="Celular virado para baixo na mesa, com luz azul saindo por baixo, ao lado de um copo de uísque"></div>
+<div class="mbody">
+<span class="mlabel">Brecha: não enxerga os sinais</span>
+<h3 class="mtitle">Manual Secreto da Traição para Homens</h3>
+<p class="mtext">O problema já estava ali havia meses. Ele só percebe quando estoura.</p>
+</div>
+</article>
+<article class="mcard">
+<div class="mimg"><img src="../assets/img/cena-iluda.png" alt="Duas taças vazias e uma vela recém-apagada sobre a mesa"></div>
+<div class="mbody">
+<span class="mlabel">Brecha: se ilude com o que sente</span>
+<h3 class="mtitle">Nunca se Iluda com as Mulheres</h3>
+<p class="mtext">Decide com a emoção e ignora o que está vendo.</p>
+</div>
+</article>
+<article class="mcard">
+<div class="mimg"><img src="../assets/img/cena-honra.png" alt="Relógio de aço e aliança sobre um caderno de couro"></div>
+<div class="mbody">
+<span class="mlabel">Brecha: não tem postura</span>
+<h3 class="mtitle">A Força da Honra</h3>
+<p class="mtext">Implora atenção, cede em tudo e não sustenta um limite.</p>
+</div>
+</article>
+</div>
+
+<p class="closing">Um manual sozinho fecha uma brecha. <strong class="silver" style="font-weight: 500">Os quatro juntos fecham a armadura.</strong></p>
+</div>
+</section>
+
+<section class="antes">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill">Antes e depois</span>
+<h2 class="h2" style="margin: 0">Depois do Arsenal, você não olha para um relacionamento <strong class="silver">do mesmo jeito.</strong></h2>
+</div>
+<div class="cmp">
+<div class="col col-a">
+<h3>Antes</h3>
+<div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>Percebe o problema quando ele já cresceu.</div>
+<div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>Explica, justifica e pede desculpa.</div>
+<div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>Decide pela emoção e se arrepende depois.</div>
+<div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>Implora por atenção e valorização.</div>
+<div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>Deixa qualquer pessoa entrar na sua vida.</div>
+<div class="row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>Fica bem só quando ela está bem com você.</div>
+</div>
+<div class="col col-d">
+<h3>Depois</h3>
+<div class="row"><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Reconhece o sinal na primeira semana.</div>
+<div class="row"><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Coloca o limite uma vez e sustenta.</div>
+<div class="row"><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Decide com clareza, mesmo quando sente muito.</div>
+<div class="row"><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>É respeitado pela postura, sem precisar pedir.</div>
+<div class="row"><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Escolhe quem entra.</div>
+<div class="row"><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Tem uma paz que não depende do humor de ninguém.</div>
+</div>
+</div>
+<p class="quote">Você não controla o que os outros fazem. <strong class="silver" style="font-weight: 500">Controla o quanto aquilo te atinge.</strong></p>
+<div style="text-align: center"><span class="cta-ring"><a class="cta" href="#oferta">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></span></div>
+</div>
+</section>
+
+<section class="autor">
+<div class="wrap">
+<div class="card">
+<div class="frame">
+<div class="badge"><svg width="42" height="50" viewBox="0 0 200 240" aria-hidden="true"><defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#8FA3BE"></stop></linearGradient></defs><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="#0C1729" stroke="url(#bg1)" stroke-width="11" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#E9EEF5" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<img src="../assets/img/autor.png" alt="Marcello Gomes em pé ao lado da poltrona, no estúdio">
+</div>
+<div>
+<span class="pill">Quem escreveu</span>
+<h2 class="h2">Marcello Gomes fala o que a maioria dos homens <strong class="silver">só ouve tarde demais.</strong></h2>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 15px; color: #A9B8CB; margin-bottom: 24px">@marcellopgomes<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 2.1 3.2-.3.9 3.1 2.8 1.6-1.1 3 1.1 3-2.8 1.6-.9 3.1-3.2-.3L12 22l-2.4-2.1-3.2.3-.9-3.1-2.8-1.6 1.1-3-1.1-3 2.8-1.6.9-3.1 3.2.3z" fill="#3897F0"></path><path d="M8 12.2l2.6 2.6L16 9.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div class="body" style="max-width: 60ch">
+<p>São 419 mil seguidores e mais de 2.700 publicações sobre posicionamento masculino, traição, manipulação e honra.</p>
+<div class="todo">[História pessoal do Marcello em 2 ou 3 frases: o que o levou a falar sobre isso. Aguardando ele.]</div>
+<p style="margin-bottom: 0">Ele escreve do jeito que fala nos vídeos. Direto, sem frase de efeito e sem prometer que você vai mudar ninguém. O que ele entrega é visão: você passa a enxergar o que estava na sua frente o tempo todo.</p>
+</div>
+<div class="stats">
+<div class="stat"><b>419 mil</b><span>seguidores</span></div>
+<div class="stat"><b>2.700+</b><span>publicações</span></div>
+<div class="stat"><b>+12 mil</b><span>homens transformados</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="result">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill">Direto da DM</span>
+<h2 class="h2" style="margin: 0">O que os homens mandam para o Marcello <strong class="silver">depois de ler.</strong></h2>
+<p class="sec-sub">Mensagens reais, enviadas no Instagram. Nomes e fotos cobertos para proteger quem escreveu.</p>
+</div>
+<div class="prints">
+<div class="print"><div class="screen"><span class="tag">print real</span><div class="dm-head"><span class="av"></span><span class="nm"></span></div><div class="bub in"><span class="ph" style="width: 210px"></span><span class="ph" style="width: 180px"></span><span class="ph" style="width: 120px"></span></div><div class="bub in"><span class="ph" style="width: 160px"></span></div><div class="bub out"><span class="ph" style="width: 90px"></span></div></div></div>
+<div class="print"><div class="screen"><span class="tag">print real</span><div class="dm-head"><span class="av"></span><span class="nm"></span></div><div class="bub in"><span class="ph" style="width: 200px"></span><span class="ph" style="width: 214px"></span></div><div class="bub out"><span class="ph" style="width: 140px"></span><span class="ph" style="width: 70px"></span></div></div></div>
+<div class="print"><div class="screen"><span class="tag">print real</span><div class="dm-head"><span class="av"></span><span class="nm"></span></div><div class="bub in"><span class="ph" style="width: 220px"></span><span class="ph" style="width: 200px"></span><span class="ph" style="width: 214px"></span><span class="ph" style="width: 100px"></span></div><div class="bub in"><span class="ph" style="width: 130px"></span></div></div></div>
+<div class="print"><div class="screen"><span class="tag">print real</span><div class="dm-head"><span class="av"></span><span class="nm"></span></div><div class="bub in"><span class="ph" style="width: 170px"></span></div><div class="bub in"><span class="ph" style="width: 210px"></span><span class="ph" style="width: 150px"></span></div><div class="bub out"><span class="ph" style="width: 110px"></span></div></div></div>
+<div class="print"><div class="screen"><span class="tag">print real</span><div class="dm-head"><span class="av"></span><span class="nm"></span></div><div class="bub in"><span class="ph" style="width: 214px"></span><span class="ph" style="width: 190px"></span><span class="ph" style="width: 140px"></span></div></div></div>
+<div class="print"><div class="screen"><span class="tag">print real</span><div class="dm-head"><span class="av"></span><span class="nm"></span></div><div class="bub in"><span class="ph" style="width: 150px"></span><span class="ph" style="width: 200px"></span></div><div class="bub out"><span class="ph" style="width: 120px"></span></div><div class="bub in"><span class="ph" style="width: 180px"></span><span class="ph" style="width: 90px"></span></div></div></div>
+</div>
+</div>
+</section>
+
+<section class="epara">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill">Para quem é</span>
+<h2 class="h2" style="margin: 0">Antes de comprar, <strong class="silver">leia isto.</strong></h2>
+</div>
+<div class="ep-grid">
+<div class="ep ep-no">
+<h3>Não é para você se</h3>
+<ul>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>Prefere continuar sendo enganado a encarar o que está acontecendo.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>Procura uma frase mágica que resolva tudo sem esforço.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>Culpa todo mundo pelos próprios erros.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>Não quer assumir a responsabilidade pela própria vida.</li>
+</ul>
+</div>
+<div class="ep ep-yes">
+<h3>É para você se</h3>
+<ul>
+<li><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Quer crescer como homem, como profissional e como parceiro.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Já entendeu que respeito não se pede. Se conquista com postura e atitude.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Sabe que confiança se constrói com conhecimento e disciplina, e não aparece por acaso.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#D9E2EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Prefere aprender agora a se arrepender depois.</li>
+</ul>
+</div>
+</div>
+<p class="big-quote">Conhecimento custa muito menos <strong class="silver" style="font-weight: 500">do que arrependimento.</strong></p>
+</div>
+</section>
+
+<section class="oferta" id="oferta">
+<div class="wrap">
+<div class="sec-head" style="margin-bottom: 8px">
+<span class="pill">A oferta</span>
+<h2 class="h2" style="margin: 0">Tudo o que você <strong class="silver">recebe hoje.</strong></h2>
+</div>
+</div>
+<div class="stage">
+<img src="../assets/img/oferta-mesa.png" alt="" aria-hidden="true">
+<div class="stage-fade"></div>
+<div class="books" role="img" aria-label="As capas dos quatro manuais do Arsenal Homem Blindado">
+<div class="book b1"><div class="cover"><img src="../assets/img/capa-traicao.png" alt=""><div class="ov"></div><div class="ct"><p class="ti long">Manual Secreto da <strong class="silver">Traição para Homens</strong></p><div class="au">Marcello Gomes</div></div></div></div>
+<div class="book big b2"><div class="cover"><img src="../assets/img/capa-arsenal.png" alt=""><div class="ov"></div><div class="ct"><p class="ti">Arsenal <strong class="silver">Homem Blindado</strong></p><div class="au">Marcello Gomes</div></div></div></div>
+<div class="book b3"><div class="cover"><img src="../assets/img/capa-honra.png" alt=""><div class="ov"></div><div class="ct"><p class="ti">A Força <strong class="silver">da Honra</strong></p><div class="au">Marcello Gomes</div></div></div></div>
+<div class="book b4"><div class="cover"><img src="../assets/img/capa-iluda.png" alt=""><div class="ov"></div><div class="ct"><p class="ti long">Nunca se Iluda <strong class="silver">com as Mulheres</strong></p><div class="au">Marcello Gomes</div></div></div></div>
+</div>
+</div>
+<div class="wrap">
+<div class="panel">
+<div>
+<span class="pill">Arsenal Homem Blindado</span>
+<ul class="items">
+<li><svg width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#B7C7DC" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#E9EEF5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Arsenal Homem Blindado</li>
+<li><svg width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#B7C7DC" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#E9EEF5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Manual Secreto da Traição para Homens</li>
+<li><svg width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#B7C7DC" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#E9EEF5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>A Força da Honra</li>
+<li><svg width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#B7C7DC" stroke-width="14" stroke-linejoin="round"></path><path d="M66 120 L92 146 L138 98" fill="none" stroke="#E9EEF5" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"></path></svg>Nunca se Iluda com as Mulheres</li>
+</ul>
+</div>
+<div>
+<div class="price-old">De <s>R$ 297</s> por</div>
+<div class="price-main"><small>12x de</small><b class="silver">R$ 10,03</b></div>
+<div class="price-alt">ou R$ 97 à vista</div>
+<p class="compare">Menos do que um jantar a dois. E pode te poupar anos.</p>
+<span class="cta-ring"><a class="cta" href="#oferta">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></span>
+</div>
+<div class="details">
+<span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"></path></svg>Acesso imediato no seu e-mail</span>
+<span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"></rect><path d="M11 18h2"></path></svg>Leitura no celular, tablet ou computador</span>
+<span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>Pagamento seguro pela Eduzz</span>
+<span><svg width="14" height="16" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#A9B8CB" stroke-width="16" stroke-linejoin="round"></path></svg>Garantia de 7 dias</span>
+</div>
+<p class="note">Material digital em PDF. Nada é enviado pelo correio.</p>
+</div>
+</div>
+</section>
+
+<section class="garantia">
+<div class="wrap">
+<div class="g-card">
+<svg class="medal" width="200" height="240" viewBox="0 0 200 240" role="img" aria-label="Garantia de 7 dias">
+<defs>
+<linearGradient id="mS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBFCFE"></stop><stop offset=".45" stop-color="#9FB2CB"></stop><stop offset="1" stop-color="#3A4D6B"></stop></linearGradient>
+<linearGradient id="mF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2C48"></stop><stop offset="1" stop-color="#070F1F"></stop></linearGradient>
+<linearGradient id="mT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#A9B8CB"></stop></linearGradient>
+</defs>
+<path d="M100 8 L188 40 C188 124 162 188 100 234 C38 188 12 124 12 40 Z" fill="url(#mF)" stroke="url(#mS)" stroke-width="7" stroke-linejoin="round"></path>
+<path d="M100 26 L172 52 C172 122 150 174 100 212 C50 174 28 122 28 52 Z" fill="none" stroke="rgba(201,211,224,.28)" stroke-width="1.5"></path>
+<text x="100" y="140" text-anchor="middle" font-family="Geist, sans-serif" font-weight="300" font-size="92" fill="url(#mT)">7</text>
+<text x="100" y="172" text-anchor="middle" font-family="Geist, sans-serif" font-weight="500" font-size="17" fill="#B7C7DC">dias</text>
+</svg>
+<div>
+<span class="pill">Garantia</span>
+<h2 class="h2" style="margin: 16px 0 16px">Leia por 7 dias. <strong class="silver">Se não valer, seu dinheiro volta.</strong></h2>
+<div class="body" style="max-width: 56ch">
+<p>Leia os quatro manuais. Se em até 7 dias você achar que não valeu os R$ 97, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Você não precisa me explicar nada.</p>
+<p style="margin-bottom: 0; color: #E9EEF5">Eu faço isso porque sei o que está nesses manuais.</p>
+</div>
+<div class="sign" aria-label="Assinatura de Marcello Gomes">Marcello Gomes</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="faq">
+<div class="wrap">
+<div class="faq-grid">
+<div>
+<span class="pill">Dúvidas</span>
+<h2 class="h2" style="margin: 16px 0 0">Perguntas que chegam <strong class="silver">toda semana.</strong></h2>
+</div>
+<div class="qa">
+<details open><summary>Em que formato vem o material?</summary><p>Os quatro manuais são em PDF. Você lê no celular, no computador ou imprime, se preferir papel.</p></details>
+<details><summary>Quanto tempo leva para chegar?</summary><p>O acesso vai para o seu e-mail assim que o pagamento é aprovado. No Pix e no cartão, isso leva poucos minutos.</p></details>
+<details><summary>Alguém vai saber que eu comprei?</summary><p>Não. O acesso chega só no seu e-mail, e na fatura do cartão aparece [nome na fatura, confirmar na Eduzz].</p></details>
+<details><summary>Serve para quem está casado ou namorando?</summary><p>Serve. Boa parte do conteúdo é sobre postura e limite dentro do relacionamento que você já tem, e não só sobre escolher a próxima pessoa.</p></details>
+<details><summary>Acabei de passar por uma traição. Vale a pena ler agora?</summary><p>Vale. É justamente quando você está tentando entender o que aconteceu, e quando corre mais risco de repetir a mesma escolha.</p></details>
+<details><summary>Quanto tempo leva para ler tudo?</summary><p>Dá para ler os quatro em poucos dias. O Arsenal Homem Blindado, que é o principal, dá para ler numa noite.</p></details>
+<details><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o reembolso pela Eduzz e recebe tudo de volta.</p></details>
+</div>
+</div>
+</div>
+</section>
+
+<section class="fecho">
+<div class="wrap">
+<svg width="34" height="40" viewBox="0 0 200 240" aria-hidden="true"><defs><linearGradient id="fS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"></stop><stop offset="1" stop-color="#8FA3BE"></stop></linearGradient></defs><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="url(#fS)" stroke-width="10" stroke-linejoin="round"></path></svg>
+<h2 class="h2">Quanto vale evitar um relacionamento que pode <strong class="silver">custar anos da sua vida?</strong></h2>
+<div class="body" style="max-width: 54ch">
+<p>Você pode continuar aprendendo do jeito que a maioria aprende. Errando, sofrendo e entendendo tudo quando já passou.</p>
+<p>Ou pode ler em poucos dias o que outros homens levaram anos e alguns relacionamentos para descobrir.</p>
+<p style="color: #E9EEF5">São 12x de R$ 10,03. Com 7 dias para devolver se não valer.</p>
+</div>
+<div style="margin-top: 18px"><span class="cta-ring"><a class="cta" href="#oferta">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></span></div>
+<p class="motto">Torne-se o homem que você <strong class="silver" style="font-weight: 500">respeitaria.</strong></p>
+</div>
+</section>
+
+<footer class="foot">
+<div class="wrap">
+<span>Arsenal Homem Blindado, por Marcello Gomes. [CNPJ ou responsável]</span>
+<span style="display: flex; gap: 22px; flex-wrap: wrap"><a href="https://www.instagram.com/marcellopgomes/">Instagram</a><a href="#termos">Termos de uso</a><a href="#privacidade">Política de privacidade</a></span>
+</div>
+</footer>
+
+<div class="sticky">
+<span>Arsenal Homem Blindado<b>12x de R$ 10,03</b></span>
+<a href="#oferta">Quero o Arsenal</a>
+</div>
+</div>
+</body>
+</html>
