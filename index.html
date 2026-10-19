@@ -225,6 +225,59 @@ html.lenis{scroll-behavior:auto!important}
   .arc{height:170px}
 }
 
+/* Cabeçalho centralizado de seção (rótulo, título, apoio) */
+.sec-head{max-width:760px;margin:0 auto 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.sec-sub{font-size:16px;line-height:1.65;color:var(--nevoa);max-width:56ch}
+
+/* O sistema. O fundo começa e termina em #0C1729: emenda com a curva da #virada e com a #antes-depois. */
+.sistema{position:relative;padding:90px 0 70px;background:linear-gradient(180deg,#0C1729 0%,#08111F 50%,#0C1729 100%)}
+.sistema::before{content:"";position:absolute;left:50%;top:4%;width:900px;height:500px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(40,72,124,.22),rgba(40,72,124,0))}
+.mcard{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(8,15,28,.92));border:1px solid rgba(169,184,203,.14);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.05)}
+.mimg{position:relative;overflow:hidden;aspect-ratio:4/3}
+.mimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mimg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,19,34,1) 0%,rgba(10,19,34,0) 45%)}
+.mbody{position:relative;padding:4px 22px 26px}
+.mlabel{font-size:14px;font-weight:500;line-height:1.4;color:#8FA3BE}
+.mtitle{margin:10px 0;font-weight:500;font-size:22px;line-height:1.2;letter-spacing:-.015em;text-wrap:balance}
+.mtext{font-size:16px;line-height:1.6;color:var(--nevoa)}
+.mtext-destaque{margin-bottom:14px;font-size:17px;color:#C9D3E0}
+.feat{margin-bottom:16px}
+.feat .mbody{padding:4px 22px 28px}
+.feat .mtitle{margin:14px 0 16px;font-size:26px;font-weight:300;letter-spacing:-.03em}
+.feat .mimg img{object-position:50% 45%}
+.trio{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.closing{max-width:30ch;margin:44px auto 0;text-align:center;font-weight:300;font-size:22px;line-height:1.3;letter-spacing:-.02em;text-wrap:balance}
+.closing strong{font-weight:500}
+
+@media (min-width:761px){
+  .sec-head{margin-bottom:64px;gap:18px}
+  .sec-sub{font-size:17.5px}
+  .sistema{padding:120px 0 110px}
+  .mbody{padding:4px 28px 30px}
+  /* Card largo: cena à esquerda, dissolvendo para a direita no texto. */
+  .feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-bottom:20px}
+  .feat .mimg{aspect-ratio:auto;min-height:420px}
+  .feat .mimg::after{background:linear-gradient(90deg,rgba(10,19,34,0) 55%,rgba(10,19,34,1) 100%),linear-gradient(0deg,rgba(10,19,34,.6) 0%,rgba(10,19,34,0) 30%)}
+  .feat .mbody{display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,4vw,48px) clamp(28px,4vw,48px) clamp(32px,4vw,48px) clamp(8px,1.6vw,20px)}
+  .feat .mtitle{font-size:34px}
+  .trio{gap:20px}
+  .closing{margin-top:64px;font-size:clamp(24px,2.4vw,34px)}
+}
+/* Tablet (761 a 1023px): três colunas deixariam cada card com menos de 250px.
+   Os cards do trio ficam empilhados e deitados (cena à esquerda), menores que o card largo. */
+@media (min-width:761px) and (max-width:1023px){
+  .trio .mcard{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
+  .trio .mimg{aspect-ratio:auto;min-height:220px}
+  .trio .mimg::after{background:linear-gradient(90deg,rgba(10,19,34,0) 62%,rgba(10,19,34,1) 100%)}
+  .trio .mbody{display:flex;flex-direction:column;justify-content:center;padding:28px 28px 28px 8px}
+}
+@media (min-width:1024px){
+  .feat{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+  .trio{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .trio .mcard:nth-child(2){--rv-atraso:5svh}
+  .trio .mcard:nth-child(3){--rv-atraso:10svh}
+}
+
 @media (prefers-reduced-motion:reduce){
   .cta::after{animation:none;display:none}
 }
@@ -315,7 +368,67 @@ html.lenis{scroll-behavior:auto!important}
 <path d="M0 120 C 420 10, 1020 10, 1440 120" fill="none" stroke="url(#arc-luz)" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
 </svg>
 </section>
-<section id="sistema"></section>
+<section id="sistema" class="sistema">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill reveal">Por que quatro manuais</span>
+<h2 class="h2 reveal">Todo homem enganado deixou pelo menos <strong class="silver">uma destas brechas abertas.</strong></h2>
+<p class="sec-sub reveal">Ninguém é enganado por falta de inteligência. É enganado porque deixou uma porta aberta e não sabia que ela existia. O Arsenal fecha uma por manual.</p>
+</div>
+<article class="mcard feat reveal">
+<div class="mimg"><picture>
+<source type="image/avif" srcset="assets/img/opt/cena-arsenal-480.avif 480w, assets/img/opt/cena-arsenal-800.avif 800w, assets/img/opt/cena-arsenal-1280.avif 1280w" sizes="(min-width: 1024px) max(min(calc(55.6vw - 71px), 640px), 504px), (min-width: 761px) max(calc(50vw - 64px), 504px), calc(100vw - 44px)">
+<source type="image/webp" srcset="assets/img/opt/cena-arsenal-480.webp 480w, assets/img/opt/cena-arsenal-800.webp 800w, assets/img/opt/cena-arsenal-1280.webp 1280w" sizes="(min-width: 1024px) max(min(calc(55.6vw - 71px), 640px), 504px), (min-width: 761px) max(calc(50vw - 64px), 504px), calc(100vw - 44px)">
+<img src="assets/img/opt/cena-arsenal-800.jpg" srcset="assets/img/opt/cena-arsenal-480.jpg 480w, assets/img/opt/cena-arsenal-800.jpg 800w, assets/img/opt/cena-arsenal-1280.jpg 1280w" sizes="(min-width: 1024px) max(min(calc(55.6vw - 71px), 640px), 504px), (min-width: 761px) max(calc(50vw - 64px), 504px), calc(100vw - 44px)" width="1280" height="1067" loading="lazy" decoding="async" alt="Peitoral de armadura escuro apoiado numa poltrona de couro">
+</picture></div>
+<div class="mbody">
+<p class="mlabel">O manual central</p>
+<h3 class="mtitle">Arsenal Homem Blindado</h3>
+<p class="mtext mtext-destaque">Para quem sabe que algo está errado, mas não sabe o que fazer a partir de hoje.</p>
+<p class="mtext">O ponto de partida. Mostra onde você está deixando brecha e transforma o que você leu em postura e decisão, com exercícios para aplicar no mesmo dia.</p>
+</div>
+</article>
+<div class="trio">
+<article class="mcard reveal">
+<div class="mimg"><picture>
+<source type="image/avif" srcset="assets/img/opt/cena-traicao-480.avif 480w, assets/img/opt/cena-traicao-760.avif 760w, assets/img/opt/cena-traicao-1040.avif 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
+<source type="image/webp" srcset="assets/img/opt/cena-traicao-480.webp 480w, assets/img/opt/cena-traicao-760.webp 760w, assets/img/opt/cena-traicao-1040.webp 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
+<img src="assets/img/opt/cena-traicao-760.jpg" srcset="assets/img/opt/cena-traicao-480.jpg 480w, assets/img/opt/cena-traicao-760.jpg 760w, assets/img/opt/cena-traicao-1040.jpg 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)" width="1040" height="693" loading="lazy" decoding="async" alt="Celular virado para baixo na mesa, com luz azul saindo por baixo, ao lado de um copo de uísque">
+</picture></div>
+<div class="mbody">
+<p class="mlabel">Brecha: não enxerga os sinais</p>
+<h3 class="mtitle">Manual Secreto da Traição para Homens</h3>
+<p class="mtext">O problema já estava ali havia meses. Ele só percebe quando estoura.</p>
+</div>
+</article>
+<article class="mcard reveal">
+<div class="mimg"><picture>
+<source type="image/avif" srcset="assets/img/opt/cena-iluda-480.avif 480w, assets/img/opt/cena-iluda-760.avif 760w, assets/img/opt/cena-iluda-1040.avif 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
+<source type="image/webp" srcset="assets/img/opt/cena-iluda-480.webp 480w, assets/img/opt/cena-iluda-760.webp 760w, assets/img/opt/cena-iluda-1040.webp 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
+<img src="assets/img/opt/cena-iluda-760.jpg" srcset="assets/img/opt/cena-iluda-480.jpg 480w, assets/img/opt/cena-iluda-760.jpg 760w, assets/img/opt/cena-iluda-1040.jpg 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)" width="1040" height="867" loading="lazy" decoding="async" alt="Duas taças vazias e uma vela recém-apagada sobre a mesa">
+</picture></div>
+<div class="mbody">
+<p class="mlabel">Brecha: se ilude com o que sente</p>
+<h3 class="mtitle">Nunca se Iluda com as Mulheres</h3>
+<p class="mtext">Decide com a emoção e ignora o que está vendo.</p>
+</div>
+</article>
+<article class="mcard reveal">
+<div class="mimg"><picture>
+<source type="image/avif" srcset="assets/img/opt/cena-honra-480.avif 480w, assets/img/opt/cena-honra-760.avif 760w, assets/img/opt/cena-honra-1040.avif 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
+<source type="image/webp" srcset="assets/img/opt/cena-honra-480.webp 480w, assets/img/opt/cena-honra-760.webp 760w, assets/img/opt/cena-honra-1040.webp 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
+<img src="assets/img/opt/cena-honra-760.jpg" srcset="assets/img/opt/cena-honra-480.jpg 480w, assets/img/opt/cena-honra-760.jpg 760w, assets/img/opt/cena-honra-1040.jpg 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)" width="1040" height="693" loading="lazy" decoding="async" alt="Relógio de aço e aliança sobre um caderno de couro">
+</picture></div>
+<div class="mbody">
+<p class="mlabel">Brecha: não tem postura</p>
+<h3 class="mtitle">A Força da Honra</h3>
+<p class="mtext">Implora atenção, cede em tudo e não sustenta um limite.</p>
+</div>
+</article>
+</div>
+<p class="closing reveal">Um manual sozinho fecha uma brecha. <strong class="silver">Os quatro juntos fecham a armadura.</strong></p>
+</div>
+</section>
 <section id="antes-depois"></section>
 <section id="autor"></section>
 <section id="resultados"></section>

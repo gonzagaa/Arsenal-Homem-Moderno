@@ -142,6 +142,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 
 - Em uma sessão nova, leia docs/PROGRESSO.md antes de qualquer outra coisa.
 - O trabalho segue as etapas de `docs/PROMPTS.md`, uma por vez. Toda etapa termina na regra de parada descrita lá: pare, mande o relatório no formato pedido e espere a palavra APROVADO antes de seguir.
+- A cada APROVADO, nesta ordem: atualize o `docs/PROGRESSO.md` com a etapa e as decisões aprovadas, faça commit e push, e só então comece a etapa seguinte.
 - A página é conferida com o Live Server do VS Code (localhost). Todo caminho de arquivo é relativo, nunca começando com `/`.
 - Não altere uma seção já aprovada sem pedido explícito.
 - Trechos entre colchetes na copy (por exemplo `[nome na fatura]`) são pendências: renderize com a classe `.pendente` (contorno tracejado âmbar, bem visível) e liste em `PENDENCIAS.md`. Nada com essa classe pode ir ao ar.

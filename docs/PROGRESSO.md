@@ -13,8 +13,9 @@ Atualizado em 2026-10-19.
 | 2. Hero | aprovada |
 | 3. Identificação e virada | aprovada |
 | 3.5. Sistema de movimento | aprovada |
-| **4. O sistema** | **próxima** |
-| 5 a 11 | a fazer |
+| 4. O sistema | aprovada |
+| **5. Antes e depois, e quem escreveu** | **próxima** |
+| 6 a 11 | a fazer |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -87,9 +88,18 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 - A regra "Nunca usar" do `CLAUDE.md` passou a dizer "animação de entrada fora do Sistema de movimento (fade-and-slide-up disparado por tempo, cascata com delay)". Texto confirmado.
 - `assets/js/lenis.min.js` tem o aviso da licença MIT no topo. Para recopiar: `npm run lenis --prefix scripts`.
 
+### Etapa 4: o sistema
+
+- Tablet (761 a 1023px): os três cards do trio ficam empilhados e deitados (cena à esquerda em 2/5, dissolvendo para a direita no texto). O card largo usa colunas iguais e padding proporcional (`clamp`). A partir de 1024px, o layout do mockup (1.25fr / 1fr e trio em três colunas). É o único ponto de quebra extra da página até aqui.
+- `.sec-head` e `.sec-sub` são peças reutilizáveis do cabeçalho centralizado (rótulo, título, apoio). Usar nas próximas seções que tiverem esse cabeçalho.
+- Texto dos cards (`.mtext`) com 16px (o mockup tem 15,5px), pelo mínimo de corpo do `CLAUDE.md`.
+- `.reveal` no card largo, mesmo com a foto: rolando a seção com CPU 4x, 0% de quadros lentos com e sem o efeito, no desktop e no celular.
+- Trio no desktop com `--rv-atraso` de 0, 5 e 10svh.
+- Fundo da seção de #0C1729 a #08111F e de volta a #0C1729: emenda com a curva da #virada e com a #antes-depois.
+
 ## Pendências técnicas (do projeto, não do cliente)
 
-- A curva no fim da #virada é preenchida com #0C1729 e só emenda quando a #sistema (etapa 4) tiver esse fundo. Até lá aparece a borda abaixo da curva.
+- A #sistema termina em #0C1729 e só emenda quando a #antes-depois (etapa 5) tiver esse fundo. Até lá aparece uma borda seca embaixo dela.
 - O `favicon.ico` dá 404 até a etapa 10.
 - Barra fixa (etapa 8) e lightbox dos prints (etapa 6): conferir com o Lenis ativo. O JS já para o Lenis com qualquer `<dialog>` aberto e deixa a rolagem dentro dele com o navegador.
 - As pendências do cliente estão em `PENDENCIAS.md`.
