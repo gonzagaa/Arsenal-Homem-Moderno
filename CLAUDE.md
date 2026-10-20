@@ -61,6 +61,7 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 ### Regras que não se negociam
 
 - Nenhuma divisão seca entre seções. Sempre há degradê, curva, linha de luz, um elemento sobreposto à emenda ou cores iguais dos dois lados.
+- Emenda entre seções não é espaço vazio. Toda passagem de uma seção para outra tem um elemento que pertence às duas: luz que atravessa, imagem que começa antes, objeto sobre a emenda ou conteúdo que sobe por cima. No desktop, no máximo uns 200 px de vazio entre o último conteúdo de uma seção e o primeiro da próxima.
 - A foto do hero ocupa todo o fundo do hero, no desktop e no celular.
 - Rótulo de seção é texto em caixa normal com o pequeno escudo prateado. Nunca caixa alta com letras espaçadas e fio decorativo.
 - Nunca usar travessão (—) em nenhum texto.

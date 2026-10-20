@@ -212,12 +212,15 @@ html.lenis{scroll-behavior:auto!important}
   .hero-inner,.hero-copy{gap:16px}
 }
 
-/* Desktop: altura da tela entre 640 e 920px (920 é o hero do mockup). */
+/* Desktop: altura da tela entre 640 e 920px (920 é o hero do mockup).
+   Enquadramento da foto (--hero-foto-pos) e degradê da esquerda (--hero-sombra-esq) ficam em variáveis,
+   uma por faixa de largura, logo abaixo. Para outra foto, ajuste só elas.
+   Na foto atual (1672x941): rosto de x=1045 a 1290 e de y=95 a 490; decanter e copo de x=570 a 757. */
 @media (min-width:761px){
   .hero{--hero-h:920px;display:flex;align-items:center;min-height:var(--hero-h);padding:48px 0;background:var(--abismo-hero)}
   .hero-bg,.shade{height:100%}
-  .hero-bg img{object-position:0% 30%}
-  .shade{background:linear-gradient(90deg,rgba(1,5,15,.85) 0%,rgba(1,5,15,.55) 26%,rgba(1,5,15,0) 44%),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
+  .hero-bg img{object-position:var(--hero-foto-pos)}
+  .shade{background:var(--hero-sombra-esq),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
   .hero-inner{width:100%;gap:36px;padding:0 0 0 clamp(24px,6.5vw,128px)}
   .hero-copy{min-height:0;gap:30px;padding-bottom:0}
   .hero-copy,.chips{max-width:min(520px,38vw)}
@@ -226,11 +229,31 @@ html.lenis{scroll-behavior:auto!important}
 @supports (height:100svh){
   @media (min-width:761px){.hero{--hero-h:clamp(640px,100svh,920px)}}
 }
-/* De 761 a 1366px a foto fica mais estreita que a tela e o mockup (presa à esquerda) cortaria o rosto.
-   Aqui o rosto (centro em x=1165 de 1672 na foto) fica centrado no espaço à direita do texto (~72vw),
-   sem deixar a foto descobrir a borda da tela. */
-@media (min-width:761px) and (max-width:1366px){
-  .hero-bg img{object-position:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(72vw - 1.238 * var(--hero-h)), 0px) 30%}
+/* Tablet (761 a 1023px): a foto fica mais estreita que a tela; o rosto (centro em x=1165) fica centrado
+   no espaço à direita da coluna de texto (~72vw), sem a foto descobrir a borda. */
+@media (min-width:761px) and (max-width:1023px){
+  .hero{
+    --hero-foto-pos:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(72vw - 1.238 * var(--hero-h)), 0px) 30%;
+    --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.86) 0%,rgba(1,5,15,.8) 30%,rgba(1,5,15,.45) 46%,rgba(1,5,15,0) 58%);
+  }
+}
+/* Desktop (a partir de 1024px): H1 em 3 linhas, coluna de texto mais larga e mais para dentro. */
+@media (min-width:1024px){
+  .hero{
+    --hero-foto-pos:0% 30%;
+    /* Base leve (as estantes aparecem), uma elipse atrás do bloco de texto (decanter e copo)
+       e outra na faixa do H1 (abajur). Contraste medido: subheadline 4,8:1 ou mais, H1 5,6:1 ou mais. */
+    --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.4) 0%,rgba(1,5,15,.38) 36%,rgba(1,5,15,.28) 54%,rgba(1,5,15,0) 68%),radial-gradient(ellipse 44% 56% at 30% 54%,rgba(1,5,15,.66),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 36% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
+  }
+  .hero-inner{padding-left:clamp(64px,8.5vw,200px)}
+  .hero-copy,.chips{max-width:none}
+  .hero .h1{max-width:14em;font-size:clamp(52px,3.9vw,76px)}
+  .hero .lead{max-width:28.5em;font-size:clamp(18px,1.1vw,20px)}
+}
+/* 1024 a 1366px: a foto presa à esquerda (0%) deixa o rosto o mais à direita possível; quando isso
+   cortaria o rosto na borda, ela recua só o necessário para o rosto ficar 24px dentro da tela. */
+@media (min-width:1024px) and (max-width:1366px){
+  .hero{--hero-foto-pos:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(100vw - 24px - 1.371 * var(--hero-h)), 0px) 30%}
 }
 
 /* Identificação
@@ -308,10 +331,34 @@ html.lenis{scroll-behavior:auto!important}
 .closing{max-width:30ch;margin:44px auto 0;text-align:center;font-weight:300;font-size:22px;line-height:1.3;letter-spacing:-.02em;text-wrap:balance}
 .closing strong{font-weight:500}
 
+/* Emenda #sistema / #antes-depois: quatro escudos (um por manual) deslizam e se fundem num só, a
+   armadura fechada, e dele desce uma linha de luz até o rótulo "Antes e depois". Decorativo.
+   O estado final (escudo único e linha) é o padrão: sem suporte ou com movimento reduzido, é o que aparece. */
+.armadura{display:none}
+@keyframes arm-p1{from{opacity:1;transform:translateX(-78px) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
+@keyframes arm-p2{from{opacity:1;transform:translateX(-26px) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
+@keyframes arm-p3{from{opacity:1;transform:translateX(26px) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
+@keyframes arm-p4{from{opacity:1;transform:translateX(78px) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
+@keyframes arm-grande{from,70%{opacity:0;transform:scale(.4375)}to{opacity:1;transform:scale(1)}}
+@keyframes arm-brilho{from,75%{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes arm-linha{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
 @media (min-width:761px){
   .sec-head{margin-bottom:64px;gap:18px}
   .sec-sub{font-size:17.5px}
-  .sistema{padding:120px 0 110px}
+  /* O ponto mais alto da curva da #virada fica 132px acima do topo da #sistema (curva de 170px, ápice
+     a 37,5px do topo dela, 1px de sobreposição). O rótulo fica --curva-rotulo abaixo do ápice;
+     flow-root impede que a margem negativa arraste o fundo da seção para cima da curva. */
+  .sistema{--curva-rotulo:120px;display:flow-root;padding:0}
+  .sistema>.wrap{margin-top:calc(var(--curva-rotulo) - 132px)}
+  /* Emenda com a #antes-depois: escudos logo abaixo da frase; a linha atravessa a emenda até o rótulo. */
+  :root{--emenda-ad:72px}
+  .armadura{position:relative;z-index:1;display:block;width:64px;height:77px;margin:40px auto 0;view-timeline:--armadura block}
+  .arm-pequeno,.arm-grande,.arm-brilho{position:absolute;left:50%;top:50%}
+  .arm-pequeno{width:28px;height:34px;margin:-17px 0 0 -14px;fill:none;stroke:url(#prata-escudo);stroke-width:12;stroke-linejoin:round;opacity:0}
+  .arm-grande{width:64px;height:77px;margin:-38.5px 0 0 -32px;fill:url(#prata-escudo)}
+  .arm-brilho{width:220px;height:220px;margin:-110px 0 0 -110px;border-radius:50%;background:radial-gradient(closest-side,rgba(150,180,225,.32),rgba(150,180,225,0))}
+  .arm-linha{position:absolute;left:50%;top:100%;width:1px;height:calc(var(--emenda-ad) - 12px);margin-left:-.5px;transform-origin:top;background:linear-gradient(180deg,rgba(217,226,238,.75),rgba(217,226,238,0))}
   .mbody{padding:4px 28px 30px}
   /* Card largo: cena à esquerda, dissolvendo para a direita no texto. */
   .feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-bottom:20px}
@@ -329,6 +376,19 @@ html.lenis{scroll-behavior:auto!important}
   .trio .mimg{aspect-ratio:auto;min-height:220px}
   .trio .mimg::after{background:linear-gradient(90deg,rgba(10,19,34,0) 62%,rgba(10,19,34,1) 100%)}
   .trio .mbody{display:flex;flex-direction:column;justify-content:center;padding:28px 28px 28px 8px}
+}
+/* Armadura: os escudos se fundem enquanto a emenda sobe de 10% a 45% da tela (contando de baixo);
+   a linha desce em seguida. Só transform e opacity. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference) and (min-width:761px){
+    .arm-p1{animation:arm-p1 ease-in-out both;animation-timeline:--armadura;animation-range:cover 10svh cover 45svh}
+    .arm-p2{animation:arm-p2 ease-in-out both;animation-timeline:--armadura;animation-range:cover 10svh cover 45svh}
+    .arm-p3{animation:arm-p3 ease-in-out both;animation-timeline:--armadura;animation-range:cover 10svh cover 45svh}
+    .arm-p4{animation:arm-p4 ease-in-out both;animation-timeline:--armadura;animation-range:cover 10svh cover 45svh}
+    .arm-grande{animation:arm-grande ease-out both;animation-timeline:--armadura;animation-range:cover 10svh cover 45svh}
+    .arm-brilho{animation:arm-brilho ease-out both;animation-timeline:--armadura;animation-range:cover 10svh cover 45svh}
+    .arm-linha{animation:arm-linha ease-out both;animation-timeline:--armadura;animation-range:cover 40svh cover 60svh}
+  }
 }
 @media (min-width:1024px){
   .feat{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
@@ -373,7 +433,7 @@ html.lenis{scroll-behavior:auto!important}
 .stat span{display:block;font-size:13px;color:var(--nevoa-2)}
 
 @media (min-width:761px){
-  .antes{padding:40px 0 220px}
+  .antes{padding:var(--emenda-ad) 0 220px}
   .cmp{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .col{padding:34px 34px 20px}
   /* Cada linha do Depois entra logo depois da linha do Antes ao lado. */
@@ -597,7 +657,11 @@ html:has(dialog[open]){overflow:hidden}
   .medal{width:200px}
   .faq-grid{max-width:none;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,6vw,80px)}
   .panel{max-width:980px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,3.4vw,48px);padding:44px clamp(36px,3.4vw,48px)}
-  .card{padding:clamp(36px,3.6vw,46px);grid-template-columns:clamp(280px,30vw,380px) minmax(0,1fr);gap:clamp(40px,4vw,56px)}
+  /* A moldura tem a altura da coluna de texto: topo no rótulo "Quem escreveu", base no pé dos números.
+     A foto fica por cima (absolute) para não ditar a altura da linha e cobre a moldura puxada para cima. */
+  .card{padding:clamp(36px,3.6vw,46px);grid-template-columns:clamp(300px,31vw,420px) minmax(0,1fr);gap:clamp(40px,4vw,56px);align-items:stretch}
+  .frame picture{position:absolute;inset:3px}
+  .frame img{height:100%;aspect-ratio:auto;object-position:50% 10%}
   .stat{padding:18px clamp(16px,1.4vw,20px)}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
 }
@@ -759,6 +823,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </article>
 </div>
 <p class="closing reveal">Um manual sozinho fecha uma brecha. <strong class="silver">Os quatro juntos fecham a armadura.</strong></p>
+<div class="armadura" aria-hidden="true">
+<div class="arm-brilho"></div>
+<svg class="arm-pequeno arm-p1" viewBox="0 0 200 240"><use href="#escudo"/></svg>
+<svg class="arm-pequeno arm-p2" viewBox="0 0 200 240"><use href="#escudo"/></svg>
+<svg class="arm-pequeno arm-p3" viewBox="0 0 200 240"><use href="#escudo"/></svg>
+<svg class="arm-pequeno arm-p4" viewBox="0 0 200 240"><use href="#escudo"/></svg>
+<svg class="arm-grande" viewBox="0 0 200 240"><use href="#escudo"/></svg>
+<div class="arm-linha"></div>
+</div>
 </div>
 </section>
 <section id="antes-depois" class="antes">
@@ -801,9 +874,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="frame">
 <div class="badge"><svg width="42" height="50" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="#0C1729" stroke="url(#prata-escudo)" stroke-width="11" stroke-linejoin="round"/><path d="M66 120 L92 146 L138 98" fill="none" stroke="#E9EEF5" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 <picture>
-<source type="image/avif" srcset="assets/img/opt/autor-400.avif 400w, assets/img/opt/autor-640.avif 640w, assets/img/opt/autor-900.avif 900w" sizes="(min-width: 1024px) clamp(274px, calc(30vw - 6px), 374px), (min-width: 761px) 334px, calc(100vw - 94px)">
-<source type="image/webp" srcset="assets/img/opt/autor-400.webp 400w, assets/img/opt/autor-640.webp 640w, assets/img/opt/autor-900.webp 900w" sizes="(min-width: 1024px) clamp(274px, calc(30vw - 6px), 374px), (min-width: 761px) 334px, calc(100vw - 94px)">
-<img src="assets/img/opt/autor-640.jpg" srcset="assets/img/opt/autor-400.jpg 400w, assets/img/opt/autor-640.jpg 640w, assets/img/opt/autor-900.jpg 900w" sizes="(min-width: 1024px) clamp(274px, calc(30vw - 6px), 374px), (min-width: 761px) 334px, calc(100vw - 94px)" width="900" height="1125" loading="lazy" decoding="async" alt="Marcello Gomes em pé ao lado da poltrona, no estúdio">
+<source type="image/avif" srcset="assets/img/opt/autor-400.avif 400w, assets/img/opt/autor-640.avif 640w, assets/img/opt/autor-900.avif 900w" sizes="(min-width: 1024px) 540px, (min-width: 761px) 334px, calc(100vw - 94px)">
+<source type="image/webp" srcset="assets/img/opt/autor-400.webp 400w, assets/img/opt/autor-640.webp 640w, assets/img/opt/autor-900.webp 900w" sizes="(min-width: 1024px) 540px, (min-width: 761px) 334px, calc(100vw - 94px)">
+<img src="assets/img/opt/autor-640.jpg" srcset="assets/img/opt/autor-400.jpg 400w, assets/img/opt/autor-640.jpg 640w, assets/img/opt/autor-900.jpg 900w" sizes="(min-width: 1024px) 540px, (min-width: 761px) 334px, calc(100vw - 94px)" width="900" height="1125" loading="lazy" decoding="async" alt="Marcello Gomes em pé ao lado da poltrona, no estúdio">
 </picture>
 </div>
 <div>

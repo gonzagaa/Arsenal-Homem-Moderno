@@ -2,7 +2,7 @@
 
 Leia este arquivo antes de qualquer outra coisa numa sessão nova. Ele registra as etapas aprovadas e as decisões aprovadas nos relatórios que não estão no `CLAUDE.md` nem no `docs/PROMPTS.md`. Essas decisões vieram depois do mockup: quando discordarem dele, valem as decisões.
 
-Atualizado em 2026-10-19.
+Atualizado em 2026-10-20.
 
 ## Situação
 
@@ -23,6 +23,13 @@ Atualizado em 2026-10-19.
 | 11. Revisão final | aprovada |
 
 Todas as etapas do `docs/PROMPTS.md` estão aprovadas. O que falta para publicar está em `PENDENCIAS.md` (nada com `.pendente` pode ir ao ar).
+
+Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
+
+| Rodada | Status |
+| --- | --- |
+| Ajustes de design, parte 1 (hero, #sistema, emenda #sistema/#antes-depois, #autor) e troca da foto do hero desktop | aprovada |
+| Ajustes de design, parte 2 (ajuste fino do H1, oferta, garantia dentro do FAQ, emendas) | em andamento |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -179,7 +186,26 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 - Larguras 360, 390, 768, 1280 e 1440px: sem rolagem lateral, nada passando da tela, nenhum texto cortado.
 - `PENDENCIAS.md` com a tabela das 11 marcações `.pendente` e o requisito de hospedagem (compressão e cache longo).
 
+### Ajustes de design, parte 1, e foto nova do hero (2026-10-20)
+
+Pedido explícito para alterar seções aprovadas, só no desktop. O celular (até 760px) ficou idêntico: 0 pixels diferentes na página inteira em 390 e 360px, comparando antes e depois.
+
+- Regra nova no `CLAUDE.md`: emenda entre seções não é espaço vazio (no desktop, no máximo uns 200px de vazio).
+- Foto nova do hero desktop (`assets/img/hero-desktop.png`, 1672x941): biblioteca à esquerda, Marcello no terço direito. Rosto de x=1045 a 1290 e y=95 a 490; decanter e copo de x=570 a 757; abajur de x=830 a 945. Imagens regeneradas com os mesmos nomes (o preload e o srcset não mudaram); em 1440px carrega `hero-desktop-1672.avif`, 71,9 KB.
+- Hero a partir de 1024px: H1 em 3 linhas, coluna de texto mais larga, bloco centrado na altura. O tablet (761 a 1023px) mantém o layout anterior. (Tamanhos do H1 e recuo revisados na parte 2.)
+- Enquadramento e degradê em variáveis, uma por faixa de largura, definidas juntas no CSS do hero: `--hero-foto-pos` e `--hero-sombra-esq`.
+  - Tablet: a fórmula antiga, com o rosto centrado em ~72vw.
+  - 1024 a 1366px: foto presa à esquerda (rosto o mais à direita possível); recua só o necessário para o rosto ficar 24px dentro da tela.
+  - Acima de 1366px: `0% 30%`.
+- Degradê da esquerda em três camadas: base leve (as estantes aparecem, mais escuras), elipse atrás do bloco de texto (decanter e copo) e elipse na faixa do H1 (abajur). Contraste medido atrás de cada linha, contra o pixel mais claro do fundo (percentil 99, com o grão): subheadline 4,8:1 ou mais, H1 5,6:1 ou mais, anel do botão 7:1 ou mais, de 768 a 1920px. Sempre medir assim quando mexer no degradê.
+- #sistema (a partir de 761px): o rótulo fica 120px abaixo do ponto mais alto da curva da #virada (`--curva-rotulo`). O ápice fica 132px acima do topo da seção; `display:flow-root` e margem negativa no `.wrap`.
+- Emenda #sistema/#antes-depois (a partir de 761px; escondida no celular): quatro escudos de contorno (28px) deslizam e se fundem num escudo prateado de 64px com brilho; uma linha de luz de 1px desce até o rótulo "Antes e depois". Linha do tempo `--armadura` na própria emenda: fusão de `cover 10svh` a `cover 45svh`, linha de `cover 40svh` a `cover 60svh`. Só `transform` e `opacity`; estado final como padrão. `padding-bottom` da #sistema 0 e `padding-top` da #antes-depois em `--emenda-ad` (72px), que também define o comprimento da linha. Da frase ao rótulo: 189px.
+- #autor a partir de 1024px: a moldura tem a altura da coluna de texto (topo no rótulo, base no pé dos números), foto por cima com `object-fit: cover` e `object-position: 50% 10%`; coluna da foto `clamp(300px, 31vw, 420px)`; `sizes` 540px. O tablet e o celular não mudaram.
+- `assets/img/og.jpg` regenerada com a foto nova. H1 legível (branco 7,3:1 ou mais); a última linha, no pé do prateado, fica em 3,9:1 sobre o brilho do copo. Sugestão em aberto: a mesma elipse escura do hero no `scripts/gerar-og.mjs`.
+
 ## Pendências técnicas (do projeto, não do cliente)
+
+- Sugestão em aberto sobre o contraste da og.jpg (ver "Ajustes de design, parte 1").
 
 - As pendências do cliente estão em `PENDENCIAS.md`.
 
