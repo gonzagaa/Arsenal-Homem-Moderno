@@ -61,9 +61,6 @@ fbq('track', 'PageView');
 <link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(min-width: 761px)" imagesrcset="assets/img/opt/hero-desktop-960.avif 960w, assets/img/opt/hero-desktop-1280.avif 1280w, assets/img/opt/hero-desktop-1672.avif 1672w" imagesizes="max(100vw, clamp(1137px, 177.7svh, 1635px))">
 <!-- Geist local: arquivo variável, subset latino (o mesmo que o Google Fonts serve), licença em assets/fonts/OFL.txt. -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-latin.woff2" crossorigin>
-<!-- Assinatura provisória da #garantia: só as letras de "Marcello Gomes". Sai quando chegar a assinatura real em imagem.
-     Com JS, carrega depois do evento load (fica lá embaixo e não deve disputar a rede com a primeira tela). -->
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&amp;text=Marcello%20Gomes&amp;display=swap"></noscript>
 <style>
 /* Geist local (variável: um arquivo cobre os pesos 300, 400, 500 e 600). */
 @font-face{font-family:'Geist';font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/geist-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -290,20 +287,18 @@ html.lenis{scroll-behavior:auto!important}
 .chk[aria-pressed="true"] .esc-fundo,.chk[aria-pressed="true"] .esc-check{opacity:1}
 .chk[aria-pressed="true"] .esc-borda{stroke:#D9E2EE}
 @media (hover:hover){.chk:hover{border-color:rgba(169,184,203,.3)}}
-/* Barra do contador. A frase mais longa tem 508px em 12px (270px até "aprendizado."): para caber em duas
-   linhas em 360px, a margem interna é curta e o número fica compacto ("N" grande e "de 7" embaixo).
-   Sem .reveal: é sticky. */
+/* Barra do contador: "N" grande com "de 7" embaixo, e a frase ao lado (14px, até 3 linhas). A altura é a do
+   maior estado (3 linhas), para a barra não crescer por cima do item logo depois de um toque. Os itens
+   descontam a barra quando recebem foco pelo teclado (scroll-margin-bottom). Sem .reveal: é sticky. */
 .contador-barra{display:none}
 @media (max-width:760px){
   .counter{display:none}
-  .contador-barra{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:center;gap:10px;margin:0 -10px;min-height:62px;padding:9px 10px 9px 12px;border-radius:18px;background:linear-gradient(180deg,rgba(22,36,58,.74),rgba(10,20,36,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -14px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
-  .cb-num{flex:none;min-width:28px;text-align:center}
+  .contador-barra{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:center;gap:10px;margin:0 -10px;min-height:calc(3 * 14px * 1.4 + 20px);padding:9px 10px 9px 12px;border-radius:18px;background:linear-gradient(180deg,rgba(22,36,58,.74),rgba(10,20,36,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -14px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+  .cb-num{flex:none;min-width:30px;text-align:center}
   .cb-num b{display:block;font-weight:300;font-size:28px;line-height:1;letter-spacing:-.04em}
-  .cb-num span{display:block;margin-top:2px;font-size:11px;line-height:1.2;color:var(--nevoa-2);white-space:nowrap}
-  .contador-barra>p{font-size:12px;line-height:1.4;color:#C9D3E0;text-wrap:balance}
-}
-@media (max-width:760px) and (min-width:385px){
-  .contador-barra>p{font-size:12.5px}
+  .cb-num span{display:block;margin-top:2px;font-size:13px;line-height:1.2;color:var(--nevoa-2);white-space:nowrap}
+  .contador-barra>p{font-size:14px;line-height:1.4;color:#C9D3E0;text-wrap:pretty}
+  .chk{scroll-margin-bottom:calc(3 * 14px * 1.4 + 44px + env(safe-area-inset-bottom))}
 }
 
 /* Virada. A opacidade cai palavra a palavra; a mais apagada (.52) ainda tem 5:1 de contraste. */
@@ -628,8 +623,6 @@ html:has(dialog[open]){overflow:hidden}
 .g-titulo strong{font-weight:600}
 .g-card p{font-size:16px;line-height:1.65;color:var(--nevoa)}
 .g-card .g-destaque{margin-top:12px;color:var(--gelo)}
-/* Assinatura: fonte provisória (só as letras de "Marcello Gomes") até chegar a assinatura real em imagem. */
-.sign{display:inline-block;margin-top:18px;font-family:'Mrs Saint Delafield',cursive;font-size:44px;line-height:1;color:#D9E2EE}
 
 /* FAQ: <details> nativos, o primeiro aberto. Sem fundo próprio: o brilho de baixo do painel da oferta
    continua por trás do começo do FAQ. */
@@ -661,8 +654,6 @@ html:has(dialog[open]){overflow:hidden}
 .foot{border-top:1px solid rgba(169,184,203,.1);padding:24px 0 calc(32px + env(safe-area-inset-bottom));font-size:13.5px;line-height:1.5;color:#7E8FA6}
 .foot .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:4px 28px;justify-content:space-between}
 .foot-links{display:flex;flex-wrap:wrap;align-items:center;gap:0 22px}
-/* Pendências do rodapé inteiras numa linha, para o contorno não invadir a linha de cima. */
-.foot .pendente{display:inline-block;line-height:1.4}
 .foot p{line-height:2}
 .foot a{display:inline-flex;align-items:center;min-height:44px;color:var(--nevoa-2);text-decoration:none}
 @media (hover:hover){.foot a:hover{color:#FFFFFF}}
@@ -1179,7 +1170,6 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 </div>
 <p>Se em até 7 dias você achar que não valeu, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Sem precisar me explicar nada.</p>
 <p class="g-destaque">Eu faço isso porque sei o que está nesses manuais.</p>
-<p class="sign pendente">Marcello Gomes</p>
 </div>
 <div class="faq-titulo">
 <span class="pill reveal">Dúvidas</span>
@@ -1188,7 +1178,6 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 <div class="qa">
 <details class="reveal" open><summary>Em que formato vem o material?</summary><p>Os quatro manuais são em PDF. Você lê no celular, no computador ou imprime, se preferir papel.</p></details>
 <details class="reveal"><summary>Quanto tempo leva para chegar?</summary><p>O acesso vai para o seu e-mail assim que o pagamento é aprovado. No Pix e no cartão, isso leva poucos minutos.</p></details>
-<details class="reveal"><summary>Alguém vai saber que eu comprei?</summary><p>Não. O acesso chega só no seu e-mail, e na fatura do cartão aparece <span class="pendente">[nome na fatura, confirmar na Eduzz]</span>.</p></details>
 <details class="reveal"><summary>Serve para quem está casado ou namorando?</summary><p>Serve. Boa parte do conteúdo é sobre postura e limite dentro do relacionamento que você já tem, e não só sobre escolher a próxima pessoa.</p></details>
 <details class="reveal"><summary>Acabei de passar por uma traição. Vale a pena ler agora?</summary><p>Vale. É justamente quando você está tentando entender o que aconteceu, e quando corre mais risco de repetir a mesma escolha.</p></details>
 <details class="reveal"><summary>Quanto tempo leva para ler tudo?</summary><p>Dá para ler os quatro em poucos dias. O Arsenal Homem Blindado, que é o principal, dá para ler numa noite.</p></details>
@@ -1213,9 +1202,8 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 </main>
 <footer class="foot">
 <div class="wrap">
-<p>Arsenal Homem Blindado, por Marcello Gomes. <span class="pendente">[CNPJ ou responsável]</span></p>
-<!-- Termos de uso e Política de privacidade viram links quando as páginas existirem. -->
-<p class="foot-links"><a href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener">Instagram</a><span class="pendente">Termos de uso</span><span class="pendente">Política de privacidade</span></p>
+<p>Arsenal Homem Blindado, por Marcello Gomes.</p>
+<p class="foot-links"><a href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener">Instagram</a></p>
 </div>
 </footer>
 <div class="barra" id="barra">
@@ -1381,14 +1369,6 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
     if (origem) origem.focus({ preventScroll: true });
   });
 })();
-
-// Fonte provisória da assinatura (#garantia), depois do load.
-window.addEventListener('load', function () {
-  var l = document.createElement('link');
-  l.rel = 'stylesheet';
-  l.href = 'https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&text=Marcello%20Gomes&display=swap';
-  document.head.appendChild(l);
-});
 
 // Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a #identificacao
 // (onde fica a barra do contador), a #oferta, o botão de compra do #fechamento ou o rodapé estiverem

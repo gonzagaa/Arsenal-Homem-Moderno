@@ -22,7 +22,7 @@ Quando o mockup e a copy discordarem num texto, a copy manda. Quando discordarem
 
 - Site estático. Um `index.html` na raiz, com CSS e JS inline (são poucos KB e evitam requisições extras). Única exceção: o Lenis, em `assets/js/lenis.min.js` (ver Sistema de movimento). Sem framework, sem build obrigatório, sem jQuery.
 - Imagens otimizadas em `assets/img/opt/`, em AVIF e WebP com fallback JPG, servidas por `<picture>` com `srcset` e `sizes`. Toda `<img>` com `width` e `height` para não haver salto de layout.
-- Fonte: Geist hospedada localmente (`assets/fonts/geist-latin.woff2`, arquivo variável com subset latino, licença OFL ao lado), com `preload` e `font-display: swap`. Nenhuma outra família, exceto a fonte manuscrita provisória da assinatura (Google Fonts, só as letras do nome, carregada depois do `load`), que sai quando o cliente mandar a assinatura em imagem.
+- Fonte: Geist hospedada localmente (`assets/fonts/geist-latin.woff2`, arquivo variável com subset latino, licença OFL ao lado), com `preload` e `font-display: swap`. Nenhuma outra família.
 - Mobile-first de verdade. Testar em 390 px de largura antes de qualquer outra.
 - Funcionar sem JavaScript: todo o conteúdo aparece, os links levam ao checkout. O JS só melhora (checklist, barra fixa, lightbox, rolagem suave).
 - Exceção pedida pelo desenvolvedor: a assinatura do Studio Alto Nível (`https://cdn.studioaltonivel.com/footer.js`, com `defer`), que insere o rodapé "Desenvolvido por" no fim do `<body>` com estilo e fonte próprios. O único ajuste da página sobre ele é o fundo #000000 (`html body #san-footer-badge`).
@@ -147,5 +147,5 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - A cada APROVADO, nesta ordem: atualize o `docs/PROGRESSO.md` com a etapa e as decisões aprovadas, faça commit e push, e só então comece a etapa seguinte.
 - A página é conferida com o Live Server do VS Code (localhost). Todo caminho de arquivo é relativo, nunca começando com `/`.
 - Não altere uma seção já aprovada sem pedido explícito.
-- Trechos entre colchetes na copy (por exemplo `[nome na fatura]`) são pendências: renderize com a classe `.pendente` (contorno tracejado âmbar, bem visível) e liste em `PENDENCIAS.md`. Nada com essa classe pode ir ao ar.
+- Trechos entre colchetes na copy (por exemplo `[6 a 9 prints reais tratados, a enviar]`) são pendências: renderize com a classe `.pendente` (contorno tracejado âmbar, bem visível) e liste em `PENDENCIAS.md`. Nada com essa classe pode ir ao ar.
 - Ao final de cada seção, confira no celular (390 px) e no desktop (1440 px).

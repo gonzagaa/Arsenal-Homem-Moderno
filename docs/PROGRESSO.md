@@ -31,7 +31,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Ajustes de design, parte 1 (hero, #sistema, emenda #sistema/#antes-depois, #autor) e troca da foto do hero desktop | aprovada |
 | Ajustes de design, parte 2 (ajuste fino do H1, oferta, garantia dentro do FAQ, emendas) | aprovada |
 | Rodada 3 (painel da oferta; no celular: hero, #identificacao, #sistema, escudos e emendas) e assinatura do Studio | aprovada |
-| Rodada 4 (contador maior; FAQ, garantia e rodapé sem pendências do cliente) | em andamento |
+| Rodada 4 (contador maior; FAQ, garantia e rodapé sem pendências do cliente) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -43,9 +43,9 @@ A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PR
 - Destaque prateado: peso 600 nos títulos (H1 e H2) e 500 nas frases grandes (palavras da virada, fechamento do #sistema, frase do antes e depois, frase do para quem é, frase final). Igual ao mockup.
 - Nada de caixa alta com letras espaçadas em lugar nenhum da página, nem em card. Rótulo de card (o `.mlabel` do mockup no #sistema): caixa normal, 14px, peso 500, cor #8FA3BE.
 - O selo de verificado do Instagram fica azul (#3897F0), como no mockup.
-- `.pendente` em toda pendência da copy, inclusive nos links Termos de uso e Política de privacidade. Vale o texto da copy, sem o "Aguardando ele." do mockup.
+- `.pendente` em toda pendência da copy, inclusive nos links Termos de uso e Política de privacidade. Vale o texto da copy, sem o "Aguardando ele." do mockup. (Rodada 4: Termos de uso e Política de privacidade saíram do rodapé.)
 - "+12 mil homens transformados", "milhares de homens" (#autor), garantia de 7 dias e originais maiores das fotos ficam em `PENDENCIAS.md`, seção "Confirmar antes de publicar", e NÃO recebem `.pendente` na tela.
-- Fonte provisória da assinatura (Mrs Saint Delafield): pedido separado ao Google Fonts com `text=Marcello Gomes`, para baixar só essas letras.
+- Fonte provisória da assinatura (Mrs Saint Delafield): pedido separado ao Google Fonts com `text=Marcello Gomes`, para baixar só essas letras. (Rodada 4: a assinatura e a fonte saíram da página.)
 - Itens do checklist e perguntas do FAQ com 16px no celular.
 - Oferta: o Arsenal é o 2º livro a partir da esquerda (o maior). Linha de detalhes sem ponto final em cada item.
 - CSS escrito a partir do celular. O desktop fica em `@media (min-width:761px)`, o mesmo ponto de quebra do mockup.
@@ -152,9 +152,9 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 
 - Espaço inseparável depois de "R$" em todo valor da página (`R$&nbsp;97`), para o valor não quebrar entre linhas. Manter em texto novo.
 - Garantia e FAQ empilhados no tablet (até 1023px, FAQ com no máximo 680px); duas colunas a partir de 1024px. Selo com 150px até 1023px e 200px (coluna de 220px) no desktop.
-- Assinatura provisória: `<p class="sign pendente">`, fonte Mrs Saint Delafield pedida com `text=Marcello%20Gomes`, carregada sem bloquear (`media="print"` + `onload`).
+- Assinatura provisória: `<p class="sign pendente">`, fonte Mrs Saint Delafield pedida com `text=Marcello%20Gomes`, carregada sem bloquear (`media="print"` + `onload`). (Rodada 4: saiu.)
 - FAQ: + e − por `::after` com texto alternativo vazio (`content:"+" / ""`), escondidos do leitor de tela.
-- Rodapé: "Termos de uso" e "Política de privacidade" são `<span class="pendente">` até existirem as páginas (viram links depois). Pendências do rodapé com `display:inline-block`, para o contorno não invadir a linha de cima. Links com 44px de altura.
+- Rodapé: "Termos de uso" e "Política de privacidade" são `<span class="pendente">` até existirem as páginas (viram links depois). Pendências do rodapé com `display:inline-block`, para o contorno não invadir a linha de cima. Links com 44px de altura. (Rodada 4: saíram; o rodapé tem só o texto e o Instagram.)
 - Frase final e rodapé sem `.reveal`. Conferido: no fim da rolagem, botão e parágrafos do fechamento ficam nítidos (390x844, 390x664, 1440x900, 1440x760).
 - Barra fixa (só até 760px): escondida por padrão (`visibility:hidden` e fora da tela); o JS põe `.visivel` quando nem o hero, nem a #oferta, nem o botão do #fechamento (`.fecho-cta`) estão na tela (um `IntersectionObserver`). Desliza em 0,35s, sem transição com movimento reduzido. Testada no toque, com o Lenis (mouse em 390px) e sem JS.
 - Rodapé no celular com espaço inferior de `calc(90px + env(safe-area-inset-bottom))`: barra de 66px + 12px da borda + 12px de folga. No desktop, 120px como no mockup.
@@ -180,13 +180,13 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 
 - **Rastreio aceito como está** (decisão do desenvolvedor): com GTM e pixel, a Performance do Lighthouse fica em 76 a 84 e as Boas práticas em 79, mas o LCP real continua abaixo de 2,5s. Adiar o pixel faria as campanhas perderem dados. Carregar GTM e pixel depois do `load` foi testado e não melhora nem a nota nem o TBT. Números na seção "Medições de referência".
 - Geist local: `assets/fonts/geist-latin.woff2` (o arquivo variável latino que o Google Fonts serve, 29 KB), `@font-face` com `font-weight: 100 900` e o `unicode-range` latino, `preload` e `font-display: swap`. Licença em `assets/fonts/OFL.txt`. Regra de fontes do `CLAUDE.md` atualizada.
-- Fonte provisória da assinatura carregada pelo JS depois do evento `load` (com `<noscript>` no `<head>`): antes ela entrava cedo com prioridade máxima e disputava a rede com a primeira tela.
+- Fonte provisória da assinatura carregada pelo JS depois do evento `load` (com `<noscript>` no `<head>`): antes ela entrava cedo com prioridade máxima e disputava a rede com a primeira tela. (Rodada 4: saiu.)
 - Barra fixa com `inert` quando escondida: sem isso, o link ainda recebia foco nos 0,35s em que a barra desliza para fora.
 - 360px: número das estatísticas da #autor com `white-space: nowrap` (o "+12 mil" quebrava); botão do #fechamento com `text-align: left` (herdava o centro da seção quando o rótulo quebra em duas linhas).
 - Revisão de textos: sem travessão, sem "lorem", sem texto em inglês visível, nenhuma frase de conteúdo fora da copy. Fora da copy, só o esperado: textos alternativos (do mockup), rótulos de acessibilidade, a etiqueta "print real" dos espaços reservados, meta tags técnicas e o título aprovado na etapa 10.
 - Teclado (1280 e 390px): 27 paradas de Tab, todas com foco visível e alvo de 44px ou mais; checklist com Enter e Espaço, FAQ com Enter, lightbox com Enter e Esc (foco no X e de volta na moldura).
 - Larguras 360, 390, 768, 1280 e 1440px: sem rolagem lateral, nada passando da tela, nenhum texto cortado.
-- `PENDENCIAS.md` com a tabela das 11 marcações `.pendente` e o requisito de hospedagem (compressão e cache longo).
+- `PENDENCIAS.md` com a tabela das 11 marcações `.pendente` e o requisito de hospedagem (compressão e cache longo). (Rodada 4: 6 marcações, as molduras de print.)
 
 ### Ajustes de design, parte 1, e foto nova do hero (2026-10-20)
 
@@ -203,7 +203,7 @@ Pedido explícito para alterar seções aprovadas, só no desktop. O celular (at
 - #sistema (a partir de 761px): o rótulo fica 120px abaixo do ponto mais alto da curva da #virada (`--curva-rotulo`). O ápice fica 132px acima do topo da seção; `display:flow-root` e margem negativa no `.wrap`.
 - Emenda #sistema/#antes-depois (a partir de 761px; escondida no celular): quatro escudos de contorno (28px) deslizam e se fundem num escudo prateado de 64px com brilho; uma linha de luz de 1px desce até o rótulo "Antes e depois". Linha do tempo `--armadura` na própria emenda: fusão de `cover 10svh` a `cover 45svh`, linha de `cover 40svh` a `cover 60svh`. Só `transform` e `opacity`; estado final como padrão. `padding-bottom` da #sistema 0 e `padding-top` da #antes-depois em `--emenda-ad` (72px), que também define o comprimento da linha. Da frase ao rótulo: 189px.
 - #autor a partir de 1024px: a moldura tem a altura da coluna de texto (topo no rótulo, base no pé dos números), foto por cima com `object-fit: cover` e `object-position: 50% 10%`; coluna da foto `clamp(300px, 31vw, 420px)`; `sizes` 540px. O tablet e o celular não mudaram.
-- `assets/img/og.jpg` regenerada com a foto nova. H1 legível (branco 7,3:1 ou mais); a última linha, no pé do prateado, fica em 3,9:1 sobre o brilho do copo. Sugestão em aberto: a mesma elipse escura do hero no `scripts/gerar-og.mjs`.
+- `assets/img/og.jpg` regenerada com a foto nova. H1 legível (branco 7,3:1 ou mais); a última linha, no pé do prateado, fica em 3,9:1 sobre o brilho do copo. Fica como está (decisão do desenvolvedor, rodada 4): o 3,9:1 é em texto grande, onde o mínimo é 3:1.
 
 ### Ajustes de design, parte 2 (2026-10-20)
 
@@ -242,9 +242,23 @@ A oferta mudou no desktop e no celular; o resto, só no celular. O desktop ficou
 - #faq/#fechamento: a solução do desktop vale também no celular (círculo de vidro sobre a emenda, brilho subindo); `.faq` com 144px embaixo e `.fecho` com 64px em cima no celular.
 - Assinatura do Studio Alto Nível: `https://cdn.studioaltonivel.com/footer.js` com `defer` no fim do `<body>` (exceção registrada no `CLAUDE.md`). Fundo #000000 forçado a pedido do desenvolvedor (`html body #san-footer-badge`). Fora isso, a assinatura é do desenvolvedor e não se mexe nela, nem pelo CSS.
 
+### Rodada 4 (2026-10-20)
+
+Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as larguras. As emendas não mudaram.
+
+- Barra do contador no celular: frase com 14px e "de 7" com 13px. A frase de 3 ou mais marcados ocupa 3 linhas em 360 e 390; as outras, 2. A barra tem a altura do maior estado (78,8px, `min-height` de 3 linhas), para não crescer por cima do item logo depois de um toque. Frase com `text-wrap: pretty` (com `balance`, as 3 linhas ficavam estreitas e sobrava um vão à direita).
+- `.chk` com `scroll-margin-bottom` no celular: com Tab, o item focado fica acima da barra. Testado: sobreposição 0 depois do toque (itens 1 a 4, logo acima da barra) e com Tab (7 itens), em 360 e 390.
+- FAQ: saiu "Alguém vai saber que eu comprei?" (6 perguntas, a primeira aberta). No desktop, colunas com 571 e 531px e título alinhado com a primeira pergunta.
+- Garantia: sem a assinatura. A Mrs Saint Delafield saiu da página (`<noscript>` no `<head>`, CSS `.sign` e carregamento depois do `load`); a única família da página é a Geist (a Inter vem da assinatura do Studio).
+- Rodapé: só "Arsenal Homem Blindado, por Marcello Gomes." e o link do Instagram.
+- `.pendente`: 6, as molduras de print da #resultados. `PENDENCIAS.md` sem a assinatura, o nome na fatura e os dados legais; a política de privacidade (pixel e GA4, LGPD e revisão de anúncios da Meta) entrou em "Confirmar antes de publicar".
+- `CLAUDE.md`: regra de fontes sem a exceção da manuscrita; exemplo de trecho entre colchetes trocado para `[6 a 9 prints reais tratados, a enviar]`.
+- Selo do Studio: mantém o fundo #000000 (`html body #san-footer-badge`).
+- og.jpg: fica como está (3,9:1 em texto grande; o mínimo é 3:1). Sugestão encerrada.
+
 ## Pendências técnicas (do projeto, não do cliente)
 
-- Sugestão em aberto sobre o contraste da og.jpg (ver "Ajustes de design, parte 1").
+- Nenhuma.
 
 - As pendências do cliente estão em `PENDENCIAS.md`.
 

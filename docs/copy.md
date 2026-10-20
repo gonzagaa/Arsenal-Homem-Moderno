@@ -185,13 +185,11 @@ A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as
 - **Título:** Leia por 7 dias. **Se não valer, seu dinheiro volta.** (destaque)
 - **Texto:** Se em até 7 dias você achar que não valeu, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Sem precisar me explicar nada.
 - **Em destaque leve:** Eu faço isso porque sei o que está nesses manuais.
-- **Assinatura:** Marcello Gomes [assinatura manuscrita real, se o cliente enviar]
 
 **Perguntas:**
 
 - **Em que formato vem o material?** Os quatro manuais são em PDF. Você lê no celular, no computador ou imprime, se preferir papel.
 - **Quanto tempo leva para chegar?** O acesso vai para o seu e-mail assim que o pagamento é aprovado. No Pix e no cartão, isso leva poucos minutos.
-- **Alguém vai saber que eu comprei?** Não. O acesso chega só no seu e-mail, e na fatura do cartão aparece [nome na fatura, confirmar na Eduzz].
 - **Serve para quem está casado ou namorando?** Serve. Boa parte do conteúdo é sobre postura e limite dentro do relacionamento que você já tem, e não só sobre escolher a próxima pessoa.
 - **Acabei de passar por uma traição. Vale a pena ler agora?** Vale. É justamente quando você está tentando entender o que aconteceu, e quando corre mais risco de repetir a mesma escolha.
 - **Quanto tempo leva para ler tudo?** Dá para ler os quatro em poucos dias. O Arsenal Homem Blindado, que é o principal, dá para ler numa noite.
@@ -213,7 +211,7 @@ São 12x de R$ 10,03. Com 7 dias para devolver se não valer.
 
 **Frase final:** Torne-se o homem que você **respeitaria.** (destaque)
 
-**Rodapé:** Arsenal Homem Blindado, por Marcello Gomes. [CNPJ ou responsável] / Instagram / Termos de uso / Política de privacidade
+**Rodapé:** Arsenal Homem Blindado, por Marcello Gomes. / Instagram
 
 ## 12. Barra fixa (celular)
 
