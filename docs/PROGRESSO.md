@@ -30,7 +30,8 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | --- | --- |
 | Ajustes de design, parte 1 (hero, #sistema, emenda #sistema/#antes-depois, #autor) e troca da foto do hero desktop | aprovada |
 | Ajustes de design, parte 2 (ajuste fino do H1, oferta, garantia dentro do FAQ, emendas) | aprovada |
-| Rodada 3 (painel da oferta; no celular: hero, #identificacao, #sistema, escudos e emendas) | em andamento |
+| Rodada 3 (painel da oferta; no celular: hero, #identificacao, #sistema, escudos e emendas) e assinatura do Studio | aprovada |
+| Rodada 4 (contador maior; FAQ, garantia e rodapé sem pendências do cliente) | em andamento |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -218,6 +219,28 @@ A oferta mudou no desktop e no celular; o resto, só a partir de 761px. No celul
 - Emenda #faq/#fechamento (a partir de 761px): o escudo fica num círculo de vidro sobre a emenda (`.fecho-selo`, igual ao do hero), com uma linha de luz. `.fecho>.wrap{position:static}` para o círculo se posicionar pela seção.
 - Vazios no desktop (1280/1440): frase do #para-quem até "A oferta" 105/100px; painel até o FAQ 144px; última pergunta até o escudo do fechamento 141px.
 - `docs/copy.md`: seções renumeradas (10 FAQ com a garantia, 11 Fechamento, 12 Barra fixa). `CLAUDE.md`: ordem das seções atualizada.
+
+### Rodada 3 e assinatura do Studio (2026-10-20)
+
+A oferta mudou no desktop e no celular; o resto, só no celular. O desktop ficou idêntico ao commit anterior até o painel da oferta (fora 7 pixels nos esboços desfocados das molduras de print).
+
+- Painel da oferta:
+  - Lista: as quatro linhas iguais, sem caixa, separadas por um fio; o Arsenal se diferencia só por "O manual central" em prata (peso 500). Nada na lista parece clicável.
+  - A partir de 1280px, a lista ocupa a altura do preço: as linhas do meio crescem o dobro das pontas (`flex-grow` 1/2/2/1, primeira presa em cima e última embaixo com `align-content`), para cada fio ficar no meio do espaço entre duas linhas.
+  - Detalhes: ícone em cima (16px de altura nos quatro), título em 500 e linha de apoio em `--nevoa-2`; 2 x 2 com as fileiras de mesma altura (`grid-auto-rows:1fr`). Texto em `docs/copy.md`.
+  - Ordem no código e no celular: lista, preço, detalhes. O botão do preço fica alinhado à esquerda quando quebra (360px).
+- Hero no celular: os dois cards em duas colunas iguais, com o ícone em cima do número (com o ícone ao lado, cada card pede ~190px e a coluna tem 168px em 390px).
+- #identificacao no celular: o contador é uma barra de vidro (`.contador-barra`, último filho da `.chks`, sticky no pé da tela) e para 12px abaixo do último item. O bloco `.counter` fica só no desktop. Os dois são `aria-live`; só o visível é anunciado. Número compacto ("N" grande, "de 7" embaixo).
+- Barra de compra: some também na #identificacao e no rodapé. O rodapé do celular perdeu a reserva de 90px para a barra (`calc(32px + env(safe-area-inset-bottom))`).
+- #sistema no celular: o rótulo fica 70px abaixo do ponto mais alto da curva (`--curva-rotulo`; o ápice fica 69px acima do topo da seção).
+- Escudos da emenda #sistema/#antes-depois:
+  - Também no celular, com 3/4 do tamanho: 48x58px, pequenos de 21x25,5px, passo de 19,5px. Tamanhos em variáveis (`--arm-g`, `--arm-gh`, `--arm-p`, `--arm-ph`, `--arm-passo`, `--arm-brilho`); no desktop, 64x77 e 28x34, como antes.
+  - A fusão vai do centro do grupo a 50% da altura da tela até 30% do topo; a linha desce em seguida, até 15%. `animation-range` com `cover calc(50svh + meia altura)`.
+  - O shorthand `animation` zera `animation-timeline` e `animation-range`: declarar os dois depois dele.
+- Emendas no celular (vazios em 360 e 390): #hero/#identificacao 71, #identificacao/#virada 130, #virada/#sistema 101 do botão até a curva e 70 dela até o rótulo, #sistema/#antes-depois 32 até os escudos e 56 deles até o rótulo, #antes-depois/#autor 90, #autor/#resultados 120 (padding de baixo da #autor 100px no celular), #resultados/#para-quem 118, #para-quem/#oferta 110, #oferta/#faq 126, #faq/#fechamento 116, #fechamento/rodapé 125.
+- #para-quem/#oferta no celular: a foto da mesa aparece inteira atrás do título (os 80px de parede que ficavam cortados), com topo e laterais dissolvidos por máscara; uma luz na cor da parede (`.stage::before`) sobe até a frase. A escala da foto não muda (os livros continuam sobre a mesa).
+- #faq/#fechamento: a solução do desktop vale também no celular (círculo de vidro sobre a emenda, brilho subindo); `.faq` com 144px embaixo e `.fecho` com 64px em cima no celular.
+- Assinatura do Studio Alto Nível: `https://cdn.studioaltonivel.com/footer.js` com `defer` no fim do `<body>` (exceção registrada no `CLAUDE.md`). Fundo #000000 forçado a pedido do desenvolvedor (`html body #san-footer-badge`). Fora isso, a assinatura é do desenvolvedor e não se mexe nela, nem pelo CSS.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

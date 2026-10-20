@@ -154,22 +154,24 @@ A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as
 
 **Capas (livros em pé sobre a mesa), da esquerda para a direita:** Manual Secreto da Traição para Homens, Arsenal Homem Blindado (maior, central), A Força da Honra, Nunca se Iluda com as Mulheres. Em cada capa: título (início em 300, final em 600 prateado) e "Marcello Gomes" embaixo.
 
-**Painel, lista (desktop: à esquerda; celular: depois do preço):** rótulo "Os quatro manuais" e, em cada linha, a miniatura da capa, o nome e uma linha curta:
+**Painel, lista (desktop: à esquerda; celular: primeiro):** rótulo "Os quatro manuais" e, em cada linha, a miniatura da capa, o nome e uma linha curta. As quatro linhas são iguais; o Arsenal se diferencia só pela linha "O manual central", prateada.
 - Arsenal Homem Blindado / O manual central
 - Manual Secreto da Traição para Homens / Para enxergar os sinais antes de estourar
 - A Força da Honra / Para colocar limite e sustentar
 - Nunca se Iluda com as Mulheres / Para decidir com clareza, e não pela emoção
 
-**Painel, bloco de preço (desktop: à direita; celular: primeiro), nesta ordem:**
+**Painel, bloco de preço (desktop: à direita; celular: depois da lista), nesta ordem:**
 - De ~~R$ 297~~ por
 - 12x de **R$ 10,03**
 - ou R$ 97 à vista
 - Botão: Quero me tornar um Homem Blindado
 - Menos do que um jantar a dois. E pode te poupar anos.
 
-**Linha de detalhes (quatro itens):** Acesso imediato no seu e-mail. Leitura no celular, tablet ou computador. Pagamento seguro pela Eduzz. Garantia de 7 dias.
-
-**Nota:** Material digital em PDF. Nada é enviado pelo correio. (Fica como segunda linha, menor, do item "Leitura no celular, tablet ou computador".)
+**Detalhes (quatro itens, cada um com título curto / linha de apoio):**
+- Acesso imediato / No seu e-mail, assim que o pagamento é aprovado.
+- Leia onde quiser / Em PDF, no celular, tablet ou computador. Nada vai pelo correio.
+- Pagamento seguro / Processado pela própria Eduzz.
+- Garantia de 7 dias / Reembolso pela Eduzz, sem precisar explicar nada.
 
 ## 10. FAQ (#faq), com a garantia
 

@@ -25,6 +25,7 @@ Quando o mockup e a copy discordarem num texto, a copy manda. Quando discordarem
 - Fonte: Geist hospedada localmente (`assets/fonts/geist-latin.woff2`, arquivo variável com subset latino, licença OFL ao lado), com `preload` e `font-display: swap`. Nenhuma outra família, exceto a fonte manuscrita provisória da assinatura (Google Fonts, só as letras do nome, carregada depois do `load`), que sai quando o cliente mandar a assinatura em imagem.
 - Mobile-first de verdade. Testar em 390 px de largura antes de qualquer outra.
 - Funcionar sem JavaScript: todo o conteúdo aparece, os links levam ao checkout. O JS só melhora (checklist, barra fixa, lightbox, rolagem suave).
+- Exceção pedida pelo desenvolvedor: a assinatura do Studio Alto Nível (`https://cdn.studioaltonivel.com/footer.js`, com `defer`), que insere o rodapé "Desenvolvido por" no fim do `<body>` com estilo e fonte próprios. O único ajuste da página sobre ele é o fundo #000000 (`html body #san-footer-badge`).
 
 ## Design (os valores exatos estão no CSS do mockup)
 
@@ -95,9 +96,9 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 
 ## Interações
 
-- Checklist: botões reais com `aria-pressed`, o contador em `aria-live="polite"`, a frase muda com 0, 1 a 2, ou 3 ou mais marcados. Sem JS, aparece a frase de 1 a 2.
+- Checklist: botões reais com `aria-pressed`, o contador em `aria-live="polite"`, a frase muda com 0, 1 a 2, ou 3 ou mais marcados. Sem JS, aparece a frase de 1 a 2. No celular, o contador é uma barra compacta de vidro, sticky no pé da tela enquanto a lista está na tela, que para logo abaixo do último item.
 - FAQ: `<details>` e `<summary>` nativos, o primeiro aberto.
-- Barra fixa do celular: aparece depois que o hero sai da tela e some quando a oferta está visível (`IntersectionObserver`). Respeitar `env(safe-area-inset-bottom)`.
+- Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a #identificacao (onde fica a barra do contador), a oferta, o botão do #fechamento ou o rodapé estão visíveis (`IntersectionObserver`). Respeitar `env(safe-area-inset-bottom)`.
 - Prints: no celular, fileira horizontal com `scroll-snap`; toque abre em tela cheia com `<dialog>`.
 - Movimento: segue o Sistema de movimento, logo abaixo.
 
