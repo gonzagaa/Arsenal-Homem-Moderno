@@ -32,6 +32,8 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Ajustes de design, parte 2 (ajuste fino do H1, oferta, garantia dentro do FAQ, emendas) | aprovada |
 | Rodada 3 (painel da oferta; no celular: hero, #identificacao, #sistema, escudos e emendas) e assinatura do Studio | aprovada |
 | Rodada 4 (contador maior; FAQ, garantia e rodapé sem pendências do cliente) | aprovada |
+| Ajuste do rodapé (altura e espaço acima dele) | aprovado |
+| Prints reais da #resultados | em andamento |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -255,6 +257,12 @@ Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as 
 - `CLAUDE.md`: regra de fontes sem a exceção da manuscrita; exemplo de trecho entre colchetes trocado para `[6 a 9 prints reais tratados, a enviar]`.
 - Selo do Studio: mantém o fundo #000000 (`html body #san-footer-badge`).
 - og.jpg: fica como está (3,9:1 em texto grande; o mínimo é 3:1). Sugestão encerrada.
+
+### Ajuste do rodapé (2026-10-20)
+
+- Rodapé da página (não o selo do Studio): 24px em cima e embaixo no celular, mais `env(safe-area-inset-bottom)` (a barra de compra fica escondida no rodapé), e 32px no desktop. O fio de cima continua. Altura: 124px no celular (texto e Instagram em duas linhas; o link mantém 44px de toque) e 109px no desktop.
+- Do fim do #fechamento até o fio do rodapé: 40px no celular e no desktop (`.fecho` com `padding-bottom:40px`).
+- No fim da rolagem, o botão do #fechamento fica nítido (390x844, 390x664, 1440x900, 1440x760 e 1920x1080). Sem o selo (CDN fora), em 1920x1080 ele termina em 98% da revelação (0,25px de desfoque).
 
 ## Pendências técnicas (do projeto, não do cliente)
 
