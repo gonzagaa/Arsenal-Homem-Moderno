@@ -56,7 +56,7 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 - Vidro: degradê escuro translúcido + `backdrop-filter: blur(16 a 20px)` + borda de 1 px em prata a 15 a 20 por cento + brilho interno no topo. Só onde há imagem ou luz atrás.
 - Grão sutil por cima da página inteira (`assets/img/grain.png`, `mix-blend-mode: overlay`).
 - Luz: cada seção tem um ponto de luz difusa (radial azul-noite), nunca fundo chapado.
-- Botão principal: pílula prateada metálica com texto escuro, dentro de um anel de vidro com brilho difuso, seta num círculo escuro e um reflexo que atravessa o botão a cada poucos segundos (desligado com `prefers-reduced-motion`).
+- Botão principal: pílula prateada metálica com texto escuro, dentro de um anel de vidro com brilho difuso, seta num círculo escuro e um reflexo que atravessa o botão a cada poucos segundos (desligado com `prefers-reduced-motion`). Ao passar o mouse ou com foco pelo teclado: o reflexo passa na hora, o botão sobe 2 px, clareia, o anel ganha brilho embaixo e a seta sai pela direita do círculo e volta pela esquerda (300 ms, `cubic-bezier(.2,.8,.2,1)`). No `:active`, em todos os aparelhos e também no botão da barra fixa: `scale(.98)` e menos brilho. Sem movimento, só o brilho muda.
 - Ícone da marca: o escudo (SVG do mockup). Usado em rótulos, listas e selo de garantia.
 
 ### Regras que não se negociam
@@ -91,7 +91,8 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 - Um script curto repassa para o link do checkout todos os parâmetros que chegaram na URL da página (`utm_*`, `src`, `sck`, `fbclid` e o que mais vier), para o tráfego pago não perder a origem da venda.
 - Google Tag Manager `GTM-5KX5J7J6` no `<head>` e o `<noscript>` logo após o `<body>`, como na página atual.
 - Pixel da Meta `1434833234924777`. Antes de instalar o código base, perguntar ao desenvolvedor se o pixel já dispara dentro do GTM. Se sim, não instalar de novo (PageView duplicado estraga a otimização das campanhas).
-- Evento `InitiateCheckout` no clique de qualquer botão de compra, pelo mesmo canal que dispara o pixel (GTM ou código), nunca pelos dois.
+- `InitiateCheckout`: o checkout da Eduzz dispara sozinho ao abrir. A página não dispara esse evento (contaria em dobro); o clique de compra não tem nenhum evento do pixel. O `clique_botoes` do GA4 vem do contêiner do GTM.
+- Botões de compra abrem o checkout em nova guia (`target="_blank"`, `rel="noopener"`, sem `noreferrer`). No toque (`pointer: coarse`), o JS os deixa na mesma guia, por causa do navegador interno do Instagram.
 - Preço: R$ 97 à vista ou 12x de R$ 10,03. Preço de referência riscado: R$ 297.
 
 ## Interações

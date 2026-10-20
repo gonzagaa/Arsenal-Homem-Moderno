@@ -153,7 +153,7 @@ Faça a etapa 9 do docs/PROMPTS.md.
 
 - Script que repassa para todos os links de checkout os parâmetros da URL da página (utm_*, src, sck, fbclid e qualquer outro), sem duplicar parâmetros que o link já tenha.
 - Google Tag Manager GTM-5KX5J7J6: script no <head> e <noscript> logo após o <body>.
-- Pixel da Meta 1434833234924777 e evento InitiateCheckout no clique dos botões de compra: antes de instalar, me pergunte se o pixel já dispara pelo GTM. Não instale nos dois lugares.
+- Pixel da Meta 1434833234924777 com PageView. Não disparar InitiateCheckout no clique: o checkout da Eduzz já dispara esse evento ao abrir.
 
 No relatório, liste cada botão de compra da página com o link final que ele gera quando a página é aberta com ?utm_source=teste&utm_campaign=teste.
 

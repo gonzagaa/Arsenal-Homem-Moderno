@@ -35,7 +35,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Ajuste do rodapé (altura e espaço acima dele) | aprovado |
 | Prints reais e carrossel da #resultados | aprovada |
 | Destaque, setas e galeria da #resultados | aprovada |
-| Rastreamento sem InitiateCheckout, checkout em nova guia e efeito dos botões de compra | em andamento |
+| Rastreamento sem InitiateCheckout, checkout em nova guia e efeito dos botões de compra | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -165,12 +165,12 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 
 ### Etapa 9: checkout e rastreamento
 
-- O pixel 1434833234924777 NÃO dispara pelo GTM (na página antiga vinha do plugin "Meta Pixel for WordPress"). O GTM-5KX5J7J6 leva o GA4 (G-7N5TLWWSQC). Decisão: código base do pixel direto no `index.html` (PageView) e InitiateCheckout pelo `fbq` no clique de compra. Nenhuma tag de pixel no GTM.
+- O pixel 1434833234924777 NÃO dispara pelo GTM (na página antiga vinha do plugin "Meta Pixel for WordPress"). O GTM-5KX5J7J6 leva o GA4 (G-7N5TLWWSQC). Decisão: código base do pixel direto no `index.html` (PageView) e InitiateCheckout pelo `fbq` no clique de compra. Nenhuma tag de pixel no GTM. (Rodada 9: o InitiateCheckout saiu da página; o checkout da Eduzz dispara ao abrir.)
 - O pixel já envia os eventos também pelo Conversions API Gateway (configurado na Meta: endpoints `…run.app` e reserva `…on.aws`). Pendência de confirmação no `PENDENCIAS.md`.
 - Não mexer: `SubscribedButtonClick` (eventos automáticos do pixel, configurados na Meta) e `clique_botoes` (evento GA4 já configurado no GTM). São configurações do cliente.
 - Rastreio desligado em `localhost`/`127.0.0.1` (variável `rastrear` no topo do `<head>`); `?rastreio=1` liga tudo para testar no "Testar eventos". O `rastreio` não é repassado ao checkout. Os `<noscript>` do GTM e do pixel ficam como estão (com JS desligado não há como saber o hostname).
 - Repasse de parâmetros: todo `a[href^="https://chk.eduzz.com/"]` recebe os parâmetros da URL da página que ele ainda não tem (sem duplicar nem trocar).
-- Clique de compra com o pixel carregado (`fbq.callMethod` existe): `preventDefault`, InitiateCheckout e navegação por `setTimeout` de 300ms, porque o pixel envia o evento ~50ms depois (agrupa e espera até 200ms) e a navegação imediata o perdia. Sem o pixel (localhost, bloqueador, rede), navega na hora. Ctrl/Cmd+clique, clique do meio e nova aba seguem normais; clique duplo gera um evento só; `pageshow` reativa os botões ao voltar pelo histórico.
+- Clique de compra com o pixel carregado (`fbq.callMethod` existe): `preventDefault`, InitiateCheckout e navegação por `setTimeout` de 300ms, porque o pixel envia o evento ~50ms depois (agrupa e espera até 200ms) e a navegação imediata o perdia. Sem o pixel (localhost, bloqueador, rede), navega na hora. Ctrl/Cmd+clique, clique do meio e nova aba seguem normais; clique duplo gera um evento só; `pageshow` reativa os botões ao voltar pelo histórico. (Rodada 9: saiu. O clique não tem evento do pixel nem espera.)
 - Testes de rastreio sempre interceptando e bloqueando `facebook.com/tr`, os endpoints do Gateway e `/g/collect`, e com user agent sem "HeadlessChrome" (o pixel descarta navegadores automatizados).
 
 ### Etapa 10: SEO e compartilhamento
@@ -300,6 +300,16 @@ Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as 
   - Troca com transição de opacidade de 150ms; sem movimento, direta.
   - Contador "N de 8" em `aria-live`. O Tab circula só pelos botões da galeria (o `<dialog>` nativo deixava o foco sair antes de voltar). Ao fechar, o foco volta para o card do print aberto; na fileira que rola, o card é alinhado.
   - O carrossel pausa com a galeria aberta (`html:has(dialog[open])`) e o Lenis para.
+
+### Rastreamento, checkout em nova guia e efeito dos botões de compra (2026-10-20)
+
+- A gestora confirmou: o checkout da Eduzz dispara o InitiateCheckout ao abrir; o Conversions API Gateway está ativo e deduplicando; o pixel está no produto da Eduzz (ID e token da API de Conversões). A página não dispara InitiateCheckout: saíram o evento no clique, a espera de 300ms, o teste do `fbq.callMethod`, a proteção de clique duplo e o reset no `pageshow`. Ficam o PageView, o GTM (o `clique_botoes` do GA4 vem do contêiner) e o repasse de parâmetros. Testado com os envios bloqueados: no clique, o pixel só manda o `SubscribedButtonClick` automático da Meta.
+- Botões de compra (os 5 `.cta` e o da barra fixa) com `target="_blank" rel="noopener"` (sem `noreferrer`: a Eduzz recebe a origem). No toque (`pointer: coarse`), o JS tira o `target` e o checkout abre na mesma guia (o navegador interno do Instagram lida mal com nova guia). Clique do meio e Ctrl+clique seguem nativos, com os parâmetros.
+- Efeito dos botões de compra:
+  - Hover (`hover: hover` e `pointer: fine`) e `:focus-visible`: o reflexo passa uma vez na hora (`sheen-agora`, 0,75s); o anel (`.cta-ring`, por `:has(.cta:hover)`) sobe 2px e ganha brilho embaixo; o prateado clareia por uma camada branca em `.cta::before` (atrás do texto, com `isolation: isolate` no `.cta`), porque degradê não faz transição; a seta sai pela direita do círculo (`overflow: clip`) e volta pela esquerda (`seta-passa`, 0,55s). Transição de 300ms com `cubic-bezier(.2,.8,.2,1)`.
+  - `:active`, em todos os aparelhos: o anel vai a `scale(.98)` e perde brilho (120ms); o botão da barra fixa também encolhe. Um ouvinte de `touchstart` vazio (passivo) no documento faz o Safari do iPhone e o navegador interno do Instagram aplicarem o `:active`.
+  - Sem movimento: só o clareamento e o brilho mudam.
+- `docs/PROMPTS.md`, etapa 9: o pixel ficou "com PageView, sem InitiateCheckout no clique".
 
 ## Pendências técnicas (do projeto, não do cliente)
 

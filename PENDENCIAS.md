@@ -24,5 +24,7 @@ Estes itens aparecem na página sem a classe `.pendente`, então nada na tela av
 - [ ] Garantia de 7 dias (oferta, garantia, FAQ, fechamento): prazo configurado na Eduzz e como funciona o reembolso.
 - [ ] Autorização do Marcello para usar as 8 conversas da #resultados (nomes e fotos cobertos). O print-07 mostra um story do Marcello com o rosto de uma mulher; confirmar se pode aparecer.
 - [ ] Política de privacidade: a página usa pixel e GA4 (cookies). Verificar com o cliente se existe uma política publicada para linkar no rodapé, por causa da LGPD e da revisão de anúncios da Meta.
-- [ ] O pixel já envia os eventos da página pelo Conversions API Gateway (configurado na Meta, independe do WordPress). Confirmar com o gestor de tráfego: (a) que o Gateway está ativo e deduplicando com o pixel do navegador; (b) que o pixel está configurado no produto dentro da Eduzz para o evento de compra; (c) se o checkout da Eduzz também dispara InitiateCheckout ao abrir. Se disparar, remover o InitiateCheckout do clique na página, para não contar duas vezes.
+- [x] Conversions API Gateway: resolvido. A gestora confirmou que está ativo e deduplicando com o pixel do navegador.
+- [x] Pixel no produto da Eduzz: resolvido. ID do pixel e token da API de Conversões inseridos na Eduzz.
+- [x] InitiateCheckout em dobro: resolvido. O checkout da Eduzz dispara o evento ao abrir, e ele foi removido do clique na página.
 - [ ] Originais em maior resolução do hero (desktop e celular) e da mesa da oferta, se existirem. As atuais têm 1672 px no lado maior e aparecem ampliadas em telas retina.
