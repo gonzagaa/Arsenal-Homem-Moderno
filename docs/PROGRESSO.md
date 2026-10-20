@@ -29,7 +29,8 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rodada | Status |
 | --- | --- |
 | Ajustes de design, parte 1 (hero, #sistema, emenda #sistema/#antes-depois, #autor) e troca da foto do hero desktop | aprovada |
-| Ajustes de design, parte 2 (ajuste fino do H1, oferta, garantia dentro do FAQ, emendas) | em andamento |
+| Ajustes de design, parte 2 (ajuste fino do H1, oferta, garantia dentro do FAQ, emendas) | aprovada |
+| Rodada 3 (painel da oferta; no celular: hero, #identificacao, #sistema, escudos e emendas) | em andamento |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -202,6 +203,21 @@ Pedido explícito para alterar seções aprovadas, só no desktop. O celular (at
 - Emenda #sistema/#antes-depois (a partir de 761px; escondida no celular): quatro escudos de contorno (28px) deslizam e se fundem num escudo prateado de 64px com brilho; uma linha de luz de 1px desce até o rótulo "Antes e depois". Linha do tempo `--armadura` na própria emenda: fusão de `cover 10svh` a `cover 45svh`, linha de `cover 40svh` a `cover 60svh`. Só `transform` e `opacity`; estado final como padrão. `padding-bottom` da #sistema 0 e `padding-top` da #antes-depois em `--emenda-ad` (72px), que também define o comprimento da linha. Da frase ao rótulo: 189px.
 - #autor a partir de 1024px: a moldura tem a altura da coluna de texto (topo no rótulo, base no pé dos números), foto por cima com `object-fit: cover` e `object-position: 50% 10%`; coluna da foto `clamp(300px, 31vw, 420px)`; `sizes` 540px. O tablet e o celular não mudaram.
 - `assets/img/og.jpg` regenerada com a foto nova. H1 legível (branco 7,3:1 ou mais); a última linha, no pé do prateado, fica em 3,9:1 sobre o brilho do copo. Sugestão em aberto: a mesma elipse escura do hero no `scripts/gerar-og.mjs`.
+
+### Ajustes de design, parte 2 (2026-10-20)
+
+A oferta mudou no desktop e no celular; o resto, só a partir de 761px. No celular, a página ficou idêntica até o painel da oferta.
+
+- Hero a partir de 1024px: H1 `clamp(40px, 3.35vw, 54px)` com no máximo 14em, subheadline `clamp(18px, 1.3vw, 21px)` com no máximo 28,5em, recuo `clamp(64px, 10.5vw, 240px)`. Em 1440px: H1 com 48,2px e 580px de texto, subheadline com 18,72px e 511px (o H1 fica 14% mais largo). H1 em 3 linhas de 1024 a 1920px. Não ficou em 3,4vw com teto de 64px porque o H1 passaria de 15% mais largo que a subheadline (20% em 1440, 41% em 1920). De 1024 a 1366px, degradê próprio (elipse mais escura e recentrada): contraste de 5,3:1 ou mais.
+- Emenda #para-quem/#oferta (a partir de 761px): o palco sobe por trás da frase final do #para-quem (`--palco-sobe`, `--frase-palco`), o topo da foto se dissolve só com degradê, e o rótulo e o título da oferta ficam dentro do palco, 79px acima do livro maior (`--titulo-fundo`). Foto com posição absoluta precisa de `height` explícito (`calc(100% + var(--palco-sobe))`). Contraste sobre o palco 6,0:1 ou mais.
+- Painel da oferta:
+  - Grade de 12 colunas a partir de 1280px: lista em 7, preço em 5, topo e base alinhados; detalhes em 4 colunas iguais com fios verticais. De 761 a 1279px, empilhado (o botão só cabe em uma linha na coluna de preço a partir de ~1250px).
+  - Bloco de preço numa superfície mais clara, sem `backdrop-filter` (o painel tem `.reveal`).
+- Garantia: deixou de ser seção. É um card de vidro (`div#garantia.g-card`) dentro do #faq, com selo de 96px (76px no celular) ao lado do título em tamanho de h3. A partir de 1024px: o título do FAQ e o card à esquerda, as perguntas à direita, título alinhado com a primeira pergunta. No código e no celular, o card vem antes do título do FAQ.
+- #oferta, #faq e #fechamento sem fundo próprio na passagem: o brilho da oferta vai até o #faq, e o do fechamento (pseudo-elemento com `z-index:-1`) sobe por trás das últimas perguntas.
+- Emenda #faq/#fechamento (a partir de 761px): o escudo fica num círculo de vidro sobre a emenda (`.fecho-selo`, igual ao do hero), com uma linha de luz. `.fecho>.wrap{position:static}` para o círculo se posicionar pela seção.
+- Vazios no desktop (1280/1440): frase do #para-quem até "A oferta" 105/100px; painel até o FAQ 144px; última pergunta até o escudo do fechamento 141px.
+- `docs/copy.md`: seções renumeradas (10 FAQ com a garantia, 11 Fechamento, 12 Barra fixa). `CLAUDE.md`: ordem das seções atualizada.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

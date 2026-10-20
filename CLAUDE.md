@@ -79,11 +79,10 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 6. `#autor`
 7. `#resultados`: prints reais da DM (molduras prontas, prints entram depois)
 8. `#para-quem`
-9. `#oferta`: os quatro livros em pé sobre a mesa + painel de preço
-10. `#garantia`
-11. `#faq`
-12. `#fechamento` + rodapé
-13. Barra fixa no celular
+9. `#oferta`: os quatro livros em pé sobre a mesa (o palco sobe por trás da frase final do `#para-quem`) + painel de preço
+10. `#faq`: a garantia num card de vidro (`id="garantia"`) e as perguntas. No desktop, a garantia fica na coluna esquerda, abaixo do título; no celular, é o primeiro item, logo depois da oferta.
+11. `#fechamento` + rodapé
+12. Barra fixa no celular
 
 ## Checkout, rastreamento e dados
 

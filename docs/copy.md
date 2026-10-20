@@ -154,44 +154,38 @@ A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as
 
 **Capas (livros em pé sobre a mesa), da esquerda para a direita:** Manual Secreto da Traição para Homens, Arsenal Homem Blindado (maior, central), A Força da Honra, Nunca se Iluda com as Mulheres. Em cada capa: título (início em 300, final em 600 prateado) e "Marcello Gomes" embaixo.
 
-**Painel, lado esquerdo:** rótulo "Arsenal Homem Blindado" e a lista:
-- Arsenal Homem Blindado
-- Manual Secreto da Traição para Homens
-- A Força da Honra
-- Nunca se Iluda com as Mulheres
+**Painel, lista (desktop: à esquerda; celular: depois do preço):** rótulo "Os quatro manuais" e, em cada linha, a miniatura da capa, o nome e uma linha curta:
+- Arsenal Homem Blindado / O manual central
+- Manual Secreto da Traição para Homens / Para enxergar os sinais antes de estourar
+- A Força da Honra / Para colocar limite e sustentar
+- Nunca se Iluda com as Mulheres / Para decidir com clareza, e não pela emoção
 
-**Painel, lado direito:**
+**Painel, bloco de preço (desktop: à direita; celular: primeiro), nesta ordem:**
 - De ~~R$ 297~~ por
 - 12x de **R$ 10,03**
 - ou R$ 97 à vista
-- Menos do que um jantar a dois. E pode te poupar anos.
 - Botão: Quero me tornar um Homem Blindado
+- Menos do que um jantar a dois. E pode te poupar anos.
 
-**Linha de detalhes:** Acesso imediato no seu e-mail. Leitura no celular, tablet ou computador. Pagamento seguro pela Eduzz. Garantia de 7 dias.
+**Linha de detalhes (quatro itens):** Acesso imediato no seu e-mail. Leitura no celular, tablet ou computador. Pagamento seguro pela Eduzz. Garantia de 7 dias.
 
-**Nota:** Material digital em PDF. Nada é enviado pelo correio.
+**Nota:** Material digital em PDF. Nada é enviado pelo correio. (Fica como segunda linha, menor, do item "Leitura no celular, tablet ou computador".)
 
-## 10. Garantia (#garantia)
-
-**Selo:** escudo com "7" e "dias".
-
-**Rótulo:** Garantia
-
-**Título:** Leia por 7 dias. **Se não valer, seu dinheiro volta.** (destaque)
-
-**Texto:**
-
-Leia os quatro manuais. Se em até 7 dias você achar que não valeu os R$ 97, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Você não precisa me explicar nada.
-
-Eu faço isso porque sei o que está nesses manuais.
-
-**Assinatura:** Marcello Gomes [assinatura manuscrita real, se o cliente enviar]
-
-## 11. FAQ (#faq)
+## 10. FAQ (#faq), com a garantia
 
 **Rótulo:** Dúvidas
 
 **Título:** Perguntas que chegam **toda semana.** (destaque)
+
+**Card da garantia (id="garantia"; desktop: coluna esquerda, abaixo do título; celular: primeiro item do #faq, logo depois da oferta):**
+
+- **Selo:** escudo com "7" e "dias".
+- **Título:** Leia por 7 dias. **Se não valer, seu dinheiro volta.** (destaque)
+- **Texto:** Se em até 7 dias você achar que não valeu, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Sem precisar me explicar nada.
+- **Em destaque leve:** Eu faço isso porque sei o que está nesses manuais.
+- **Assinatura:** Marcello Gomes [assinatura manuscrita real, se o cliente enviar]
+
+**Perguntas:**
 
 - **Em que formato vem o material?** Os quatro manuais são em PDF. Você lê no celular, no computador ou imprime, se preferir papel.
 - **Quanto tempo leva para chegar?** O acesso vai para o seu e-mail assim que o pagamento é aprovado. No Pix e no cartão, isso leva poucos minutos.
@@ -201,7 +195,7 @@ Eu faço isso porque sei o que está nesses manuais.
 - **Quanto tempo leva para ler tudo?** Dá para ler os quatro em poucos dias. O Arsenal Homem Blindado, que é o principal, dá para ler numa noite.
 - **E se eu não gostar?** Você tem 7 dias para pedir o reembolso pela Eduzz e recebe tudo de volta.
 
-## 12. Fechamento (#fechamento)
+## 11. Fechamento (#fechamento)
 
 **Título:** Quanto vale evitar um relacionamento que pode **custar anos da sua vida?** (destaque)
 
@@ -219,6 +213,6 @@ São 12x de R$ 10,03. Com 7 dias para devolver se não valer.
 
 **Rodapé:** Arsenal Homem Blindado, por Marcello Gomes. [CNPJ ou responsável] / Instagram / Termos de uso / Política de privacidade
 
-## 13. Barra fixa (celular)
+## 12. Barra fixa (celular)
 
 Arsenal Homem Blindado / **12x de R$ 10,03** / botão "Quero o Arsenal"

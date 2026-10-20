@@ -8,7 +8,7 @@ Nada marcado com `.pendente` vai ao ar. Atualize esta lista conforme as resposta
 - [ ] Nome que aparece na fatura do cartão (FAQ).
 - [ ] Confirmar que o conteúdo serve para quem está num relacionamento (FAQ).
 - [ ] 6 a 9 prints reais de DM, tratados, com autorização de cada aluno.
-- [ ] Assinatura manuscrita digitalizada (seção Garantia). Sem ela, fica a fonte provisória.
+- [ ] Assinatura manuscrita digitalizada (card da garantia, no FAQ). Sem ela, fica a fonte provisória.
 - [ ] Dados legais do rodapé: CNPJ ou responsável, termos de uso, política de privacidade.
 - [ ] Onde a página vai ser hospedada e como é feita a publicação. A hospedagem precisa servir com compressão (gzip ou brotli) e com cache longo para `assets/`: sem compressão, o HTML vai de ~25 KB para 98 KB e o LCP simulado do PageSpeed sobe de 2,0 para 2,9 s.
 
@@ -17,7 +17,7 @@ Nada marcado com `.pendente` vai ao ar. Atualize esta lista conforme as resposta
 | Onde | O que está marcado | Item acima |
 | --- | --- | --- |
 | #resultados | 6 molduras de print com esboço de DM e a etiqueta "print real" | Prints reais de DM |
-| #garantia | Assinatura "Marcello Gomes" na fonte provisória | Assinatura manuscrita |
+| #faq, card da garantia (#garantia) | Assinatura "Marcello Gomes" na fonte provisória | Assinatura manuscrita |
 | #faq, 3ª pergunta | [nome na fatura, confirmar na Eduzz] | Nome na fatura |
 | Rodapé | [CNPJ ou responsável] | Dados legais do rodapé |
 | Rodapé | Termos de uso (texto, vira link quando a página existir) | Dados legais do rodapé |

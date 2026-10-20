@@ -242,18 +242,24 @@ html.lenis{scroll-behavior:auto!important}
   .hero{
     --hero-foto-pos:0% 30%;
     /* Base leve (as estantes aparecem), uma elipse atrás do bloco de texto (decanter e copo)
-       e outra na faixa do H1 (abajur). Contraste medido: subheadline 4,8:1 ou mais, H1 5,6:1 ou mais. */
-    --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.4) 0%,rgba(1,5,15,.38) 36%,rgba(1,5,15,.28) 54%,rgba(1,5,15,0) 68%),radial-gradient(ellipse 44% 56% at 30% 54%,rgba(1,5,15,.66),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 36% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
+       e outra na faixa do H1 (abajur). Contraste medido acima de 1366px: subheadline 6:1 ou mais, H1 13:1 ou mais. */
+    --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.4) 0%,rgba(1,5,15,.38) 36%,rgba(1,5,15,.28) 54%,rgba(1,5,15,0) 68%),radial-gradient(ellipse 44% 56% at 34% 54%,rgba(1,5,15,.72),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 38% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
   }
-  .hero-inner{padding-left:clamp(64px,8.5vw,200px)}
+  /* H1 em 3 linhas (14em) e no máximo ~15% mais largo que a subheadline. A subheadline tem 163 letras:
+     em 3 linhas, a mais larga fica com ~58 (limite de 60), então o equilíbrio vem do corpo, não da caixa. */
+  .hero-inner{padding-left:clamp(64px,10.5vw,240px)}
   .hero-copy,.chips{max-width:none}
-  .hero .h1{max-width:14em;font-size:clamp(52px,3.9vw,76px)}
-  .hero .lead{max-width:28.5em;font-size:clamp(18px,1.1vw,20px)}
+  .hero .h1{max-width:14em;font-size:clamp(40px,3.35vw,54px)}
+  .hero .lead{max-width:28.5em;font-size:clamp(18px,1.3vw,21px)}
 }
 /* 1024 a 1366px: a foto presa à esquerda (0%) deixa o rosto o mais à direita possível; quando isso
    cortaria o rosto na borda, ela recua só o necessário para o rosto ficar 24px dentro da tela. */
 @media (min-width:1024px) and (max-width:1366px){
-  .hero{--hero-foto-pos:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(100vw - 24px - 1.371 * var(--hero-h)), 0px) 30%}
+  .hero{
+    --hero-foto-pos:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(100vw - 24px - 1.371 * var(--hero-h)), 0px) 30%;
+    /* Aqui o decanter cai atrás do fim da subheadline: elipse mais escura (5,3:1 ou mais medido). */
+    --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.42) 0%,rgba(1,5,15,.4) 36%,rgba(1,5,15,.3) 54%,rgba(1,5,15,0) 70%),radial-gradient(ellipse 46% 58% at 36% 56%,rgba(1,5,15,.8),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 38% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
+  }
 }
 
 /* Identificação
@@ -502,8 +508,9 @@ html:has(dialog[open]){overflow:hidden}
    Celular: palco de 300px cortando a parede de cima (a foto mantém a escala de 380px, presa embaixo)
    e livros em leque, cada um avançando 22% sobre o vizinho, o Arsenal à frente.
    A partir de 761px, altura do palco e largura dos livros escalam juntas até 720px e 172/204px. */
-.oferta{position:relative;padding:20px 0 120px;background:var(--abismo)}
-.oferta::before{content:"";position:absolute;left:50%;bottom:0;width:1100px;height:700px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
+.oferta{position:relative;padding:20px 0 70px;background:var(--abismo)}
+/* Brilho atrás do painel; desce 240px para dentro do #faq, para a passagem não ficar seca. */
+.oferta::before{content:"";position:absolute;left:50%;bottom:-240px;width:1100px;height:940px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
 .oferta .sec-head{margin-bottom:8px}
 /* overflow:clip, não hidden: hidden faria do palco um contêiner de rolagem e o view() dos livros mediria contra ele. */
 .stage{position:relative;height:300px;max-width:1600px;margin:0 auto;overflow:clip}
@@ -529,20 +536,33 @@ html:has(dialog[open]){overflow:hidden}
 
 /* Celular: 12px entre o painel e a borda da tela (o .wrap tem 22px). */
 .panel{position:relative;z-index:3;max-width:980px;margin:-50px -10px 0;border-radius:24px;padding:26px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;background:linear-gradient(180deg,rgba(24,38,60,.66),rgba(9,17,31,.9));-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(169,184,203,.18);box-shadow:0 50px 100px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.07)}
-.items{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
-.items li{display:flex;align-items:center;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(169,184,203,.1);font-size:16.5px;line-height:1.4;color:#D9E2EE}
-.items li:last-child{border-bottom:0;padding-bottom:0}
-.items svg{flex:none}
+/* Bloco de preço: superfície mais clara dentro do painel, centralizada. Sem backdrop-filter: o painel
+   tem .reveal, e vidro dentro de um pai com filter perde o fundo. No celular, a superfície e a linha do
+   Arsenal avançam 10px além da margem interna, para o conteúdo ficar na mesma margem do resto. */
+.preco{margin:0 -10px;padding:24px 10px 22px;border-radius:20px;text-align:center;background:linear-gradient(180deg,rgba(46,68,102,.5),rgba(18,31,52,.55));border:1px solid rgba(201,211,224,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 50px -22px rgba(150,180,225,.45)}
 .price-old{font-size:15px;color:#8EA0B8}
-.price-main{display:flex;align-items:baseline;gap:10px;margin:6px 0 4px}
+.price-main{display:flex;justify-content:center;align-items:baseline;gap:10px;margin:6px 0 4px}
 .price-main small{font-size:18px;color:var(--nevoa);font-weight:400}
 .price-main b{font-weight:300;font-size:52px;line-height:1;letter-spacing:-.04em}
 .price-alt{font-size:15.5px;color:#B7C7DC}
-.compare{margin:18px 0 24px;font-size:16px;line-height:1.5;color:#C9D3E0}
-.details{grid-column:1 / -1;list-style:none;padding:24px 0 0;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(169,184,203,.12);font-size:13.5px;line-height:1.4;color:var(--nevoa-2)}
-.details li{display:inline-flex;align-items:center;gap:8px}
-.details svg{flex:none}
-.note{grid-column:1 / -1;margin-top:-8px;font-size:13px;line-height:1.5;color:#7E8FA6}
+.preco .cta-ring{margin-top:22px}
+.compare{max-width:32ch;margin:14px auto 0;font-size:14px;line-height:1.5;color:var(--nevoa)}
+/* Lista dos manuais: miniatura da capa (a mesma arte, com cantos e sombra de livro), nome e uma linha. */
+.lista-manuais .pill{margin-bottom:14px}
+.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.items li{display:flex;align-items:center;gap:14px;margin:0 -10px;padding:8px 10px;border-radius:14px;border:1px solid transparent}
+.items .item-central{background:linear-gradient(180deg,rgba(46,68,102,.4),rgba(18,31,52,.3));border-color:rgba(201,211,224,.16)}
+.items b{display:block;font-weight:500;font-size:16px;line-height:1.35;color:var(--gelo)}
+.items small{display:block;margin-top:2px;font-size:14px;line-height:1.4;color:var(--nevoa-2)}
+.mini{position:relative;flex:none;width:44px;aspect-ratio:2/3;overflow:hidden;border-radius:2px 4px 4px 2px;background:#02060F;box-shadow:-6px 8px 14px -6px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
+.mini img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mini::before{content:"";position:absolute;left:0;top:0;bottom:0;z-index:1;width:4px;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(255,255,255,.14) 40%,rgba(255,255,255,0))}
+.mini::after{content:"";position:absolute;inset:0;z-index:1;border:1px solid rgba(201,211,224,.14);border-radius:inherit}
+/* Detalhes: 2 x 2 no celular e no tablet; a nota do PDF é a segunda linha da leitura. */
+.details{list-style:none;padding:20px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 14px;border-top:1px solid rgba(169,184,203,.12);font-size:13.5px;line-height:1.4;color:var(--nevoa-2)}
+.details li{display:flex;align-items:flex-start;gap:8px}
+.details svg{flex:none;margin-top:2px}
+.details small{display:block;margin-top:4px;font-size:12.5px;line-height:1.45;color:#7E8FA6}
 @media (max-width:760px){
   /* Botão do painel: como o do hero abaixo de 385px, e o anel 1px mais justo, para o rótulo caber
      em uma linha a partir de 385px. Abaixo disso, quebra em duas linhas parelhas. */
@@ -556,19 +576,21 @@ html:has(dialog[open]){overflow:hidden}
   .b1 .ti{text-wrap:balance}
 }
 
-/* Garantia */
-.garantia{position:relative;padding:0 0 100px;background:var(--abismo)}
-.garantia::before{content:"";position:absolute;left:-20%;top:-10%;width:70%;height:110%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.22),rgba(30,58,104,0))}
-.g-card{max-width:980px;margin:0 auto;border-radius:30px;padding:30px 22px;display:grid;grid-template-columns:minmax(0,1fr);gap:24px;justify-items:start;align-items:center;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(9,17,31,.85));border:1px solid rgba(169,184,203,.16);box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
-.medal{width:150px;height:auto}
-.g-card .h2{margin:16px 0}
-.g-card .body{max-width:56ch}
-.g-card .body p:last-child{margin-bottom:0;color:var(--gelo)}
+/* Garantia: card de vidro dentro do #faq (id="garantia"). Celular e tablet: primeiro item do #faq,
+   logo depois da oferta. Desktop: coluna esquerda, abaixo do título do FAQ. */
+.g-card{position:relative;border-radius:24px;padding:24px 20px 22px;background:linear-gradient(180deg,rgba(24,38,60,.55),rgba(9,17,31,.82));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.18);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.07)}
+.g-topo{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.medal{flex:none;width:76px;height:auto}
+.g-titulo{font-weight:300;font-size:22px;line-height:1.2;letter-spacing:-.02em;text-wrap:balance}
+.g-titulo strong{font-weight:600}
+.g-card p{font-size:16px;line-height:1.65;color:var(--nevoa)}
+.g-card .g-destaque{margin-top:12px;color:var(--gelo)}
 /* Assinatura: fonte provisória (só as letras de "Marcello Gomes") até chegar a assinatura real em imagem. */
-.sign{display:inline-block;margin-top:22px;font-family:'Mrs Saint Delafield',cursive;font-size:52px;line-height:1;color:#D9E2EE}
+.sign{display:inline-block;margin-top:18px;font-family:'Mrs Saint Delafield',cursive;font-size:44px;line-height:1;color:#D9E2EE}
 
-/* FAQ: <details> nativos, o primeiro aberto. */
-.faq{position:relative;padding:20px 0 110px;background:var(--abismo)}
+/* FAQ: <details> nativos, o primeiro aberto. Sem fundo próprio: o brilho de baixo do painel da oferta
+   continua por trás do começo do FAQ. */
+.faq{position:relative;padding:56px 0 110px}
 .faq::before{content:"";position:absolute;right:-25%;top:10%;width:80%;height:80%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
 .faq-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:start}
 .faq .h2{margin-top:16px}
@@ -613,10 +635,11 @@ html:has(dialog[open]){overflow:hidden}
 }
 
 @media (min-width:761px){
-  .garantia{padding-bottom:140px}
   /* Tablet: garantia e FAQ empilhados (lado a lado, as colunas de texto ficariam com ~230px). */
-  .g-card{gap:28px;padding:40px 44px}
-  .faq{padding-bottom:160px}
+  .g-card{padding:32px 36px 28px}
+  .medal{width:96px}
+  .g-titulo{font-size:26px}
+  .faq{padding:64px 0 160px}
   .faq-grid{max-width:680px;margin:0 auto}
   .qa details{padding:0 24px}
   .qa summary{font-size:17px}
@@ -632,7 +655,7 @@ html:has(dialog[open]){overflow:hidden}
   .ep-grid{max-width:680px}
   .ep{padding:36px}
   .big-quote{margin-top:110px;font-size:clamp(34px,4.4vw,64px)}
-  .oferta{padding:40px 0 180px}
+  .oferta{padding:40px 0 80px}
   .stage{height:clamp(380px,50vw,720px)}
   .stage-bg img{top:0;height:100%;object-position:50% 50%}
   .books{bottom:25%;gap:clamp(8px,1.8vw,26px)}
@@ -641,9 +664,12 @@ html:has(dialog[open]){overflow:hidden}
   .book+.book{margin-left:0}
   /* Tablet: o painel fica em uma coluna, centrado. */
   /* O painel sobe 21% da altura do palco (-150px em 720px, como no mockup) e não cobre o pé dos livros. */
-  .panel{max-width:640px;margin:calc(clamp(380px,50vw,720px) * -.21) auto 0;border-radius:30px;padding:40px 44px;gap:36px}
+  .panel{max-width:640px;margin:calc(clamp(380px,50vw,720px) * -.21) auto 0;border-radius:30px;padding:40px 44px;gap:32px}
+  .preco{margin:0;padding:32px 28px 28px}
   .price-main b{font-size:68px}
-  .details{flex-direction:row;flex-wrap:wrap;gap:12px 28px}
+  .preco .cta-ring{display:flex}
+  .preco .cta{width:100%;justify-content:space-between}
+  .items li{margin:0 -12px;padding:8px 12px}
 }
 
 @media (min-width:1024px){
@@ -653,10 +679,12 @@ html:has(dialog[open]){overflow:hidden}
   .pcol:nth-child(3) .print{--rv-atraso:10svh}
   .ep-grid{max-width:1040px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
   .ep-yes{--rv-atraso:5svh}
-  .g-card{grid-template-columns:220px minmax(0,1fr);gap:clamp(36px,4vw,56px);padding:48px clamp(36px,4vw,56px)}
-  .medal{width:200px}
-  .faq-grid{max-width:none;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(40px,6vw,80px)}
-  .panel{max-width:980px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,3.4vw,48px);padding:44px clamp(36px,3.4vw,48px)}
+  /* FAQ: título e garantia na coluna esquerda, perguntas na direita. As perguntas descem 40px (o rótulo
+     "Dúvidas" e o espaço até o título), para a primeira pergunta alinhar com o topo do título. */
+  .faq-grid{max-width:none;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);grid-template-areas:"titulo qa" "garantia qa";grid-template-rows:auto 1fr;column-gap:clamp(40px,6vw,80px);row-gap:32px}
+  .faq-titulo{grid-area:titulo}
+  .g-card{grid-area:garantia;align-self:start}
+  .qa{grid-area:qa;margin-top:40px}
   /* A moldura tem a altura da coluna de texto: topo no rótulo "Quem escreveu", base no pé dos números.
      A foto fica por cima (absolute) para não ditar a altura da linha e cobre a moldura puxada para cima. */
   .card{padding:clamp(36px,3.6vw,46px);grid-template-columns:clamp(300px,31vw,420px) minmax(0,1fr);gap:clamp(40px,4vw,56px);align-items:stretch}
@@ -664,6 +692,62 @@ html:has(dialog[open]){overflow:hidden}
   .frame img{height:100%;aspect-ratio:auto;object-position:50% 10%}
   .stat{padding:18px clamp(16px,1.4vw,20px)}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
+}
+
+/* Painel da oferta a partir de 1280px: 12 colunas, lista dos manuais em 7 e bloco de preço em 5, com o
+   mesmo topo e a mesma base; detalhes em 4 colunas iguais na largura toda, com fio vertical entre eles.
+   Abaixo de ~1250px, as 5 colunas não comportam o botão em uma linha: até 1279px o painel fica
+   empilhado como no tablet. */
+@media (min-width:1280px){
+  .panel{max-width:1152px;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;padding:44px 48px}
+  .lista-manuais{grid-column:1 / span 7;grid-row:1;display:flex;flex-direction:column}
+  .items{flex:1;justify-content:space-between}
+  .preco{grid-column:8 / span 5;grid-row:1;display:flex;flex-direction:column;justify-content:center;padding:36px 20px}
+  .preco .cta{gap:12px;padding-left:22px}
+  .details{grid-column:1 / -1;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding-top:24px}
+  .details li{padding:0 20px;border-left:1px solid rgba(169,184,203,.12)}
+  .details li:first-child{padding-left:0;border-left:0}
+  .details li:last-child{padding-right:0}
+}
+.compare,.details span{text-wrap:balance}
+
+/* Emenda #para-quem / #oferta (a partir de 761px). O palco da mesa sobe por trás da frase final do
+   #para-quem ("Conhecimento custa..."), que fica na parede; o rótulo e o título da oferta descem para o
+   palco, 80px acima do topo do livro maior. A ordem de leitura não muda.
+   --palco-h: altura do palco; --livro-l: largura do livro maior (altura = 1,5 x);
+   --titulo-fundo: distância do topo do palco até o pé do título;
+   --frase-palco: espaço sob a frase, para ficar ~110px entre a frase e o rótulo em qualquer largura;
+   --palco-sobe: quanto a foto sobe acima do palco (até o fim dos cards do #para-quem). */
+@media (min-width:761px){
+  :root{
+    --palco-h:clamp(380px,50vw,720px);
+    --livro-l:clamp(86px,14.17vw,204px);
+    --titulo-fundo:calc(.75 * var(--palco-h) - 1.5 * var(--livro-l) - 80px);
+    --frase-palco:calc(190px - var(--titulo-fundo));
+    --palco-sobe:calc(var(--frase-palco) + 250px);
+  }
+  .epara{padding-bottom:var(--frase-palco)}
+  /* a frase e os cards ficam por cima da foto do palco */
+  .epara .ep-grid,.big-quote{position:relative;z-index:1}
+  .oferta{padding-top:0}
+  .oferta>.wrap:first-child{position:absolute;left:0;right:0;top:var(--titulo-fundo);z-index:3;transform:translateY(-100%)}
+  .oferta .sec-head{margin-bottom:0}
+  .stage{overflow:visible;overflow-x:clip}
+  .stage-bg img{top:calc(-1 * var(--palco-sobe));height:calc(100% + var(--palco-sobe))}
+  .stage-fade{top:calc(-1 * var(--palco-sobe));background:linear-gradient(180deg,#050A14 0,rgba(5,10,20,.6) 130px,rgba(5,10,20,.15) 290px,rgba(5,10,20,0) 380px,rgba(5,10,20,0) calc(100% - .3 * var(--palco-h)),#050A14 100%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,0) 14%,rgba(5,10,20,0) 86%,#050A14 100%)}
+}
+
+/* Emenda #faq / #fechamento (a partir de 761px). O brilho do fechamento sobe e começa por trás das
+   últimas perguntas (z-index -1: fica sob o conteúdo do FAQ); o escudo fica sobre a emenda, num círculo
+   de vidro igual ao do fim do hero, com a linha de luz atravessando. */
+@media (min-width:761px){
+  .faq{padding-bottom:170px}
+  .fecho{padding-top:120px;background:none}
+  .fecho>.wrap{position:static} /* o círculo se posiciona pela seção, não pelo .wrap */
+  .fecho::before{content:"";position:absolute;left:0;right:0;top:-380px;bottom:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 58% 46% at 50% 44%,#0F2142 0%,#070F1F 55%,rgba(5,10,20,0) 88%)}
+  .fecho::after{content:"";position:absolute;left:0;right:0;top:0;z-index:4;height:1px;background:linear-gradient(90deg,transparent,rgba(169,184,203,.45) 50%,transparent)}
+  .fecho-selo{position:absolute;left:50%;top:-29px;z-index:5;transform:translateX(-50%);width:58px;height:58px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 0 8px #050A14,0 0 44px rgba(120,155,205,.3)}
+  .fecho-selo .fecho-escudo{width:22px;height:26px;animation:none}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -979,36 +1063,37 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 </div>
 <div class="wrap">
 <div class="panel reveal">
-<div>
-<span class="pill">Arsenal Homem Blindado</span>
-<ul class="items">
-<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>Arsenal Homem Blindado</li>
-<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>Manual Secreto da Traição para Homens</li>
-<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>A Força da Honra</li>
-<li><svg width="18" height="21" viewBox="0 0 200 240" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke="#B7C7DC" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke="#E9EEF5" stroke-width="16"/></svg>Nunca se Iluda com as Mulheres</li>
-</ul>
-</div>
-<div>
+<div class="preco">
 <p class="price-old">De <s>R$&nbsp;297</s> por</p>
 <p class="price-main"><small>12x de</small> <b class="silver">R$&nbsp;10,03</b></p>
 <p class="price-alt">ou R$&nbsp;97 à vista</p>
-<p class="compare">Menos do que um jantar a dois. E pode te poupar anos.</p>
 <span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
+<p class="compare">Menos do que um jantar a dois. E pode te poupar anos.</p>
+</div>
+<div class="lista-manuais">
+<span class="pill">Os quatro manuais</span>
+<ul class="items">
+<li class="item-central"><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-arsenal-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-arsenal-260.webp"><img src="assets/img/opt/capa-arsenal-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>Arsenal Homem Blindado</b><small>O manual central</small></span></li>
+<li><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-traicao-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-traicao-260.webp"><img src="assets/img/opt/capa-traicao-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>Manual Secreto da Traição para Homens</b><small>Para enxergar os sinais antes de estourar</small></span></li>
+<li><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-honra-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-honra-260.webp"><img src="assets/img/opt/capa-honra-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>A Força da Honra</b><small>Para colocar limite e sustentar</small></span></li>
+<li><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-iluda-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-iluda-260.webp"><img src="assets/img/opt/capa-iluda-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>Nunca se Iluda com as Mulheres</b><small>Para decidir com clareza, e não pela emoção</small></span></li>
+</ul>
 </div>
 <ul class="details">
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>Acesso imediato no seu e-mail</li>
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>Leitura no celular, tablet ou computador</li>
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Pagamento seguro pela Eduzz</li>
-<li><svg width="14" height="16" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="#A9B8CB" stroke-width="16" stroke-linejoin="round"/></svg>Garantia de 7 dias</li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg><span>Acesso imediato no seu e-mail</span></li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span>Leitura no celular, tablet ou computador<small>Material digital em PDF. Nada é enviado pelo correio.</small></span></li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Pagamento seguro pela Eduzz</span></li>
+<li><svg width="14" height="16" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="#A9B8CB" stroke-width="16" stroke-linejoin="round"/></svg><span>Garantia de 7 dias</span></li>
 </ul>
-<p class="note">Material digital em PDF. Nada é enviado pelo correio.</p>
 </div>
 </div>
 </section>
-<section id="garantia" class="garantia">
+<section id="faq" class="faq">
 <div class="wrap">
-<div class="g-card reveal">
-<svg class="medal" width="200" height="240" viewBox="0 0 200 240" role="img" aria-label="Garantia de 7 dias">
+<div class="faq-grid">
+<div id="garantia" class="g-card reveal">
+<div class="g-topo">
+<svg class="medal" width="96" height="115" viewBox="0 0 200 240" role="img" aria-label="Garantia de 7 dias">
 <defs>
 <linearGradient id="medalha-borda" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBFCFE"/><stop offset=".45" stop-color="#9FB2CB"/><stop offset="1" stop-color="#3A4D6B"/></linearGradient>
 <linearGradient id="medalha-fundo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A2C48"/><stop offset="1" stop-color="#070F1F"/></linearGradient>
@@ -1019,22 +1104,13 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 <text x="100" y="140" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="300" font-size="92" fill="url(#medalha-texto)">7</text>
 <text x="100" y="172" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="500" font-size="17" fill="#B7C7DC">dias</text>
 </svg>
-<div>
-<span class="pill">Garantia</span>
-<h2 class="h2">Leia por 7 dias. <strong class="silver">Se não valer, seu dinheiro volta.</strong></h2>
-<div class="body">
-<p>Leia os quatro manuais. Se em até 7 dias você achar que não valeu os R$&nbsp;97, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Você não precisa me explicar nada.</p>
-<p>Eu faço isso porque sei o que está nesses manuais.</p>
+<h3 class="g-titulo">Leia por 7 dias. <strong class="silver">Se não valer, seu dinheiro volta.</strong></h3>
 </div>
+<p>Se em até 7 dias você achar que não valeu, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Sem precisar me explicar nada.</p>
+<p class="g-destaque">Eu faço isso porque sei o que está nesses manuais.</p>
 <p class="sign pendente">Marcello Gomes</p>
 </div>
-</div>
-</div>
-</section>
-<section id="faq" class="faq">
-<div class="wrap">
-<div class="faq-grid">
-<div>
+<div class="faq-titulo">
 <span class="pill reveal">Dúvidas</span>
 <h2 class="h2 reveal">Perguntas que chegam <strong class="silver">toda semana.</strong></h2>
 </div>
@@ -1052,7 +1128,7 @@ Distribua os prints pelas três .pcol (no celular eles entram na ordem: coluna 1
 </section>
 <section id="fechamento" class="fecho">
 <div class="wrap">
-<svg class="fecho-escudo reveal" width="34" height="40" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="url(#prata-escudo)" stroke-width="10" stroke-linejoin="round"/></svg>
+<div class="fecho-selo"><svg class="fecho-escudo reveal" width="34" height="40" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="url(#prata-escudo)" stroke-width="10" stroke-linejoin="round"/></svg></div>
 <h2 class="h2 reveal">Quanto vale evitar um relacionamento que pode <strong class="silver">custar anos da sua vida?</strong></h2>
 <div class="body">
 <p class="reveal">Você pode continuar aprendendo do jeito que a maioria aprende. Errando, sofrendo e entendendo tudo quando já passou.</p>
