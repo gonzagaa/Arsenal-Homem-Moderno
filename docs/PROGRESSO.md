@@ -20,7 +20,9 @@ Atualizado em 2026-10-19.
 | 8. Garantia, FAQ, fechamento, rodapé e barra fixa | aprovada |
 | 9. Checkout e rastreamento | aprovada |
 | 10. SEO e compartilhamento | aprovada |
-| **11. Revisão final** | **próxima** |
+| 11. Revisão final | aprovada |
+
+Todas as etapas do `docs/PROMPTS.md` estão aprovadas. O que falta para publicar está em `PENDENCIAS.md` (nada com `.pendente` pode ir ao ar).
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -165,25 +167,45 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 - `assets/img/og.jpg` (1200x630): foto do hero desktop, sombra à esquerda, rótulo "Arsenal Homem Blindado" com o escudo (aprovado) e o H1 na Geist. Gerada por `scripts/gerar-og.mjs` (puppeteer-core com o Chrome da máquina; `CHROME_PATH` se estiver em outro lugar; precisa de internet para a Geist).
 - Favicons na raiz, gerados por `scripts/gerar-favicons.mjs` (sharp): `favicon.svg` (desenho de referência: escudo prateado sobre quadrado #050A14 com cantos de 14/64), `favicon-32.png`, `apple-touch-icon.png` (180, sem cantos) e `favicon.ico` (16, 32 e 48).
 
+### Etapa 11: revisão final
+
+- **Rastreio aceito como está** (decisão do desenvolvedor): com GTM e pixel, a Performance do Lighthouse fica em 76 a 84 e as Boas práticas em 79, mas o LCP real continua abaixo de 2,5s. Adiar o pixel faria as campanhas perderem dados. Carregar GTM e pixel depois do `load` foi testado e não melhora nem a nota nem o TBT. Números na seção "Medições de referência".
+- Geist local: `assets/fonts/geist-latin.woff2` (o arquivo variável latino que o Google Fonts serve, 29 KB), `@font-face` com `font-weight: 100 900` e o `unicode-range` latino, `preload` e `font-display: swap`. Licença em `assets/fonts/OFL.txt`. Regra de fontes do `CLAUDE.md` atualizada.
+- Fonte provisória da assinatura carregada pelo JS depois do evento `load` (com `<noscript>` no `<head>`): antes ela entrava cedo com prioridade máxima e disputava a rede com a primeira tela.
+- Barra fixa com `inert` quando escondida: sem isso, o link ainda recebia foco nos 0,35s em que a barra desliza para fora.
+- 360px: número das estatísticas da #autor com `white-space: nowrap` (o "+12 mil" quebrava); botão do #fechamento com `text-align: left` (herdava o centro da seção quando o rótulo quebra em duas linhas).
+- Revisão de textos: sem travessão, sem "lorem", sem texto em inglês visível, nenhuma frase de conteúdo fora da copy. Fora da copy, só o esperado: textos alternativos (do mockup), rótulos de acessibilidade, a etiqueta "print real" dos espaços reservados, meta tags técnicas e o título aprovado na etapa 10.
+- Teclado (1280 e 390px): 27 paradas de Tab, todas com foco visível e alvo de 44px ou mais; checklist com Enter e Espaço, FAQ com Enter, lightbox com Enter e Esc (foco no X e de volta na moldura).
+- Larguras 360, 390, 768, 1280 e 1440px: sem rolagem lateral, nada passando da tela, nenhum texto cortado.
+- `PENDENCIAS.md` com a tabela das 11 marcações `.pendente` e o requisito de hospedagem (compressão e cache longo).
+
 ## Pendências técnicas (do projeto, não do cliente)
 
 - As pendências do cliente estão em `PENDENCIAS.md`.
 
 ## Medições de referência
 
-Último resultado, na etapa 3.5, com Slow 4G + CPU 4x no celular:
+Resultado final, na etapa 11. Lighthouse 12 em modo celular, servidor local com gzip (como uma hospedagem), envios ao Meta, ao Gateway e ao GA4 bloqueados. "Com rastreio" é a página aberta com `?rastreio=1`, com o GTM e o pixel carregados como em produção.
 
-| Métrica | Valor |
-| --- | --- |
-| LCP | 1,0 a 1,2s (o elemento é o H1; o Chrome trata a foto de tela cheia como fundo) |
-| CLS | 0,002 |
-| TBT | 30 a 110ms |
-| Performance / Acessibilidade | 99 a 100 / 100 |
-| Peso total | 153 KB |
-| Primeira tela no celular | 125 KB (a foto `hero-mobile-941.avif` tem 42,7 KB) |
-| Rolagem com CPU 4x | 1 a 4% dos quadros abaixo de 50 fps, no desktop e no celular |
+| Métrica | Sem rastreio | Com GTM e pixel |
+| --- | --- | --- |
+| Performance | 99 | 76 a 84 |
+| Acessibilidade | 100 | 100 |
+| Boas práticas | 100 | 79 (cookies de terceiros e avisos do console do Meta) |
+| SEO | 100 | 100 |
+| LCP simulado (PageSpeed) | 1,95 a 2,03s | 3,5 a 5,0s (exagero da simulação com scripts de terceiros) |
+| LCP real (Slow 4G + CPU 4x, a frio, medido no navegador) | 1,40 a 1,80s | 1,36 a 1,50s |
+| Elemento do LCP | H1 | H1 |
+| FCP simulado | 1,39 a 1,41s | 1,10 a 1,52s |
+| CLS | 0 | 0 |
+| TBT | 54 a 72ms (simulado); 20 a 58ms (DevTools) | 250 a 330ms (simulado); ~550ms (DevTools) |
+| Peso total transferido | 167 KB | 737 KB |
+| Primeira tela no celular | ~165 KB | ~165 KB + scripts de rastreio |
 
-- O Lighthouse padrão, que simula a rede (o mesmo do PageSpeed), dá LCP de 2,6s por causa da cadeia de fontes do Google. A Geist local na etapa 11 resolve.
+- Com o modo DevTools do Lighthouse (Slow 4G + CPU 4x reais), sem rastreio: Performance 97 a 98, LCP 1,89 a 2,03s.
+- No Live Server o resultado piora porque ele não comprime: o HTML vai de ~25 KB para 98 KB e o LCP simulado sobe para 2,9s. Para medir como em produção, sirva a pasta com compressão.
+- A versão 12.2.1 do Lighthouse não identifica o elemento do LCP no Chrome atual (erro no `TraceElements`); o elemento foi medido no navegador com `PerformanceObserver`.
+- Rolagem com CPU 4x (etapas 3.5 a 7): 0% de quadros lentos com e sem os efeitos `.reveal`, fora a primeira rodada com o navegador "frio".
 - Na máquina de desenvolvimento original as medições variavam muito entre execuções iguais. Para comparar duas versões, alterne A/B/A/B e use medianas. O Chrome headless só usa a GPU real com `--enable-gpu --use-angle=d3d11`. O audit `non-composited-animations` do Lighthouse mostra por que uma animação não vai para a GPU.
 
 ## Como rodar numa máquina nova

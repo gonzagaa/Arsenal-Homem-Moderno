@@ -22,7 +22,7 @@ Quando o mockup e a copy discordarem num texto, a copy manda. Quando discordarem
 
 - Site estático. Um `index.html` na raiz, com CSS e JS inline (são poucos KB e evitam requisições extras). Única exceção: o Lenis, em `assets/js/lenis.min.js` (ver Sistema de movimento). Sem framework, sem build obrigatório, sem jQuery.
 - Imagens otimizadas em `assets/img/opt/`, em AVIF e WebP com fallback JPG, servidas por `<picture>` com `srcset` e `sizes`. Toda `<img>` com `width` e `height` para não haver salto de layout.
-- Única dependência externa de fonte: Google Fonts (Geist 300, 400, 500, 600). Com `preconnect` e `display=swap`. Nenhuma outra família, exceto se o cliente mandar a assinatura manuscrita em imagem, que substitui a fonte manuscrita provisória do mockup.
+- Fonte: Geist hospedada localmente (`assets/fonts/geist-latin.woff2`, arquivo variável com subset latino, licença OFL ao lado), com `preload` e `font-display: swap`. Nenhuma outra família, exceto a fonte manuscrita provisória da assinatura (Google Fonts, só as letras do nome, carregada depois do `load`), que sai quando o cliente mandar a assinatura em imagem.
 - Mobile-first de verdade. Testar em 390 px de largura antes de qualquer outra.
 - Funcionar sem JavaScript: todo o conteúdo aparece, os links levam ao checkout. O JS só melhora (checklist, barra fixa, lightbox, rolagem suave).
 
