@@ -7,8 +7,8 @@
 //   node scripts/otimizar-imagens.mjs --tudo    refaz tudo
 //
 // Prints da DM: coloque os originais em assets/img/prints/ e rode de novo.
-// Saem como opt/print-<nome>-<largura>.<ext>, com qualidade maior,
-// porque texto borra com a compressão pensada para foto.
+// Saem como opt/print-<nome>-<largura>.<ext> (sem repetir o "print-" se o arquivo já começar assim),
+// com qualidade maior, porque texto borra com a compressão pensada para foto.
 
 import { readdir, stat, mkdir } from 'node:fs/promises';
 import path from 'node:path';
@@ -36,7 +36,9 @@ const LARGURAS = {
   'capa-iluda': [260, 440],
   'oferta-mesa': [960, 1280, 1672],
 };
-const LARGURAS_PRINT = [400, 800, 1200];
+// Prints: ~250px na fileira do celular, ~350px no mosaico do desktop e até 520px no lightbox.
+// Os originais têm ~737px: 737 é o teto (nunca amplia; a maior versão fica na largura do original).
+const LARGURAS_PRINT = [360, 540, 737];
 
 // AVIF em 10 bits: os degradês azul-escuros das fotos fazem faixas em 8 bits.
 const FOTO = {
@@ -107,9 +109,10 @@ async function gerarGrao() {
 }
 
 function nomeDoPrint(arquivo) {
-  return 'print-' + path.parse(arquivo).name
+  const nome = path.parse(arquivo).name
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
     .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  return nome.startsWith('print-') ? nome : 'print-' + nome;
 }
 
 async function listarPrints() {

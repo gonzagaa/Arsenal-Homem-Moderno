@@ -33,7 +33,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rodada 3 (painel da oferta; no celular: hero, #identificacao, #sistema, escudos e emendas) e assinatura do Studio | aprovada |
 | Rodada 4 (contador maior; FAQ, garantia e rodapé sem pendências do cliente) | aprovada |
 | Ajuste do rodapé (altura e espaço acima dele) | aprovado |
-| Prints reais da #resultados | em andamento |
+| Prints reais e carrossel da #resultados | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -129,9 +129,9 @@ As regras gerais estão no `CLAUDE.md`, seção "Sistema de movimento". Aqui fic
 ### Etapa 6: resultados e para quem é
 
 - Texto da #autor trocado pelo cliente (três parágrafos, já no `docs/copy.md`). A história pessoal deixou de ser pendência: é opcional e, se vier, entra entre o 1º e o 2º parágrafo.
-- Prints no desktop (a partir de 1024px): três colunas explícitas (`.pcol`), não `columns`, para o `--rv-atraso` (0, 5, 10svh) saber a coluna. Abaixo de 1024px, `.pcol{display:contents}` e fileira horizontal com `scroll-snap` (78% da largura no celular, 42% no tablet), na ordem coluna 1, 2, 3.
-- Na fileira horizontal, os prints usam a linha do tempo nomeada `--prints` (`view-timeline` na fileira), porque o `view()` mediria contra a própria fileira. Ficam nítidos com a fileira a 35% da tela, contando de baixo.
-- Cada moldura é um `<button>` com `aria-label="Abrir print N em tela cheia"`. O espaço reservado usa `<span>` (conteúdo de botão) com `.screen.pendente` e a etiqueta "print real" do mockup. Há um comentário no HTML com o modelo de `<picture>` para os prints.
+- Prints no desktop (a partir de 1024px): três colunas explícitas (`.pcol`), não `columns`, para o `--rv-atraso` (0, 5, 10svh) saber a coluna. Abaixo de 1024px, `.pcol{display:contents}` e fileira horizontal com `scroll-snap` (78% da largura no celular, 42% no tablet), na ordem coluna 1, 2, 3. (Rodada dos prints: o mosaico virou carrossel; ver abaixo.)
+- Na fileira horizontal, os prints usam a linha do tempo nomeada `--prints` (`view-timeline` na fileira), porque o `view()` mediria contra a própria fileira. Ficam nítidos com a fileira a 35% da tela, contando de baixo. (Rodada dos prints: vale só no celular, na `.faixa`.)
+- Cada moldura é um `<button>` com `aria-label="Abrir print N em tela cheia"`. O espaço reservado usa `<span>` (conteúdo de botão) com `.screen.pendente` e a etiqueta "print real" do mockup. Há um comentário no HTML com o modelo de `<picture>` para os prints. (Rodada dos prints: o espaço reservado saiu e o botão não tem mais `aria-label`; o nome vem do texto alternativo do print.)
 - Lightbox: um `<dialog>` só, que recebe uma cópia do conteúdo da moldura e pede a versão maior do `srcset` (`sizes` 520px). Fecha no X, no Esc e tocando fora; o foco volta para a moldura. `html:has(dialog[open]){overflow:hidden}` trava a página atrás também sem o Lenis (toque). Testado no desktop com o Lenis e no celular com toque.
 - Para quem é: cards empilhados até 1023px (largura máxima 680px), lado a lado a partir de 1024px, com `--rv-atraso: 5svh` no "É para você se".
 - Moldura de print com brilho no hover (é clicável).
@@ -263,6 +263,26 @@ Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as 
 - Rodapé da página (não o selo do Studio): 24px em cima e embaixo no celular, mais `env(safe-area-inset-bottom)` (a barra de compra fica escondida no rodapé), e 32px no desktop. O fio de cima continua. Altura: 124px no celular (texto e Instagram em duas linhas; o link mantém 44px de toque) e 109px no desktop.
 - Do fim do #fechamento até o fio do rodapé: 40px no celular e no desktop (`.fecho` com `padding-bottom:40px`).
 - No fim da rolagem, o botão do #fechamento fica nítido (390x844, 390x664, 1440x900, 1440x760 e 1920x1080). Sem o selo (CDN fora), em 1920x1080 ele termina em 98% da revelação (0,25px de desfoque).
+
+### Prints reais e carrossel da #resultados (2026-10-20)
+
+- 8 prints reais em `assets/img/prints/` (`print-01` a `print-08`, na ordem), já tratados pelo desenvolvedor: o cabeçalho do Instagram vem no print, com nome e foto borrados. O conteúdo das imagens não se altera.
+- `scripts/otimizar-imagens.mjs`: prints em 360, 540 e 737px (a maior versão fica na largura do original, 735 a 737px); o nome de saída não repete o "print-" (`print-01-360.avif`). Derivados de prints que não existem mais são apagados à mão de `assets/img/opt/`.
+- Card: moldura de vidro escuro (`.print`, um `<button>`) com o print inteiro na altura natural (`.tela`, sem corte), `brightness(.94)` e fundo branco. As cores dos prints não mudam (o print-05 e o print-07 têm balões azul e roxo do próprio Instagram). O clique ou toque abre o print maior no lightbox.
+- Acessibilidade: o botão não tem `aria-label`; o nome vem do texto alternativo do print ("Mensagem enviada ao Marcello no Instagram: ...", lista no `docs/copy.md`) mais ", abrir em tela cheia" em `.sr` (só leitor de tela).
+- Celular (até 760px): fileira com scroll-snap (`.faixa`), cards com 78% da largura (270px em 390), alinhados pelo topo, só os 8 originais.
+- A partir de 761px: carrossel de borda a borda (`.carrossel`, fora do `.wrap`), com máscara de 12% em cada ponta.
+  - Cards de 340px, centralizados na vertical (o mais alto com 465px), com 20px de margem à direita (não `gap`): cada sequência mede exatamente 8 x 360 = 2880px.
+  - A faixa tem a sequência três vezes: cópia, originais, cópia (`.copia`, com `aria-hidden="true"` e `tabindex="-1"`). A cópia da esquerda permite trazer qualquer card focado pelo teclado para a área nítida.
+  - Animação CSS `carrossel` de 72s (40px/s), só `transform`, de `translateX(calc(-2880px + 12vw + 24px))` a `calc(-5760px + 12vw + 24px)`: começa com o print-01 logo depois da máscara. Loop sem emenda: um quadro e o mesmo quadro uma volta depois são idênticos.
+  - Pausa com o mouse em cima (`hover:hover`), com um card em `:focus-visible` e fora da tela (`.parado`, por `IntersectionObserver`). No foco pelo teclado, o JS ajusta o `currentTime` da animação para o card ficar inteiro na área nítida.
+  - `pause()`/`play()` pela Web Animations API anulam o `animation-play-state` do CSS: o JS só mexe no `currentTime`.
+  - Com `prefers-reduced-motion`: sem movimento nem máscara; a faixa vira rolagem horizontal com scroll-snap, de borda a borda, só com os originais, o primeiro alinhado com a coluna do título. Na fileira que rola (celular e sem movimento), o card focado é alinhado pelo JS no próprio ponto de encaixe (sem isso, o scroll-snap obrigatório puxava a fileira de volta e o card ficava pela metade fora da tela).
+  - Clique numa cópia abre o lightbox; ao fechar, o foco volta para o card original.
+- Título: "O que os homens escrevem **depois de ouvir o Marcello.**".
+- Emendas: #autor/#resultados com 190px no desktop (`.result` com 20px em cima) e 120px no celular; #resultados/#para-quem com 168px no desktop e 118px no celular.
+- Página sem nenhum `.pendente`. `PENDENCIAS.md`: autorização das 8 conversas e do story com o rosto de uma mulher no print-07.
+- Capturas de tela com `clip` no Chrome headless saem sem o carrossel mascarado: capture a tela inteira e recorte depois.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

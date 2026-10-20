@@ -120,11 +120,21 @@ A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as
 
 **Rótulo:** Direto da DM
 
-**Título:** O que os homens mandam para o Marcello **depois de ler.** (destaque)
+**Título:** O que os homens escrevem **depois de ouvir o Marcello.** (destaque)
 
 **Apoio:** Mensagens reais, enviadas no Instagram. Nomes e fotos cobertos para proteger quem escreveu.
 
-**Conteúdo:** [6 a 9 prints reais tratados, a enviar]
+**Conteúdo:** 8 prints reais (`assets/img/prints/print-01` a `print-08`), já tratados: o cabeçalho do Instagram vem no print, com nome e foto borrados. A ordem é a dos arquivos.
+
+**Texto alternativo dos prints** (a frase principal de cada um, transcrita como está, sem corrigir a ortografia):
+1. Mensagem enviada ao Marcello no Instagram: Vc me ajuda muito E me faz eu me sentir bem melhor
+2. Mensagem enviada ao Marcello no Instagram: Seu conteúdo Ajudou muito a tomar minha decisão E ser acertivo
+3. Mensagem enviada ao Marcello no Instagram: Marcelo parabéns pela grande contribuição dada aos homens pelas dicas valiosas.
+4. Mensagem enviada ao Marcello no Instagram: o que o senhor fala é a realidade
+5. Mensagem enviada ao Marcello no Instagram: Irmao seu nivel de conteudo conhecimento e fantastico parabens
+6. Mensagem enviada ao Marcello no Instagram: seus conselhos me ajudam muito, estou amadurecendo e aprendendo a jogar o jogo com as mulheres, gosto muito desses assuntos sobre postura
+7. Mensagem enviada ao Marcello no Instagram: agradeço pela atenção e pelo trabalho que você faz. Muito necessário nos dias de hoje
+8. Mensagem enviada ao Marcello no Instagram: Cara eu virei seu fã vc só fala a verdade tirei o chapéu nota 1000 Deus abençoe a sua vida e continue abrindo mente de pessoas tampada
 
 ## 8. Para quem é (#para-quem)
 

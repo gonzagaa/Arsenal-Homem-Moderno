@@ -78,7 +78,7 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 4. `#sistema`: as quatro brechas e os quatro manuais (Arsenal em destaque largo, os outros três em cards com a cena)
 5. `#antes-depois`
 6. `#autor`
-7. `#resultados`: prints reais da DM (molduras prontas, prints entram depois)
+7. `#resultados`: 8 prints reais da DM (`assets/img/prints/`, com o cabeçalho do Instagram borrado no próprio print); no desktop, carrossel contínuo de borda a borda
 8. `#para-quem`
 9. `#oferta`: os quatro livros em pé sobre a mesa (o palco sobe por trás da frase final do `#para-quem`) + painel de preço
 10. `#faq`: a garantia num card de vidro (`id="garantia"`) e as perguntas. No desktop, a garantia fica na coluna esquerda, abaixo do título; no celular, é o primeiro item, logo depois da oferta.
@@ -99,7 +99,7 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 - Checklist: botões reais com `aria-pressed`, o contador em `aria-live="polite"`, a frase muda com 0, 1 a 2, ou 3 ou mais marcados. Sem JS, aparece a frase de 1 a 2. No celular, o contador é uma barra compacta de vidro, sticky no pé da tela enquanto a lista está na tela, que para logo abaixo do último item.
 - FAQ: `<details>` e `<summary>` nativos, o primeiro aberto.
 - Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a #identificacao (onde fica a barra do contador), a oferta, o botão do #fechamento ou o rodapé estão visíveis (`IntersectionObserver`). Respeitar `env(safe-area-inset-bottom)`.
-- Prints: no celular, fileira horizontal com `scroll-snap`; toque abre em tela cheia com `<dialog>`.
+- Prints: cada card mostra o print inteiro, na altura natural (sem corte); o clique ou toque abre o print maior em tela cheia com `<dialog>`. As cores dos prints não mudam (só `brightness(.94)`). No celular, fileira horizontal com `scroll-snap`. A partir de 761px, carrossel de borda a borda em loop (~40px/s, só `transform`), que pausa com o mouse em cima, com um card focado pelo teclado e fora da tela; com `prefers-reduced-motion`, vira rolagem horizontal com `scroll-snap`.
 - Movimento: segue o Sistema de movimento, logo abaixo.
 
 ## Sistema de movimento
@@ -147,5 +147,5 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - A cada APROVADO, nesta ordem: atualize o `docs/PROGRESSO.md` com a etapa e as decisões aprovadas, faça commit e push, e só então comece a etapa seguinte.
 - A página é conferida com o Live Server do VS Code (localhost). Todo caminho de arquivo é relativo, nunca começando com `/`.
 - Não altere uma seção já aprovada sem pedido explícito.
-- Trechos entre colchetes na copy (por exemplo `[6 a 9 prints reais tratados, a enviar]`) são pendências: renderize com a classe `.pendente` (contorno tracejado âmbar, bem visível) e liste em `PENDENCIAS.md`. Nada com essa classe pode ir ao ar.
+- Trechos entre colchetes na copy (por exemplo `[dado que falta do cliente]`) são pendências: renderize com a classe `.pendente` (contorno tracejado âmbar, bem visível) e liste em `PENDENCIAS.md`. Nada com essa classe pode ir ao ar.
 - Ao final de cada seção, confira no celular (390 px) e no desktop (1440 px).
