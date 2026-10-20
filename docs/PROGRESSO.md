@@ -34,6 +34,8 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rodada 4 (contador maior; FAQ, garantia e rodapé sem pendências do cliente) | aprovada |
 | Ajuste do rodapé (altura e espaço acima dele) | aprovado |
 | Prints reais e carrossel da #resultados | aprovada |
+| Destaque, setas e galeria da #resultados | aprovada |
+| Rastreamento sem InitiateCheckout, checkout em nova guia e efeito dos botões de compra | em andamento |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -275,7 +277,7 @@ Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as 
   - Cards de 340px, centralizados na vertical (o mais alto com 465px), com 20px de margem à direita (não `gap`): cada sequência mede exatamente 8 x 360 = 2880px.
   - A faixa tem a sequência três vezes: cópia, originais, cópia (`.copia`, com `aria-hidden="true"` e `tabindex="-1"`). A cópia da esquerda permite trazer qualquer card focado pelo teclado para a área nítida.
   - Animação CSS `carrossel` de 72s (40px/s), só `transform`, de `translateX(calc(-2880px + 12vw + 24px))` a `calc(-5760px + 12vw + 24px)`: começa com o print-01 logo depois da máscara. Loop sem emenda: um quadro e o mesmo quadro uma volta depois são idênticos.
-  - Pausa com o mouse em cima (`hover:hover`), com um card em `:focus-visible` e fora da tela (`.parado`, por `IntersectionObserver`). No foco pelo teclado, o JS ajusta o `currentTime` da animação para o card ficar inteiro na área nítida.
+  - Pausa com o mouse em cima (`hover:hover`), com um card em `:focus-visible` e fora da tela (`.parado`, por `IntersectionObserver`). No foco pelo teclado, o JS ajusta o `currentTime` da animação para o card ficar inteiro na área nítida. (Rodada seguinte: pausa só com o mouse sobre um card.)
   - `pause()`/`play()` pela Web Animations API anulam o `animation-play-state` do CSS: o JS só mexe no `currentTime`.
   - Com `prefers-reduced-motion`: sem movimento nem máscara; a faixa vira rolagem horizontal com scroll-snap, de borda a borda, só com os originais, o primeiro alinhado com a coluna do título. Na fileira que rola (celular e sem movimento), o card focado é alinhado pelo JS no próprio ponto de encaixe (sem isso, o scroll-snap obrigatório puxava a fileira de volta e o card ficava pela metade fora da tela).
   - Clique numa cópia abre o lightbox; ao fechar, o foco volta para o card original.
@@ -283,6 +285,21 @@ Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as 
 - Emendas: #autor/#resultados com 190px no desktop (`.result` com 20px em cima) e 120px no celular; #resultados/#para-quem com 168px no desktop e 118px no celular.
 - Página sem nenhum `.pendente`. `PENDENCIAS.md`: autorização das 8 conversas e do story com o rosto de uma mulher no print-07.
 - Capturas de tela com `clip` no Chrome headless saem sem o carrossel mascarado: capture a tela inteira e recorte depois.
+
+### Destaque, setas e galeria da #resultados (2026-10-20)
+
+- O botão (`.print`) leva a revelação com desfoque; a moldura de vidro (`.moldura`), dentro dele, leva o destaque. A animação da revelação, depois de terminar, fixa `transform`, `filter` e `opacity` no próprio botão e anularia o destaque. O contorno de foco fica na moldura.
+- No desktop, cada botão tem 360px: moldura de 340px e 20px de `padding-right` (o espaço entre os cards é parte do botão: o mouse não solta a pausa entre dois cards). A sequência continua com 2880px.
+- Destaque (`hover: hover` e `pointer: fine`, sem movimento reduzido): o carrossel pausa só com o mouse sobre um card; o card cresce para 1.06, fica por cima (`z-index`) e ganha brilho; os outros cards na tela (`.visivel`, marcados por `IntersectionObserver`) vão a opacidade .55; transição de 250ms. O mesmo no `:focus-visible`.
+- Sem desfoque nos outros cards: medido com CPU 4x passando o mouse por 6 cards, o `blur(2px)` triplicava os quadros descartados (6,4% contra 2,1% sem efeito em 1920; 2,7% contra 0,9% em 1280); só a opacidade fica em 2,9% e 1,3%. `will-change` não ajudou. O `scale(.97)` nos outros cards foi testado e descartado (resultado inconclusivo, sem garantia de ficar abaixo de +0,5 ponto).
+- Medir quadros pelo compositor: no trace, `PipelineReporter` com `args.frame_reporter.state` (`STATE_DROPPED`, `STATE_PRESENTED_PARTIAL`). Nesta máquina as medidas oscilam muito (3% a 28% no mesmo cenário): alternar A/B várias vezes e comparar medianas e diferenças por par.
+- Setas do carrossel (`.seta`, 52px, vidro), "Print anterior" e "Próximo print", centralizadas abaixo dele (só a partir de 761px). Cada clique anda um card mudando o `currentTime` da animação quadro a quadro (1/8 da duração, 420ms, `ease-out`); o `currentTime` dá a volta dentro de uma volta, então o loop segue sem emenda nos dois sentidos. O movimento automático pausa (`.manual`) e volta 4s depois do último clique. Sem movimento, as setas rolam a fileira um card (`scrollBy`).
+- Galeria (`<dialog class="lightbox">`):
+  - Abre no print clicado (a cópia abre o original). Print até 86svh no desktop, com anterior e próximo nas laterais e o contador embaixo; no celular, na largura da tela, com os botões embaixo e o contador entre eles.
+  - Navega com os botões, com ← → e, no toque, deslizando (pointer events, `touch-action: pan-y` no print). Dá a volta do 8 para o 1 e do 1 para o 8. Pré-carrega o anterior e o próximo (cópias do `<picture>` em `.lb-pre`, oculto, com a mesma escolha de formato).
+  - Troca com transição de opacidade de 150ms; sem movimento, direta.
+  - Contador "N de 8" em `aria-live`. O Tab circula só pelos botões da galeria (o `<dialog>` nativo deixava o foco sair antes de voltar). Ao fechar, o foco volta para o card do print aberto; na fileira que rola, o card é alinhado.
+  - O carrossel pausa com a galeria aberta (`html:has(dialog[open])`) e o Lenis para.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

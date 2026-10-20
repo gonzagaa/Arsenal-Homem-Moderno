@@ -126,6 +126,8 @@ A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as
 
 **Conteúdo:** 8 prints reais (`assets/img/prints/print-01` a `print-08`), já tratados: o cabeçalho do Instagram vem no print, com nome e foto borrados. A ordem é a dos arquivos.
 
+**Galeria (ao clicar num print):** contador "N de 8". Botões com rótulo para leitor de tela: "Print anterior", "Próximo print" e "Fechar" (os mesmos "Print anterior" e "Próximo print" nas setas do carrossel).
+
 **Texto alternativo dos prints** (a frase principal de cada um, transcrita como está, sem corrigir a ortografia):
 1. Mensagem enviada ao Marcello no Instagram: Vc me ajuda muito E me faz eu me sentir bem melhor
 2. Mensagem enviada ao Marcello no Instagram: Seu conteúdo Ajudou muito a tomar minha decisão E ser acertivo
