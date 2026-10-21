@@ -1,118 +1,141 @@
-# Copy final: Arsenal Homem Blindado
+# Copy final: De Desprezado a Respeitado
 
-Todo o texto da página, na ordem das seções. Use palavra por palavra. Em **negrito** com "(destaque)" está o trecho que recebe peso 600 e o degradê prateado. Trechos entre colchetes são pendências do cliente: renderizar com a classe `.pendente`.
+Produto novo, que substitui o Arsenal Homem Blindado. Todo o texto da página, na ordem das seções. Use palavra por palavra. O trecho em **negrito** é o destaque (peso 600 com o degradê prateado). Botões, rótulos e títulos sempre em caixa normal, nunca em maiúsculas.
 
-Link de todos os botões de compra: https://chk.eduzz.com/7WXGDYN20A
+Domínio novo: https://nunca-mais-seja-desprezado.com.br/
+Checkout (provisório, vai mudar): https://chk.eduzz.com/7WXGDYN20A
+
+---
+
+## SEO e compartilhamento
+
+- **title:** De Desprezado a Respeitado: chegou a hora de dar um basta
+- **meta description:** O passo a passo de Marcello Gomes para parar de aceitar humilhações calado e recuperar sua voz dentro do relacionamento.
+- **og:title / twitter:title:** De Desprezado a Respeitado, por Marcello Gomes
+- **og:description / twitter:description:** igual à meta description.
+- **og:site_name:** De Desprezado a Respeitado
 
 ---
 
 ## 1. Hero (#hero)
 
-**H1 (uma frase corrida):** Tem homem que só aprende isso depois de ser traído. **Você pode aprender antes.** (destaque)
+**H1 (uma frase corrida, sem quebra forçada):** Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. **Chegou a hora de dar um basta nisso.**
 
-**Subheadline:** Quatro manuais escritos por Marcello Gomes para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.
+**Subheadline:** No meu método De Desprezado a Respeitado, eu te mostro o passo a passo para parar de aceitar humilhações calado, se posicionar com firmeza e recuperar sua voz dentro do relacionamento. Sem brigar com ela, sem implorar atenção e sem viver com medo de perdê-la.
 
-**Botão:** Quero me tornar um Homem Blindado
+**Botão:** Quero ser respeitado
 
 **Cards de vidro:**
 - 419 mil / seguidores no Instagram
 - +12 mil / homens transformados
 
-Sem preço, garantia ou rótulo no hero.
-
 ## 2. Identificação (#identificacao)
 
 **Rótulo:** Antes de qualquer coisa
 
-**Título:** Marque o que já **aconteceu com você.** (destaque)
+**Título:** Marque o que você já viveu **dentro do seu relacionamento.**
 
-**Apoio:** Seja honesto. Ninguém está vendo.
+**Apoio:** Seja sincero. Ninguém está vendo.
 
 **Itens (botões marcáveis):**
-1. Foi traído e foi o último a saber.
-2. Pagou as contas, esteve presente, fez tudo o que podia. Mesmo assim ouviu que não era suficiente.
-3. Percebeu que estava sendo manipulado só meses depois, quando já tinha cedido em tudo.
-4. Diz "tudo bem" quando não está nada bem, só para evitar mais uma briga.
-5. Tem medo de entrar num relacionamento novo e viver a mesma história de novo.
-6. Sente que as pessoas te respeitam menos do que você merece.
-7. Quer entender relacionamento do jeito que ele é, e não do jeito que contaram para você.
+1. Ela já debochou de você na frente de conhecidos ou da família.
+2. Você tenta conversar e sente que sua opinião não tem importância nenhuma.
+3. Já pediu desculpas sem estar errado, só para evitar outra briga.
+4. Paga as contas, resolve os problemas e, mesmo assim, sente que nunca é suficiente.
+5. Tem medo de dizer não porque não sabe como ela vai reagir.
+6. Vive implorando por atenção, carinho ou consideração.
+7. Sente que deixou de ser o homem que era antes desse relacionamento.
 
 **Contador:** "N de 7", com a frase:
-- 0 marcados: Marque com calma. A maioria dos homens se reconhece em pelo menos um.
-- 1 ou 2: Se marcou um, este material foi escrito pensando em você.
-- 3 ou mais: Você já pagou caro demais por esse aprendizado. Está na hora de parar de aprender pela dor.
+- 0 marcados: Quantas dessas situações você marcou?
+- 1 ou 2: Se marcou uma, preste atenção. É sempre assim que começa.
+- 3 ou mais: Você vive pisando em ovos para evitar outra briga. Engole o que sente, aceita situações que te machucam e vai deixando suas próprias vontades de lado. E o pior? De tanto tentar não perder seu relacionamento, você pode estar perdendo a si mesmo.
+
+Na barra do contador do celular, o estado de 3 ou mais mostra só a primeira frase ("Você vive pisando em ovos para evitar outra briga."). O restante do texto aparece logo abaixo do último item da lista, só quando houver 3 ou mais marcados.
 
 ## 3. A virada (#virada)
 
-**Rótulo:** Pare de aprender pela dor
+**Rótulo:** Pare de aceitar tudo calado
 
-**Palavras empilhadas:** Traições. / Manipulação. / Joguinhos. / Mentiras. / **Desrespeito.** (destaque)
+**Palavras empilhadas:** Deboche. / Indiferença. / Humilhações. / Silêncio. / **Desrespeito.**
 
 **Texto:**
 
-Quase todo homem aprende a reconhecer cada uma dessas coisas do jeito mais caro que existe: vivendo.
+No começo, você ignorou uma brincadeira. Depois, deixou passar uma grosseria. Começou a evitar discussões, aceitar coisas que não queria e pedir desculpas apenas para manter a paz.
 
-Um relacionamento errado leva dois, três, cinco anos. Às vezes leva junto o dinheiro, a casa e a confiança que você tinha em si mesmo. Quando você finalmente entende o que aconteceu, já passou.
+Até que chegou o dia em que você percebeu que já não conseguia se posicionar dentro da própria casa.
 
-O Arsenal Homem Blindado reúne o que um homem normalmente só entende depois de vários relacionamentos fracassados. Você lê em poucos dias e começa a usar na próxima conversa.
+Talvez você esteja em um relacionamento há 5, 15 ou até 28 anos. E o mais difícil não é apenas o que está acontecendo.
 
-**Botão:** Quero aprender antes
+É não saber como mudar essa situação sem colocar tudo a perder.
 
-## 4. O sistema (#sistema)
+O meu método De Desprezado a Respeitado foi desenvolvido para ajudar você a identificar esses padrões, recuperar sua voz e aprender a agir com firmeza e autoridade, sem agressividade e sem abandonar sua dignidade.
 
-**Rótulo:** Por que quatro manuais
+**Botão:** Quero recuperar meu respeito
 
-**Título:** Todo homem enganado deixou pelo menos **uma destas brechas abertas.** (destaque)
+## 4. O conteúdo (#conteudo, substitui o #sistema)
 
-**Apoio:** Ninguém é enganado por falta de inteligência. É enganado porque deixou uma porta aberta e não sabia que ela existia. O Arsenal fecha uma por manual.
+Capa do livro à esquerda e os aprendizados à direita. No celular, a capa vem primeiro.
 
-**Card em destaque (cena da armadura):**
-- Rótulo: O manual central
-- Título: Arsenal Homem Blindado
-- Linha 1: Para quem sabe que algo está errado, mas não sabe o que fazer a partir de hoje.
-- Linha 2: O ponto de partida. Mostra onde você está deixando brecha e transforma o que você leu em postura e decisão, com exercícios para aplicar no mesmo dia.
+**Rótulo:** O que você vai descobrir
 
-**Três cards:**
-- (cena do celular) Brecha: não enxerga os sinais / Manual Secreto da Traição para Homens / O problema já estava ali havia meses. Ele só percebe quando estoura.
-- (cena das taças) Brecha: se ilude com o que sente / Nunca se Iluda com as Mulheres / Decide com a emoção e ignora o que está vendo.
-- (cena do relógio) Brecha: não tem postura / A Força da Honra / Implora atenção, cede em tudo e não sustenta um limite.
+**Título:** O passo a passo para deixar de aceitar o desrespeito e **recuperar sua voz dentro do seu relacionamento.**
 
-**Fechamento:** Um manual sozinho fecha uma brecha. **Os quatro juntos fecham a armadura.** (destaque)
+**Apoio:** Você não precisa se tornar um homem agressivo ou frio para estabelecer limites. Precisa aprender a se posicionar com clareza, firmeza e respeito próprio.
 
-## 5. Antes e depois (#antes-depois)
+**Aprendizados (número em destaque, título, linha):**
+- 01 / Recupere sua voz / Entenda por que você deixou de ser ouvido dentro de casa e como começar a se posicionar novamente.
+- 02 / Pare de aceitar humilhações / Aprenda a reagir a deboches, ofensas e comparações sem perder o controle emocional.
+- 03 / Vença o medo de perder / Deixe de concordar com tudo apenas para evitar discussões ou uma possível separação.
+- 04 / Aprenda a colocar limites / Descubra como dizer não, parar de se justificar por tudo e sustentar suas decisões.
+- 05 / Pare de implorar atenção / Desenvolva sua autonomia emocional e deixe de depender constantemente da aprovação da sua parceira.
+- 06 / Reconstrua sua postura no casamento / Saiba como abordar conversas difíceis, assumir responsabilidades e buscar mais reciprocidade, mesmo depois de muitos anos juntos.
+- 07 / Decida com clareza / Aprenda a diferenciar promessas de atitudes e identificar quando existe espaço para reconstruir a relação.
+- 08 / Coloque em prática em 30 dias / Siga exercícios diários para fortalecer seu respeito próprio e transformar conhecimento em atitudes.
 
-**Rótulo:** Antes e depois
+**Destaque abaixo:** 13 capítulos · 8 dossiês · Plano de ação de 30 dias
 
-**Título:** Depois do Arsenal, você não olha para um relacionamento **do mesmo jeito.** (destaque)
+**Botão:** Quero começar minha transformação
 
-| Antes | Depois |
+**Capa (texto real sobre a arte assets/img/capa-desprezado.jpg):**
+- Título: De desprezado **a respeitado**
+- Frase (só na capa grande): Descubra como recuperar sua **postura**, seu **valor** e o **respeito** dentro do seu relacionamento.
+- Autor: Marcello Gomes
+
+## 5. Desprezado x Respeitado (#antes-depois)
+
+**Rótulo:** A transformação
+
+**Título:** De desprezado a respeitado: **o que muda quando você recupera sua postura.**
+
+| Desprezado | Respeitado |
 | --- | --- |
-| Percebe o problema quando ele já cresceu. | Reconhece o sinal na primeira semana. |
-| Explica, justifica e pede desculpa. | Coloca o limite uma vez e sustenta. |
-| Decide pela emoção e se arrepende depois. | Decide com clareza, mesmo quando sente muito. |
-| Implora por atenção e valorização. | É respeitado pela postura, sem precisar pedir. |
-| Deixa qualquer pessoa entrar na sua vida. | Escolhe quem entra. |
-| Fica bem só quando ela está bem com você. | Tem uma paz que não depende do humor de ninguém. |
+| É ignorado quando fala. | Aprende a se posicionar sem levantar a voz. |
+| Aceita piadas que o humilham. | Comunica o que não aceita. |
+| Implora atenção e carinho. | Reconhece o próprio valor. |
+| Explica e pede desculpas por tudo. | Estabelece limites e os sustenta. |
+| Decide pelo medo de perdê-la. | Decide com clareza, mesmo sentindo muito. |
+| Só fica bem quando ela está bem com ele. | Desenvolve uma paz que não depende do humor de ninguém. |
 
-**Frase:** Você não controla o que os outros fazem. **Controla o quanto aquilo te atinge.** (destaque)
+**Frase:** Você não controla o que os outros fazem. **Mas pode decidir como se posicionar diante da maneira como é tratado.**
 
-**Botão:** Quero me tornar um Homem Blindado
+**Botão:** Quero ser respeitado
 
-## 6. Quem escreveu (#autor)
+## 6. Quem está por trás (#autor)
 
-**Rótulo:** Quem escreveu
+**Rótulo:** Quem está por trás
 
-**Título:** Marcello Gomes fala o que a maioria dos homens **só ouve tarde demais.** (destaque)
+**Título:** Marcello Gomes fala sobre o que muitos homens **passam anos aceitando calados.**
 
 **Perfil:** @marcellopgomes (com selo de verificado, link para https://www.instagram.com/marcellopgomes/)
 
 **Texto:**
 
-Marcello Gomes escreve sobre o que a maioria evita falar: posicionamento masculino, traição, ilusão e o preço de viver sem honra. São 419 mil seguidores e mais de 2.700 publicações sobre esses temas.
+Marcello Gomes aborda temas que muitos homens têm dificuldade de discutir: respeito próprio, posicionamento, relacionamentos, dependência emocional e o medo de perder uma mulher.
 
-Os textos dele já mudaram a forma de enxergar de milhares de homens que estavam perdidos em relacionamentos destrutivos, sem direção e sem respeito próprio.
+Seu trabalho é ajudar homens a enxergarem situações que antes ignoravam e desenvolverem uma postura mais segura diante dos próprios relacionamentos.
 
-A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as verdades que ninguém teve coragem de te dizer antes.
+Com uma linguagem direta, Marcello fala sobre o que significa ser um homem firme sem ser agressivo, estabelecer limites sem humilhar ninguém e assumir o controle das próprias decisões.
 
 **Números:** 419 mil / seguidores. 2.700+ / publicações. +12 mil / homens transformados.
 
@@ -120,111 +143,106 @@ A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as
 
 **Rótulo:** Direto da DM
 
-**Título:** O que os homens escrevem **depois de ouvir o Marcello.** (destaque)
+**Título:** O que os homens dizem depois de começar a enxergar **seus relacionamentos de outra maneira.**
 
-**Apoio:** Mensagens reais, enviadas no Instagram. Nomes e fotos cobertos para proteger quem escreveu.
+**Apoio:** Mensagens reais recebidas por Marcello Gomes no Instagram, de homens que encontraram em seus conteúdos novas perspectivas sobre posicionamento, respeito próprio e relacionamentos.
 
-**Conteúdo:** 8 prints reais (`assets/img/prints/print-01` a `print-08`), já tratados: o cabeçalho do Instagram vem no print, com nome e foto borrados. A ordem é a dos arquivos.
-
-**Galeria (ao clicar num print):** contador "N de 8". Botões com rótulo para leitor de tela: "Print anterior", "Próximo print" e "Fechar" (os mesmos "Print anterior" e "Próximo print" nas setas do carrossel).
-
-**Texto alternativo dos prints** (a frase principal de cada um, transcrita como está, sem corrigir a ortografia):
-1. Mensagem enviada ao Marcello no Instagram: Vc me ajuda muito E me faz eu me sentir bem melhor
-2. Mensagem enviada ao Marcello no Instagram: Seu conteúdo Ajudou muito a tomar minha decisão E ser acertivo
-3. Mensagem enviada ao Marcello no Instagram: Marcelo parabéns pela grande contribuição dada aos homens pelas dicas valiosas.
-4. Mensagem enviada ao Marcello no Instagram: o que o senhor fala é a realidade
-5. Mensagem enviada ao Marcello no Instagram: Irmao seu nivel de conteudo conhecimento e fantastico parabens
-6. Mensagem enviada ao Marcello no Instagram: seus conselhos me ajudam muito, estou amadurecendo e aprendendo a jogar o jogo com as mulheres, gosto muito desses assuntos sobre postura
-7. Mensagem enviada ao Marcello no Instagram: agradeço pela atenção e pelo trabalho que você faz. Muito necessário nos dias de hoje
-8. Mensagem enviada ao Marcello no Instagram: Cara eu virei seu fã vc só fala a verdade tirei o chapéu nota 1000 Deus abençoe a sua vida e continue abrindo mente de pessoas tampada
+**Conteúdo:** os 8 prints atuais, no carrossel atual.
 
 ## 8. Para quem é (#para-quem)
 
 **Rótulo:** Para quem é
 
-**Título:** Antes de comprar, **leia isto.** (destaque)
+**Título:** Antes de começar, **leia isto.**
 
 **Não é para você se:**
-- Prefere continuar sendo enganado a encarar o que está acontecendo.
-- Procura uma frase mágica que resolva tudo sem esforço.
-- Culpa todo mundo pelos próprios erros.
-- Não quer assumir a responsabilidade pela própria vida.
+- Procura uma frase mágica que resolva todos os problemas.
+- Acredita que respeito significa gritar, ameaçar ou intimidar.
+- Não está disposto a rever suas próprias atitudes.
 
 **É para você se:**
-- Quer crescer como homem, como profissional e como parceiro.
-- Já entendeu que respeito não se pede. Se conquista com postura e atitude.
-- Sabe que confiança se constrói com conhecimento e disciplina, e não aparece por acaso.
-- Prefere aprender agora a se arrepender depois.
+- Está cansado de ser ignorado ou diminuído dentro do relacionamento.
+- Quer parar de implorar por atenção e carinho.
+- Deseja aprender a colocar limites e sustentar suas decisões.
+- Quer recuperar sua voz mesmo depois de anos de casamento.
+- Deseja ser um homem mais firme, seguro e emocionalmente independente.
+- Quer construir uma relação com respeito, reciprocidade e dignidade.
 
-**Frase grande:** Conhecimento custa muito menos **do que arrependimento.** (destaque)
+**Frase grande:** Você não precisa deixar de ser um homem bom. **Precisa parar de acreditar que ser bom significa aceitar tudo.**
 
 ## 9. Oferta (#oferta)
 
-**Rótulo:** A oferta
+**Rótulo:** Seu próximo passo
 
-**Título:** Tudo o que você **recebe hoje.** (destaque)
+**Título:** Tudo o que você precisa para começar a reconstruir sua postura **está aqui.**
 
-**Capas (livros em pé sobre a mesa), da esquerda para a direita:** Manual Secreto da Traição para Homens, Arsenal Homem Blindado (maior, central), A Força da Honra, Nunca se Iluda com as Mulheres. Em cada capa: título (início em 300, final em 600 prateado) e "Marcello Gomes" embaixo.
+**Palco:** um único livro em pé sobre a mesa, com a capa nova (título, autor, sem a frase).
 
-**Painel, lista (desktop: à esquerda; celular: primeiro):** rótulo "Os quatro manuais" e, em cada linha, a miniatura da capa, o nome e uma linha curta. As quatro linhas são iguais; o Arsenal se diferencia só pela linha "O manual central", prateada.
-- Arsenal Homem Blindado / O manual central
-- Manual Secreto da Traição para Homens / Para enxergar os sinais antes de estourar
-- A Força da Honra / Para colocar limite e sustentar
-- Nunca se Iluda com as Mulheres / Para decidir com clareza, e não pela emoção
+**Painel, lado esquerdo:** rótulo "O que você recebe" e a lista (título em 500, linha de apoio embaixo):
+- 13 capítulos estratégicos / Para reconhecer padrões de desrespeito, fortalecer sua postura e recuperar sua voz.
+- 8 dossiês sobre relacionamentos / Com situações envolvendo casamento, distanciamento emocional, traição, dinheiro e medo de ir embora.
+- Plano de ação de 30 dias / Atividades práticas para desenvolver mais clareza, autonomia e firmeza.
+- Diagnóstico pessoal / Para refletir sobre o que está acontecendo e identificar pontos que precisam de atenção.
+- Código de honra / Dez princípios para orientar sua postura e suas decisões.
+- Diário do homem respeitado / Ferramenta para registrar aprendizados, limites e mudanças de atitude.
 
-**Painel, bloco de preço (desktop: à direita; celular: depois da lista), nesta ordem:**
+**Painel, bloco de preço:**
 - De ~~R$ 297~~ por
 - 12x de **R$ 10,03**
 - ou R$ 97 à vista
-- Botão: Quero me tornar um Homem Blindado
-- Menos do que um jantar a dois. E pode te poupar anos.
+- Botão: Quero ser respeitado agora
 
-**Detalhes (quatro itens, cada um com título curto / linha de apoio):**
-- Acesso imediato / No seu e-mail, assim que o pagamento é aprovado.
-- Leia onde quiser / Em PDF, no celular, tablet ou computador. Nada vai pelo correio.
+**Detalhes (título curto e linha de apoio):**
+- Acesso digital / Liberado após a confirmação do pagamento.
+- Leia onde quiser / Em PDF, no celular, tablet ou computador.
 - Pagamento seguro / Processado pela própria Eduzz.
 - Garantia de 7 dias / Reembolso pela Eduzz, sem precisar explicar nada.
 
-## 10. FAQ (#faq), com a garantia
+## 10. Dúvidas (#faq), com a garantia na coluna esquerda
+
+**Card da garantia (id="garantia"):** selo de escudo com "7" e "dias".
+- Título: Você tem 7 dias para conhecer o conteúdo. **Se não fizer sentido para você, seu dinheiro volta.**
+- Texto: Acesse De Desprezado a Respeitado, conheça as orientações e avalie se o conteúdo atende às suas expectativas.
+- Texto: Caso não fique satisfeito, você poderá solicitar o reembolso dentro do prazo de garantia, seguindo as condições informadas no checkout.
 
 **Rótulo:** Dúvidas
 
-**Título:** Perguntas que chegam **toda semana.** (destaque)
+**Título:** Perguntas que chegam **toda semana.**
 
-**Card da garantia (id="garantia"; desktop: coluna esquerda, abaixo do título; celular: primeiro item do #faq, logo depois da oferta):**
-
-- **Selo:** escudo com "7" e "dias".
-- **Título:** Leia por 7 dias. **Se não valer, seu dinheiro volta.** (destaque)
-- **Texto:** Se em até 7 dias você achar que não valeu, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Sem precisar me explicar nada.
-- **Em destaque leve:** Eu faço isso porque sei o que está nesses manuais.
-
-**Perguntas:**
-
-- **Em que formato vem o material?** Os quatro manuais são em PDF. Você lê no celular, no computador ou imprime, se preferir papel.
-- **Quanto tempo leva para chegar?** O acesso vai para o seu e-mail assim que o pagamento é aprovado. No Pix e no cartão, isso leva poucos minutos.
-- **Serve para quem está casado ou namorando?** Serve. Boa parte do conteúdo é sobre postura e limite dentro do relacionamento que você já tem, e não só sobre escolher a próxima pessoa.
-- **Acabei de passar por uma traição. Vale a pena ler agora?** Vale. É justamente quando você está tentando entender o que aconteceu, e quando corre mais risco de repetir a mesma escolha.
-- **Quanto tempo leva para ler tudo?** Dá para ler os quatro em poucos dias. O Arsenal Homem Blindado, que é o principal, dá para ler numa noite.
-- **E se eu não gostar?** Você tem 7 dias para pedir o reembolso pela Eduzz e recebe tudo de volta.
+- **Em que formato recebo o conteúdo?** O material é digital, em PDF. Você pode acessar pelo celular, computador ou tablet.
+- **Quanto tempo leva para receber?** O acesso é disponibilizado após a confirmação do pagamento, conforme as instruções da plataforma.
+- **Serve para quem está casado há muitos anos?** Sim. O conteúdo aborda situações vividas por homens em casamentos longos, inclusive a dificuldade de recuperar sua voz depois de anos de convivência.
+- **Preciso terminar meu relacionamento para recuperar meu respeito?** Não. Você vai aprender a reconhecer os problemas, estabelecer limites e avaliar se existe disposição dos dois lados para reconstruir a relação.
+- **Minha esposa vai voltar a me respeitar?** Você aprenderá a fortalecer sua postura e comunicar limites com clareza. A reação de outra pessoa não pode ser garantida, mas sua maneira de agir pode começar a mudar.
+- **Quanto tempo tenho para colocar em prática?** Você pode começar imediatamente e seguir o plano de atividades de 30 dias no seu próprio ritmo.
+- **E se eu não gostar?** Você tem 7 dias para pedir o reembolso pela própria Eduzz e receber o valor de volta.
 
 ## 11. Fechamento (#fechamento)
 
-**Título:** Quanto vale evitar um relacionamento que pode **custar anos da sua vida?** (destaque)
+**Título:** Quantos anos mais você vai passar tentando salvar seu relacionamento **enquanto perde o respeito por si mesmo?**
 
 **Texto:**
 
-Você pode continuar aprendendo do jeito que a maioria aprende. Errando, sofrendo e entendendo tudo quando já passou.
+Você já tentou agradar mais.
 
-Ou pode ler em poucos dias o que outros homens levaram anos e alguns relacionamentos para descobrir.
+Já ficou calado para evitar discussões.
 
-São 12x de R$ 10,03. Com 7 dias para devolver se não valer.
+Já pediu desculpas por coisas que não fez.
 
-**Botão:** Quero me tornar um Homem Blindado
+E, mesmo assim, continua sentindo que sua voz perdeu importância dentro do relacionamento.
 
-**Frase final:** Torne-se o homem que você **respeitaria.** (destaque)
+A mudança não começa quando sua esposa decide agir diferente.
 
-**Rodapé:** Arsenal Homem Blindado, por Marcello Gomes. / Instagram
+Começa quando você aprende a reconhecer seu valor, estabelecer limites e tomar decisões sem abandonar a si mesmo.
+
+Em De Desprezado a Respeitado, você encontra um passo a passo para começar essa transformação.
+
+**Botão:** Quero recuperar meu respeito
+
+**Frase final:** Torne-se um homem que você mesmo **respeitaria.**
+
+**Rodapé:** De Desprezado a Respeitado, por Marcello Gomes. / Instagram
 
 ## 12. Barra fixa (celular)
 
-Arsenal Homem Blindado / **12x de R$ 10,03** / botão "Quero o Arsenal"
+De Desprezado a Respeitado / **12x de R$ 10,03** / botão "Quero ser respeitado"

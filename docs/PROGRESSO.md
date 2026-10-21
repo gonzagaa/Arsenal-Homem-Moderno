@@ -37,6 +37,8 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Destaque, setas e galeria da #resultados | aprovada |
 | Rastreamento sem InitiateCheckout, checkout em nova guia e efeito dos botões de compra | aprovada |
 | Troca das imagens do hero (qualidade e banner novo do desktop) | aprovada |
+| Troca de produto, rodada A (De Desprezado a Respeitado: textos, domínio, hero, contador) | aprovada |
+| **Troca de produto, rodada B (#conteudo, emenda do escudo, #oferta com um livro)** | **próxima** |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -337,6 +339,26 @@ Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as 
 - Celular: mesmo layout (H1, subheadline, botão e cards nas mesmas posições); só a imagem mudou.
 - `og.jpg` regenerada com a foto nova: contraste mínimo de 8,94:1 (antes 3,9:1). `scripts/gerar-og.mjs` agora reduz a foto a 2400px antes de embutir (o PNG de 12,7 MB estourava o tempo do Chrome) e usa a Geist local (não precisa mais de internet).
 - Nesta máquina, `npm install --prefix scripts` e `npm run ... --prefix scripts` ignoram o `--prefix`: rode `npm install` dentro de `scripts/` e os scripts com `node scripts/<script>.mjs`.
+
+### Troca de produto, rodada A (2026-10-21)
+
+O Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitado (um livro). `docs/copy.md` substituído pelo cliente; arte da capa nova em `assets/img/capa-desprezado.jpg`. A rodada A trocou textos, domínio e o que não muda de formato; #sistema e #oferta ficaram para a rodada B.
+
+- Copy nova, palavra por palavra, em hero, #identificacao, #virada, #antes-depois, #autor, #resultados, #para-quem, #faq (com o card da garantia), #fechamento, rodapé e barra fixa. Colunas da #antes-depois: "Desprezado" e "Respeitado".
+- Domínio `https://nunca-mais-seja-desprezado.com.br/` em canonical, `og:url`, `og:image` e `twitter:image`. Title, description e tags de compartilhamento do topo do `docs/copy.md`.
+- Hero, H1 de três frases (125 letras):
+  - A partir de 1024px: no máximo 16em e `clamp(36px, 2.8vw, 44px)`. 4 linhas de 1024 a 1920px; razão para a subheadline de 1,05 a 1,13 (regra de no máximo ~15%). A subheadline fica em 5 linhas.
+  - Tablet: `clamp(30px, 3.9vw, 38px)` e coluna com 41vw (6 linhas; antes, 10 linhas em 768px).
+  - Celular: `min(32px, 8.6vw, 3.8svh)` (até 699px de altura, `min(30px, 8.2vw, 3.8svh)`; até 680px, `min(26px, 7.2vw)`), no máximo 6 linhas, botão na primeira tela. O `svh` faz o H1 acompanhar a altura: com faixas fixas, de 700 a 780px de altura o H1 subia sobre a barba.
+  - Foto do celular mais alta: `object-position: 50% -6svh` (até 699px de altura, `-10svh`, e subheadline com 16px). A faixa que sobra embaixo fica sob o degradê opaco.
+  - Sombra presa ao H1 (`.hero .h1::before`, degradê radial `rgba(1,5,15,.5)` de 50% a 100%, `z-index:-1` com `isolation`): no desktop, as lanternas atrás do H1 em janelas baixas (1280x650, 1366x650, 1536x730) derrubavam a linha prateada para 4,2:1; no celular, as mãos e o relógio. Como acompanha o texto, vale em qualquer tamanho.
+  - Medido (H1, mínimo da linha prateada): 1280x800 8,93:1, 1440x900 8,98:1, 1920x1080 9,28:1, 1024x640 5,19:1; celular de 360x640 a 430x932, 4,87:1 ou mais, sempre abaixo da barba (de 6 a 172px; 360x640: 33px; 375x667: 52px). Coordenadas do rosto na foto do celular (1882x3344): x 680 a 1220, y 380 a 1220.
+- Contador da #identificacao: o desktop (`.counter`) mostra a frase inteira. No celular, a barra mostra só a primeira frase do estado de 3 ou mais, e o restante aparece logo abaixo do último item (`.chk-resto`, `aria-live`, só muda quando o estado muda). Vazio, o `.chk-resto` anula o próprio gap (`margin-bottom:-12px`), e a barra continua parando 12px abaixo do último item. Barra com a altura de 2 linhas (66px, era 79).
+- Card da garantia: os dois textos novos com o mesmo estilo (a regra `.g-destaque` saiu).
+- Frase grande da #para-quem com 23ch no desktop (4 linhas; com 18ch eram 5). Emenda com a oferta igual (99 a 114px).
+- Barra fixa: nome em 12,5px com `text-wrap: balance`, botão com 14px de recuo e espaço de 10px. "De Desprezado a Respeitado" em uma linha a partir de 390px.
+- `og.jpg` com o H1 inteiro (44px, coluna de 580px, 5 linhas) e o rótulo "De Desprezado a Respeitado"; contraste mínimo 9,14:1.
+- `CLAUDE.md` (produto, domínio, ordem das seções, checkout provisório) e `PENDENCIAS.md` (checkout e pixel do produto novo) atualizados.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

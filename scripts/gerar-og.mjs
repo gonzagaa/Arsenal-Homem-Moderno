@@ -42,16 +42,16 @@ const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
 body{width:1200px;height:630px;overflow:hidden;background:#01050F;font-family:'Geist',sans-serif;-webkit-font-smoothing:antialiased}
 .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0% 30%}
 .sombra{position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,5,15,.92) 0%,rgba(1,5,15,.72) 34%,rgba(1,5,15,0) 56%),linear-gradient(0deg,rgba(1,5,15,.55) 0%,rgba(1,5,15,0) 30%)}
-.texto{position:absolute;left:72px;top:0;bottom:0;width:540px;display:flex;flex-direction:column;justify-content:center;gap:26px}
+.texto{position:absolute;left:72px;top:0;bottom:0;width:580px;display:flex;flex-direction:column;justify-content:center;gap:26px}
 .pill{display:inline-flex;align-items:center;gap:12px;font-size:20px;font-weight:500;letter-spacing:-.005em;color:#A9B8CB}
 .pill::before{content:"";width:15px;height:18px;background:linear-gradient(180deg,#F1F4F8,#8FA3BE);clip-path:polygon(50% 0,100% 13%,100% 46%,86% 74%,50% 100%,14% 74%,0 46%,0 13%)}
-h1{font-weight:300;font-size:56px;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;color:#E9EEF5}
+h1{font-weight:300;font-size:44px;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;color:#E9EEF5}
 h1 strong{font-weight:600;background:linear-gradient(180deg,#FFFFFF 0%,#D9E2EE 45%,#9FB2CB 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 </style></head><body>
 <img class="foto" src="data:image/jpeg;base64,${foto}" alt="">
 <div class="sombra"></div>
-<div class="texto"><span class="pill">Arsenal Homem Blindado</span>
-<h1>Tem homem que só aprende isso depois de ser traído. <strong>Você pode aprender antes.</strong></h1></div>
+<div class="texto"><span class="pill">De Desprezado a Respeitado</span>
+<h1>Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. <strong>Chegou a hora de dar um basta nisso.</strong></h1></div>
 </body></html>`;
 
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true });

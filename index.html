@@ -31,26 +31,26 @@ fbq('track', 'PageView');
 }
 </script>
 <!-- End Meta Pixel Code -->
-<title>Arsenal Homem Blindado: você pode aprender antes</title>
-<meta name="description" content="Quatro manuais escritos por Marcello Gomes para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.">
-<link rel="canonical" href="https://arsenal-homem-blindado.com.br/">
+<title>De Desprezado a Respeitado: chegou a hora de dar um basta</title>
+<meta name="description" content="O passo a passo de Marcello Gomes para parar de aceitar humilhações calado e recuperar sua voz dentro do relacionamento.">
+<link rel="canonical" href="https://nunca-mais-seja-desprezado.com.br/">
 <!-- Compartilhamento. A imagem precisa de endereço absoluto; ela é gerada por scripts/gerar-og.mjs. -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="Arsenal Homem Blindado">
-<meta property="og:url" content="https://arsenal-homem-blindado.com.br/">
-<meta property="og:title" content="Tem homem que só aprende isso depois de ser traído. Você pode aprender antes.">
-<meta property="og:description" content="Quatro manuais escritos por Marcello Gomes para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.">
-<meta property="og:image" content="https://arsenal-homem-blindado.com.br/assets/img/og.jpg">
+<meta property="og:site_name" content="De Desprezado a Respeitado">
+<meta property="og:url" content="https://nunca-mais-seja-desprezado.com.br/">
+<meta property="og:title" content="De Desprezado a Respeitado, por Marcello Gomes">
+<meta property="og:description" content="O passo a passo de Marcello Gomes para parar de aceitar humilhações calado e recuperar sua voz dentro do relacionamento.">
+<meta property="og:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/og.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Tem homem que só aprende isso depois de ser traído. Você pode aprender antes.">
+<meta property="og:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. Chegou a hora de dar um basta nisso.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tem homem que só aprende isso depois de ser traído. Você pode aprender antes.">
-<meta name="twitter:description" content="Quatro manuais escritos por Marcello Gomes para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.">
-<meta name="twitter:image" content="https://arsenal-homem-blindado.com.br/assets/img/og.jpg">
-<meta name="twitter:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Tem homem que só aprende isso depois de ser traído. Você pode aprender antes.">
+<meta name="twitter:title" content="De Desprezado a Respeitado, por Marcello Gomes">
+<meta name="twitter:description" content="O passo a passo de Marcello Gomes para parar de aceitar humilhações calado e recuperar sua voz dentro do relacionamento.">
+<meta name="twitter:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/og.jpg">
+<meta name="twitter:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. Chegou a hora de dar um basta nisso.">
 <!-- Favicons (o escudo). favicon.ico também fica na raiz, para quem o pede sem ler o <head>. -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
@@ -242,8 +242,27 @@ html.lenis{scroll-behavior:auto!important}
   .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
   .glass{flex-direction:column;align-items:flex-start;gap:10px;padding:12px}
 }
+/* H1 de três frases: no máximo 6 linhas de 360 a 430px, com o botão na primeira tela.
+   O bloco de texto ficou alto e subia sobre a barba: a foto sobe 6% da altura da tela (a faixa que sobra
+   embaixo fica sob o degradê opaco) e o H1 ganha uma sombra presa a ele, para a linha prateada não perder
+   contraste sobre as mãos e o relógio (5,9:1 ou mais medido). */
+@media (max-width:760px){
+  /* 3.8svh: o H1 acompanha a altura da tela (700 a 780px de altura subiam sobre a barba). */
+  .hero .h1{font-size:min(32px,8.6vw,3.8svh);position:relative;isolation:isolate}
+  .hero .h1::before{content:"";position:absolute;z-index:-1;inset:-14% -6%;pointer-events:none;background:radial-gradient(closest-side,rgba(1,5,15,.5) 50%,rgba(1,5,15,0) 100%)}
+  .hero-bg img{object-position:50% -6svh}
+}
+/* Telas baixas (a mais comum é o Safari do iPhone com as barras, 390x664): a foto sobe 10% e a subheadline
+   fica com 16px, para o H1 não subir sobre a barba (390x664: 18px abaixo dela, 5,5:1). */
 @media (max-width:760px) and (max-height:699px){
-  .hero .h1{font-size:32px;text-shadow:0 1px 3px rgba(1,5,15,.55),0 2px 22px rgba(1,5,15,.75)}
+  .hero-bg img{object-position:50% -10svh}
+  .hero .lead{font-size:16px;line-height:1.55}
+  .hero .h1{font-size:min(30px,8.2vw,3.8svh);text-shadow:0 1px 3px rgba(1,5,15,.55),0 2px 22px rgba(1,5,15,.75)}
+}
+/* Até 680px de altura (360x640, 375x667, 390x664): H1 menor, em 5 linhas, inteiro abaixo da barba
+   (33px ou mais) e com 5,4:1 ou mais. A ordem dos elementos não muda. */
+@media (max-width:760px) and (max-height:680px){
+  .hero .h1{font-size:min(26px,7.2vw)}
   .hero .h1 strong{text-shadow:none}
   .hero-inner,.hero-copy{gap:16px}
 }
@@ -278,6 +297,9 @@ html.lenis{scroll-behavior:auto!important}
        escuro até 44%, sumindo até 58% (o rosto começa em ~59%). */
     --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.88) 0%,rgba(1,5,15,.84) 32%,rgba(1,5,15,.72) 44%,rgba(1,5,15,.3) 51%,rgba(1,5,15,0) 58%);
   }
+  /* H1 de três frases em 6 linhas, com o botão na primeira tela até 800x640. */
+  .hero .h1{font-size:clamp(30px,3.9vw,38px)}
+  .hero-copy,.chips{max-width:min(520px,41vw)}
 }
 /* Desktop (a partir de 1024px): H1 em 3 linhas, coluna de texto mais larga e mais para dentro. */
 @media (min-width:1024px){
@@ -287,11 +309,15 @@ html.lenis{scroll-behavior:auto!important}
        e outra na faixa do H1 (abajur). Contraste medido acima de 1366px: subheadline 6:1 ou mais, H1 13:1 ou mais. */
     --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.4) 0%,rgba(1,5,15,.38) 36%,rgba(1,5,15,.28) 54%,rgba(1,5,15,0) 68%),radial-gradient(ellipse 44% 56% at 34% 54%,rgba(1,5,15,.72),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 38% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
   }
-  /* H1 em 3 linhas (14em) e no máximo ~15% mais largo que a subheadline. A subheadline tem 163 letras:
-     em 3 linhas, a mais larga fica com ~58 (limite de 60), então o equilíbrio vem do corpo, não da caixa. */
+  /* H1 de três frases (125 letras) em 4 linhas (16em), no máximo ~15% mais largo que a subheadline
+     (medido: 1,05 a 1,13 de 1024 a 1920px). A subheadline fica em 5 linhas de até ~58 letras (limite de 60). */
   .hero-inner{padding-left:clamp(64px,10.5vw,240px)}
   .hero-copy,.chips{max-width:none}
-  .hero .h1{max-width:14em;font-size:clamp(40px,3.35vw,54px)}
+  .hero .h1{max-width:16em;font-size:clamp(36px,2.8vw,44px)}
+  /* Sombra presa ao H1: em janelas baixas (1280x650, 1366x650, 1536x730) o texto sobe sobre as lanternas e a
+     linha prateada caía para 4,2:1. Como acompanha o texto, vale para qualquer altura (5,2:1 ou mais medido). */
+  .hero .h1{position:relative;isolation:isolate}
+  .hero .h1::before{content:"";position:absolute;z-index:-1;inset:-28% -10% -28% -8%;pointer-events:none;background:radial-gradient(closest-side,rgba(1,5,15,.5) 50%,rgba(1,5,15,0) 100%)}
   .hero .lead{max-width:28.5em;font-size:clamp(18px,1.3vw,21px)}
 }
 /* 1024 a 1366px: a foto presa à esquerda (0%) deixa o rosto o mais à direita possível; quando isso
@@ -327,18 +353,23 @@ html.lenis{scroll-behavior:auto!important}
 .chk[aria-pressed="true"] .esc-fundo,.chk[aria-pressed="true"] .esc-check{opacity:1}
 .chk[aria-pressed="true"] .esc-borda{stroke:#D9E2EE}
 @media (hover:hover){.chk:hover{border-color:rgba(169,184,203,.3)}}
-/* Barra do contador: "N" grande com "de 7" embaixo, e a frase ao lado (14px, até 3 linhas). A altura é a do
-   maior estado (3 linhas), para a barra não crescer por cima do item logo depois de um toque. Os itens
+/* Barra do contador: "N" grande com "de 7" embaixo, e a frase ao lado (14px, até 2 linhas). A altura é a do
+   maior estado (2 linhas), para a barra não crescer por cima do item logo depois de um toque. Os itens
    descontam a barra quando recebem foco pelo teclado (scroll-margin-bottom). Sem .reveal: é sticky. */
 .contador-barra{display:none}
+/* Restante da frase de 3 ou mais (só no celular): abaixo do último item, vazio nos outros estados. Vazio, ele
+   anula o próprio espaço da lista (gap de 12px), para a barra continuar parando 12px abaixo do último item. */
+.chk-resto{display:none}
 @media (max-width:760px){
+  .chk-resto{display:block;padding:4px 2px 0;font-size:16px;line-height:1.6;color:#C9D3E0;text-wrap:pretty}
+  .chk-resto:empty{padding:0;margin-bottom:-12px}
   .counter{display:none}
-  .contador-barra{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:center;gap:10px;margin:0 -10px;min-height:calc(3 * 14px * 1.4 + 20px);padding:9px 10px 9px 12px;border-radius:18px;background:linear-gradient(180deg,rgba(22,36,58,.74),rgba(10,20,36,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -14px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+  .contador-barra{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:center;gap:10px;margin:0 -10px;min-height:calc(2 * 14px * 1.4 + 20px);padding:9px 10px 9px 12px;border-radius:18px;background:linear-gradient(180deg,rgba(22,36,58,.74),rgba(10,20,36,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -14px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
   .cb-num{flex:none;min-width:30px;text-align:center}
   .cb-num b{display:block;font-weight:300;font-size:28px;line-height:1;letter-spacing:-.04em}
   .cb-num span{display:block;margin-top:2px;font-size:13px;line-height:1.2;color:var(--nevoa-2);white-space:nowrap}
   .contador-barra>p{font-size:14px;line-height:1.4;color:#C9D3E0;text-wrap:pretty}
-  .chk{scroll-margin-bottom:calc(3 * 14px * 1.4 + 44px + env(safe-area-inset-bottom))}
+  .chk{scroll-margin-bottom:calc(2 * 14px * 1.4 + 44px + env(safe-area-inset-bottom))}
 }
 
 /* Virada. A opacidade cai palavra a palavra; a mais apagada (.52) ainda tem 5:1 de contraste. */
@@ -731,7 +762,6 @@ html:has(dialog[open]){overflow:hidden}
 .g-titulo{font-weight:300;font-size:22px;line-height:1.2;letter-spacing:-.02em;text-wrap:balance}
 .g-titulo strong{font-weight:600}
 .g-card p{font-size:16px;line-height:1.65;color:var(--nevoa)}
-.g-card .g-destaque{margin-top:12px;color:var(--gelo)}
 
 /* FAQ: <details> nativos, o primeiro aberto. Sem fundo próprio: o brilho de baixo do painel da oferta
    continua por trás do começo do FAQ. */
@@ -776,14 +806,15 @@ html body #san-footer-badge{background:#000000!important}
 /* Barra fixa do celular. Escondida por padrão: só o JS a mostra (depois do hero e fora da oferta). */
 .barra{display:none}
 @media (max-width:760px){
-  .barra{position:fixed;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:999px;background:rgba(10,20,36,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -12px rgba(0,0,0,.9);transform:translateY(calc(100% + 24px + env(safe-area-inset-bottom)));visibility:hidden;transition:transform .35s ease,visibility 0s .35s}
+  .barra{position:fixed;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:calc(12px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 10px 10px 16px;border-radius:999px;background:rgba(10,20,36,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -12px rgba(0,0,0,.9);transform:translateY(calc(100% + 24px + env(safe-area-inset-bottom)));visibility:hidden;transition:transform .35s ease,visibility 0s .35s}
   .barra.visivel{transform:none;visibility:visible;transition:transform .35s ease,visibility 0s}
   .barra a{position:relative;isolation:isolate;overflow:hidden;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s cubic-bezier(.2,.8,.2,1)}
   .barra a::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.15));opacity:0;transition:opacity .3s cubic-bezier(.2,.8,.2,1)}
   .barra a:active{box-shadow:inset 0 1px 0 #FFFFFF,0 0 0 rgba(150,180,225,0);transition-duration:.12s}
-  .barra span{font-size:13px;line-height:1.25;color:var(--nevoa)}
+  /* "De Desprezado a Respeitado" cabe em uma linha a partir de 390px; abaixo, quebra equilibrada. */
+  .barra span{font-size:12.5px;line-height:1.25;color:var(--nevoa);text-wrap:balance}
   .barra b{display:block;font-size:16px;font-weight:600;color:#FFFFFF}
-  .barra a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:13.5px;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF}
+  .barra a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:13.5px;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF}
 }
 
 @media (min-width:761px){
@@ -803,7 +834,8 @@ html body #san-footer-badge{background:#000000!important}
   /* Tablet: lado a lado, as linhas ficariam com ~22 caracteres. Empilhados até 1023px. */
   .ep-grid{max-width:680px}
   .ep{padding:36px}
-  .big-quote{margin-top:110px;font-size:clamp(34px,4.4vw,64px)}
+  /* A frase nova tem ~100 letras: com 23ch fica em 4 linhas (com 18ch eram 5). */
+  .big-quote{max-width:23ch;margin-top:110px;font-size:clamp(34px,4.4vw,64px)}
   .oferta{padding:40px 0 80px}
   .stage{height:clamp(380px,50vw,720px)}
   .stage-bg img{top:0;height:100%;object-position:50% 50%}
@@ -954,9 +986,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="shade" aria-hidden="true"></div>
 <div class="hero-inner">
 <div class="hero-copy">
-<h1 class="h1 reveal-saida">Tem homem que só aprende isso depois de ser traído. <strong class="silver">Você pode aprender antes.</strong></h1>
-<p class="lead reveal-saida">Quatro manuais escritos por <b>Marcello Gomes</b> para você perceber a manipulação logo no começo, colocar limite sem pedir desculpa e nunca mais ser o último a saber.</p>
-<div class="reveal-saida"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<h1 class="h1 reveal-saida">Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. <strong class="silver">Chegou a hora de dar um basta nisso.</strong></h1>
+<p class="lead reveal-saida">No meu método De Desprezado a Respeitado, eu te mostro o passo a passo para parar de aceitar humilhações calado, se posicionar com firmeza e recuperar sua voz dentro do relacionamento. Sem brigar com ela, sem implorar atenção e sem viver com medo de perdê-la.</p>
+<div class="reveal-saida"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 <div class="chips">
 <div class="glass reveal-saida">
@@ -977,24 +1009,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="ident-grid">
 <div class="ident-side">
 <span class="pill reveal">Antes de qualquer coisa</span>
-<h2 class="h2 reveal">Marque o que já <strong class="silver">aconteceu com você.</strong></h2>
-<p class="lead reveal">Seja honesto. Ninguém está vendo.</p>
+<h2 class="h2 reveal">Marque o que você já viveu <strong class="silver">dentro do seu relacionamento.</strong></h2>
+<p class="lead reveal">Seja sincero. Ninguém está vendo.</p>
 <div class="counter reveal" aria-live="polite" aria-atomic="true">
 <b class="silver">0 de 7</b>
-<p>Se marcou um, este material foi escrito pensando em você.</p>
+<p>Se marcou uma, preste atenção. É sempre assim que começa.</p>
 </div>
 </div>
 <div class="chks">
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Foi traído e foi o último a saber.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Pagou as contas, esteve presente, fez tudo o que podia. Mesmo assim ouviu que não era suficiente.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Percebeu que estava sendo manipulado só meses depois, quando já tinha cedido em tudo.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Diz "tudo bem" quando não está nada bem, só para evitar mais uma briga.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Tem medo de entrar num relacionamento novo e viver a mesma história de novo.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Sente que as pessoas te respeitam menos do que você merece.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Quer entender relacionamento do jeito que ele é, e não do jeito que contaram para você.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Ela já debochou de você na frente de conhecidos ou da família.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Você tenta conversar e sente que sua opinião não tem importância nenhuma.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Já pediu desculpas sem estar errado, só para evitar outra briga.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Paga as contas, resolve os problemas e, mesmo assim, sente que nunca é suficiente.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Tem medo de dizer não porque não sabe como ela vai reagir.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Vive implorando por atenção, carinho ou consideração.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Sente que deixou de ser o homem que era antes desse relacionamento.</span></button>
+<p class="chk-resto" aria-live="polite"></p>
 <div class="contador-barra" aria-live="polite" aria-atomic="true">
 <span class="cb-num"><b class="silver">0</b> <span>de 7</span></span>
-<p>Se marcou um, este material foi escrito pensando em você.</p>
+<p>Se marcou uma, preste atenção. É sempre assim que começa.</p>
 </div>
 </div>
 </div>
@@ -1004,22 +1037,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
 <div class="virada-grid">
 <div>
-<span class="pill reveal">Pare de aprender pela dor</span>
+<span class="pill reveal">Pare de aceitar tudo calado</span>
 <h2 class="words">
-<span class="reveal">Traições.</span>
-<span class="reveal">Manipulação.</span>
-<span class="reveal">Joguinhos.</span>
-<span class="reveal">Mentiras.</span>
+<span class="reveal">Deboche.</span>
+<span class="reveal">Indiferença.</span>
+<span class="reveal">Humilhações.</span>
+<span class="reveal">Silêncio.</span>
 <span class="silver reveal">Desrespeito.</span>
 </h2>
 </div>
 <div class="virada-texto">
 <div class="body">
-<p class="reveal">Quase todo homem aprende a reconhecer cada uma dessas coisas do jeito mais caro que existe: vivendo.</p>
-<p class="reveal">Um relacionamento errado leva dois, três, cinco anos. Às vezes leva junto o dinheiro, a casa e a confiança que você tinha em si mesmo. Quando você finalmente entende o que aconteceu, já passou.</p>
-<p class="reveal">O Arsenal Homem Blindado reúne o que um homem normalmente só entende depois de vários relacionamentos fracassados. Você lê em poucos dias e começa a usar na próxima conversa.</p>
+<p class="reveal">No começo, você ignorou uma brincadeira. Depois, deixou passar uma grosseria. Começou a evitar discussões, aceitar coisas que não queria e pedir desculpas apenas para manter a paz.</p>
+<p class="reveal">Até que chegou o dia em que você percebeu que já não conseguia se posicionar dentro da própria casa.</p>
+<p class="reveal">Talvez você esteja em um relacionamento há 5, 15 ou até 28 anos. E o mais difícil não é apenas o que está acontecendo.</p>
+<p class="reveal">É não saber como mudar essa situação sem colocar tudo a perder.</p>
+<p class="reveal">O meu método De Desprezado a Respeitado foi desenvolvido para ajudar você a identificar esses padrões, recuperar sua voz e aprender a agir com firmeza e autoridade, sem agressividade e sem abandonar sua dignidade.</p>
 </div>
-<div class="virada-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero aprender antes<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<div class="virada-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 </div>
 </div>
@@ -1102,35 +1137,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="antes-depois" class="antes">
 <div class="wrap">
 <div class="sec-head">
-<span class="pill reveal">Antes e depois</span>
-<h2 class="h2 reveal">Depois do Arsenal, você não olha para um relacionamento <strong class="silver">do mesmo jeito.</strong></h2>
+<span class="pill reveal">A transformação</span>
+<h2 class="h2 reveal">De desprezado a respeitado: <strong class="silver">o que muda quando você recupera sua postura.</strong></h2>
 </div>
 <div class="cmp">
 <div class="col col-a">
-<h3 class="reveal">Antes</h3>
+<h3 class="reveal">Desprezado</h3>
 <ul class="rows">
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Percebe o problema quando ele já cresceu.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Explica, justifica e pede desculpa.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Decide pela emoção e se arrepende depois.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Implora por atenção e valorização.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Deixa qualquer pessoa entrar na sua vida.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Fica bem só quando ela está bem com você.</li>
+<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>É ignorado quando fala.</li>
+<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Aceita piadas que o humilham.</li>
+<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Implora atenção e carinho.</li>
+<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Explica e pede desculpas por tudo.</li>
+<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Decide pelo medo de perdê-la.</li>
+<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Só fica bem quando ela está bem com ele.</li>
 </ul>
 </div>
 <div class="col col-d">
-<h3 class="reveal">Depois</h3>
+<h3 class="reveal">Respeitado</h3>
 <ul class="rows">
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Reconhece o sinal na primeira semana.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Coloca o limite uma vez e sustenta.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Decide com clareza, mesmo quando sente muito.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>É respeitado pela postura, sem precisar pedir.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Escolhe quem entra.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Tem uma paz que não depende do humor de ninguém.</li>
+<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Aprende a se posicionar sem levantar a voz.</li>
+<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Comunica o que não aceita.</li>
+<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Reconhece o próprio valor.</li>
+<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Estabelece limites e os sustenta.</li>
+<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Decide com clareza, mesmo sentindo muito.</li>
+<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Desenvolve uma paz que não depende do humor de ninguém.</li>
 </ul>
 </div>
 </div>
-<p class="quote reveal">Você não controla o que os outros fazem. <strong class="silver">Controla o quanto aquilo te atinge.</strong></p>
-<div class="quote-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<p class="quote reveal">Você não controla o que os outros fazem. <strong class="silver">Mas pode decidir como se posicionar diante da maneira como é tratado.</strong></p>
+<div class="quote-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 </section>
 <section id="autor" class="autor">
@@ -1145,13 +1180,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </picture>
 </div>
 <div>
-<span class="pill">Quem escreveu</span>
-<h2 class="h2">Marcello Gomes fala o que a maioria dos homens <strong class="silver">só ouve tarde demais.</strong></h2>
+<span class="pill">Quem está por trás</span>
+<h2 class="h2">Marcello Gomes fala sobre o que muitos homens <strong class="silver">passam anos aceitando calados.</strong></h2>
 <a class="perfil" href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener">@marcellopgomes<svg width="15" height="15" viewBox="0 0 24 24" role="img" aria-label="verificado"><path d="M12 2l2.4 2.1 3.2-.3.9 3.1 2.8 1.6-1.1 3 1.1 3-2.8 1.6-.9 3.1-3.2-.3L12 22l-2.4-2.1-3.2.3-.9-3.1-2.8-1.6 1.1-3-1.1-3 2.8-1.6.9-3.1 3.2.3z" fill="#3897F0"/><path d="M8 12.2l2.6 2.6L16 9.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="body">
-<p>Marcello Gomes escreve sobre o que a maioria evita falar: posicionamento masculino, traição, ilusão e o preço de viver sem honra. São 419 mil seguidores e mais de 2.700 publicações sobre esses temas.</p>
-<p>Os textos dele já mudaram a forma de enxergar de milhares de homens que estavam perdidos em relacionamentos destrutivos, sem direção e sem respeito próprio.</p>
-<p>A linguagem é direta e o conteúdo é real. Sem papo de autoajuda vazia, só as verdades que ninguém teve coragem de te dizer antes.</p>
+<p>Marcello Gomes aborda temas que muitos homens têm dificuldade de discutir: respeito próprio, posicionamento, relacionamentos, dependência emocional e o medo de perder uma mulher.</p>
+<p>Seu trabalho é ajudar homens a enxergarem situações que antes ignoravam e desenvolverem uma postura mais segura diante dos próprios relacionamentos.</p>
+<p>Com uma linguagem direta, Marcello fala sobre o que significa ser um homem firme sem ser agressivo, estabelecer limites sem humilhar ninguém e assumir o controle das próprias decisões.</p>
 </div>
 <ul class="stats">
 <li class="stat"><b>419 mil</b><span>seguidores</span></li>
@@ -1166,8 +1201,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
 <div class="sec-head">
 <span class="pill reveal">Direto da DM</span>
-<h2 class="h2 reveal">O que os homens escrevem <strong class="silver">depois de ouvir o Marcello.</strong></h2>
-<p class="sec-sub reveal">Mensagens reais, enviadas no Instagram. Nomes e fotos cobertos para proteger quem escreveu.</p>
+<h2 class="h2 reveal">O que os homens dizem depois de começar a enxergar <strong class="silver">seus relacionamentos de outra maneira.</strong></h2>
+<p class="sec-sub reveal">Mensagens reais recebidas por Marcello Gomes no Instagram, de homens que encontraram em seus conteúdos novas perspectivas sobre posicionamento, respeito próprio e relacionamentos.</p>
 </div>
 </div>
 <!-- Prints: originais em assets/img/prints/ (já tratados, com o cabeçalho do Instagram borrado). Para trocar ou
@@ -1211,29 +1246,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="wrap">
 <div class="sec-head">
 <span class="pill reveal">Para quem é</span>
-<h2 class="h2 reveal">Antes de comprar, <strong class="silver">leia isto.</strong></h2>
+<h2 class="h2 reveal">Antes de começar, <strong class="silver">leia isto.</strong></h2>
 </div>
 <div class="ep-grid">
 <div class="ep ep-no reveal">
 <h3>Não é para você se</h3>
 <ul>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Prefere continuar sendo enganado a encarar o que está acontecendo.</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Procura uma frase mágica que resolva tudo sem esforço.</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Culpa todo mundo pelos próprios erros.</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Não quer assumir a responsabilidade pela própria vida.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Procura uma frase mágica que resolva todos os problemas.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Acredita que respeito significa gritar, ameaçar ou intimidar.</li>
+<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Não está disposto a rever suas próprias atitudes.</li>
 </ul>
 </div>
 <div class="ep ep-yes reveal">
 <h3>É para você se</h3>
 <ul>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer crescer como homem, como profissional e como parceiro.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Já entendeu que respeito não se pede. Se conquista com postura e atitude.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Sabe que confiança se constrói com conhecimento e disciplina, e não aparece por acaso.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Prefere aprender agora a se arrepender depois.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Está cansado de ser ignorado ou diminuído dentro do relacionamento.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer parar de implorar por atenção e carinho.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Deseja aprender a colocar limites e sustentar suas decisões.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer recuperar sua voz mesmo depois de anos de casamento.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Deseja ser um homem mais firme, seguro e emocionalmente independente.</li>
+<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer construir uma relação com respeito, reciprocidade e dignidade.</li>
 </ul>
 </div>
 </div>
-<p class="big-quote reveal">Conhecimento custa muito menos <strong class="silver">do que arrependimento.</strong></p>
+<p class="big-quote reveal">Você não precisa deixar de ser um homem bom. <strong class="silver">Precisa parar de acreditar que ser bom significa aceitar tudo.</strong></p>
 </div>
 </section>
 <section id="oferta" class="oferta">
@@ -1300,22 +1336,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <text x="100" y="140" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="300" font-size="92" fill="url(#medalha-texto)">7</text>
 <text x="100" y="172" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="500" font-size="17" fill="#B7C7DC">dias</text>
 </svg>
-<h3 class="g-titulo">Leia por 7 dias. <strong class="silver">Se não valer, seu dinheiro volta.</strong></h3>
+<h3 class="g-titulo">Você tem 7 dias para conhecer o conteúdo. <strong class="silver">Se não fizer sentido para você, seu dinheiro volta.</strong></h3>
 </div>
-<p>Se em até 7 dias você achar que não valeu, peça o reembolso pela própria Eduzz e receba o valor inteiro de volta. Sem precisar me explicar nada.</p>
-<p class="g-destaque">Eu faço isso porque sei o que está nesses manuais.</p>
+<p>Acesse De Desprezado a Respeitado, conheça as orientações e avalie se o conteúdo atende às suas expectativas.</p>
+<p>Caso não fique satisfeito, você poderá solicitar o reembolso dentro do prazo de garantia, seguindo as condições informadas no checkout.</p>
 </div>
 <div class="faq-titulo">
 <span class="pill reveal">Dúvidas</span>
 <h2 class="h2 reveal">Perguntas que chegam <strong class="silver">toda semana.</strong></h2>
 </div>
 <div class="qa">
-<details class="reveal" open><summary>Em que formato vem o material?</summary><p>Os quatro manuais são em PDF. Você lê no celular, no computador ou imprime, se preferir papel.</p></details>
-<details class="reveal"><summary>Quanto tempo leva para chegar?</summary><p>O acesso vai para o seu e-mail assim que o pagamento é aprovado. No Pix e no cartão, isso leva poucos minutos.</p></details>
-<details class="reveal"><summary>Serve para quem está casado ou namorando?</summary><p>Serve. Boa parte do conteúdo é sobre postura e limite dentro do relacionamento que você já tem, e não só sobre escolher a próxima pessoa.</p></details>
-<details class="reveal"><summary>Acabei de passar por uma traição. Vale a pena ler agora?</summary><p>Vale. É justamente quando você está tentando entender o que aconteceu, e quando corre mais risco de repetir a mesma escolha.</p></details>
-<details class="reveal"><summary>Quanto tempo leva para ler tudo?</summary><p>Dá para ler os quatro em poucos dias. O Arsenal Homem Blindado, que é o principal, dá para ler numa noite.</p></details>
-<details class="reveal"><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o reembolso pela Eduzz e recebe tudo de volta.</p></details>
+<details class="reveal" open><summary>Em que formato recebo o conteúdo?</summary><p>O material é digital, em PDF. Você pode acessar pelo celular, computador ou tablet.</p></details>
+<details class="reveal"><summary>Quanto tempo leva para receber?</summary><p>O acesso é disponibilizado após a confirmação do pagamento, conforme as instruções da plataforma.</p></details>
+<details class="reveal"><summary>Serve para quem está casado há muitos anos?</summary><p>Sim. O conteúdo aborda situações vividas por homens em casamentos longos, inclusive a dificuldade de recuperar sua voz depois de anos de convivência.</p></details>
+<details class="reveal"><summary>Preciso terminar meu relacionamento para recuperar meu respeito?</summary><p>Não. Você vai aprender a reconhecer os problemas, estabelecer limites e avaliar se existe disposição dos dois lados para reconstruir a relação.</p></details>
+<details class="reveal"><summary>Minha esposa vai voltar a me respeitar?</summary><p>Você aprenderá a fortalecer sua postura e comunicar limites com clareza. A reação de outra pessoa não pode ser garantida, mas sua maneira de agir pode começar a mudar.</p></details>
+<details class="reveal"><summary>Quanto tempo tenho para colocar em prática?</summary><p>Você pode começar imediatamente e seguir o plano de atividades de 30 dias no seu próprio ritmo.</p></details>
+<details class="reveal"><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o reembolso pela própria Eduzz e receber o valor de volta.</p></details>
 </div>
 </div>
 </div>
@@ -1323,26 +1360,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="fechamento" class="fecho">
 <div class="wrap">
 <div class="fecho-selo"><svg class="fecho-escudo reveal" width="34" height="40" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="url(#prata-escudo)" stroke-width="10" stroke-linejoin="round"/></svg></div>
-<h2 class="h2 reveal">Quanto vale evitar um relacionamento que pode <strong class="silver">custar anos da sua vida?</strong></h2>
+<h2 class="h2 reveal">Quantos anos mais você vai passar tentando salvar seu relacionamento <strong class="silver">enquanto perde o respeito por si mesmo?</strong></h2>
 <div class="body">
-<p class="reveal">Você pode continuar aprendendo do jeito que a maioria aprende. Errando, sofrendo e entendendo tudo quando já passou.</p>
-<p class="reveal">Ou pode ler em poucos dias o que outros homens levaram anos e alguns relacionamentos para descobrir.</p>
-<p class="reveal">São 12x de R$&nbsp;10,03. Com 7 dias para devolver se não valer.</p>
+<p class="reveal">Você já tentou agradar mais.</p>
+<p class="reveal">Já ficou calado para evitar discussões.</p>
+<p class="reveal">Já pediu desculpas por coisas que não fez.</p>
+<p class="reveal">E, mesmo assim, continua sentindo que sua voz perdeu importância dentro do relacionamento.</p>
+<p class="reveal">A mudança não começa quando sua esposa decide agir diferente.</p>
+<p class="reveal">Começa quando você aprende a reconhecer seu valor, estabelecer limites e tomar decisões sem abandonar a si mesmo.</p>
+<p class="reveal">Em De Desprezado a Respeitado, você encontra um passo a passo para começar essa transformação.</p>
 </div>
-<div class="fecho-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
-<p class="motto">Torne-se o homem que você <strong class="silver">respeitaria.</strong></p>
+<div class="fecho-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<p class="motto">Torne-se um homem que você mesmo <strong class="silver">respeitaria.</strong></p>
 </div>
 </section>
 </main>
 <footer class="foot">
 <div class="wrap">
-<p>Arsenal Homem Blindado, por Marcello Gomes.</p>
+<p>De Desprezado a Respeitado, por Marcello Gomes.</p>
 <p class="foot-links"><a href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener">Instagram</a></p>
 </div>
 </footer>
 <div class="barra" id="barra">
-<span>Arsenal Homem Blindado<b>12x de R$&nbsp;10,03</b></span>
-<a href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero o Arsenal</a>
+<span>De Desprezado a Respeitado<b>12x de R$&nbsp;10,03</b></span>
+<a href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado</a>
 </div>
 <dialog class="lightbox" aria-label="Galeria dos prints">
 <button type="button" class="lb-fechar" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -1441,23 +1482,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 
 // Checklist da #identificacao. Sem JS, os botões ficam parados e o contador mostra a frase de 1 a 2.
-// Dois contadores com o mesmo texto: o bloco do desktop (.counter) e a barra do celular (.contador-barra).
+// Dois contadores: o bloco do desktop (.counter) mostra a frase inteira; a barra do celular (.contador-barra)
+// mostra só a primeira frase do estado de 3 ou mais, e o restante aparece logo abaixo do último item
+// (.chk-resto, aria-live), só com 3 ou mais marcados.
 (function () {
   var botoes = document.querySelectorAll('.chk');
   var numero = document.querySelector('.counter b');
   var frase = document.querySelector('.counter p');
   var numeroBarra = document.querySelector('.cb-num b');
   var fraseBarra = document.querySelector('.contador-barra > p');
+  var resto = document.querySelector('.chk-resto');
   var FRASES = [
-    'Marque com calma. A maioria dos homens se reconhece em pelo menos um.',
-    'Se marcou um, este material foi escrito pensando em você.',
-    'Você já pagou caro demais por esse aprendizado. Está na hora de parar de aprender pela dor.'
+    'Quantas dessas situações você marcou?',
+    'Se marcou uma, preste atenção. É sempre assim que começa.',
+    'Você vive pisando em ovos para evitar outra briga.'
   ];
+  var RESTO = 'Engole o que sente, aceita situações que te machucam e vai deixando suas próprias vontades de lado. E o pior? De tanto tentar não perder seu relacionamento, você pode estar perdendo a si mesmo.';
   function atualizar() {
     var n = document.querySelectorAll('.chk[aria-pressed="true"]').length;
+    var estado = n === 0 ? 0 : n < 3 ? 1 : 2;
     numero.textContent = n + ' de ' + botoes.length;
-    frase.textContent = fraseBarra.textContent = FRASES[n === 0 ? 0 : n < 3 ? 1 : 2];
     numeroBarra.textContent = n;
+    fraseBarra.textContent = FRASES[estado];
+    frase.textContent = estado === 2 ? FRASES[2] + ' ' + RESTO : FRASES[estado];
+    // Só muda quando o estado muda, para o leitor de tela não repetir o trecho a cada toque.
+    var novo = estado === 2 ? RESTO : '';
+    if (resto.textContent !== novo) resto.textContent = novo;
   }
   botoes.forEach(function (b) {
     b.addEventListener('click', function () {

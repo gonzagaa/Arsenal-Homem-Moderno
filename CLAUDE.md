@@ -1,6 +1,8 @@
-# Arsenal Homem Blindado: landing page
+# De Desprezado a Respeitado: landing page
 
-Landing page de venda do Arsenal Homem Blindado, um combo de quatro manuais digitais (PDF) de Marcello Gomes, criador com 419 mil seguidores no Instagram que fala sobre posicionamento masculino, traição, manipulação e honra.
+Landing page de venda do De Desprezado a Respeitado, o método de Marcello Gomes (um livro digital em PDF, com 13 capítulos, 8 dossiês e um plano de ação de 30 dias) para o homem que é desrespeitado dentro do próprio relacionamento parar de aceitar humilhações calado e recuperar sua voz. Marcello é criador com 419 mil seguidores no Instagram e fala sobre posicionamento masculino, respeito próprio e relacionamentos.
+
+O produto substituiu o Arsenal Homem Blindado (combo de quatro manuais), que deixou de existir. O repositório e a pasta mantêm o nome antigo. Domínio: `https://nunca-mais-seja-desprezado.com.br/`.
 
 Público: homens adultos, a maioria chegando pelo celular, vindos do Instagram dele ou de anúncios da Meta. Produto sério, para homens sérios. A página precisa parecer cara, sóbria e feita por estúdio. Se parecer template, página gerada por IA ou "app de academia", falhou.
 
@@ -76,19 +78,19 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 1. `#hero`: foto de fundo, H1, subheadline, botão, dois cards de vidro (419 mil seguidores, +12 mil homens)
 2. `#identificacao`: checklist interativo de 7 itens com contador
 3. `#virada`: cinco palavras empilhadas e o texto
-4. `#sistema`: as quatro brechas e os quatro manuais (Arsenal em destaque largo, os outros três em cards com a cena)
-5. `#antes-depois`
+4. `#conteudo` (substitui o `#sistema`, na rodada B da troca de produto): capa do livro à esquerda e os 8 aprendizados à direita (no celular, a capa primeiro), destaque "13 capítulos · 8 dossiês · Plano de ação de 30 dias" e botão. Até a rodada B, a página ainda tem o `#sistema` antigo.
+5. `#antes-depois`: colunas "Desprezado" e "Respeitado"
 6. `#autor`
 7. `#resultados`: 8 prints reais da DM (`assets/img/prints/`, com o cabeçalho do Instagram borrado no próprio print); no desktop, carrossel contínuo de borda a borda
 8. `#para-quem`
-9. `#oferta`: os quatro livros em pé sobre a mesa (o palco sobe por trás da frase final do `#para-quem`) + painel de preço
+9. `#oferta`: um único livro em pé sobre a mesa, com a capa nova (`assets/img/capa-desprezado.jpg`; o palco sobe por trás da frase final do `#para-quem`) + painel de preço com o que o comprador recebe (rodada B; até lá, a página ainda tem os quatro livros antigos)
 10. `#faq`: a garantia num card de vidro (`id="garantia"`) e as perguntas. No desktop, a garantia fica na coluna esquerda, abaixo do título; no celular, é o primeiro item, logo depois da oferta.
 11. `#fechamento` + rodapé
 12. Barra fixa no celular
 
 ## Checkout, rastreamento e dados
 
-- Todo botão de compra aponta para `https://chk.eduzz.com/7WXGDYN20A`.
+- Todo botão de compra aponta para `https://chk.eduzz.com/7WXGDYN20A`. Provisório: é o checkout do produto antigo e muda quando o De Desprezado a Respeitado estiver cadastrado na Eduzz (ver `PENDENCIAS.md`).
 - Um script curto repassa para o link do checkout todos os parâmetros que chegaram na URL da página (`utm_*`, `src`, `sck`, `fbclid` e o que mais vier), para o tráfego pago não perder a origem da venda.
 - Google Tag Manager `GTM-5KX5J7J6` no `<head>` e o `<noscript>` logo após o `<body>`, como na página atual.
 - Pixel da Meta `1434833234924777`. Antes de instalar o código base, perguntar ao desenvolvedor se o pixel já dispara dentro do GTM. Se sim, não instalar de novo (PageView duplicado estraga a otimização das campanhas).
@@ -141,7 +143,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 
 ## SEO e compartilhamento
 
-- `<title>` e `meta description` a partir da headline. Open Graph e Twitter Card com uma imagem 1200x630 gerada a partir do hero desktop (com o H1 por cima). Favicon com o escudo. `canonical` para `https://arsenal-homem-blindado.com.br/`.
+- `<title>`, `meta description` e as tags de compartilhamento estão no topo do `docs/copy.md`. Open Graph e Twitter Card com uma imagem 1200x630 gerada a partir do hero desktop (com o H1 por cima). Favicon com o escudo. `canonical`, `og:url`, `og:image` e `twitter:image` em `https://nunca-mais-seja-desprezado.com.br/`.
 
 ## Como trabalhar neste projeto
 
