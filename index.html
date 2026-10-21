@@ -57,8 +57,8 @@ fbq('track', 'PageView');
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#01050F">
 <meta name="color-scheme" content="dark">
-<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(max-width: 760px)" imagesrcset="assets/img/opt/hero-mobile-480.avif 480w, assets/img/opt/hero-mobile-720.avif 720w, assets/img/opt/hero-mobile-941.avif 941w" imagesizes="100vw">
-<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(min-width: 761px)" imagesrcset="assets/img/opt/hero-desktop-960.avif 960w, assets/img/opt/hero-desktop-1280.avif 1280w, assets/img/opt/hero-desktop-1672.avif 1672w" imagesizes="max(100vw, clamp(1137px, 177.7svh, 1635px))">
+<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(max-width: 760px)" imagesrcset="assets/img/opt/hero-mobile-640.avif 640w, assets/img/opt/hero-mobile-828.avif 828w, assets/img/opt/hero-mobile-1080.avif 1080w, assets/img/opt/hero-mobile-1290.avif 1290w" imagesizes="max(100vw, 56.3svh)">
+<link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(min-width: 761px)" imagesrcset="assets/img/opt/hero-desktop-1280.avif 1280w, assets/img/opt/hero-desktop-1600.avif 1600w, assets/img/opt/hero-desktop-1920.avif 1920w, assets/img/opt/hero-desktop-2560.avif 2560w, assets/img/opt/hero-desktop-3200.avif 3200w" imagesizes="max(100vw, clamp(1137px, 177.7svh, 1635px))">
 <!-- Geist local: arquivo variável, subset latino (o mesmo que o Google Fonts serve), licença em assets/fonts/OFL.txt. -->
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/geist-latin.woff2" crossorigin>
 <style>
@@ -251,10 +251,14 @@ html.lenis{scroll-behavior:auto!important}
 /* Desktop: altura da tela entre 640 e 920px (920 é o hero do mockup).
    Enquadramento da foto (--hero-foto-pos) e degradê da esquerda (--hero-sombra-esq) ficam em variáveis,
    uma por faixa de largura, logo abaixo. Para outra foto, ajuste só elas.
-   Na foto atual (1672x941): rosto de x=1045 a 1290 e de y=95 a 490; decanter e copo de x=570 a 757. */
+   Na foto atual (4562x2566, a mesma foto do celular ampliada para os lados): rosto, do cabelo à barba,
+   de x=2835 a 3390 e de y=380 a 1220 (centro em x=3112); lanternas acesas de x=1290 a 2370 e y=410 a 780. */
 @media (min-width:761px){
   .hero{--hero-h:920px;display:flex;align-items:center;min-height:var(--hero-h);padding:48px 0;background:var(--abismo-hero)}
   .hero-bg,.shade{height:100%}
+  /* .hero-bg é contêiner de tamanho: nas fórmulas do enquadramento, 100cqh é a altura real do hero
+     (o texto pode deixá-lo mais alto que --hero-h) e 100cqw a largura da foto na tela. */
+  .hero-bg{container-type:size}
   .hero-bg img{object-position:var(--hero-foto-pos)}
   .shade{background:var(--hero-sombra-esq),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
   .hero-inner{width:100%;gap:36px;padding:0 0 0 clamp(24px,6.5vw,128px)}
@@ -265,12 +269,14 @@ html.lenis{scroll-behavior:auto!important}
 @supports (height:100svh){
   @media (min-width:761px){.hero{--hero-h:clamp(640px,100svh,920px)}}
 }
-/* Tablet (761 a 1023px): a foto fica mais estreita que a tela; o rosto (centro em x=1165) fica centrado
-   no espaço à direita da coluna de texto (~72vw), sem a foto descobrir a borda. */
+/* Tablet (761 a 1023px): a foto fica mais estreita que a tela; o rosto (centro em x=3112 de 2566 de altura,
+   1,213 vezes a altura) fica centrado no espaço à direita da coluna de texto (~72vw), sem a foto descobrir a borda. */
 @media (min-width:761px) and (max-width:1023px){
   .hero{
-    --hero-foto-pos:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(72vw - 1.238 * var(--hero-h)), 0px) 30%;
-    --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.86) 0%,rgba(1,5,15,.8) 30%,rgba(1,5,15,.45) 46%,rgba(1,5,15,0) 58%);
+    --hero-foto-pos:clamp(calc(100cqw - max(100cqw, 177.7cqh)), calc(72cqw - 121.3cqh), 0px) 30%;
+    /* O texto vai até ~45% da largura e a ponta da poltrona (couro com reflexo) fica atrás do fim do H1:
+       escuro até 44%, sumindo até 58% (o rosto começa em ~59%). */
+    --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.88) 0%,rgba(1,5,15,.84) 32%,rgba(1,5,15,.72) 44%,rgba(1,5,15,.3) 51%,rgba(1,5,15,0) 58%);
   }
 }
 /* Desktop (a partir de 1024px): H1 em 3 linhas, coluna de texto mais larga e mais para dentro. */
@@ -289,10 +295,11 @@ html.lenis{scroll-behavior:auto!important}
   .hero .lead{max-width:28.5em;font-size:clamp(18px,1.3vw,21px)}
 }
 /* 1024 a 1366px: a foto presa à esquerda (0%) deixa o rosto o mais à direita possível; quando isso
-   cortaria o rosto na borda, ela recua só o necessário para o rosto ficar 24px dentro da tela. */
+   cortaria o rosto na borda, ela recua só o necessário para o rosto (borda direita em x=3390, 1,321 vezes
+   a altura) ficar 24px dentro da tela. */
 @media (min-width:1024px) and (max-width:1366px){
   .hero{
-    --hero-foto-pos:clamp(calc(100vw - max(100vw, 1.777 * var(--hero-h))), calc(100vw - 24px - 1.371 * var(--hero-h)), 0px) 30%;
+    --hero-foto-pos:clamp(calc(100cqw - max(100cqw, 177.7cqh)), calc(100cqw - 24px - 132.1cqh), 0px) 30%;
     /* Aqui o decanter cai atrás do fim da subheadline: elipse mais escura (5,3:1 ou mais medido). */
     --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.42) 0%,rgba(1,5,15,.4) 36%,rgba(1,5,15,.3) 54%,rgba(1,5,15,0) 70%),radial-gradient(ellipse 46% 58% at 36% 56%,rgba(1,5,15,.8),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 38% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
   }
@@ -935,12 +942,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <main>
 <section id="hero" class="hero">
 <picture class="hero-bg">
-<source media="(max-width: 760px)" type="image/avif" srcset="assets/img/opt/hero-mobile-480.avif 480w, assets/img/opt/hero-mobile-720.avif 720w, assets/img/opt/hero-mobile-941.avif 941w" sizes="100vw" width="941" height="1672">
-<source media="(max-width: 760px)" type="image/webp" srcset="assets/img/opt/hero-mobile-480.webp 480w, assets/img/opt/hero-mobile-720.webp 720w, assets/img/opt/hero-mobile-941.webp 941w" sizes="100vw" width="941" height="1672">
-<source media="(max-width: 760px)" srcset="assets/img/opt/hero-mobile-480.jpg 480w, assets/img/opt/hero-mobile-720.jpg 720w, assets/img/opt/hero-mobile-941.jpg 941w" sizes="100vw" width="941" height="1672">
-<source type="image/avif" srcset="assets/img/opt/hero-desktop-960.avif 960w, assets/img/opt/hero-desktop-1280.avif 1280w, assets/img/opt/hero-desktop-1672.avif 1672w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="1672" height="941">
-<source type="image/webp" srcset="assets/img/opt/hero-desktop-960.webp 960w, assets/img/opt/hero-desktop-1280.webp 1280w, assets/img/opt/hero-desktop-1672.webp 1672w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="1672" height="941">
-<img src="assets/img/opt/hero-desktop-1280.jpg" srcset="assets/img/opt/hero-desktop-960.jpg 960w, assets/img/opt/hero-desktop-1280.jpg 1280w, assets/img/opt/hero-desktop-1672.jpg 1672w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="1672" height="941" fetchpriority="high" alt="Marcello Gomes sentado em poltrona de couro, no escritório com luz azul">
+<!-- A foto é cortada pela altura (object-fit: cover): o sizes é a largura exibida, não a da tela.
+     Celular: max(100vw, 56.3svh) (proporção 1290x2292). Desktop: max(100vw, 1,777 x a altura do hero). -->
+<source media="(max-width: 760px)" type="image/avif" srcset="assets/img/opt/hero-mobile-640.avif 640w, assets/img/opt/hero-mobile-828.avif 828w, assets/img/opt/hero-mobile-1080.avif 1080w, assets/img/opt/hero-mobile-1290.avif 1290w" sizes="max(100vw, 56.3svh)" width="1290" height="2292">
+<source media="(max-width: 760px)" type="image/webp" srcset="assets/img/opt/hero-mobile-640.webp 640w, assets/img/opt/hero-mobile-828.webp 828w, assets/img/opt/hero-mobile-1080.webp 1080w, assets/img/opt/hero-mobile-1290.webp 1290w" sizes="max(100vw, 56.3svh)" width="1290" height="2292">
+<source media="(max-width: 760px)" srcset="assets/img/opt/hero-mobile-640.jpg 640w, assets/img/opt/hero-mobile-828.jpg 828w, assets/img/opt/hero-mobile-1080.jpg 1080w, assets/img/opt/hero-mobile-1290.jpg 1290w" sizes="max(100vw, 56.3svh)" width="1290" height="2292">
+<source type="image/avif" srcset="assets/img/opt/hero-desktop-1280.avif 1280w, assets/img/opt/hero-desktop-1600.avif 1600w, assets/img/opt/hero-desktop-1920.avif 1920w, assets/img/opt/hero-desktop-2560.avif 2560w, assets/img/opt/hero-desktop-3200.avif 3200w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="3200" height="1800">
+<source type="image/webp" srcset="assets/img/opt/hero-desktop-1280.webp 1280w, assets/img/opt/hero-desktop-1600.webp 1600w, assets/img/opt/hero-desktop-1920.webp 1920w, assets/img/opt/hero-desktop-2560.webp 2560w, assets/img/opt/hero-desktop-3200.webp 3200w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="3200" height="1800">
+<img src="assets/img/opt/hero-desktop-1600.jpg" srcset="assets/img/opt/hero-desktop-1280.jpg 1280w, assets/img/opt/hero-desktop-1600.jpg 1600w, assets/img/opt/hero-desktop-1920.jpg 1920w, assets/img/opt/hero-desktop-2560.jpg 2560w, assets/img/opt/hero-desktop-3200.jpg 3200w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="3200" height="1800" fetchpriority="high" alt="Marcello Gomes sentado em poltrona de couro, no escritório com luz azul">
 </picture>
 <div class="shade" aria-hidden="true"></div>
 <div class="hero-inner">

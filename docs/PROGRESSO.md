@@ -2,7 +2,7 @@
 
 Leia este arquivo antes de qualquer outra coisa numa sessão nova. Ele registra as etapas aprovadas e as decisões aprovadas nos relatórios que não estão no `CLAUDE.md` nem no `docs/PROMPTS.md`. Essas decisões vieram depois do mockup: quando discordarem dele, valem as decisões.
 
-Atualizado em 2026-10-20.
+Atualizado em 2026-10-21.
 
 ## Situação
 
@@ -36,6 +36,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Prints reais e carrossel da #resultados | aprovada |
 | Destaque, setas e galeria da #resultados | aprovada |
 | Rastreamento sem InitiateCheckout, checkout em nova guia e efeito dos botões de compra | aprovada |
+| Troca das imagens do hero (qualidade e banner novo do desktop) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -310,6 +311,32 @@ Só no celular a barra do contador; FAQ, garantia e rodapé valem para todas as 
   - `:active`, em todos os aparelhos: o anel vai a `scale(.98)` e perde brilho (120ms); o botão da barra fixa também encolhe. Um ouvinte de `touchstart` vazio (passivo) no documento faz o Safari do iPhone e o navegador interno do Instagram aplicarem o `:active`.
   - Sem movimento: só o clareamento e o brilho mudam.
 - `docs/PROMPTS.md`, etapa 9: o pixel ficou "com PageView, sem InitiateCheckout no clique".
+
+### Troca das imagens do hero (2026-10-21)
+
+- Originais novos, a pedido da cliente: `hero-mobile.png` com 1882x3344 (a mesma foto, ampliada) e `hero-desktop.png` com 4562x2566, um banner feito a partir da foto do celular, ampliada para os lados. Regra no `CLAUDE.md`: as duas versões usam a mesma foto do Marcello.
+- Na foto do desktop: rosto (cabelo à barba, com as orelhas) de x=2835 a 3390 e y=380 a 1220, centro em x=3112; lanternas acesas de x=1290 a 2370 e y=410 a 780 (atrás da coluna de texto).
+- Qualidade só do hero (perfil `HERO` no `scripts/otimizar-imagens.mjs`): AVIF 68 em 10 bits (topo da faixa 62 a 68 pedida; medido antes: o 1290 do celular vai de 65 KB em 62 a 85 KB em 68), WebP 82 e JPG 82 (antes 84, a pedido). O retrato do autor continua no perfil `RETRATO`.
+- Larguras: celular 640, 828, 1080 e 1290; desktop 1280, 1600, 1920, 2560 e 3200. Os derivados antigos (480, 720, 941, 960 e 1672) foram apagados.
+- `sizes` do celular: `max(100vw, 56.3svh)` (a foto é cortada pela altura e aparece mais larga que a tela). Desktop sem mudança (`max(100vw, clamp(1137px, 177.7svh, 1635px))`, a proporção é a mesma). Preload com as mesmas larguras e `sizes`; o hero é baixado uma vez só.
+- Pesos: 390px com densidade 3 carrega `hero-mobile-1290.avif` (84,9 KB) e a primeira tela tem 244 KB sem o rastreio; 1440px carrega `hero-desktop-1600.avif` (42,3 KB) com densidade 1 e `hero-desktop-3200.avif` (117,5 KB) com densidade 2.
+- Enquadramento do desktop pela altura real do hero: `.hero-bg` é contêiner de tamanho (`container-type: size`) e as fórmulas usam `cqw`/`cqh`. Antes usavam `--hero-h` (a altura mínima): em 800x640 o texto deixava o hero com 788px e o rosto passava da borda direita. Tablet: rosto centrado em 72cqw (`72cqw - 121.3cqh`); 1024 a 1366px: rosto 24px dentro da tela (`100cqw - 24px - 132.1cqh`).
+- Degradê do tablet mais escuro entre 30% e 52% da largura (o canto da poltrona, com reflexo, fica atrás do fim do H1; antes 2,81:1). A partir de 1024px o degradê não mudou: as lanternas ficam esmaecidas atrás do H1 com contraste de sobra.
+- Medido (percentil 99 do fundo, com o grão; trecho prateado pela cor #9FB2CB):
+
+| Tela | H1 | Subheadline | Cards (legenda) | Rosto até a borda direita | Texto até o rosto |
+| --- | --- | --- | --- | --- | --- |
+| 768x1024 | 5,27:1 | 9,24:1 | 7,12:1 | 116px | 112px |
+| 800x640 | 5,02:1 | 8,70:1 | 7,24:1 | 139px | 135px |
+| 1024x768 | 5,08:1 | 9,77:1 | 7,18:1 | 24px | 166px |
+| 1280x720 | 5,98:1 | 10,04:1 | 7,20:1 | 329px | 61px |
+| 1280x800 | 7,34:1 | 10,04:1 | 7,20:1 | 223px | 149px |
+| 1440x900 | 8,09:1 | 10,00:1 | 7,24:1 | 251px | 168px |
+| 1920x1080 | 8,01:1 | 10,04:1 | 7,18:1 | 493px | 236px |
+
+- Celular: mesmo layout (H1, subheadline, botão e cards nas mesmas posições); só a imagem mudou.
+- `og.jpg` regenerada com a foto nova: contraste mínimo de 8,94:1 (antes 3,9:1). `scripts/gerar-og.mjs` agora reduz a foto a 2400px antes de embutir (o PNG de 12,7 MB estourava o tempo do Chrome) e usa a Geist local (não precisa mais de internet).
+- Nesta máquina, `npm install --prefix scripts` e `npm run ... --prefix scripts` ignoram o `--prefix`: rode `npm install` dentro de `scripts/` e os scripts com `node scripts/<script>.mjs`.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

@@ -6,12 +6,13 @@
 //   npm run og --prefix scripts
 //
 // Usa o Chrome instalado na máquina (puppeteer-core). Se ele não estiver no caminho padrão,
-// informe com a variável CHROME_PATH. Precisa de internet para baixar a Geist do Google Fonts.
+// informe com a variável CHROME_PATH. A Geist vem do arquivo local (assets/fonts), sem internet.
 
 import { readFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer-core';
+import sharp from 'sharp';
 
 const RAIZ = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SAIDA = path.join(RAIZ, 'assets', 'img', 'og.jpg');
@@ -28,12 +29,15 @@ let chrome;
 for (const c of candidatos) { try { await access(c); chrome = c; break; } catch {} }
 if (!chrome) throw new Error('Chrome não encontrado. Informe o caminho em CHROME_PATH.');
 
-const foto = (await readFile(path.join(RAIZ, 'assets', 'img', 'hero-desktop.png'))).toString('base64');
+// A foto original é grande demais para ir inteira em base64 (o Chrome estoura o tempo):
+// vai reduzida a 2400px de largura, o dobro do card.
+const foto = (await sharp(path.join(RAIZ, 'assets', 'img', 'hero-desktop.png')).resize({ width: 2400 }).jpeg({ quality: 92 }).toBuffer()).toString('base64');
+const geist = (await readFile(path.join(RAIZ, 'assets', 'fonts', 'geist-latin.woff2'))).toString('base64');
 
 // O mesmo H1 do index.html (copy, seção 1).
 const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;500;600&display=block">
 <style>
+@font-face{font-family:'Geist';font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,${geist}) format('woff2')}
 *{margin:0;box-sizing:border-box}
 body{width:1200px;height:630px;overflow:hidden;background:#01050F;font-family:'Geist',sans-serif;-webkit-font-smoothing:antialiased}
 .foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:0% 30%}
@@ -44,7 +48,7 @@ body{width:1200px;height:630px;overflow:hidden;background:#01050F;font-family:'G
 h1{font-weight:300;font-size:56px;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;color:#E9EEF5}
 h1 strong{font-weight:600;background:linear-gradient(180deg,#FFFFFF 0%,#D9E2EE 45%,#9FB2CB 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 </style></head><body>
-<img class="foto" src="data:image/png;base64,${foto}" alt="">
+<img class="foto" src="data:image/jpeg;base64,${foto}" alt="">
 <div class="sombra"></div>
 <div class="texto"><span class="pill">Arsenal Homem Blindado</span>
 <h1>Tem homem que só aprende isso depois de ser traído. <strong>Você pode aprender antes.</strong></h1></div>
@@ -55,8 +59,8 @@ const page = await browser.newPage();
 await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
 await page.setContent(html, { waitUntil: 'networkidle0' });
 await page.evaluate(() => document.fonts.ready);
-const geist = await page.evaluate(() => document.fonts.check('300 56px Geist') && document.fonts.check('600 56px Geist'));
-if (!geist) throw new Error('A Geist não carregou (sem internet?). A imagem não foi gerada.');
+const carregou = await page.evaluate(() => document.fonts.check('300 56px Geist') && document.fonts.check('600 56px Geist'));
+if (!carregou) throw new Error('A Geist não carregou. A imagem não foi gerada.');
 await page.screenshot({ path: SAIDA, type: 'jpeg', quality: 86 });
 await browser.close();
 console.log('assets/img/og.jpg gerado (1200x630).');

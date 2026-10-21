@@ -23,8 +23,10 @@ const DESTINO = path.join(ORIGEM, 'opt');
 // Larguras em px. Cada uma cobre o tamanho da imagem na tela em 1x, 2x e 3x.
 // Uma largura maior que o original vira o próprio original: nunca amplia.
 const LARGURAS = {
-  'hero-mobile': [480, 720, 941],
-  'hero-desktop': [960, 1280, 1672],
+  // Hero: a foto é cortada pela altura (object-fit: cover), então aparece mais larga que a tela.
+  // Celular até 1290 (iPhone com densidade 3); desktop até 3200 (1440 a 1600px com densidade 2).
+  'hero-mobile': [640, 828, 1080, 1290],
+  'hero-desktop': [1280, 1600, 1920, 2560, 3200],
   'cena-arsenal': [480, 800, 1280],
   'cena-traicao': [480, 760, 1040],
   'cena-iluda': [480, 760, 1040],
@@ -52,7 +54,14 @@ const RETRATO = {
   webp: { quality: 84, effort: 6, smartSubsample: true },
   jpg: { quality: 84, mozjpeg: true, progressive: true },
 };
-const RETRATOS = new Set(['hero-mobile', 'hero-desktop', 'autor']);
+const RETRATOS = new Set(['autor']);
+// Hero: a primeira coisa que se vê. AVIF no topo da faixa 62 a 68 (o 1290 do celular fica com ~85 KB).
+const HERO = {
+  avif: { quality: 68, effort: 6, bitdepth: 10 },
+  webp: { quality: 82, effort: 6, smartSubsample: true },
+  jpg: { quality: 82, mozjpeg: true, progressive: true },
+};
+const HEROS = new Set(['hero-mobile', 'hero-desktop']);
 const TEXTO = {
   avif: { quality: 65, effort: 6, chromaSubsampling: '4:4:4' },
   webp: { quality: 88, effort: 6 },
@@ -129,7 +138,7 @@ const inicio = Date.now();
 await mkdir(DESTINO, { recursive: true });
 
 for (const [nome, larguras] of Object.entries(LARGURAS)) {
-  await gerar(path.join(ORIGEM, `${nome}.png`), nome, larguras, RETRATOS.has(nome) ? RETRATO : FOTO);
+  await gerar(path.join(ORIGEM, `${nome}.png`), nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
 }
 for (const arquivo of await listarPrints()) {
   await gerar(path.join(PRINTS, arquivo), nomeDoPrint(arquivo), LARGURAS_PRINT, TEXTO);
