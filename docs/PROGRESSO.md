@@ -39,6 +39,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Troca das imagens do hero (qualidade e banner novo do desktop) | aprovada |
 | Troca de produto, rodada A (De Desprezado a Respeitado: textos, domínio, hero, contador) | aprovada |
 | Troca de produto, rodada B (#conteudo com trilho, emenda do escudo, #oferta com o livro e quatro cadernos) | aprovada |
+| Comparação de capas por parâmetro (`?capa=dourada` e `?capa=azul`) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -375,6 +376,15 @@ O Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitad
   - Tablet (761 a 1279px): a foto da mesa tem 162% da altura do palco e começa 62% acima dele (borda de trás da mesa a 32% do palco, a da frente a 79%, como no desktop), com o topo dissolvido por máscara.
   - Painel: "O que você recebe" (6 itens, sem miniaturas); a partir de 1280px em duas colunas de 3 nas 7 colunas da esquerda, e o preço nas 5 da direita com a mesma altura (padding 24px 20px). A frase do jantar saiu. Detalhes da copy nova.
   - Emenda #para-quem/#oferta: `--frase-palco: calc(235px - var(--titulo-fundo))` (o título da oferta tem duas linhas); da frase ao rótulo, 94 a 126px.
+
+### Comparação de capas por parâmetro (2026-10-21)
+
+- Só para o cliente comparar: a capa em HTML continua sendo a padrão. `?capa=dourada` e `?capa=azul` trocam a arte do livro da #conteudo e do livro principal da #oferta pela capa oficial (`assets/img/capa-oficial-dourada.png` e `capa-oficial-azul.png`, 1024x1536, 2:3, sem corte). Qualquer outro valor é ignorado.
+- Um script inline (antes do Lenis) põe a classe `.capa-oficial` nas duas capas e troca o `srcset` dos `<source>` e da `<img>`. A classe esconde o escurecimento e o texto em HTML (a imagem já traz o texto); ficam a lombada, a borda, a perspectiva, a sombra e o sticky. O texto alternativo não muda; os cadernos não mudam.
+- As capas têm `loading="lazy"` e ficam abaixo da dobra: a troca acontece antes de o navegador pedir a arte padrão. Medido: com o parâmetro, só a capa oficial é baixada; sem ele, nada muda no peso.
+- `LARGURAS` no script da página: 360, 540, 800 e 1024 (a maior é a largura do original; o script de otimização nunca amplia). Se trocar os originais, confira.
+- `scripts/otimizar-imagens.mjs`: as duas capas com as mesmas larguras e o perfil de retrato; entram num conjunto `OPCIONAIS` (sem o original, o script avisa e segue).
+- O parâmetro `capa` não vai para o checkout (tirado do repasse, como o `rastreio`).
 
 ## Pendências técnicas (do projeto, não do cliente)
 

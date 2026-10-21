@@ -31,6 +31,9 @@ const LARGURAS = {
   // Capa do De Desprezado a Respeitado (original em JPG, 1600x2400): ~360px no #conteudo e ~260px na
   // oferta no desktop (2x), 62% e 46% da tela no celular (3x).
   'capa-desprezado': [360, 540, 800, 1080],
+  // Capas oficiais do cliente, só para comparação (?capa=dourada / ?capa=azul): as mesmas larguras.
+  'capa-oficial-dourada': [360, 540, 800, 1080],
+  'capa-oficial-azul': [360, 540, 800, 1080],
   'oferta-mesa': [960, 1280, 1672],
 };
 // Prints: ~250px na fileira do celular, ~350px no mosaico do desktop e até 520px no lightbox.
@@ -49,7 +52,9 @@ const RETRATO = {
   webp: { quality: 84, effort: 6, smartSubsample: true },
   jpg: { quality: 84, mozjpeg: true, progressive: true },
 };
-const RETRATOS = new Set(['autor', 'capa-desprezado']);
+const RETRATOS = new Set(['autor', 'capa-desprezado', 'capa-oficial-dourada', 'capa-oficial-azul']);
+// Originais que podem ainda não existir: sem o arquivo, o script avisa e segue.
+const OPCIONAIS = new Set(['capa-oficial-dourada', 'capa-oficial-azul']);
 // Hero: a primeira coisa que se vê. AVIF no topo da faixa 62 a 68 (o 1290 do celular fica com ~85 KB).
 const HERO = {
   avif: { quality: 68, effort: 6, bitdepth: 10 },
@@ -141,7 +146,12 @@ async function original(nome) {
   throw new Error(`Original de ${nome} não encontrado em assets/img (png ou jpg).`);
 }
 for (const [nome, larguras] of Object.entries(LARGURAS)) {
-  await gerar(await original(nome), nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
+  let arq;
+  try { arq = await original(nome); } catch (e) {
+    if (OPCIONAIS.has(nome)) { console.log(`aviso: ${nome} ainda não está em assets/img (pulado)`); continue; }
+    throw e;
+  }
+  await gerar(arq, nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
 }
 for (const arquivo of await listarPrints()) {
   await gerar(path.join(PRINTS, arquivo), nomeDoPrint(arquivo), LARGURAS_PRINT, TEXTO);

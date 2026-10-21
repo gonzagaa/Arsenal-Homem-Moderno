@@ -422,6 +422,9 @@ html.lenis{scroll-behavior:auto!important}
 .capa-au{margin-top:4cqw;font-size:4.4cqw;font-weight:500;line-height:1.2;letter-spacing:.005em;color:#D9E2EE}
 .capa-frase{position:absolute;left:60cqw;right:6cqw;top:41cqw;z-index:2;font-size:4cqw;font-weight:300;line-height:1.35;letter-spacing:-.01em;color:var(--gelo);text-wrap:pretty}
 .capa-frase b{font-weight:500}
+/* Comparação com a capa oficial do cliente (?capa=dourada ou ?capa=azul, ver o JS): a imagem já traz o texto,
+   então o escurecimento e o texto em HTML saem; ficam a lombada, a borda, a perspectiva e a sombra. */
+.capa-oficial .capa-ov,.capa-oficial .capa-frase,.capa-oficial .capa-pe{display:none}
 
 /* O conteúdo (#conteudo, substituiu o #sistema). O fundo começa e termina em #0C1729: emenda com a curva da
    #virada e com a #antes-depois. Celular: a curva da #virada tem 90px e o ponto mais alto fica 69px acima do
@@ -1425,6 +1428,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var links = document.querySelectorAll('a[href^="https://chk.eduzz.com/"]');
   var params = new URLSearchParams(location.search);
   params.delete('rastreio'); // chave de teste do rastreio no localhost, não vai para o checkout
+  params.delete('capa'); // chave da comparação de capas, também não vai para o checkout
   links.forEach(function (a) {
     if (params.toString()) {
       var url = new URL(a.href);
@@ -1438,6 +1442,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Sem um ouvinte de touchstart, o Safari do iPhone (e o navegador interno do Instagram, que usa o mesmo
   // motor) não aplica o :active no toque, e o botão não "afunda".
   document.addEventListener('touchstart', function () {}, { passive: true });
+})();
+
+// Comparação de capas, só por parâmetro: ?capa=dourada ou ?capa=azul troca a arte do livro da #conteudo e do
+// livro principal da #oferta pela capa oficial do cliente (a imagem já traz o texto). Qualquer outro valor é
+// ignorado. Sem o parâmetro, nada muda e as imagens oficiais não são baixadas: as capas têm loading="lazy" e
+// ficam abaixo da dobra, então a troca acontece antes de o navegador pedir a arte padrão.
+// LARGURAS: as que o scripts/otimizar-imagens.mjs gera. Os originais têm 1024x1536 (2:3), então a maior
+// versão é a de 1024 (o script nunca amplia). Se trocar os originais, confira aqui.
+(function () {
+  var variante = new URLSearchParams(location.search).get('capa');
+  if (variante !== 'dourada' && variante !== 'azul') return;
+  var LARGURAS = [360, 540, 800, 1024];
+  var base = 'assets/img/opt/capa-oficial-' + variante + '-';
+  function lista(ext) {
+    return LARGURAS.map(function (l) { return base + l + '.' + ext + ' ' + l + 'w'; }).join(', ');
+  }
+  document.querySelectorAll('.cont-capa .capa, .livro-oferta .capa').forEach(function (capa) {
+    capa.classList.add('capa-oficial');
+    capa.querySelectorAll('source').forEach(function (s) { s.srcset = lista(s.type.split('/')[1]); });
+    var img = capa.querySelector('img');
+    img.srcset = lista('jpg');
+    img.src = base + '540.jpg';
+  });
 })();
 
 // Rolagem suave (Lenis): só com mouse/trackpad e sem movimento reduzido. No toque, rolagem nativa.
