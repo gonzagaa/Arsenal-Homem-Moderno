@@ -38,7 +38,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rastreamento sem InitiateCheckout, checkout em nova guia e efeito dos botões de compra | aprovada |
 | Troca das imagens do hero (qualidade e banner novo do desktop) | aprovada |
 | Troca de produto, rodada A (De Desprezado a Respeitado: textos, domínio, hero, contador) | aprovada |
-| **Troca de produto, rodada B (#conteudo, emenda do escudo, #oferta com um livro)** | **próxima** |
+| Troca de produto, rodada B (#conteudo com trilho, emenda do escudo, #oferta com o livro e quatro cadernos) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -359,6 +359,22 @@ O Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitad
 - Barra fixa: nome em 12,5px com `text-wrap: balance`, botão com 14px de recuo e espaço de 10px. "De Desprezado a Respeitado" em uma linha a partir de 390px.
 - `og.jpg` com o H1 inteiro (44px, coluna de 580px, 5 linhas) e o rótulo "De Desprezado a Respeitado"; contraste mínimo 9,14:1.
 - `CLAUDE.md` (produto, domínio, ordem das seções, checkout provisório) e `PENDENCIAS.md` (checkout e pixel do produto novo) atualizados.
+
+### Troca de produto, rodada B (2026-10-21)
+
+- #sistema virou #conteudo (âncora e classes `.conteudo`). Os cards dos manuais, as cenas e todos os originais e derivados do produto antigo (`cena-*`, `capa-arsenal/traicao/honra/iluda`) foram apagados. `docs/PROMPTS.md` ganhou no topo o aviso de que as etapas 4 e 7 descrevem o produto antigo; ele e o mockup ficam como histórico.
+- Capa do livro (peça `.livro` > `.capa`, usada no #conteudo e na oferta): arte `capa-desprezado` (originais em JPG, o script aceita png ou jpg; derivados 360, 540, 800 e 1080, perfil de retrato) com o texto real em cqw: título embaixo à esquerda (300 com o final em 600 prateado), autor embaixo dele, frase na coluna direita na altura dos olhos (postura, valor e respeito em 500, cor `--gelo`, escurecimento à direita da arte: 5,5:1 ou mais). A frase some com a capa abaixo de 300px de largura (`@container`).
+- #conteudo:
+  - Celular: capa centrada com `min(62vw, 300px)`, lista embaixo. A partir de 761px: capa em 5 de 12 colunas com `--capa-l: clamp(220px, 27vw, 400px)`, lista nas 7 restantes, topos alinhados; capa sticky centrada na altura da tela, `top: max(30px, 50svh - var(--capa-l) * .75)` (30px na caixa porque a perspectiva levanta a borda ~5px: a capa visível fica a 24px ou mais), solta quando a lista termina. Medido: centro da capa no centro da tela em 1280x720, 1440x900 e 1920x1080; 1366x600 com a capa a 25px do topo.
+  - Trilho: círculo de vidro de 52px (sem backdrop-filter) com o número em 500 prateado; linha de 1px em prata a 15% em trechos por item (`li::before`, do centro do círculo ao centro do próximo; os itens não têm espaço entre si, só padding embaixo); preenchimento em prata cheia (`li::after`, `scaleY`, `view()` no próprio trecho, de `cover 50svh` a `cover calc(100% - 50svh)`: a frente acompanha o meio da tela). Círculo aceso no meio da tela: brilho (`::before`) e borda clara (`::after`), só opacity e transform, `view()` no círculo. Padrão (sem suporte ou com movimento reduzido): trilho cheio e todos acesos. O `.reveal` fica no texto de cada item (`.ap-txt`), não no trilho.
+  - Embaixo: "13 capítulos · 8 dossiês · Plano de ação de 30 dias" e o botão "Quero começar minha transformação".
+- Emenda #conteudo/#antes-depois: um escudo só, contorno prateado por cima de um escudo cheio que se revela de baixo para cima (`clip-path: inset`), brilho no fim e a linha descendo até o rótulo; as mesmas faixas de antes (centro a 50% da tela até 30% do topo; linha até 15%). Padrão: escudo cheio.
+- #oferta:
+  - Mesa: livro no centro (`--lv: clamp(150px, 21vw, 280px)` a partir de 761px, 46vw no celular, sem rotação) e quatro cadernos tipográficos (`.caderno` > `.cad-capa`): à esquerda Plano de ação de 30 dias (com o "30" grande) e Diagnóstico pessoal, à direita Diário do homem respeitado e Código de honra. Os de dentro com 62% do livro, os das pontas com 50%, girados 10° e 20°. Capa: escudo pequeno no topo, escudo grande só em contorno (prata a 6%) cortado pela borda direita, fio prateado acima do título, título (300 e final em 600 prateado), autor. Tons alternados: Diagnóstico e Diário mais azulados, Plano e Código mais próximos do preto. Celular: só Plano e Diário, metidos 5vw atrás do livro (texto do Diário à direita, "30" do Plano à esquerda).
+  - A fileira inteira é uma imagem para o leitor de tela (`role="img"` com a descrição dos cinco itens).
+  - Tablet (761 a 1279px): a foto da mesa tem 162% da altura do palco e começa 62% acima dele (borda de trás da mesa a 32% do palco, a da frente a 79%, como no desktop), com o topo dissolvido por máscara.
+  - Painel: "O que você recebe" (6 itens, sem miniaturas); a partir de 1280px em duas colunas de 3 nas 7 colunas da esquerda, e o preço nas 5 da direita com a mesma altura (padding 24px 20px). A frase do jantar saiu. Detalhes da copy nova.
+  - Emenda #para-quem/#oferta: `--frase-palco: calc(235px - var(--titulo-fundo))` (o título da oferta tem duas linhas); da frase ao rótulo, 94 a 126px.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

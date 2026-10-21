@@ -193,8 +193,8 @@ html.lenis{scroll-behavior:auto!important}
 }
 .cta-ring:has(.cta:active){box-shadow:0 0 40px -20px rgba(150,180,225,.4);transition-duration:.12s}
 
-/* Abaixo de 385px o rótulo "Quero me tornar um Homem Blindado" não cabe em uma linha com 14px.
-   Com 13,5px ele mede 241,3px e sobram 241,7px em 375px; o gap menor dá 2px de folga. */
+/* Abaixo de 385px, fonte e espaço menores nos botões, para os rótulos longos ("Quero começar minha
+   transformação") caberem em uma linha ou quebrarem em duas linhas parelhas. */
 @media (max-width:384px){
   .cta{gap:10px;font-size:13.5px}
 }
@@ -405,89 +405,117 @@ html.lenis{scroll-behavior:auto!important}
 .sec-head{max-width:760px;margin:0 auto 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
 .sec-sub{font-size:16px;line-height:1.65;color:var(--nevoa);max-width:56ch}
 
-/* O sistema. O fundo começa e termina em #0C1729: emenda com a curva da #virada e com a #antes-depois.
-   Celular: a curva da #virada tem 90px e o ponto mais alto fica 69px acima do topo da #sistema; o rótulo
-   fica --curva-rotulo abaixo dele. Embaixo, sem espaço: a seção termina nos escudos da emenda. */
-.sistema{--curva-rotulo:70px;position:relative;padding:calc(var(--curva-rotulo) - 69px) 0 0;background:linear-gradient(180deg,#0C1729 0%,#08111F 50%,#0C1729 100%)}
-.sistema::before{content:"";position:absolute;left:50%;top:4%;width:900px;height:500px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(40,72,124,.22),rgba(40,72,124,0))}
-.mcard{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(8,15,28,.92));border:1px solid rgba(169,184,203,.14);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.05)}
-.mimg{position:relative;overflow:hidden;aspect-ratio:4/3}
-.mimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.mimg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,19,34,1) 0%,rgba(10,19,34,0) 45%)}
-.mbody{position:relative;padding:4px 22px 26px}
-.mlabel{font-size:14px;font-weight:500;line-height:1.4;color:#8FA3BE}
-.mtitle{margin:10px 0;font-weight:500;font-size:22px;line-height:1.2;letter-spacing:-.015em;text-wrap:balance}
-.mtext{font-size:16px;line-height:1.6;color:var(--nevoa)}
-.mtext-destaque{margin-bottom:14px;font-size:17px;color:#C9D3E0}
-.feat{margin-bottom:16px}
-.feat .mbody{padding:4px 22px 28px}
-.feat .mtitle{margin:14px 0 16px;font-size:26px;font-weight:300;letter-spacing:-.03em}
-.feat .mimg img{object-position:50% 45%}
-.trio{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
-.closing{max-width:30ch;margin:44px auto 0;text-align:center;font-weight:300;font-size:22px;line-height:1.3;letter-spacing:-.02em;text-wrap:balance}
-.closing strong{font-weight:500}
+/* Livro (peça comum ao #conteudo e à #oferta): a capa do De Desprezado a Respeitado montada em HTML, com a
+   arte de fundo e o texto real em cqw. Título embaixo à esquerda (300, com o final em 600 prateado), o autor
+   embaixo dele e, só na capa grande, a frase na coluna direita, na altura dos olhos (37% da altura da arte).
+   Em pé, com leve perspectiva, luz de lombada na borda esquerda e sombra de contato embaixo. */
+.livro{position:relative;perspective:1600px}
+.livro::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-18px;height:30px;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0))}
+.capa{position:relative;container-type:inline-size;aspect-ratio:2/3;overflow:hidden;background:#02060F;border-radius:3px 6px 6px 3px;box-shadow:-18px 24px 44px -14px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4);transform:rotateY(-8deg)}
+.capa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.capa-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,15,.88) 0%,rgba(2,6,15,.5) 24%,rgba(2,6,15,0) 42%),linear-gradient(270deg,rgba(2,6,15,.5) 0%,rgba(2,6,15,.35) 30%,rgba(2,6,15,0) 48%)}
+.capa::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5cqw;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(255,255,255,.16) 30%,rgba(255,255,255,0) 100%)}
+.capa::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid rgba(201,211,224,.14);border-radius:inherit;pointer-events:none}
+.capa-pe{position:absolute;left:9cqw;right:8cqw;bottom:9cqw;z-index:2;color:var(--gelo)}
+.capa-ti{font-weight:300;font-size:11.5cqw;line-height:1;letter-spacing:-.035em}
+.capa-ti strong{display:block;font-weight:600}
+.capa-au{margin-top:4cqw;font-size:4.4cqw;font-weight:500;line-height:1.2;letter-spacing:.005em;color:#D9E2EE}
+.capa-frase{position:absolute;left:60cqw;right:6cqw;top:41cqw;z-index:2;font-size:4cqw;font-weight:300;line-height:1.35;letter-spacing:-.01em;color:var(--gelo);text-wrap:pretty}
+.capa-frase b{font-weight:500}
 
-/* Emenda #sistema / #antes-depois: quatro escudos (um por manual) deslizam e se fundem num só, a
-   armadura fechada, e dele desce uma linha de luz até o rótulo "Antes e depois". Decorativo.
-   O estado final (escudo único e linha) é o padrão: sem suporte ou com movimento reduzido, é o que aparece.
-   Tamanhos em variáveis: no desktop, escudo de 64x77px, pequenos de 28x34px a 26px de passo; no celular, 3/4 disso.
-   A escala final dos pequenos (2,286 = 64/28) e a dos keyframes valem para os dois. */
+/* O conteúdo (#conteudo, substituiu o #sistema). O fundo começa e termina em #0C1729: emenda com a curva da
+   #virada e com a #antes-depois. Celular: a curva da #virada tem 90px e o ponto mais alto fica 69px acima do
+   topo da seção; o rótulo fica --curva-rotulo abaixo dele. Embaixo, sem espaço: a seção termina no escudo da
+   emenda. Celular: capa centrada com 62% da largura e a lista embaixo. A partir de 761px: capa à esquerda
+   (5 de 12 colunas), sticky e centrada na altura da tela enquanto a lista rola, solta quando a lista termina.
+   A lista é um trilho de passo a passo (ver abaixo). */
+.conteudo{--curva-rotulo:70px;position:relative;padding:calc(var(--curva-rotulo) - 69px) 0 0;background:linear-gradient(180deg,#0C1729 0%,#08111F 50%,#0C1729 100%)}
+.conteudo::before{content:"";position:absolute;left:50%;top:4%;width:900px;height:500px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(40,72,124,.22),rgba(40,72,124,0))}
+.cont-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:48px}
+.cont-capa{width:min(62vw,300px);margin:0 auto}
+/* A frase da capa só aparece com a capa a partir de 300px de largura (container query na própria capa). */
+@container (max-width:299px){.capa-frase{display:none}}
+
+/* Trilho dos aprendizados: o número num círculo de vidro de 52px; uma linha de 1px em prata a 15% liga os
+   centros dos círculos (um trecho por item, do centro do seu círculo ao centro do próximo: o item não tem
+   espaço entre ele e o próximo, só padding embaixo). Por cima, o preenchimento em prata cheia: cada trecho
+   cresce (scaleY) enquanto ele passa pelo meio da tela, com a própria linha do tempo (view() no trecho),
+   então a frente do preenchimento acompanha o meio da tela e chega a cada círculo junto com o acendimento.
+   O círculo no meio da tela fica aceso (borda clara e brilho difuso, só opacity e transform, view() no
+   próprio círculo). Sem suporte ou com movimento reduzido: trilho cheio e todos acesos (o padrão).
+   O trilho não leva .reveal (desfoque e deslocamento quebrariam a linha); o texto de cada item leva. */
+.aprend{list-style:none;padding:0}
+.aprend li{position:relative;isolation:isolate;display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:18px;padding-bottom:32px}
+.aprend li:last-child{padding-bottom:0}
+.aprend li:not(:last-child)::before,.aprend li:not(:last-child)::after{content:"";position:absolute;left:25.5px;top:26px;width:1px;height:100%;transform-origin:top}
+.aprend li::before{background:rgba(217,226,238,.15)}
+.aprend li::after{background:linear-gradient(180deg,#FFFFFF,#D9E2EE 50%,#9FB2CB)}
+.ap-num{position:relative;z-index:1;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:17px;letter-spacing:-.01em;background:linear-gradient(180deg,rgba(30,48,76,.85),rgba(10,19,34,.95));border:1px solid rgba(201,211,224,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.ap-num::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(150,180,225,.42),rgba(150,180,225,0))}
+.ap-num::after{content:"";position:absolute;inset:-1px;border-radius:50%;pointer-events:none;border:1px solid rgba(233,238,245,.75);box-shadow:0 0 18px -4px rgba(170,200,240,.6)}
+.ap-txt{padding-top:13px}
+.aprend h3{font-weight:500;font-size:18px;line-height:1.3;letter-spacing:-.01em;color:var(--gelo)}
+.aprend p{margin-top:6px;font-size:16px;line-height:1.6;color:var(--nevoa)}
+@keyframes trilho-enche{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes passo-aceso{0%,32%{opacity:0;transform:scale(.6)}44%,56%{opacity:1;transform:scale(1)}68%,100%{opacity:0;transform:scale(.6)}}
+@keyframes passo-borda{0%,32%{opacity:0}44%,56%{opacity:1}68%,100%{opacity:0}}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .aprend li::after{animation:trilho-enche linear both;animation-timeline:view();animation-range:cover 50svh cover calc(100% - 50svh)}
+    .ap-num::before{animation:passo-aceso linear both;animation-timeline:view()}
+    .ap-num::after{animation:passo-borda linear both;animation-timeline:view()}
+  }
+}
+.cont-fim{margin-top:48px;text-align:center}
+.cont-destaque{font-weight:500;font-size:18px;line-height:1.4;letter-spacing:-.01em;color:var(--gelo);text-wrap:balance}
+.cont-fim .cta-ring{margin-top:24px}
+.cont-fim .cta{text-align:left}
+
+/* Emenda #conteudo / #antes-depois: um escudo só, que começa com o contorno prateado (vazio) e se enche de
+   baixo para cima com o degradê prateado conforme a rolagem, ganhando o brilho difuso no fim; dele desce uma
+   linha de luz até o rótulo "A transformação". Decorativo. O estado final (escudo cheio, brilho e linha) é o
+   padrão: sem suporte ou com movimento reduzido, é o que aparece. Escudo de 64x77px no desktop e 48x58px no
+   celular. O enchimento é um clip-path (inset) no escudo cheio, que fica por baixo do contorno. */
 :root{--emenda-ad:56px}
-.armadura{--arm-g:48px;--arm-gh:58px;--arm-p:21px;--arm-ph:25.5px;--arm-passo:19.5px;--arm-brilho:165px;position:relative;z-index:1;width:var(--arm-g);height:var(--arm-gh);margin:32px auto 0;view-timeline:--armadura block}
-.arm-pequeno,.arm-grande,.arm-brilho{position:absolute;left:50%;top:50%}
-.arm-pequeno{width:var(--arm-p);height:var(--arm-ph);margin:calc(var(--arm-ph) / -2) 0 0 calc(var(--arm-p) / -2);fill:none;stroke:url(#prata-escudo);stroke-width:12;stroke-linejoin:round;opacity:0}
-.arm-grande{width:var(--arm-g);height:var(--arm-gh);margin:calc(var(--arm-gh) / -2) 0 0 calc(var(--arm-g) / -2);fill:url(#prata-escudo)}
+.armadura{--arm-g:48px;--arm-gh:58px;--arm-brilho:165px;position:relative;z-index:1;width:var(--arm-g);height:var(--arm-gh);margin:40px auto 0;view-timeline:--armadura block}
+.arm-cheio,.arm-contorno,.arm-brilho{position:absolute;left:50%;top:50%}
+.arm-cheio,.arm-contorno{width:var(--arm-g);height:var(--arm-gh);margin:calc(var(--arm-gh) / -2) 0 0 calc(var(--arm-g) / -2)}
+.arm-cheio{fill:url(#prata-escudo)}
+.arm-contorno{fill:none;stroke:url(#prata-escudo);stroke-width:9;stroke-linejoin:round}
 .arm-brilho{width:var(--arm-brilho);height:var(--arm-brilho);margin:calc(var(--arm-brilho) / -2) 0 0 calc(var(--arm-brilho) / -2);border-radius:50%;background:radial-gradient(closest-side,rgba(150,180,225,.32),rgba(150,180,225,0))}
 .arm-linha{position:absolute;left:50%;top:100%;width:1px;height:calc(var(--emenda-ad) - 12px);margin-left:-.5px;transform-origin:top;background:linear-gradient(180deg,rgba(217,226,238,.75),rgba(217,226,238,0))}
-@keyframes arm-p1{from{opacity:1;transform:translateX(calc(-3 * var(--arm-passo))) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
-@keyframes arm-p2{from{opacity:1;transform:translateX(calc(-1 * var(--arm-passo))) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
-@keyframes arm-p3{from{opacity:1;transform:translateX(var(--arm-passo)) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
-@keyframes arm-p4{from{opacity:1;transform:translateX(calc(3 * var(--arm-passo))) scale(1)}70%{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(0) scale(2.286)}}
-@keyframes arm-grande{from,70%{opacity:0;transform:scale(.4375)}to{opacity:1;transform:scale(1)}}
+@keyframes arm-enche{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes arm-brilho{from,75%{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
 @keyframes arm-linha{from{transform:scaleY(0)}to{transform:scaleY(1)}}
 
 @media (min-width:761px){
   .sec-head{margin-bottom:64px;gap:18px}
   .sec-sub{font-size:17.5px}
-  /* O ponto mais alto da curva da #virada fica 132px acima do topo da #sistema (curva de 170px, ápice
+  /* O ponto mais alto da curva da #virada fica 132px acima do topo do #conteudo (curva de 170px, ápice
      a 37,5px do topo dela, 1px de sobreposição). O rótulo fica --curva-rotulo abaixo do ápice;
      flow-root impede que a margem negativa arraste o fundo da seção para cima da curva. */
-  .sistema{--curva-rotulo:120px;display:flow-root;padding:0}
-  .sistema>.wrap{margin-top:calc(var(--curva-rotulo) - 132px)}
-  /* Emenda com a #antes-depois: escudos logo abaixo da frase; a linha atravessa a emenda até o rótulo. */
+  .conteudo{--curva-rotulo:120px;display:flow-root;padding:0}
+  .conteudo>.wrap{margin-top:calc(var(--curva-rotulo) - 132px)}
+  /* Emenda com a #antes-depois: escudo logo abaixo do botão; a linha atravessa a emenda até o rótulo. */
   :root{--emenda-ad:72px}
-  .armadura{--arm-g:64px;--arm-gh:77px;--arm-p:28px;--arm-ph:34px;--arm-passo:26px;--arm-brilho:220px;margin-top:40px}
-  .mbody{padding:4px 28px 30px}
-  /* Card largo: cena à esquerda, dissolvendo para a direita no texto. */
-  .feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-bottom:20px}
-  .feat .mimg{aspect-ratio:auto;min-height:420px}
-  .feat .mimg::after{background:linear-gradient(90deg,rgba(10,19,34,0) 55%,rgba(10,19,34,1) 100%),linear-gradient(0deg,rgba(10,19,34,.6) 0%,rgba(10,19,34,0) 30%)}
-  .feat .mbody{display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,4vw,48px) clamp(28px,4vw,48px) clamp(32px,4vw,48px) clamp(8px,1.6vw,20px)}
-  .feat .mtitle{font-size:34px}
-  .trio{gap:20px}
-  .closing{margin-top:64px;font-size:clamp(24px,2.4vw,34px)}
+  .armadura{--arm-g:64px;--arm-gh:77px;--arm-brilho:220px;margin-top:56px}
+  /* Capa com largura em variável: a altura (1,5 x) dá o topo do sticky, centrado na altura da tela,
+     com no mínimo 30px na caixa (a perspectiva levanta a borda da capa ~5px, então a capa visível fica a
+     24px ou mais do topo e nunca é cortada). O topo da lista alinha com o da capa. */
+  .cont-grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:start}
+  .cont-capa{--capa-l:clamp(220px,27vw,400px);grid-column:1 / span 5;justify-self:center;width:var(--capa-l);margin:0;position:sticky;top:max(30px,calc(50svh - var(--capa-l) * .75))}
+  .aprend{grid-column:6 / span 7;padding-left:clamp(0px,2vw,32px)}
+  .cont-fim{margin-top:72px}
+  .cont-destaque{font-size:20px}
+  .cont-fim .cta-ring{display:inline-flex}
 }
-/* Tablet (761 a 1023px): três colunas deixariam cada card com menos de 250px.
-   Os cards do trio ficam empilhados e deitados (cena à esquerda), menores que o card largo. */
-@media (min-width:761px) and (max-width:1023px){
-  .trio .mcard{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
-  .trio .mimg{aspect-ratio:auto;min-height:220px}
-  .trio .mimg::after{background:linear-gradient(90deg,rgba(10,19,34,0) 62%,rgba(10,19,34,1) 100%)}
-  .trio .mbody{display:flex;flex-direction:column;justify-content:center;padding:28px 28px 28px 8px}
-}
-/* Armadura: até o centro do grupo chegar à metade da tela, os quatro escudos ficam separados e parados.
-   A fusão vai do centro a 50% da altura da tela até o centro a 30% do topo; a linha desce logo depois
-   (até 15% do topo). Em "cover", o topo do grupo está a N do pé da tela; meia altura (--arm-gh / 2)
-   leva a conta para o centro. Só transform e opacity. */
+/* Animação do escudo: o enchimento vai do centro do escudo a 50% da altura da tela até o centro a 30% do
+   topo; o brilho chega no fim; a linha desce logo depois (até 15% do topo). Em "cover", o topo do escudo está
+   a N do pé da tela; meia altura (--arm-gh / 2) leva a conta para o centro. */
 @supports (animation-timeline:view()){
   @media (prefers-reduced-motion:no-preference){
     .armadura{--arm-inicio:cover calc(50svh + var(--arm-gh) / 2);--arm-fim:cover calc(70svh + var(--arm-gh) / 2)}
-    .arm-p1{animation:arm-p1 ease-in-out both}
-    .arm-p2{animation:arm-p2 ease-in-out both}
-    .arm-p3{animation:arm-p3 ease-in-out both}
-    .arm-p4{animation:arm-p4 ease-in-out both}
-    .arm-grande{animation:arm-grande ease-out both}
+    .arm-cheio{animation:arm-enche linear both}
     .arm-brilho{animation:arm-brilho ease-out both}
     .arm-linha{animation:arm-linha ease-out both}
     /* depois do shorthand animation, que zera a linha do tempo e a faixa */
@@ -495,14 +523,7 @@ html.lenis{scroll-behavior:auto!important}
     .armadura>.arm-linha{animation-range:var(--arm-fim) cover calc(85svh + var(--arm-gh) / 2)}
   }
 }
-@media (min-width:1024px){
-  .feat{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
-  .trio{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .trio .mcard:nth-child(2){--rv-atraso:5svh}
-  .trio .mcard:nth-child(3){--rv-atraso:10svh}
-}
-
-/* Antes e depois. Fundo #0C1729, o mesmo do fim da #sistema e do começo da #autor.
+/* Antes e depois. Fundo #0C1729, o mesmo do fim do #conteudo e do começo da #autor.
    O padding de baixo é grande porque o card do autor sobe por cima dele. */
 .antes{position:relative;padding:var(--emenda-ad) 0 160px;background:var(--noite)}
 .antes::before{content:"";position:absolute;right:-30%;top:10%;width:90%;height:75%;pointer-events:none;background:radial-gradient(closest-side,rgba(40,72,124,.22),rgba(40,72,124,0))}
@@ -672,36 +693,56 @@ html:has(dialog[open]){overflow:hidden}
 .big-quote{max-width:18ch;margin:70px auto 0;text-align:center;font-weight:300;font-size:34px;line-height:1.08;letter-spacing:-.04em;text-wrap:balance}
 .big-quote strong{font-weight:500}
 
-/* Oferta. Palco com a mesa (dissolvendo nas bordas e no topo), os quatro livros em pé montados em HTML
-   e o painel de preço em vidro subindo por cima da borda de baixo do palco.
-   Celular: palco de 300px cortando a parede de cima (a foto mantém a escala de 380px, presa embaixo)
-   e livros em leque, cada um avançando 22% sobre o vizinho, o Arsenal à frente.
-   A partir de 761px, altura do palco e largura dos livros escalam juntas até 720px e 172/204px. */
+/* Oferta. Palco com a mesa (dissolvendo nas bordas e no topo), o livro em pé no centro (a capa do #conteudo,
+   sem a frase) com os materiais dos lados (cadernos tipográficos, menores para as pontas, girados com
+   perspective) e o painel de preço em vidro subindo por cima da borda de baixo do palco.
+   Celular: livro com 46% da largura, só dois cadernos (Plano de ação e Diário), um de cada lado, metidos
+   atrás do livro; o palco cresce com o livro e a foto mantém a escala de 380px, presa embaixo.
+   A partir de 761px, os cinco itens: livro clamp(150px, 21vw, 280px), cadernos de dentro com 62% dele e os
+   das pontas com 50%; a altura do palco escala junto até 720px. */
 .oferta{position:relative;padding:20px 0 70px;background:var(--abismo)}
 /* Brilho atrás do painel; desce 240px para dentro do #faq, para a passagem não ficar seca. */
 .oferta::before{content:"";position:absolute;left:50%;bottom:-240px;width:1100px;height:940px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
 .oferta .sec-head{margin-bottom:8px}
-/* overflow:clip, não hidden: hidden faria do palco um contêiner de rolagem e o view() dos livros mediria contra ele. */
-.stage{position:relative;height:300px;max-width:1600px;margin:0 auto;overflow:clip}
+/* overflow:clip, não hidden: hidden faria do palco um contêiner de rolagem e o view() do livro mediria contra ele. */
+.stage{position:relative;height:max(300px,calc(69vw + 110px));max-width:1600px;margin:0 auto;overflow:clip}
 .stage-bg img{position:absolute;left:0;bottom:0;width:100%;height:380px;object-fit:cover;object-position:40% 50%}
 .stage-fade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#050A14 0%,rgba(5,10,20,0) 22%,rgba(5,10,20,0) 70%,#050A14 100%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,0) 14%,rgba(5,10,20,0) 86%,#050A14 100%)}
-.books{--lado:min(104px,26vw);--centro:min(124px,31vw);position:absolute;left:0;right:0;bottom:70px;z-index:2;display:flex;align-items:flex-end;justify-content:center;perspective:1800px}
-.book{position:relative;width:var(--lado)}
-.book.big{width:var(--centro)}
-.book+.book{margin-left:calc(var(--lado) * -.22)}
-.b1{z-index:3;transform:rotateY(18deg)}.b2{z-index:4;transform:rotateY(6deg)}.b3{z-index:3;transform:rotateY(-6deg)}.b4{z-index:2;transform:rotateY(-18deg)}
-.book::after{content:"";position:absolute;left:-10%;right:-10%;bottom:-16px;height:28px;z-index:-1;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0))}
-.cover{position:relative;container-type:inline-size;aspect-ratio:2/3;overflow:hidden;background:#02060F;border-radius:2px 5px 5px 2px;box-shadow:-18px 24px 40px -14px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
-.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cover .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,15,.88) 0%,rgba(2,6,15,.45) 32%,rgba(2,6,15,0) 50%),linear-gradient(0deg,rgba(2,6,15,.8) 0%,rgba(2,6,15,0) 22%)}
-/* Luz de lombada na borda esquerda e contorno fino da capa. */
-.cover::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5cqw;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(255,255,255,.14) 30%,rgba(255,255,255,0) 100%)}
-.cover::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid rgba(201,211,224,.12);border-radius:inherit;pointer-events:none}
-.ct{position:absolute;inset:0;z-index:2;padding:9cqw 8cqw 8cqw 10cqw;display:flex;flex-direction:column;color:var(--gelo)}
-.ti{font-weight:300;font-size:10.6cqw;line-height:1.02;letter-spacing:-.035em}
-.ti strong{display:block;font-weight:600}
-.ti.long{font-size:8.8cqw}
-.au{margin-top:auto;font-size:4.6cqw;font-weight:500;line-height:1.2;letter-spacing:.005em;color:#D9E2EE}
+.books{--lv:46vw;--cad:27vw;position:absolute;left:0;right:0;bottom:70px;z-index:2;display:flex;align-items:flex-end;justify-content:center;perspective:1600px}
+.livro-oferta{position:relative;z-index:2;width:var(--lv)}
+.livro-oferta .capa{transform:none}
+/* Cadernos: capa só tipográfica (escudo no topo, título embaixo, autor no pé), com a mesma luz de lombada,
+   contorno e sombra de contato do livro. O grão vem da página (o body::after cobre tudo). */
+.caderno{position:relative;width:var(--cad)}
+.caderno::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-14px;height:24px;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0))}
+.cad-capa{position:relative;container-type:inline-size;aspect-ratio:5/7;overflow:hidden;border-radius:2px 5px 5px 2px;background:radial-gradient(120% 70% at 70% 0%,rgba(52,84,132,.55),rgba(52,84,132,0) 60%),linear-gradient(165deg,#16243A 0%,#0C1729 45%,#050A14 100%);box-shadow:-14px 20px 36px -12px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
+.cad-capa::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6cqw;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(255,255,255,.14) 30%,rgba(255,255,255,0) 100%)}
+.cad-capa::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid rgba(201,211,224,.16);border-radius:inherit;pointer-events:none}
+/* Escudo grande da marca, só contorno, tom sobre tom, saindo cortado pela borda direita; um fio prateado
+   acima do título; e dois tons alternados na fileira (Diagnóstico e Diário mais azulados, Plano e Código
+   mais próximos do preto), sempre mais escuros que o livro. */
+.cad-marca{position:absolute;right:-30cqw;top:18cqw;width:86cqw;height:auto;fill:none;stroke:rgba(217,226,238,.06);stroke-width:5;stroke-linejoin:round}
+.cad-pe::before{content:"";display:block;width:34cqw;height:1px;margin-bottom:6cqw;background:rgba(217,226,238,.2)}
+.cad-diag .cad-capa,.cad-diario .cad-capa{background:radial-gradient(120% 70% at 70% 0%,rgba(58,94,148,.6),rgba(58,94,148,0) 62%),linear-gradient(165deg,#192A44 0%,#0E1A2F 45%,#060C18 100%)}
+.cad-plano .cad-capa,.cad-codigo .cad-capa{background:radial-gradient(120% 70% at 70% 0%,rgba(40,64,104,.4),rgba(40,64,104,0) 58%),linear-gradient(165deg,#0F1828 0%,#080F1C 45%,#03070F 100%)}
+.cad-escudo{position:absolute;left:12cqw;top:12cqw;width:11cqw;height:auto;fill:url(#prata-escudo)}
+.cad-30{position:absolute;right:9cqw;top:6cqw;font-weight:300;font-size:46cqw;line-height:1;letter-spacing:-.06em;opacity:.9}
+.cad-pe{position:absolute;left:12cqw;right:9cqw;bottom:10cqw;color:var(--gelo)}
+.cad-ti{font-weight:300;font-size:12cqw;line-height:1.02;letter-spacing:-.03em}
+.cad-ti strong{display:block;font-weight:600}
+.cad-au{margin-top:5cqw;font-size:5.6cqw;font-weight:500;line-height:1.2;color:#D9E2EE}
+.cad-plano{transform:rotateY(14deg);margin-right:-5vw}
+.cad-diario{transform:rotateY(-14deg);margin-left:-5vw}
+.cad-ponta{display:none}
+/* Celular: os dois cadernos ficam metidos 5vw atrás do livro; no Diário (à direita) a borda coberta é a
+   esquerda, então o texto vai para a direita. */
+@media (max-width:760px){
+  .cad-plano .cad-pe{right:22cqw}
+  .cad-plano .cad-30{right:auto;left:11cqw;top:27cqw;font-size:36cqw}
+  .cad-diario .cad-pe{left:22cqw;text-align:right}
+  .cad-diario .cad-pe::before{margin-left:auto}
+  .cad-diario .cad-escudo{left:auto;right:12cqw}
+}
 
 /* Celular: 12px entre o painel e a borda da tela (o .wrap tem 22px). */
 .panel{position:relative;z-index:3;max-width:980px;margin:-50px -10px 0;border-radius:24px;padding:26px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;background:linear-gradient(180deg,rgba(24,38,60,.66),rgba(9,17,31,.9));-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(169,184,203,.18);box-shadow:0 50px 100px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.07)}
@@ -717,23 +758,16 @@ html:has(dialog[open]){overflow:hidden}
 .price-alt{font-size:15.5px;color:#B7C7DC}
 .preco .cta-ring{margin-top:22px}
 .preco .cta{text-align:left} /* abaixo de 385px o rótulo quebra em duas linhas, alinhado como nos outros botões */
-.compare{max-width:32ch;margin:14px auto 0;font-size:14px;line-height:1.5;color:var(--nevoa)}
-/* Lista dos manuais: miniatura da capa (a mesma arte, com cantos e sombra de livro), nome e uma linha.
-   As quatro linhas são iguais, sem caixa, separadas por um fio; o Arsenal se diferencia só pela linha prateada.
+/* O que você recebe: seis linhas iguais, título em 500 e uma linha de apoio, sem caixa, separadas por um fio.
    Nada aqui é clicável, então nada parece selecionável. */
-.lista-manuais .pill{margin-bottom:16px}
+.recebe .pill{margin-bottom:16px}
 .items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .items li{display:flex;align-items:center;gap:14px;padding:12px 0}
 .items li+li{border-top:1px solid rgba(169,184,203,.1)}
 .items li:first-child{padding-top:0}
 .items li:last-child{padding-bottom:0}
 .items b{display:block;font-weight:500;font-size:16px;line-height:1.35;color:var(--gelo)}
-.items small{display:block;margin-top:2px;font-size:14px;line-height:1.4;color:var(--nevoa-2)}
-.items .silver{color:transparent;font-weight:500}
-.mini{position:relative;flex:none;width:44px;aspect-ratio:2/3;overflow:hidden;border-radius:2px 4px 4px 2px;background:#02060F;box-shadow:-6px 8px 14px -6px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
-.mini img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.mini::before{content:"";position:absolute;left:0;top:0;bottom:0;z-index:1;width:4px;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(255,255,255,.14) 40%,rgba(255,255,255,0))}
-.mini::after{content:"";position:absolute;inset:0;z-index:1;border:1px solid rgba(201,211,224,.14);border-radius:inherit}
+.items small{display:block;margin-top:3px;font-size:14px;line-height:1.45;color:var(--nevoa-2)}
 /* Detalhes: 2 x 2 no celular e no tablet, as duas fileiras com a mesma altura. Os quatro com a mesma
    estrutura: ícone, título curto em 500 e uma linha de apoio menor, alinhados pelo topo. */
 .details{list-style:none;padding:22px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:20px 14px;border-top:1px solid rgba(169,184,203,.12)}
@@ -746,12 +780,6 @@ html:has(dialog[open]){overflow:hidden}
      em uma linha a partir de 385px. Abaixo disso, quebra em duas linhas parelhas. */
   .panel .cta-ring{padding:4px}
   .panel .cta{gap:10px;font-size:13.5px}
-  /* Leque simétrico: nas duas capas à direita do Arsenal, a borda esquerda fica coberta pelo vizinho,
-     então título e nome vão para a direita, com o recuo espelhado. */
-  .b3 .ct,.b4 .ct{padding:9cqw 10cqw 8cqw 8cqw;text-align:right}
-  /* Na capa da esquerda, a borda coberta (pelo Arsenal) é a direita: o recuo direito cobre os 22%. */
-  .b1 .ct{padding-right:24cqw}
-  .b1 .ti{text-wrap:balance}
 }
 
 /* Garantia: card de vidro dentro do #faq (id="garantia"). Celular e tablet: primeiro item do #faq,
@@ -839,10 +867,14 @@ html body #san-footer-badge{background:#000000!important}
   .oferta{padding:40px 0 80px}
   .stage{height:clamp(380px,50vw,720px)}
   .stage-bg img{top:0;height:100%;object-position:50% 50%}
-  .books{bottom:25%;gap:clamp(8px,1.8vw,26px)}
-  .book{width:clamp(72px,11.9vw,172px)}
-  .book.big{width:clamp(86px,14.17vw,204px)}
-  .book+.book{margin-left:0}
+  .books{--lv:clamp(150px,21vw,280px);bottom:25%;gap:clamp(10px,1.4vw,20px)}
+  .caderno{width:calc(var(--lv) * .62)}
+  .cad-ponta{display:block;width:calc(var(--lv) * .5)}
+  .cad-plano,.cad-diario{margin:0}
+  .cad-plano{transform:rotateY(10deg)}
+  .cad-diario{transform:rotateY(-10deg)}
+  .cad-diag{transform:rotateY(20deg)}
+  .cad-codigo{transform:rotateY(-20deg)}
   /* Tablet: o painel fica em uma coluna, centrado. */
   /* O painel sobe 21% da altura do palco (-150px em 720px, como no mockup) e não cobre o pé dos livros. */
   .panel{max-width:640px;margin:calc(clamp(380px,50vw,720px) * -.21) auto 0;border-radius:30px;padding:40px 44px;gap:32px}
@@ -870,27 +902,28 @@ html body #san-footer-badge{background:#000000!important}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
 }
 
-/* Painel da oferta a partir de 1280px: 12 colunas, lista dos manuais em 7 e bloco de preço em 5, com o
+/* Painel da oferta a partir de 1280px: 12 colunas, a lista "O que você recebe" em 7 e bloco de preço em 5, com o
    mesmo topo e a mesma base; detalhes em 4 colunas iguais na largura toda, com fio vertical entre eles.
    Abaixo de ~1250px, as 5 colunas não comportam o botão em uma linha: até 1279px o painel fica
    empilhado como no tablet. A sobra de altura da lista vai para os espaços em volta dos fios (as linhas
    do meio crescem o dobro das pontas), então cada fio fica no meio do espaço entre duas linhas. */
 @media (min-width:1280px){
   .panel{max-width:1152px;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;padding:44px 48px}
-  .lista-manuais{grid-column:1 / span 7;grid-row:1;display:flex;flex-direction:column}
-  .items{flex:1}
-  .items li{flex:2 1 auto;flex-wrap:wrap;align-content:center}
-  .items li:first-child{flex-grow:1;align-content:flex-start}
-  .items li:last-child{flex-grow:1;align-content:flex-end}
-  .items li>span:last-child{flex:1 1 0;min-width:0}
-  .preco{grid-column:8 / span 5;grid-row:1;display:flex;flex-direction:column;justify-content:center;padding:36px 20px}
+  /* Lista em duas colunas de 3 (01 a 03 à esquerda); o fio fica entre as linhas de cada coluna. */
+  .recebe{grid-column:1 / span 7;grid-row:1;align-self:center}
+  .items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:28px}
+  .items li{align-items:flex-start;padding:14px 0}
+  .items li+li{border-top:1px solid rgba(169,184,203,.1)}
+  .items li:nth-child(4){border-top:0}
+  .items li:nth-child(1),.items li:nth-child(4){padding-top:0}
+  .items li:nth-child(3),.items li:nth-child(6){padding-bottom:0}
+  .preco{grid-column:8 / span 5;grid-row:1;display:flex;flex-direction:column;justify-content:center;padding:24px 20px}
   .preco .cta{gap:12px;padding-left:22px}
   .details{grid-column:1 / -1;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding-top:24px}
   .details li{padding:0 20px;border-left:1px solid rgba(169,184,203,.12)}
   .details li:first-child{padding-left:0;border-left:0}
   .details li:last-child{padding-right:0}
 }
-.compare{text-wrap:balance}
 
 /* Emenda #para-quem / #oferta. A frase e os cards do #para-quem ficam por cima do palco e da luz dele. */
 .epara .ep-grid,.big-quote{position:relative;z-index:1}
@@ -907,17 +940,18 @@ html body #san-footer-badge{background:#000000!important}
 }
 /* Desktop e tablet (a partir de 761px). O palco da mesa sobe por trás da frase final do
    #para-quem ("Conhecimento custa..."), que fica na parede; o rótulo e o título da oferta descem para o
-   palco, 80px acima do topo do livro maior. A ordem de leitura não muda.
-   --palco-h: altura do palco; --livro-l: largura do livro maior (altura = 1,5 x);
+   palco, 80px acima do topo do livro. A ordem de leitura não muda.
+   --palco-h: altura do palco; --livro-l: largura do livro (altura = 1,5 x);
    --titulo-fundo: distância do topo do palco até o pé do título;
    --frase-palco: espaço sob a frase, para ficar ~110px entre a frase e o rótulo em qualquer largura;
    --palco-sobe: quanto a foto sobe acima do palco (até o fim dos cards do #para-quem). */
 @media (min-width:761px){
   :root{
     --palco-h:clamp(380px,50vw,720px);
-    --livro-l:clamp(86px,14.17vw,204px);
+    --livro-l:clamp(150px,21vw,280px);
     --titulo-fundo:calc(.75 * var(--palco-h) - 1.5 * var(--livro-l) - 80px);
-    --frase-palco:calc(190px - var(--titulo-fundo));
+    /* 235px: o título da oferta tem duas linhas no desktop (com uma linha, eram 190px) */
+    --frase-palco:calc(235px - var(--titulo-fundo));
     --palco-sobe:calc(var(--frase-palco) + 250px);
   }
   .epara{padding-bottom:var(--frase-palco)}
@@ -927,6 +961,13 @@ html body #san-footer-badge{background:#000000!important}
   .stage{overflow:visible;overflow-x:clip}
   .stage-bg img{top:calc(-1 * var(--palco-sobe));height:calc(100% + var(--palco-sobe))}
   .stage-fade{top:calc(-1 * var(--palco-sobe));background:linear-gradient(180deg,#050A14 0,rgba(5,10,20,.6) 130px,rgba(5,10,20,.15) 290px,rgba(5,10,20,0) 380px,rgba(5,10,20,0) calc(100% - .3 * var(--palco-h)),#050A14 100%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,0) 14%,rgba(5,10,20,0) 86%,#050A14 100%)}
+}
+/* Tablet (761 a 1279px): com a foto subindo até a frase, ela encaixa pela altura e a mesa ficava no topo do
+   palco (sem parede atrás dos livros). Aqui a foto tem 162% da altura do palco e começa 62% acima dele: a
+   borda de trás da mesa (58% da foto) cai a 32% do palco e a da frente (87%) a 79%, como no desktop. O topo
+   da foto se dissolve por máscara. */
+@media (min-width:761px) and (max-width:1279px){
+  .stage-bg img{top:calc(-.62 * var(--palco-h));height:calc(1.62 * var(--palco-h));-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 160px);mask-image:linear-gradient(180deg,transparent 0,#000 160px)}
 }
 
 /* Emenda #faq / #fechamento. O brilho do fechamento sobe e começa por trás das últimas perguntas
@@ -1064,72 +1105,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <path d="M0 120 C 420 10, 1020 10, 1440 120" fill="none" stroke="url(#arc-luz)" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
 </svg>
 </section>
-<section id="sistema" class="sistema">
+<section id="conteudo" class="conteudo">
 <div class="wrap">
 <div class="sec-head">
-<span class="pill reveal">Por que quatro manuais</span>
-<h2 class="h2 reveal">Todo homem enganado deixou pelo menos <strong class="silver">uma destas brechas abertas.</strong></h2>
-<p class="sec-sub reveal">Ninguém é enganado por falta de inteligência. É enganado porque deixou uma porta aberta e não sabia que ela existia. O Arsenal fecha uma por manual.</p>
+<span class="pill reveal">O que você vai descobrir</span>
+<h2 class="h2 reveal">O passo a passo para deixar de aceitar o desrespeito e <strong class="silver">recuperar sua voz dentro do seu relacionamento.</strong></h2>
+<p class="sec-sub reveal">Você não precisa se tornar um homem agressivo ou frio para estabelecer limites. Precisa aprender a se posicionar com clareza, firmeza e respeito próprio.</p>
 </div>
-<article class="mcard feat reveal">
-<div class="mimg"><picture>
-<source type="image/avif" srcset="assets/img/opt/cena-arsenal-480.avif 480w, assets/img/opt/cena-arsenal-800.avif 800w, assets/img/opt/cena-arsenal-1280.avif 1280w" sizes="(min-width: 1024px) max(min(calc(55.6vw - 71px), 640px), 504px), (min-width: 761px) max(calc(50vw - 64px), 504px), calc(100vw - 44px)">
-<source type="image/webp" srcset="assets/img/opt/cena-arsenal-480.webp 480w, assets/img/opt/cena-arsenal-800.webp 800w, assets/img/opt/cena-arsenal-1280.webp 1280w" sizes="(min-width: 1024px) max(min(calc(55.6vw - 71px), 640px), 504px), (min-width: 761px) max(calc(50vw - 64px), 504px), calc(100vw - 44px)">
-<img src="assets/img/opt/cena-arsenal-800.jpg" srcset="assets/img/opt/cena-arsenal-480.jpg 480w, assets/img/opt/cena-arsenal-800.jpg 800w, assets/img/opt/cena-arsenal-1280.jpg 1280w" sizes="(min-width: 1024px) max(min(calc(55.6vw - 71px), 640px), 504px), (min-width: 761px) max(calc(50vw - 64px), 504px), calc(100vw - 44px)" width="1280" height="1067" loading="lazy" decoding="async" alt="Peitoral de armadura escuro apoiado numa poltrona de couro">
-</picture></div>
-<div class="mbody">
-<p class="mlabel">O manual central</p>
-<h3 class="mtitle">Arsenal Homem Blindado</h3>
-<p class="mtext mtext-destaque">Para quem sabe que algo está errado, mas não sabe o que fazer a partir de hoje.</p>
-<p class="mtext">O ponto de partida. Mostra onde você está deixando brecha e transforma o que você leu em postura e decisão, com exercícios para aplicar no mesmo dia.</p>
+<div class="cont-grid">
+<div class="cont-capa"><div class="livro reveal"><div class="capa" role="img" aria-label="Capa do livro De Desprezado a Respeitado, de Marcello Gomes"><picture><source type="image/avif" srcset="assets/img/opt/capa-desprezado-360.avif 360w, assets/img/opt/capa-desprezado-540.avif 540w, assets/img/opt/capa-desprezado-800.avif 800w, assets/img/opt/capa-desprezado-1080.avif 1080w" sizes="(min-width: 1280px) 400px, (min-width: 761px) 30vw, min(62vw, 300px)"><source type="image/webp" srcset="assets/img/opt/capa-desprezado-360.webp 360w, assets/img/opt/capa-desprezado-540.webp 540w, assets/img/opt/capa-desprezado-800.webp 800w, assets/img/opt/capa-desprezado-1080.webp 1080w" sizes="(min-width: 1280px) 400px, (min-width: 761px) 30vw, min(62vw, 300px)"><img src="assets/img/opt/capa-desprezado-540.jpg" srcset="assets/img/opt/capa-desprezado-360.jpg 360w, assets/img/opt/capa-desprezado-540.jpg 540w, assets/img/opt/capa-desprezado-800.jpg 800w, assets/img/opt/capa-desprezado-1080.jpg 1080w" sizes="(min-width: 1280px) 400px, (min-width: 761px) 30vw, min(62vw, 300px)" width="1080" height="1620" loading="lazy" decoding="async" alt=""></picture><div class="capa-ov"></div><p class="capa-frase">Descubra como recuperar sua <b>postura</b>, seu <b>valor</b> e o <b>respeito</b> dentro do seu relacionamento.</p><div class="capa-pe"><p class="capa-ti">De desprezado <strong class="silver">a respeitado</strong></p><p class="capa-au">Marcello Gomes</p></div></div></div></div>
+<ol class="aprend">
+<li><span class="ap-num" aria-hidden="true"><span class="silver">01</span></span><div class="ap-txt reveal"><h3>Recupere sua voz</h3><p>Entenda por que você deixou de ser ouvido dentro de casa e como começar a se posicionar novamente.</p></div></li>
+<li><span class="ap-num" aria-hidden="true"><span class="silver">02</span></span><div class="ap-txt reveal"><h3>Pare de aceitar humilhações</h3><p>Aprenda a reagir a deboches, ofensas e comparações sem perder o controle emocional.</p></div></li>
+<li><span class="ap-num" aria-hidden="true"><span class="silver">03</span></span><div class="ap-txt reveal"><h3>Vença o medo de perder</h3><p>Deixe de concordar com tudo apenas para evitar discussões ou uma possível separação.</p></div></li>
+<li><span class="ap-num" aria-hidden="true"><span class="silver">04</span></span><div class="ap-txt reveal"><h3>Aprenda a colocar limites</h3><p>Descubra como dizer não, parar de se justificar por tudo e sustentar suas decisões.</p></div></li>
+<li><span class="ap-num" aria-hidden="true"><span class="silver">05</span></span><div class="ap-txt reveal"><h3>Pare de implorar atenção</h3><p>Desenvolva sua autonomia emocional e deixe de depender constantemente da aprovação da sua parceira.</p></div></li>
+<li><span class="ap-num" aria-hidden="true"><span class="silver">06</span></span><div class="ap-txt reveal"><h3>Reconstrua sua postura no casamento</h3><p>Saiba como abordar conversas difíceis, assumir responsabilidades e buscar mais reciprocidade, mesmo depois de muitos anos juntos.</p></div></li>
+<li><span class="ap-num" aria-hidden="true"><span class="silver">07</span></span><div class="ap-txt reveal"><h3>Decida com clareza</h3><p>Aprenda a diferenciar promessas de atitudes e identificar quando existe espaço para reconstruir a relação.</p></div></li>
+<li><span class="ap-num" aria-hidden="true"><span class="silver">08</span></span><div class="ap-txt reveal"><h3>Coloque em prática em 30 dias</h3><p>Siga exercícios diários para fortalecer seu respeito próprio e transformar conhecimento em atitudes.</p></div></li>
+</ol>
 </div>
-</article>
-<div class="trio">
-<article class="mcard reveal">
-<div class="mimg"><picture>
-<source type="image/avif" srcset="assets/img/opt/cena-traicao-480.avif 480w, assets/img/opt/cena-traicao-760.avif 760w, assets/img/opt/cena-traicao-1040.avif 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
-<source type="image/webp" srcset="assets/img/opt/cena-traicao-480.webp 480w, assets/img/opt/cena-traicao-760.webp 760w, assets/img/opt/cena-traicao-1040.webp 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
-<img src="assets/img/opt/cena-traicao-760.jpg" srcset="assets/img/opt/cena-traicao-480.jpg 480w, assets/img/opt/cena-traicao-760.jpg 760w, assets/img/opt/cena-traicao-1040.jpg 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)" width="1040" height="693" loading="lazy" decoding="async" alt="Celular virado para baixo na mesa, com luz azul saindo por baixo, ao lado de um copo de uísque">
-</picture></div>
-<div class="mbody">
-<p class="mlabel">Brecha: não enxerga os sinais</p>
-<h3 class="mtitle">Manual Secreto da Traição para Homens</h3>
-<p class="mtext">O problema já estava ali havia meses. Ele só percebe quando estoura.</p>
+<div class="cont-fim">
+<p class="cont-destaque reveal">13 capítulos · 8 dossiês · Plano de ação de 30 dias</p>
+<div class="reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero começar minha transformação<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
-</article>
-<article class="mcard reveal">
-<div class="mimg"><picture>
-<source type="image/avif" srcset="assets/img/opt/cena-iluda-480.avif 480w, assets/img/opt/cena-iluda-760.avif 760w, assets/img/opt/cena-iluda-1040.avif 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
-<source type="image/webp" srcset="assets/img/opt/cena-iluda-480.webp 480w, assets/img/opt/cena-iluda-760.webp 760w, assets/img/opt/cena-iluda-1040.webp 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
-<img src="assets/img/opt/cena-iluda-760.jpg" srcset="assets/img/opt/cena-iluda-480.jpg 480w, assets/img/opt/cena-iluda-760.jpg 760w, assets/img/opt/cena-iluda-1040.jpg 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)" width="1040" height="867" loading="lazy" decoding="async" alt="Duas taças vazias e uma vela recém-apagada sobre a mesa">
-</picture></div>
-<div class="mbody">
-<p class="mlabel">Brecha: se ilude com o que sente</p>
-<h3 class="mtitle">Nunca se Iluda com as Mulheres</h3>
-<p class="mtext">Decide com a emoção e ignora o que está vendo.</p>
-</div>
-</article>
-<article class="mcard reveal">
-<div class="mimg"><picture>
-<source type="image/avif" srcset="assets/img/opt/cena-honra-480.avif 480w, assets/img/opt/cena-honra-760.avif 760w, assets/img/opt/cena-honra-1040.avif 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
-<source type="image/webp" srcset="assets/img/opt/cena-honra-480.webp 480w, assets/img/opt/cena-honra-760.webp 760w, assets/img/opt/cena-honra-1040.webp 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)">
-<img src="assets/img/opt/cena-honra-760.jpg" srcset="assets/img/opt/cena-honra-480.jpg 480w, assets/img/opt/cena-honra-760.jpg 760w, assets/img/opt/cena-honra-1040.jpg 1040w" sizes="(min-width: 1024px) min(calc(33.3vw - 56px), 371px), (min-width: 761px) calc(40vw - 51px), calc(100vw - 44px)" width="1040" height="693" loading="lazy" decoding="async" alt="Relógio de aço e aliança sobre um caderno de couro">
-</picture></div>
-<div class="mbody">
-<p class="mlabel">Brecha: não tem postura</p>
-<h3 class="mtitle">A Força da Honra</h3>
-<p class="mtext">Implora atenção, cede em tudo e não sustenta um limite.</p>
-</div>
-</article>
-</div>
-<p class="closing reveal">Um manual sozinho fecha uma brecha. <strong class="silver">Os quatro juntos fecham a armadura.</strong></p>
 <div class="armadura" aria-hidden="true">
 <div class="arm-brilho"></div>
-<svg class="arm-pequeno arm-p1" viewBox="0 0 200 240"><use href="#escudo"/></svg>
-<svg class="arm-pequeno arm-p2" viewBox="0 0 200 240"><use href="#escudo"/></svg>
-<svg class="arm-pequeno arm-p3" viewBox="0 0 200 240"><use href="#escudo"/></svg>
-<svg class="arm-pequeno arm-p4" viewBox="0 0 200 240"><use href="#escudo"/></svg>
-<svg class="arm-grande" viewBox="0 0 200 240"><use href="#escudo"/></svg>
+<svg class="arm-cheio" viewBox="0 0 200 240"><use href="#escudo"/></svg>
+<svg class="arm-contorno" viewBox="0 0 200 240"><use href="#escudo"/></svg>
 <div class="arm-linha"></div>
 </div>
 </div>
@@ -1275,8 +1278,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="oferta" class="oferta">
 <div class="wrap">
 <div class="sec-head">
-<span class="pill reveal">A oferta</span>
-<h2 class="h2 reveal">Tudo o que você <strong class="silver">recebe hoje.</strong></h2>
+<span class="pill reveal">Seu próximo passo</span>
+<h2 class="h2 reveal">Tudo o que você precisa para começar a reconstruir sua postura <strong class="silver">está aqui.</strong></h2>
 </div>
 </div>
 <div class="stage">
@@ -1286,34 +1289,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <img src="assets/img/opt/oferta-mesa-1280.jpg" srcset="assets/img/opt/oferta-mesa-960.jpg 960w, assets/img/opt/oferta-mesa-1280.jpg 1280w, assets/img/opt/oferta-mesa-1672.jpg 1672w" sizes="max(min(100vw, 1600px), 676px)" width="1672" height="941" loading="lazy" decoding="async" alt="">
 </picture>
 <div class="stage-fade" aria-hidden="true"></div>
-<div class="books reveal" role="img" aria-label="As capas dos quatro manuais do Arsenal Homem Blindado">
-<div class="book b1"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-traicao-260.avif 260w, assets/img/opt/capa-traicao-440.avif 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><source type="image/webp" srcset="assets/img/opt/capa-traicao-260.webp 260w, assets/img/opt/capa-traicao-440.webp 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><img src="assets/img/opt/capa-traicao-260.jpg" srcset="assets/img/opt/capa-traicao-260.jpg 260w, assets/img/opt/capa-traicao-440.jpg 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti long">Manual Secreto da <strong class="silver">Traição para Homens</strong></p><p class="au">Marcello Gomes</p></div></div></div>
-<div class="book big b2"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-arsenal-260.avif 260w, assets/img/opt/capa-arsenal-440.avif 440w" sizes="(min-width: 761px) clamp(86px, 14.17vw, 204px), min(124px, 31vw)"><source type="image/webp" srcset="assets/img/opt/capa-arsenal-260.webp 260w, assets/img/opt/capa-arsenal-440.webp 440w" sizes="(min-width: 761px) clamp(86px, 14.17vw, 204px), min(124px, 31vw)"><img src="assets/img/opt/capa-arsenal-260.jpg" srcset="assets/img/opt/capa-arsenal-260.jpg 260w, assets/img/opt/capa-arsenal-440.jpg 440w" sizes="(min-width: 761px) clamp(86px, 14.17vw, 204px), min(124px, 31vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti">Arsenal <strong class="silver">Homem Blindado</strong></p><p class="au">Marcello Gomes</p></div></div></div>
-<div class="book b3"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-honra-260.avif 260w, assets/img/opt/capa-honra-440.avif 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><source type="image/webp" srcset="assets/img/opt/capa-honra-260.webp 260w, assets/img/opt/capa-honra-440.webp 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><img src="assets/img/opt/capa-honra-260.jpg" srcset="assets/img/opt/capa-honra-260.jpg 260w, assets/img/opt/capa-honra-440.jpg 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti">A Força <strong class="silver">da Honra</strong></p><p class="au">Marcello Gomes</p></div></div></div>
-<div class="book b4"><div class="cover"><picture><source type="image/avif" srcset="assets/img/opt/capa-iluda-260.avif 260w, assets/img/opt/capa-iluda-440.avif 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><source type="image/webp" srcset="assets/img/opt/capa-iluda-260.webp 260w, assets/img/opt/capa-iluda-440.webp 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)"><img src="assets/img/opt/capa-iluda-260.jpg" srcset="assets/img/opt/capa-iluda-260.jpg 260w, assets/img/opt/capa-iluda-440.jpg 440w" sizes="(min-width: 761px) clamp(72px, 11.9vw, 172px), min(104px, 26vw)" width="440" height="660" loading="lazy" decoding="async" alt=""></picture><div class="ov"></div><div class="ct"><p class="ti long">Nunca se Iluda <strong class="silver">com as Mulheres</strong></p><p class="au">Marcello Gomes</p></div></div></div>
+<div class="books reveal" role="img" aria-label="O livro De Desprezado a Respeitado, de Marcello Gomes, sobre a mesa, com o Plano de ação de 30 dias, o Diagnóstico pessoal, o Diário do homem respeitado e o Código de honra">
+<div class="caderno cad-diag cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diagnóstico <strong class="silver">pessoal</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+<div class="caderno cad-plano"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><span class="cad-30 silver">30</span><div class="cad-pe"><p class="cad-ti">Plano de ação <strong class="silver">de 30 dias</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+<div class="livro livro-oferta"><div class="capa"><picture><source type="image/avif" srcset="assets/img/opt/capa-desprezado-360.avif 360w, assets/img/opt/capa-desprezado-540.avif 540w, assets/img/opt/capa-desprezado-800.avif 800w, assets/img/opt/capa-desprezado-1080.avif 1080w" sizes="(min-width: 761px) clamp(120px, 18vw, 260px), 46vw"><source type="image/webp" srcset="assets/img/opt/capa-desprezado-360.webp 360w, assets/img/opt/capa-desprezado-540.webp 540w, assets/img/opt/capa-desprezado-800.webp 800w, assets/img/opt/capa-desprezado-1080.webp 1080w" sizes="(min-width: 761px) clamp(120px, 18vw, 260px), 46vw"><img src="assets/img/opt/capa-desprezado-540.jpg" srcset="assets/img/opt/capa-desprezado-360.jpg 360w, assets/img/opt/capa-desprezado-540.jpg 540w, assets/img/opt/capa-desprezado-800.jpg 800w, assets/img/opt/capa-desprezado-1080.jpg 1080w" sizes="(min-width: 761px) clamp(120px, 18vw, 260px), 46vw" width="1080" height="1620" loading="lazy" decoding="async" alt=""></picture><div class="capa-ov"></div><div class="capa-pe"><p class="capa-ti">De desprezado <strong class="silver">a respeitado</strong></p><p class="capa-au">Marcello Gomes</p></div></div></div>
+
+<div class="caderno cad-diario"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diário do homem <strong class="silver">respeitado</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+<div class="caderno cad-codigo cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Código <strong class="silver">de honra</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
 </div>
 </div>
 <div class="wrap">
 <div class="panel reveal">
-<div class="lista-manuais">
-<span class="pill">Os quatro manuais</span>
+<div class="recebe">
+<span class="pill">O que você recebe</span>
 <ul class="items">
-<li><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-arsenal-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-arsenal-260.webp"><img src="assets/img/opt/capa-arsenal-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>Arsenal Homem Blindado</b><small class="silver">O manual central</small></span></li>
-<li><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-traicao-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-traicao-260.webp"><img src="assets/img/opt/capa-traicao-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>Manual Secreto da Traição para Homens</b><small>Para enxergar os sinais antes de estourar</small></span></li>
-<li><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-honra-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-honra-260.webp"><img src="assets/img/opt/capa-honra-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>A Força da Honra</b><small>Para colocar limite e sustentar</small></span></li>
-<li><span class="mini"><picture><source type="image/avif" srcset="assets/img/opt/capa-iluda-260.avif"><source type="image/webp" srcset="assets/img/opt/capa-iluda-260.webp"><img src="assets/img/opt/capa-iluda-260.jpg" width="260" height="390" loading="lazy" decoding="async" alt=""></picture></span><span><b>Nunca se Iluda com as Mulheres</b><small>Para decidir com clareza, e não pela emoção</small></span></li>
+<li><span><b>13 capítulos estratégicos</b><small>Para reconhecer padrões de desrespeito, fortalecer sua postura e recuperar sua voz.</small></span></li>
+<li><span><b>8 dossiês sobre relacionamentos</b><small>Com situações envolvendo casamento, distanciamento emocional, traição, dinheiro e medo de ir embora.</small></span></li>
+<li><span><b>Plano de ação de 30 dias</b><small>Atividades práticas para desenvolver mais clareza, autonomia e firmeza.</small></span></li>
+<li><span><b>Diagnóstico pessoal</b><small>Para refletir sobre o que está acontecendo e identificar pontos que precisam de atenção.</small></span></li>
+<li><span><b>Código de honra</b><small>Dez princípios para orientar sua postura e suas decisões.</small></span></li>
+<li><span><b>Diário do homem respeitado</b><small>Ferramenta para registrar aprendizados, limites e mudanças de atitude.</small></span></li>
 </ul>
 </div>
 <div class="preco">
 <p class="price-old">De <s>R$&nbsp;297</s> por</p>
 <p class="price-main"><small>12x de</small> <b class="silver">R$&nbsp;10,03</b></p>
 <p class="price-alt">ou R$&nbsp;97 à vista</p>
-<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero me tornar um Homem Blindado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
-<p class="compare">Menos do que um jantar a dois. E pode te poupar anos.</p>
+<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado agora<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
 </div>
 <ul class="details">
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg><span><b>Acesso imediato</b><small>No seu e-mail, assim que o pagamento é aprovado.</small></span></li>
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><b>Leia onde quiser</b><small>Em PDF, no celular, tablet ou computador. Nada vai pelo correio.</small></span></li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg><span><b>Acesso digital</b><small>Liberado após a confirmação do pagamento.</small></span></li>
+<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><b>Leia onde quiser</b><small>Em PDF, no celular, tablet ou computador.</small></span></li>
 <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Pagamento seguro</b><small>Processado pela própria Eduzz.</small></span></li>
 <li><svg width="14" height="16" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="#A9B8CB" stroke-width="16" stroke-linejoin="round"/></svg><span><b>Garantia de 7 dias</b><small>Reembolso pela Eduzz, sem precisar explicar nada.</small></span></li>
 </ul>

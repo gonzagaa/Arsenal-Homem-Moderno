@@ -27,15 +27,10 @@ const LARGURAS = {
   // Celular até 1290 (iPhone com densidade 3); desktop até 3200 (1440 a 1600px com densidade 2).
   'hero-mobile': [640, 828, 1080, 1290],
   'hero-desktop': [1280, 1600, 1920, 2560, 3200],
-  'cena-arsenal': [480, 800, 1280],
-  'cena-traicao': [480, 760, 1040],
-  'cena-iluda': [480, 760, 1040],
-  'cena-honra': [480, 760, 1040],
   'autor': [400, 640, 900],
-  'capa-arsenal': [260, 440],
-  'capa-traicao': [260, 440],
-  'capa-honra': [260, 440],
-  'capa-iluda': [260, 440],
+  // Capa do De Desprezado a Respeitado (original em JPG, 1600x2400): ~360px no #conteudo e ~260px na
+  // oferta no desktop (2x), 62% e 46% da tela no celular (3x).
+  'capa-desprezado': [360, 540, 800, 1080],
   'oferta-mesa': [960, 1280, 1672],
 };
 // Prints: ~250px na fileira do celular, ~350px no mosaico do desktop e até 520px no lightbox.
@@ -54,7 +49,7 @@ const RETRATO = {
   webp: { quality: 84, effort: 6, smartSubsample: true },
   jpg: { quality: 84, mozjpeg: true, progressive: true },
 };
-const RETRATOS = new Set(['autor']);
+const RETRATOS = new Set(['autor', 'capa-desprezado']);
 // Hero: a primeira coisa que se vê. AVIF no topo da faixa 62 a 68 (o 1290 do celular fica com ~85 KB).
 const HERO = {
   avif: { quality: 68, effort: 6, bitdepth: 10 },
@@ -137,8 +132,16 @@ const kb = (bytes) => (bytes ? (bytes / 1024).toFixed(1).padStart(7) : '      -'
 const inicio = Date.now();
 await mkdir(DESTINO, { recursive: true });
 
+// O original pode ser PNG ou JPG (a capa nova veio em JPG).
+async function original(nome) {
+  for (const ext of ['png', 'jpg', 'jpeg']) {
+    const arq = path.join(ORIGEM, `${nome}.${ext}`);
+    try { await stat(arq); return arq; } catch {}
+  }
+  throw new Error(`Original de ${nome} não encontrado em assets/img (png ou jpg).`);
+}
 for (const [nome, larguras] of Object.entries(LARGURAS)) {
-  await gerar(path.join(ORIGEM, `${nome}.png`), nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
+  await gerar(await original(nome), nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
 }
 for (const arquivo of await listarPrints()) {
   await gerar(path.join(PRINTS, arquivo), nomeDoPrint(arquivo), LARGURAS_PRINT, TEXTO);

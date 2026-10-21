@@ -1,5 +1,7 @@
 # Prompts de construção
 
+> Histórico: as etapas 4 (o sistema) e 7 (oferta) descrevem o produto antigo, o Arsenal Homem Blindado (quatro manuais). O produto atual é o De Desprezado a Respeitado; a estrutura atual dessas seções está no `CLAUDE.md` e no `docs/PROGRESSO.md`.
+
 A página é construída em 12 etapas, nesta ordem. O desenvolvedor manda uma etapa por vez no chat ("Faça a etapa 3"). Cada etapa termina numa parada obrigatória.
 
 ## Regra de parada (vale para todas as etapas)

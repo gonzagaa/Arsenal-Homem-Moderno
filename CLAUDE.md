@@ -78,12 +78,12 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 1. `#hero`: foto de fundo, H1, subheadline, botão, dois cards de vidro (419 mil seguidores, +12 mil homens)
 2. `#identificacao`: checklist interativo de 7 itens com contador
 3. `#virada`: cinco palavras empilhadas e o texto
-4. `#conteudo` (substitui o `#sistema`, na rodada B da troca de produto): capa do livro à esquerda e os 8 aprendizados à direita (no celular, a capa primeiro), destaque "13 capítulos · 8 dossiês · Plano de ação de 30 dias" e botão. Até a rodada B, a página ainda tem o `#sistema` antigo.
+4. `#conteudo` (substituiu o `#sistema`): capa do livro à esquerda, montada em HTML (sticky enquanto a lista rola), e os 8 aprendizados à direita (no celular, a capa primeiro); destaque "13 capítulos · 8 dossiês · Plano de ação de 30 dias", botão e, na emenda com a `#antes-depois`, o escudo que se enche de prata com a rolagem.
 5. `#antes-depois`: colunas "Desprezado" e "Respeitado"
 6. `#autor`
 7. `#resultados`: 8 prints reais da DM (`assets/img/prints/`, com o cabeçalho do Instagram borrado no próprio print); no desktop, carrossel contínuo de borda a borda
 8. `#para-quem`
-9. `#oferta`: um único livro em pé sobre a mesa, com a capa nova (`assets/img/capa-desprezado.jpg`; o palco sobe por trás da frase final do `#para-quem`) + painel de preço com o que o comprador recebe (rodada B; até lá, a página ainda tem os quatro livros antigos)
+9. `#oferta`: o livro em pé no centro da mesa, com a capa nova, e quatro cadernos tipográficos dos lados (os materiais da lista "O que você recebe"; no celular, só dois) (`assets/img/capa-desprezado.jpg`; o palco sobe por trás da frase final do `#para-quem`) + painel de preço com o que o comprador recebe
 10. `#faq`: a garantia num card de vidro (`id="garantia"`) e as perguntas. No desktop, a garantia fica na coluna esquerda, abaixo do título; no celular, é o primeiro item, logo depois da oferta.
 11. `#fechamento` + rodapé
 12. Barra fixa no celular
