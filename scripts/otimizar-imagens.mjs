@@ -28,12 +28,9 @@ const LARGURAS = {
   'hero-mobile': [640, 828, 1080, 1290],
   'hero-desktop': [1280, 1600, 1920, 2560, 3200],
   'autor': [400, 640, 900],
-  // Capa do De Desprezado a Respeitado (original em JPG, 1600x2400): ~360px no #conteudo e ~260px na
-  // oferta no desktop (2x), 62% e 46% da tela no celular (3x).
-  'capa-desprezado': [360, 540, 800, 1080],
-  // Capas oficiais do cliente, só para comparação (?capa=dourada / ?capa=azul): as mesmas larguras.
+  // Capa oficial dourada do livro (1024x1536, a maior versão fica com 1024): até 280px na oferta no desktop
+  // (2x) e 46% da tela no celular (3x).
   'capa-oficial-dourada': [360, 540, 800, 1080],
-  'capa-oficial-azul': [360, 540, 800, 1080],
   'oferta-mesa': [960, 1280, 1672],
 };
 // Cards da #transformacao (originais em assets/img/cards/card-0N-original.png, 1536x1024, com o texto dentro da
@@ -70,9 +67,7 @@ const RETRATO = {
   webp: { quality: 84, effort: 6, smartSubsample: true },
   jpg: { quality: 84, mozjpeg: true, progressive: true },
 };
-const RETRATOS = new Set(['autor', 'capa-desprezado', 'capa-oficial-dourada', 'capa-oficial-azul']);
-// Originais que podem ainda não existir: sem o arquivo, o script avisa e segue.
-const OPCIONAIS = new Set(['capa-oficial-dourada', 'capa-oficial-azul']);
+const RETRATOS = new Set(['autor', 'capa-oficial-dourada']);
 // Hero: a primeira coisa que se vê. AVIF no topo da faixa 62 a 68 (o 1290 do celular fica com ~85 KB).
 const HERO = {
   avif: { quality: 68, effort: 6, bitdepth: 10 },
@@ -163,7 +158,7 @@ const kb = (bytes) => (bytes ? (bytes / 1024).toFixed(1).padStart(7) : '      -'
 const inicio = Date.now();
 await mkdir(DESTINO, { recursive: true });
 
-// O original pode ser PNG ou JPG (a capa nova veio em JPG).
+// O original pode ser PNG ou JPG.
 async function original(nome) {
   for (const ext of ['png', 'jpg', 'jpeg']) {
     const arq = path.join(ORIGEM, `${nome}.${ext}`);
@@ -172,12 +167,7 @@ async function original(nome) {
   throw new Error(`Original de ${nome} não encontrado em assets/img (png ou jpg).`);
 }
 for (const [nome, larguras] of Object.entries(LARGURAS)) {
-  let arq;
-  try { arq = await original(nome); } catch (e) {
-    if (OPCIONAIS.has(nome)) { console.log(`aviso: ${nome} ainda não está em assets/img (pulado)`); continue; }
-    throw e;
-  }
-  await gerar(arq, nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
+  await gerar(await original(nome), nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
 }
 for (const [nome, { arquivo, corte }] of Object.entries(CARDS)) {
   await gerar(path.join(ORIGEM, 'cards', arquivo), nome, LARGURAS_CARD, CARD, corte);

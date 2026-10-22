@@ -477,23 +477,14 @@ html.lenis{scroll-behavior:auto!important}
   .sec-sub{font-size:17.5px}
 }
 
-/* Livro principal da #oferta. Padrão: a capa oficial dourada (.capa-oficial: a imagem já traz o texto, então
-   o escurecimento e o texto em HTML saem). Só por parâmetro (ver o JS): ?capa=azul (a capa oficial azul) e
-   ?capa=html (a capa montada em HTML: a arte de fundo e o texto real em cqw, título embaixo à esquerda, em 300
-   com o final em 600 prateado, e o autor embaixo dele). Em pé, com luz de lombada na borda esquerda e sombra
-   de contato embaixo. */
+/* Livro principal da #oferta: a capa oficial dourada, aprovada pelo cliente (a imagem já traz o título e o
+   autor). Em pé, com luz de lombada na borda esquerda (em cqw), contorno e sombra de contato embaixo. */
 .livro{position:relative;perspective:1600px}
 .livro::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-18px;height:30px;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0))}
 .capa{position:relative;container-type:inline-size;aspect-ratio:2/3;overflow:hidden;background:#02060F;border-radius:3px 6px 6px 3px;box-shadow:-18px 24px 44px -14px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4);transform:rotateY(-8deg)}
 .capa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.capa-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,15,.88) 0%,rgba(2,6,15,.5) 24%,rgba(2,6,15,0) 42%),linear-gradient(270deg,rgba(2,6,15,.5) 0%,rgba(2,6,15,.35) 30%,rgba(2,6,15,0) 48%)}
 .capa::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5cqw;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(255,255,255,.16) 30%,rgba(255,255,255,0) 100%)}
 .capa::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid rgba(201,211,224,.14);border-radius:inherit;pointer-events:none}
-.capa-pe{position:absolute;left:9cqw;right:8cqw;bottom:9cqw;z-index:2;color:var(--gelo)}
-.capa-ti{font-weight:300;font-size:11.5cqw;line-height:1;letter-spacing:-.035em}
-.capa-ti strong{display:block;font-weight:600}
-.capa-au{margin-top:4cqw;font-size:4.4cqw;font-weight:500;line-height:1.2;letter-spacing:.005em;color:#D9E2EE}
-.capa-oficial .capa-ov,.capa-oficial .capa-pe{display:none}
 
 /* Como a transformação acontece (#caminho, substituiu o #conteudo). O fundo começa em #0C1729 (a cor da
    curva da #identificacao) e termina em #050A14, a cor da #oferta: no desktop, a foto do palco da oferta
@@ -1118,7 +1109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 // Comparação dos cards da #transformacao, só por parâmetro: ?cards=nossos troca as artes do cliente pelos nossos
 // cards (do <template> logo acima). Qualquer outro valor é ignorado. Fica logo depois da lista para a troca
 // acontecer antes de o navegador pedir as imagens: com o parâmetro, as artes do cliente não são baixadas; sem
-// ele, as nossas fotos não são. Independente do ?capa=.
+// ele, as nossas fotos não são.
 (function () {
   if (new URLSearchParams(location.search).get('cards') !== 'nossos') return;
   var lista = document.querySelector('.cartoes');
@@ -1194,7 +1185,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="books reveal" role="img" aria-label="O livro De Desprezado a Respeitado, de Marcello Gomes, sobre a mesa, com o Plano de ação de 30 dias, o Diagnóstico pessoal, o Diário do homem respeitado e o Código de honra">
 <div class="caderno cad-diag cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diagnóstico <strong class="silver">pessoal</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
 <div class="caderno cad-plano"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><span class="cad-30 silver">30</span><div class="cad-pe"><p class="cad-ti">Plano de ação <strong class="silver">de 30 dias</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-<div class="livro livro-oferta"><div class="capa capa-oficial"><picture><source type="image/avif" srcset="assets/img/opt/capa-oficial-dourada-360.avif 360w, assets/img/opt/capa-oficial-dourada-540.avif 540w, assets/img/opt/capa-oficial-dourada-800.avif 800w, assets/img/opt/capa-oficial-dourada-1024.avif 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><source type="image/webp" srcset="assets/img/opt/capa-oficial-dourada-360.webp 360w, assets/img/opt/capa-oficial-dourada-540.webp 540w, assets/img/opt/capa-oficial-dourada-800.webp 800w, assets/img/opt/capa-oficial-dourada-1024.webp 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><img src="assets/img/opt/capa-oficial-dourada-540.jpg" srcset="assets/img/opt/capa-oficial-dourada-360.jpg 360w, assets/img/opt/capa-oficial-dourada-540.jpg 540w, assets/img/opt/capa-oficial-dourada-800.jpg 800w, assets/img/opt/capa-oficial-dourada-1024.jpg 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw" width="1024" height="1536" loading="lazy" decoding="async" alt=""></picture><div class="capa-ov"></div><div class="capa-pe"><p class="capa-ti">De desprezado <strong class="silver">a respeitado</strong></p><p class="capa-au">Marcello Gomes</p></div></div></div>
+<div class="livro livro-oferta"><div class="capa"><picture><source type="image/avif" srcset="assets/img/opt/capa-oficial-dourada-360.avif 360w, assets/img/opt/capa-oficial-dourada-540.avif 540w, assets/img/opt/capa-oficial-dourada-800.avif 800w, assets/img/opt/capa-oficial-dourada-1024.avif 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><source type="image/webp" srcset="assets/img/opt/capa-oficial-dourada-360.webp 360w, assets/img/opt/capa-oficial-dourada-540.webp 540w, assets/img/opt/capa-oficial-dourada-800.webp 800w, assets/img/opt/capa-oficial-dourada-1024.webp 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><img src="assets/img/opt/capa-oficial-dourada-540.jpg" srcset="assets/img/opt/capa-oficial-dourada-360.jpg 360w, assets/img/opt/capa-oficial-dourada-540.jpg 540w, assets/img/opt/capa-oficial-dourada-800.jpg 800w, assets/img/opt/capa-oficial-dourada-1024.jpg 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw" width="1024" height="1536" loading="lazy" decoding="async" alt=""></picture></div></div>
 
 <div class="caderno cad-diario"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diário do homem <strong class="silver">respeitado</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
 <div class="caderno cad-codigo cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Código <strong class="silver">de honra</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
@@ -1391,8 +1382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var links = document.querySelectorAll('a[href^="https://chk.eduzz.com/"]');
   var params = new URLSearchParams(location.search);
   params.delete('rastreio'); // chave de teste do rastreio no localhost, não vai para o checkout
-  params.delete('capa'); // chaves das comparações de capas e de cards, também não vão para o checkout
-  params.delete('cards');
+  params.delete('cards'); // chave da comparação dos cards, também não vai para o checkout
   links.forEach(function (a) {
     if (params.toString()) {
       var url = new URL(a.href);
@@ -1406,33 +1396,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Sem um ouvinte de touchstart, o Safari do iPhone (e o navegador interno do Instagram, que usa o mesmo
   // motor) não aplica o :active no toque, e o botão não "afunda".
   document.addEventListener('touchstart', function () {}, { passive: true });
-})();
-
-// Capa do livro principal da #oferta. A padrão é a capa oficial dourada (no HTML). Só por parâmetro, para
-// comparação: ?capa=azul troca pela capa oficial azul e ?capa=html pela capa montada em HTML (a arte de fundo
-// com o título e o autor em texto real). Qualquer outro valor é ignorado. A capa tem loading="lazy" e fica
-// abaixo da dobra, então a troca acontece antes de o navegador pedir a imagem padrão.
-// larguras: as que o scripts/otimizar-imagens.mjs gera (a oficial azul tem 1024x1536 e a arte da capa em
-// HTML, 1080x1620; o script nunca amplia). Se trocar os originais, confira aqui.
-(function () {
-  var ARTES = {
-    azul: { base: 'assets/img/opt/capa-oficial-azul-', larguras: [360, 540, 800, 1024], w: 1024, h: 1536, oficial: true },
-    html: { base: 'assets/img/opt/capa-desprezado-', larguras: [360, 540, 800, 1080], w: 1080, h: 1620, oficial: false }
-  };
-  var variante = new URLSearchParams(location.search).get('capa');
-  var arte = Object.prototype.hasOwnProperty.call(ARTES, variante) && ARTES[variante];
-  var capa = document.querySelector('.livro-oferta .capa');
-  if (!arte || !capa) return;
-  function lista(ext) {
-    return arte.larguras.map(function (l) { return arte.base + l + '.' + ext + ' ' + l + 'w'; }).join(', ');
-  }
-  capa.classList.toggle('capa-oficial', arte.oficial);
-  capa.querySelectorAll('source').forEach(function (s) { s.srcset = lista(s.type.split('/')[1]); });
-  var img = capa.querySelector('img');
-  img.srcset = lista('jpg');
-  img.src = arte.base + '540.jpg';
-  img.width = arte.w;
-  img.height = arte.h;
 })();
 
 // Rolagem suave (Lenis): só com mouse/trackpad e sem movimento reduzido. No toque, rolagem nativa.

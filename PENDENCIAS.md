@@ -32,6 +32,7 @@ Estes itens aparecem na página sem a classe `.pendente`, então nada na tela av
 - [ ] Garantia de 7 dias (card da garantia e bloco de compra do fechamento): prazo configurado na Eduzz para o produto novo e as condições que o checkout informa (o texto da garantia remete a elas).
 - [ ] Autorização do Marcello para usar as 8 conversas da prova social, na #autor (nomes e fotos cobertos). O print-07 mostra um story do Marcello com o rosto de uma mulher; confirmar se pode aparecer.
 - [ ] Política de privacidade: a página usa pixel e GA4 (cookies). Verificar com o cliente se existe uma política publicada para linkar no rodapé, por causa da LGPD e da revisão de anúncios da Meta.
+- [x] Capa do livro: resolvido. O cliente aprovou a capa oficial dourada, que é definitiva; a azul e a capa em HTML saíram do projeto.
 - [x] Conversions API Gateway: resolvido. A gestora confirmou que está ativo e deduplicando com o pixel do navegador.
 - [x] Pixel no produto da Eduzz: resolvido no produto antigo. Refazer no produto novo (item acima).
 - [x] InitiateCheckout em dobro: resolvido. O checkout da Eduzz dispara o evento ao abrir, e ele foi removido do clique na página.

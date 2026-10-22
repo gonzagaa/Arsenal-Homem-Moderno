@@ -42,6 +42,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Comparação de capas por parâmetro (`?capa=dourada` e `?capa=azul`) | aprovada |
 | Copy v3, rodada C1 (página curta: #transformacao, #caminho, prints na #autor, botão grande, capa dourada padrão) | aprovada |
 | Rodada C2 (nossos cards da #transformacao para comparação, `?cards=nossos`) | aprovada |
+| Capa oficial dourada definitiva (sai o `?capa=`) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -413,6 +414,13 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Até 1023px: card 4:5, texto embaixo, degradê de baixo para cima e um leve da esquerda; foto em `object-position: 85%` (card 03 em 95%, para o homem e a mulher caberem). A partir de 1024px: card 4:3, texto à esquerda, degradê da esquerda reforçado (.9 até 40%, .6 em 56%, some em 80%) e um de baixo; foto presa à direita.
 - Contraste do texto sobre a foto: mínimo de 5,8:1 (1024px, prata do card 04), de 360 a 1920px.
 - `?cards=` e `?capa=` funcionam juntos, em qualquer ordem; valor desconhecido é ignorado. `cards` saiu do repasse para o checkout, como `capa` e `rastreio`.
+
+### Capa oficial dourada definitiva (2026-10-22)
+
+- O cliente aprovou a capa oficial dourada, que fica fixa no livro principal da mesa, com e sem `?cards=nossos`. Saíram o parâmetro `?capa=` e o script dele, o CSS e o HTML que só a capa em HTML usava (`.capa-ov`, `.capa-pe`, `.capa-ti`, `.capa-au` e a classe `.capa-oficial`) e os arquivos `capa-oficial-azul.png`, `capa-desprezado.jpg` e os derivados dos dois em `assets/img/opt/`. A peça `.capa` ficou com a imagem, a luz de lombada, o contorno e a sombra; os quatro cadernos não mudaram.
+- `scripts/otimizar-imagens.mjs`: só `capa-oficial-dourada` (perfil de retrato); o conjunto `OPCIONAIS` saiu.
+- O único parâmetro de comparação é `?cards=nossos`. Fora do repasse para o checkout ficam `cards` e `rastreio`; `capa` deixou de existir e, se vier na URL, vai para o checkout como qualquer outro.
+- As seções anteriores deste arquivo que citam `?capa=` e a capa em HTML ficam como histórico.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

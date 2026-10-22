@@ -92,7 +92,7 @@ Sem rótulo.
 
 **Título:** Tudo o que você precisa para começar a recuperar sua postura **está aqui.**
 
-**Palco:** o livro principal (capa oficial) no centro da mesa e os quatro cadernos dos lados.
+**Palco:** o livro principal (capa oficial dourada, aprovada pelo cliente e definitiva) no centro da mesa e os quatro cadernos dos lados.
 
 **Painel, lado esquerdo:**
 
