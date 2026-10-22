@@ -43,6 +43,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Copy v3, rodada C1 (página curta: #transformacao, #caminho, prints na #autor, botão grande, capa dourada padrão) | aprovada |
 | Rodada C2 (nossos cards da #transformacao para comparação, `?cards=nossos`) | aprovada |
 | Capa oficial dourada definitiva (sai o `?capa=`) | aprovada |
+| Botões em maiúsculas e variação de identidade `?tema=vibrante` | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -421,6 +422,16 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - `scripts/otimizar-imagens.mjs`: só `capa-oficial-dourada` (perfil de retrato); o conjunto `OPCIONAIS` saiu.
 - O único parâmetro de comparação é `?cards=nossos`. Fora do repasse para o checkout ficam `cards` e `rastreio`; `capa` deixou de existir e, se vier na URL, vai para o checkout como qualquer outro.
 - As seções anteriores deste arquivo que citam `?capa=` e a capa em HTML ficam como histórico.
+
+### Botões em maiúsculas e variação `?tema=vibrante` (2026-10-22)
+
+- Botões de compra e de ação (`.cta` e o da barra fixa) em maiúsculas por CSS (`text-transform: uppercase`, `.04em`, peso 600); o HTML continua em caixa normal. Rótulos, títulos e o resto em caixa normal.
+- Botão grande: uma linha a partir de 400px. Em maiúsculas o rótulo mede 331px em 18px e 276px em 15px: no celular, `clamp(15px, 15px + (100vw - 400px) * .0588, 18px)` com folgas menores (16px à esquerda, 8px de espaço e à direita, seta de 40px) e o bloco de compra do fechamento com 6px de recuo; no desktop, 18px (com 20px o anel passava dos 480px do bloco de compra). Em 360 e 390px, duas linhas.
+- Botões normais quebram em duas linhas parelhas no celular até ~420px; no desktop, uma linha. Painel da oferta a partir de 1280px em 6 + 6 colunas (em 5, o botão do preço quebrava). Botão da barra fixa com 12,5px e 12px de recuo; em 360 e 390px a barra tem 73px (nome em duas linhas).
+- Correção nas duas versões: o brilho do círculo aceso das etapas começa na borda do círculo (`radial-gradient` transparente até `var(--et-c) / 2`); dentro dele, clareava o fundo do número (2,6:1, agora 5,7:1 ou mais).
+- `?tema=vibrante`: script no topo do `<head>` põe `.tema-vibrante` no `<html>` antes da pintura; CSS no fim do `<style>`, trocando `--prata` (degradê de #8FD0FF a #3D8BFF, `text-shadow` azul a 25%) e `--gelo` (#FFFFFF). H1 próprio por um script logo depois do H1 (sem a variação, sem JS e para buscadores, vale o padrão); `.lead-2` em 600 e branca; rótulo do hero com borda #3D8BFF, brilho e maiúsculas espaçadas (exceção à regra dos rótulos, a pedido do cliente); hero centralizado no celular; caixas de números com ícone à esquerda e fio vertical (logo do Instagram em cores e grupo de pessoas em #3D8BFF, SVG; os ícones padrão ficam com `.ico-padrao`); botões com anel em borda e brilho azuis e seta em degradê azul; vidros (cards do hero, checklist e contador, cards da transformação, painel, garantia, FAQ) com borda azul a 30% e brilho suave. O "30" do caderno continua prateado.
+- Ajustes da variação: sombra presa ao H1 mais forte e também no tablet (contraste mínimo de 5,1:1 de 360 a 1920px); números das etapas em 700 (texto grande; 3,6:1 ou mais no pior caso); título da oferta com até 900px, para ficar em duas linhas (a emenda do escudo conta com duas). Hero da variação no celular: rótulo de 15 a 35px abaixo da barba nas telas baixas, H1 de 67 a 87px, botão na primeira tela.
+- `?tema=` funciona junto com `?cards=`, em qualquer ordem; valor desconhecido é ignorado; `tema` fora do repasse para o checkout (com `cards` e `rastreio`). Lighthouse: acessibilidade e boas práticas 100 nas duas versões.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

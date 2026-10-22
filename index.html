@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>
+// Variação de identidade para teste: ?tema=vibrante põe a classe .tema-vibrante no <html> antes da pintura
+// (todo o resto da variação fica no CSS, sob essa classe). Qualquer outro valor é ignorado.
+if (/[?&]tema=vibrante(&|$)/.test(location.search)) document.documentElement.classList.add('tema-vibrante');
+</script>
+<script>
 // Rastreio desligado no localhost (Live Server), para as conferências não virarem dados reais no GTM, no pixel
 // e no Gateway. Para testar no "Testar eventos" do Gerenciador de Eventos, abra com ?rastreio=1.
 var rastrear = !/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]rastreio=1(&|$)/.test(location.search);
@@ -155,7 +160,7 @@ html.lenis{scroll-behavior:auto!important}
 .glass span{display:block;font-size:11px;color:var(--nevoa-2);margin-top:3px}
 
 .cta-ring{display:flex;padding:5px;border-radius:999px;background:linear-gradient(180deg,rgba(233,238,245,.22),rgba(142,168,200,.06));border:1px solid rgba(169,184,203,.18);box-shadow:0 0 70px -18px rgba(150,180,225,.55)}
-.cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:60px;padding:12px 12px 12px 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;line-height:1.3;letter-spacing:0;text-wrap:balance;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF,inset 0 -3px 8px rgba(40,60,90,.28),0 14px 30px -12px rgba(0,0,0,.7)}
+.cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:60px;padding:12px 12px 12px 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;line-height:1.3;letter-spacing:.04em;text-transform:uppercase;text-wrap:balance;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF,inset 0 -3px 8px rgba(40,60,90,.28),0 14px 30px -12px rgba(0,0,0,.7)}
 .cta:hover{color:#0A1424}
 .cta::after{content:"";position:absolute;top:0;bottom:0;left:0;width:30%;pointer-events:none;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.75),rgba(255,255,255,0));transform:translateX(-133%) skewX(-20deg);animation:sheen 4.5s ease-in-out infinite}
 @keyframes sheen{0%,62%{transform:translateX(-133%) skewX(-20deg)}100%{transform:translateX(433%) skewX(-20deg)}}
@@ -200,10 +205,11 @@ html.lenis{scroll-behavior:auto!important}
   .cta{gap:10px;font-size:13.5px}
 }
 /* Botão grande (.cta--grande, no hero e no fechamento): o mesmo prateado e os mesmos efeitos, com 76px de
-   altura e texto de 18px no celular e 20px no desktop. A partir de 400px de tela, o rótulo fica em uma linha
-   e o botão acompanha o texto, mesmo que passe da coluna (no celular, ocupa no mínimo a largura da coluna).
-   Abaixo de 400px, o rótulo quebra em duas linhas parelhas. No celular, as folgas menores (botão de 353px)
-   fazem ele caber em 400px. */
+   altura. A partir de 400px de tela, o rótulo fica em uma linha e o botão acompanha o texto, mesmo que passe
+   da coluna (no celular, ocupa no mínimo a largura da coluna). Abaixo de 400px, quebra em duas linhas parelhas.
+   Em maiúsculas, "Quero recuperar meu respeito" mede 331px em 18px e 276px em 15px. Para caber em uma linha
+   dentro do bloco de compra do fechamento (largura da tela menos 36px), a fonte vai de 15px em 400px a 18px a
+   partir de ~451px, com folgas menores; no desktop, 18px (o anel de 469px cabe nos 480px do bloco de compra). */
 .cta--grande{min-height:76px;gap:10px;padding:12px 10px 12px 20px;font-size:18px;line-height:1.25}
 .cta--grande .cta-arrow{width:44px;height:44px}
 @media (min-width:400px){
@@ -212,6 +218,8 @@ html.lenis{scroll-behavior:auto!important}
 }
 @media (min-width:400px) and (max-width:760px){
   .cta-ring--grande{min-width:100%}
+  .cta--grande{gap:8px;padding:12px 8px 12px 16px;font-size:clamp(15px,calc(15px + (100vw - 400px) * .0588),18px)}
+  .cta--grande .cta-arrow{width:40px;height:40px}
 }
 
 /* Marca do que falta do cliente. Nada com esta classe vai ao ar. */
@@ -229,10 +237,10 @@ html.lenis{scroll-behavior:auto!important}
   .glass b{font-size:18px}
   .glass span{font-size:12.5px}
   .cta-ring{display:inline-flex}
-  .cta{width:auto;justify-content:flex-start;gap:18px;padding:10px 10px 10px 30px;font-size:15px;letter-spacing:.01em}
+  .cta{width:auto;justify-content:flex-start;gap:18px;padding:10px 10px 10px 30px;font-size:15px}
   .cta-arrow{width:42px;height:42px}
   .cta-ring--grande{padding:6px}
-  .cta--grande{gap:24px;padding:12px 12px 12px 36px;font-size:20px;letter-spacing:0}
+  .cta--grande{gap:24px;padding:12px 12px 12px 36px;font-size:18px}
   .cta--grande .cta-arrow{width:52px;height:52px}
 }
 
@@ -516,7 +524,8 @@ html.lenis{scroll-behavior:auto!important}
 .etapas li::before{background:rgba(217,226,238,.15)}
 .etapas li::after{background:linear-gradient(180deg,#FFFFFF,#D9E2EE 50%,#9FB2CB)}
 .et-num{position:relative;z-index:1;width:var(--et-c);height:var(--et-c);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(30,48,76,.85),rgba(10,19,34,.95));border:1px solid rgba(201,211,224,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
-.et-num::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:140px;height:140px;margin:-70px 0 0 -70px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(150,180,225,.42),rgba(150,180,225,0))}
+/* O brilho começa na borda do círculo, por fora: dentro dele, clareava o fundo do número (2,6:1). */
+.et-num::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:140px;height:140px;margin:-70px 0 0 -70px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(150,180,225,0) calc(var(--et-c) / 2 - 2px),rgba(150,180,225,.42) calc(var(--et-c) / 2),rgba(150,180,225,0))}
 .et-num::after{content:"";position:absolute;inset:-1px;border-radius:50%;pointer-events:none;border:1px solid rgba(233,238,245,.75);box-shadow:0 0 18px -4px rgba(170,200,240,.6)}
 .et-rot{font-size:11px;font-weight:500;line-height:1;color:var(--nevoa)}
 .et-n{margin-top:4px;font-weight:300;font-size:22px;line-height:1;letter-spacing:-.02em}
@@ -860,7 +869,7 @@ html:has(dialog[open]){overflow:hidden}
 .fecho-ti{max-width:18ch;margin:26px auto;font-size:34px;line-height:1.08}
 .fecho .body{max-width:54ch;margin:0 auto}
 .fecho .body p:last-child{margin-bottom:0;color:var(--gelo)}
-.compra{max-width:560px;margin:44px -10px 0;padding:28px 10px 24px;border-radius:26px;background:linear-gradient(180deg,rgba(24,38,60,.6),rgba(9,17,31,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.18);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.07)}
+.compra{max-width:560px;margin:44px -10px 0;padding:28px 6px 24px;border-radius:26px;background:linear-gradient(180deg,rgba(24,38,60,.6),rgba(9,17,31,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.18);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.07)}
 .compra-preco{margin-top:10px;font-size:17px;line-height:1.45;color:var(--gelo)}
 .fecho-cta{margin-top:22px}
 .fecho .cta{text-align:left} /* o rótulo quebra em duas linhas no celular, alinhado como nos outros botões */
@@ -890,7 +899,7 @@ html body #san-footer-badge{background:#000000!important}
   /* "De Desprezado a Respeitado" cabe em uma linha a partir de 390px; abaixo, quebra equilibrada. */
   .barra span{font-size:12.5px;line-height:1.25;color:var(--nevoa);text-wrap:balance}
   .barra b{display:block;font-size:16px;font-weight:600;color:#FFFFFF}
-  .barra a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:999px;text-decoration:none;font-weight:600;font-size:13.5px;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF}
+  .barra a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;text-decoration:none;font-weight:600;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:#0A1424;background:linear-gradient(180deg,#FBFCFE 0%,#DCE4EE 46%,#AFBDD0 100%);box-shadow:inset 0 1px 0 #FFFFFF}
 }
 
 @media (min-width:761px){
@@ -946,19 +955,20 @@ html body #san-footer-badge{background:#000000!important}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
 }
 
-/* Painel da oferta a partir de 1280px: 12 colunas, "O que você recebe" em 7 e o bloco de preço em 5, com o
-   mesmo topo e a mesma base. Cada grupo em duas colunas, com o fio entre as linhas. Abaixo de ~1250px, as
-   5 colunas não comportam o botão em uma linha: até 1279px o painel fica empilhado como no tablet. */
+/* Painel da oferta a partir de 1280px: 12 colunas, "O que você recebe" em 6 e o bloco de preço em 6, com o
+   mesmo topo e a mesma base. Cada grupo em duas colunas, com o fio entre as linhas. Com o botão em maiúsculas,
+   o preço precisa de 6 colunas para o rótulo caber em uma linha (em 5, quebrava); até 1279px o painel fica
+   empilhado como no tablet. */
 @media (min-width:1280px){
   .panel{max-width:1152px;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:44px 48px}
-  .recebe{grid-column:1 / span 7;align-self:center}
+  .recebe{grid-column:1 / span 6;align-self:center}
   .items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
   .items li{padding:14px 0}
   .items li+li{border-top:0}
   .items li:nth-child(n+3){border-top:1px solid rgba(169,184,203,.1)}
   .items li:nth-child(-n+2){padding-top:0}
   .items li:nth-last-child(-n+2){padding-bottom:0}
-  .preco{grid-column:8 / span 5;display:flex;flex-direction:column;justify-content:center;padding:28px 20px}
+  .preco{grid-column:7 / span 6;display:flex;flex-direction:column;justify-content:center;padding:28px 20px}
   .preco .cta{gap:12px;padding-left:22px}
 }
 
@@ -1037,6 +1047,68 @@ html body #san-footer-badge{background:#000000!important}
   .cta::after{animation:none;display:none}
   .barra,.barra.visivel{transition:none}
 }
+
+/* Variação de identidade para teste (?tema=vibrante; o script no topo do <head> põe .tema-vibrante no <html>
+   antes da pintura). A versão sem a classe é a padrão. Fundo, foto do hero, capa e layout não mudam.
+   - Destaques (o degradê prateado dos trechos em destaque) em azul vivo, de #8FD0FF a #3D8BFF, com brilho
+     suave; o texto principal em #FFFFFF. O "30" do caderno da mesa continua prateado (o palco não muda).
+   - H1 inteiro em 700; títulos de seção em 600 com o destaque em 700; letter-spacing de -0.02em.
+   - Hero: H1 próprio (script logo depois do H1), a segunda frase da subheadline em 600 e branca, o rótulo com
+     borda e brilho azuis e o texto em maiúsculas espaçadas; no celular, rótulo, H1, subheadline e botão
+     centralizados. Caixas de números com o ícone à esquerda e um fio vertical (a logo do Instagram em cores e
+     um grupo de pessoas em azul).
+   - Botões com o mesmo prateado; o anel ganha borda e brilho azuis e o círculo da seta, degradê azul.
+   - Cards e painéis de vidro com borda azul a 30% e um brilho azul bem suave. */
+.ico-vibrante{display:none}
+.tema-vibrante{--gelo:#FFFFFF;--prata:linear-gradient(180deg,#8FD0FF 0%,#3D8BFF 100%)}
+.tema-vibrante .silver,.tema-vibrante .hero .h1 strong{text-shadow:0 0 18px rgba(61,139,255,.25)}
+/* O azul (#3D8BFF no fim do degradê) é mais escuro que o prateado: a sombra presa ao H1 fica mais forte e vale
+   também no tablet (onde "casa." cai sobre a borda iluminada da poltrona), para o destaque ter 4,5:1 ou mais. */
+.tema-vibrante .hero .h1{position:relative;isolation:isolate}
+.tema-vibrante .hero .h1::before{content:"";position:absolute;z-index:-1;inset:-14% -6%;pointer-events:none;background:radial-gradient(closest-side,rgba(1,5,15,.72) 50%,rgba(1,5,15,0) 100%)}
+@media (min-width:761px) and (max-width:1023px){
+  .tema-vibrante .hero .h1::before{inset:-16% -22% -22% -8%;background:radial-gradient(closest-side,rgba(1,5,15,.85) 60%,rgba(1,5,15,0) 100%)}
+}
+@media (min-width:1024px){
+  .tema-vibrante .hero .h1::before{inset:-28% -10% -28% -8%}
+}
+.tema-vibrante .cad-30{background-image:linear-gradient(180deg,#FFFFFF 0%,#D9E2EE 45%,#9FB2CB 100%);text-shadow:none}
+.tema-vibrante .h1,.tema-vibrante .h1 strong{font-weight:700;letter-spacing:-.02em}
+.tema-vibrante .h2{font-weight:600;letter-spacing:-.02em}
+.tema-vibrante .h2 strong{font-weight:700}
+/* Números das etapas em 700: com o azul, o número de 22px do celular fica em 3,7:1 no pior caso, e em negrito
+   ele conta como texto grande (mínimo de 3:1). */
+.tema-vibrante .et-n{font-weight:700}
+/* O título da oferta mais largo, para continuar em duas linhas em 600 (a emenda do escudo conta com duas). */
+.tema-vibrante .oferta .sec-head{max-width:900px}
+.tema-vibrante .lead-2{font-weight:600;color:#FFFFFF}
+.tema-vibrante .hero-pill{border-color:#3D8BFF;box-shadow:0 0 18px rgba(61,139,255,.45),inset 0 1px 0 rgba(255,255,255,.08);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+.tema-vibrante .ico-padrao{display:none}
+.tema-vibrante .ico-vibrante{display:block}
+.tema-vibrante .glass-ico{width:26px;height:26px;background:none;border:0;border-radius:0}
+.tema-vibrante .glass-ico+div{padding-left:10px;border-left:1px solid rgba(169,184,203,.28)}
+.tema-vibrante .cta-ring{border-color:rgba(61,139,255,.6);box-shadow:0 0 80px -14px rgba(61,139,255,.75)}
+.tema-vibrante .cta-arrow{background:linear-gradient(180deg,#2F6FE0,#0E2F70)}
+.tema-vibrante .cta-arrow svg{stroke:#FFFFFF}
+.tema-vibrante .glass,.tema-vibrante .chk,.tema-vibrante .counter,.tema-vibrante .cartao-moldura,.tema-vibrante .panel,.tema-vibrante .g-card,.tema-vibrante .qa details{border-color:rgba(61,139,255,.3)}
+.tema-vibrante .glass{box-shadow:0 24px 50px -22px rgba(0,0,0,.9),0 0 24px -8px rgba(61,139,255,.3),inset 0 1px 0 rgba(255,255,255,.08)}
+.tema-vibrante .chk,.tema-vibrante .qa details{box-shadow:0 0 22px -10px rgba(61,139,255,.3)}
+.tema-vibrante .chk[aria-pressed="true"]{border-color:rgba(61,139,255,.6);box-shadow:0 0 40px -12px rgba(61,139,255,.55)}
+.tema-vibrante .qa details[open]{border-color:rgba(61,139,255,.45)}
+.tema-vibrante .counter{box-shadow:0 0 30px -12px rgba(61,139,255,.3)}
+.tema-vibrante .cartao-moldura{box-shadow:0 30px 60px -30px rgba(0,0,0,.9),0 0 30px -12px rgba(61,139,255,.3),inset 0 1px 0 rgba(255,255,255,.08)}
+.tema-vibrante .panel{box-shadow:0 50px 100px -40px rgba(0,0,0,.95),0 0 44px -14px rgba(61,139,255,.3),inset 0 1px 0 rgba(255,255,255,.07)}
+.tema-vibrante .g-card{box-shadow:0 40px 80px -40px rgba(0,0,0,.9),0 0 34px -12px rgba(61,139,255,.3),inset 0 1px 0 rgba(255,255,255,.07)}
+@media (hover:hover) and (pointer:fine){
+  .tema-vibrante .cta-ring:has(.cta:hover){box-shadow:0 0 80px -12px rgba(61,139,255,.8),0 22px 44px -14px rgba(61,139,255,.85)}
+}
+.tema-vibrante .cta-ring:has(.cta:focus-visible){box-shadow:0 0 80px -12px rgba(61,139,255,.8),0 22px 44px -14px rgba(61,139,255,.85)}
+.tema-vibrante .cta-ring:has(.cta:active){box-shadow:0 0 44px -18px rgba(61,139,255,.6)}
+@media (max-width:760px){
+  .tema-vibrante .hero-copy{text-align:center}
+  .tema-vibrante .hero-pill{align-self:center}
+  .tema-vibrante .glass{flex-direction:row;align-items:center;gap:10px;padding:10px}
+}
 </style>
 </head>
 <body>
@@ -1064,16 +1136,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="hero-copy">
 <span class="pill hero-pill reveal-saida">De Desprezado a Respeitado</span>
 <h1 class="h1 reveal-saida">Meu objetivo é te fazer deixar de ser desprezado e <strong class="silver">voltar a ser respeitado dentro da sua própria casa.</strong></h1>
-<p class="lead reveal-saida">Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado. Sem precisar brigar, implorar atenção ou viver com medo de <span class="inteira">perdê-la.</span></p>
+<script>
+// ?tema=vibrante: o H1 desta variação. Logo depois do H1, para trocar o texto antes de ele aparecer; sem a
+// variação (e para buscadores), o H1 é o padrão.
+if (document.documentElement.classList.contains('tema-vibrante')) document.querySelector('.hero .h1').firstChild.data = 'Meu objetivo é te mostrar como deixar de ser desprezado e ';
+</script>
+<p class="lead reveal-saida">Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado. <span class="lead-2">Sem precisar brigar, implorar atenção ou viver com medo de <span class="inteira">perdê-la.</span></span></p>
 <div class="reveal-saida"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 <div class="chips">
 <div class="glass reveal-saida">
-<div class="glass-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg></div>
+<div class="glass-ico"><svg class="ico-padrao" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8"/></svg><svg class="ico-vibrante" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="ig-glifo" cx=".3" cy="1.07" r="1.3"><stop offset="0" stop-color="#FDF497"/><stop offset=".05" stop-color="#FDF497"/><stop offset=".45" stop-color="#FD5949"/><stop offset=".6" stop-color="#D6249F"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect width="24" height="24" rx="6.5" fill="url(#ig-glifo)"/><rect x="5" y="5" width="14" height="14" rx="4.2" fill="none" stroke="#FFFFFF" stroke-width="1.8"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="#FFFFFF" stroke-width="1.8"/><circle cx="16.4" cy="7.6" r="1.05" fill="#FFFFFF"/></svg></div>
 <div><b>419 mil</b><span>seguidores no Instagram</span></div>
 </div>
 <div class="glass reveal-saida">
-<div class="glass-ico"><svg width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="15" stroke-linejoin="round"/></svg></div>
+<div class="glass-ico"><svg class="ico-vibrante" width="26" height="26" viewBox="0 0 24 24" fill="#3D8BFF" aria-hidden="true"><circle cx="9" cy="7.8" r="3.6"/><path d="M1.8 19.6c0-3.7 3.2-6.2 7.2-6.2s7.2 2.5 7.2 6.2v.6H1.8z"/><circle cx="17.2" cy="8.8" r="2.9"/><path d="M15.6 13.7c.5-.1 1-.2 1.6-.2 3.1 0 5 2 5 5v.7h-4.5c0-2.3-.8-4.2-2.1-5.5z"/></svg><svg class="ico-padrao" width="18" height="21" viewBox="0 0 200 240" aria-hidden="true"><path d="M100 10 L182 40 C182 120 158 182 100 230 C42 182 18 120 18 40 Z" fill="none" stroke="#D9E2EE" stroke-width="15" stroke-linejoin="round"/></svg></div>
 <div><b>+12 mil</b><span>homens transformados</span></div>
 </div>
 </div>
@@ -1382,7 +1459,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var links = document.querySelectorAll('a[href^="https://chk.eduzz.com/"]');
   var params = new URLSearchParams(location.search);
   params.delete('rastreio'); // chave de teste do rastreio no localhost, não vai para o checkout
-  params.delete('cards'); // chave da comparação dos cards, também não vai para o checkout
+  params.delete('cards'); // chaves da comparação dos cards e da variação de identidade, também não vão para
+  params.delete('tema'); // o checkout
   links.forEach(function (a) {
     if (params.toString()) {
       var url = new URL(a.href);

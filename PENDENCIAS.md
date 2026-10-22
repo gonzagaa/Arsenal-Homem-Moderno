@@ -24,6 +24,8 @@ Nenhuma. Se surgir um trecho entre colchetes na copy, marque com `.pendente` e l
 - [ ] Depoimentos de compradores: a prova social de hoje são conversas sobre os conteúdos do Marcello, não sobre o livro. Quando houver depoimentos de quem comprou o De Desprezado a Respeitado (com autorização), eles entram na #autor, junto dos prints.
 - [ ] Cards da #transformacao: as artes enviadas têm caixa alta, fonte condensada e cores saturadas (dourado, verde, vermelho, azul), fora do padrão visual da página. Ficam por enquanto. A versão no estilo da página (fotos na paleta, texto real) está pronta para comparação em `?cards=nossos`: decidir com o cliente qual fica.
 
+- [ ] Identidade: a variação de cores mais fortes está pronta para teste em `?tema=vibrante` (junto com `?cards=nossos`, se quiser). Decidir com o cliente qual identidade fica.
+
 ## Confirmar antes de publicar
 
 Estes itens aparecem na página sem a classe `.pendente`, então nada na tela avisa que faltam. Confira cada um antes de publicar.
