@@ -41,6 +41,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Troca de produto, rodada B (#conteudo com trilho, emenda do escudo, #oferta com o livro e quatro cadernos) | aprovada |
 | Comparação de capas por parâmetro (`?capa=dourada` e `?capa=azul`) | aprovada |
 | Copy v3, rodada C1 (página curta: #transformacao, #caminho, prints na #autor, botão grande, capa dourada padrão) | aprovada |
+| Rodada C2 (nossos cards da #transformacao para comparação, `?cards=nossos`) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -403,6 +404,15 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Emendas e vazios medidos (celular / desktop): hero/transformação, círculo sobre a linha de luz, 71/91; transformação/identificação, luz que atravessa, 120/140; identificação/caminho, curva, 96/158; caminho/oferta, escudo que se enche com a linha até o rótulo (no desktop, `--emenda-ad: calc(235px - 2.24 * clamp(30px, 3vw, 44px) - 42px)`, a linha termina 12px antes do rótulo) e a foto do palco começando por trás do escudo, 56/94 a 126; oferta/autor, luz que atravessa, 110/120; autor/faq, luz que atravessa, 120/164; faq/fechamento, círculo do escudo, 116/141; fechamento/rodapé, fio, 65/73.
 - Barra fixa do celular: some com a lista da #identificacao (`.chks`, onde fica a barra do contador), com o painel da oferta (observador próprio com `rootMargin` de -40% embaixo: só conta quando o topo dele passa de 60% da tela), com o botão do fechamento e com o rodapé. No #caminho e no palco dos livros, ela aparece.
 - Lighthouse: acessibilidade e boas práticas 100 no celular e no desktop. Sem rolagem lateral de 360 a 1920px.
+
+### Rodada C2: nossos cards para comparação (2026-10-22)
+
+- Sem parâmetro, nada muda (artes do cliente). Com `?cards=nossos`, a #transformacao mostra os nossos cards em HTML, de um `<template id="cartoes-nossos">` logo depois da lista; um script inline logo abaixo dele troca a lista antes de o navegador pedir as imagens. Medido: sem o parâmetro, só as artes do cliente são baixadas; com ele, só as nossas fotos (119 KB em 390px 3x, versão 1536; 43 KB em 1440px 1x, versão 768).
+- Fotos sem texto em `assets/img/cards/card-0N-nosso.jpg` (1536x1024); `scripts/otimizar-imagens.mjs` (`NOSSOS`, perfil `FOTO`) gera 480, 768, 1152 e 1536px. Na página, `alt=""` (o texto do card é real).
+- Card (`.cn`): foto cobrindo o card; no alto à esquerda, o número em prata no círculo de vidro do trilho (sem `backdrop-filter`: o card tem `.reveal`) com um fio prateado de 60px ao lado; embaixo, título em 300 com o final em 600 prateado (h3) e a linha em `--nevoa` (no máximo 34 letras por linha: `max-width` de 16,5em, 15em a partir de 1024px). Mesma moldura dos cards do cliente, sem hover.
+- Até 1023px: card 4:5, texto embaixo, degradê de baixo para cima e um leve da esquerda; foto em `object-position: 85%` (card 03 em 95%, para o homem e a mulher caberem). A partir de 1024px: card 4:3, texto à esquerda, degradê da esquerda reforçado (.9 até 40%, .6 em 56%, some em 80%) e um de baixo; foto presa à direita.
+- Contraste do texto sobre a foto: mínimo de 5,8:1 (1024px, prata do card 04), de 360 a 1920px.
+- `?cards=` e `?capa=` funcionam juntos, em qualquer ordem; valor desconhecido é ignorado. `cards` saiu do repasse para o checkout, como `capa` e `rastreio`.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

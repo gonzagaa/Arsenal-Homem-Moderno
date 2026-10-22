@@ -381,6 +381,40 @@ html.lenis{scroll-behavior:auto!important}
   .transf-frase{max-width:24ch;margin-top:80px;font-size:clamp(28px,3vw,42px)}
   .transf-cta{margin-top:36px}
 }
+/* Nossos cards (comparação, só com ?cards=nossos; ver o <template> na #transformacao). A foto cobre o card, um
+   degradê do azul-noite cobre o lado do texto, e o texto é real: no alto, o número em prata no círculo de vidro
+   do trilho (sem backdrop-filter: o card tem .reveal), com um fio prateado ao lado; embaixo, o título (300, com
+   o final em 600 prateado) e a linha em --nevoa, com no máximo ~34 caracteres por linha. Mesma moldura dos cards
+   do cliente; o grão vem da página. Não são clicáveis: sem hover.
+   Até 1023px: card 4:5, texto embaixo e degradê de baixo para cima (a coluna é estreita demais para o texto
+   ficar ao lado da foto). A partir de 1024px: card 4:3, texto à esquerda e degradê da esquerda (as fotos já
+   têm o lado esquerdo escuro). */
+.cn{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:4/5;overflow:clip;border-radius:13px;background:var(--abismo)}
+.cn-foto{position:absolute;inset:0;z-index:-2}
+.cartao .cn-foto img{width:100%;height:100%;border-radius:0;object-fit:cover;object-position:85% 50%}
+/* Card 03: o homem e a mulher, a 52% e a 88% da foto, ficam os dois no card 4:5. */
+.cartao:nth-child(3) .cn-foto img{object-position:95% 50%}
+.cn::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.94) 36%,rgba(5,10,20,.6) 56%,rgba(5,10,20,0) 76%),linear-gradient(90deg,rgba(5,10,20,.5) 0%,rgba(5,10,20,0) 55%)}
+.cn-topo{display:flex;align-items:center;gap:12px;padding:20px 20px 0}
+.cn-topo::after{content:"";flex:none;width:60px;height:1px;background:linear-gradient(90deg,rgba(217,226,238,.85),rgba(217,226,238,0))}
+.cn-num{flex:none;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:300;font-size:18px;line-height:1;letter-spacing:-.01em;background:linear-gradient(180deg,rgba(30,48,76,.85),rgba(10,19,34,.95));border:1px solid rgba(233,238,245,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 18px -4px rgba(170,200,240,.5)}
+.cn-texto{padding:0 20px 22px}
+.cn-ti{font-weight:300;font-size:26px;line-height:1.1;letter-spacing:-.03em;text-wrap:balance;color:var(--gelo)}
+.cn-ti strong{font-weight:600}
+.cn-linha{max-width:16.5em;margin-top:10px;font-size:16px;line-height:1.55;color:var(--nevoa);text-wrap:pretty}
+@media (min-width:761px){
+  .cn{border-radius:16px}
+}
+@media (min-width:1024px){
+  .cn{aspect-ratio:4/3}
+  .cartao .cn-foto img,.cartao:nth-child(3) .cn-foto img{object-position:100% 50%}
+  .cn::before{background:linear-gradient(0deg,rgba(5,10,20,.7) 0%,rgba(5,10,20,0) 50%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,.9) 40%,rgba(5,10,20,.6) 56%,rgba(5,10,20,0) 80%)}
+  .cn-topo{padding:26px 26px 0}
+  .cn-num{width:56px;height:56px;font-size:20px}
+  .cn-texto{padding:0 26px 26px}
+  .cn-ti{max-width:11em;font-size:clamp(26px,2.3vw,32px)}
+  .cn-linha{max-width:15em}
+}
 
 /* Identificação
    Celular: título e lista; o contador é uma barra de vidro (.contador-barra, no fim da lista) presa ao pé
@@ -1071,6 +1105,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-03-400.avif 400w, assets/img/opt/card-03-640.avif 640w, assets/img/opt/card-03-960.avif 960w, assets/img/opt/card-03-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-03-400.webp 400w, assets/img/opt/card-03-640.webp 640w, assets/img/opt/card-03-960.webp 960w, assets/img/opt/card-03-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-03-640.jpg" srcset="assets/img/opt/card-03-400.jpg 400w, assets/img/opt/card-03-640.jpg 640w, assets/img/opt/card-03-960.jpg 960w, assets/img/opt/card-03-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 03. Pare de implorar atenção. Deixe de depender da aprovação da sua esposa para se sentir valorizado."></picture></span></li>
 <li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-04-400.avif 400w, assets/img/opt/card-04-640.avif 640w, assets/img/opt/card-04-960.avif 960w, assets/img/opt/card-04-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-04-400.webp 400w, assets/img/opt/card-04-640.webp 640w, assets/img/opt/card-04-960.webp 960w, assets/img/opt/card-04-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-04-640.jpg" srcset="assets/img/opt/card-04-400.jpg 400w, assets/img/opt/card-04-640.jpg 640w, assets/img/opt/card-04-960.jpg 960w, assets/img/opt/card-04-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 04. Volte a ser seguro. Aprenda a tomar decisões sem viver dominado pelo medo de perdê-la."></picture></span></li>
 </ul>
+<!-- Nossos cards, só para comparação (?cards=nossos): foto sem texto (assets/img/cards/card-0N-nosso.jpg) com
+     o número, o título e a linha em texto real. O <template> não é desenhado nem baixa as fotos; o script logo
+     abaixo troca a lista antes de o navegador pedir as imagens. -->
+<template id="cartoes-nossos">
+<li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-01-nosso-480.avif 480w, assets/img/opt/card-01-nosso-768.avif 768w, assets/img/opt/card-01-nosso-1152.avif 1152w, assets/img/opt/card-01-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-01-nosso-480.webp 480w, assets/img/opt/card-01-nosso-768.webp 768w, assets/img/opt/card-01-nosso-1152.webp 1152w, assets/img/opt/card-01-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-01-nosso-768.jpg" srcset="assets/img/opt/card-01-nosso-480.jpg 480w, assets/img/opt/card-01-nosso-768.jpg 768w, assets/img/opt/card-01-nosso-1152.jpg 1152w, assets/img/opt/card-01-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">01</span></span></div><div class="cn-texto"><h3 class="cn-ti">Recupere <strong class="silver">sua voz</strong></h3><p class="cn-linha">Aprenda a falar o que pensa sem precisar levantar a voz ou pedir desculpas por tudo.</p></div></div></div></li>
+<li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-02-nosso-480.avif 480w, assets/img/opt/card-02-nosso-768.avif 768w, assets/img/opt/card-02-nosso-1152.avif 1152w, assets/img/opt/card-02-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-02-nosso-480.webp 480w, assets/img/opt/card-02-nosso-768.webp 768w, assets/img/opt/card-02-nosso-1152.webp 1152w, assets/img/opt/card-02-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-02-nosso-768.jpg" srcset="assets/img/opt/card-02-nosso-480.jpg 480w, assets/img/opt/card-02-nosso-768.jpg 768w, assets/img/opt/card-02-nosso-1152.jpg 1152w, assets/img/opt/card-02-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">02</span></span></div><div class="cn-texto"><h3 class="cn-ti">Imponha <strong class="silver">limites</strong></h3><p class="cn-linha">Saiba reagir a deboches, ofensas e atitudes desrespeitosas sem perder o controle.</p></div></div></div></li>
+<li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-03-nosso-480.avif 480w, assets/img/opt/card-03-nosso-768.avif 768w, assets/img/opt/card-03-nosso-1152.avif 1152w, assets/img/opt/card-03-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-03-nosso-480.webp 480w, assets/img/opt/card-03-nosso-768.webp 768w, assets/img/opt/card-03-nosso-1152.webp 1152w, assets/img/opt/card-03-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-03-nosso-768.jpg" srcset="assets/img/opt/card-03-nosso-480.jpg 480w, assets/img/opt/card-03-nosso-768.jpg 768w, assets/img/opt/card-03-nosso-1152.jpg 1152w, assets/img/opt/card-03-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">03</span></span></div><div class="cn-texto"><h3 class="cn-ti">Pare de implorar <strong class="silver">atenção</strong></h3><p class="cn-linha">Deixe de depender da aprovação da sua esposa para se sentir valorizado.</p></div></div></div></li>
+<li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-04-nosso-480.avif 480w, assets/img/opt/card-04-nosso-768.avif 768w, assets/img/opt/card-04-nosso-1152.avif 1152w, assets/img/opt/card-04-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-04-nosso-480.webp 480w, assets/img/opt/card-04-nosso-768.webp 768w, assets/img/opt/card-04-nosso-1152.webp 1152w, assets/img/opt/card-04-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-04-nosso-768.jpg" srcset="assets/img/opt/card-04-nosso-480.jpg 480w, assets/img/opt/card-04-nosso-768.jpg 768w, assets/img/opt/card-04-nosso-1152.jpg 1152w, assets/img/opt/card-04-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">04</span></span></div><div class="cn-texto"><h3 class="cn-ti">Volte a ser <strong class="silver">seguro</strong></h3><p class="cn-linha">Aprenda a tomar decisões sem viver dominado pelo medo de perdê-la.</p></div></div></div></li>
+</template>
+<script>
+// Comparação dos cards da #transformacao, só por parâmetro: ?cards=nossos troca as artes do cliente pelos nossos
+// cards (do <template> logo acima). Qualquer outro valor é ignorado. Fica logo depois da lista para a troca
+// acontecer antes de o navegador pedir as imagens: com o parâmetro, as artes do cliente não são baixadas; sem
+// ele, as nossas fotos não são. Independente do ?capa=.
+(function () {
+  if (new URLSearchParams(location.search).get('cards') !== 'nossos') return;
+  var lista = document.querySelector('.cartoes');
+  var modelo = document.getElementById('cartoes-nossos');
+  if (lista && modelo) lista.replaceChildren(modelo.content.cloneNode(true));
+})();
+</script>
 <p class="transf-frase reveal">O primeiro respeito que você precisa recuperar é <strong class="silver">o respeito por você mesmo.</strong></p>
 <div class="transf-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero começar minha mudança<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
@@ -1336,7 +1391,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var links = document.querySelectorAll('a[href^="https://chk.eduzz.com/"]');
   var params = new URLSearchParams(location.search);
   params.delete('rastreio'); // chave de teste do rastreio no localhost, não vai para o checkout
-  params.delete('capa'); // chave da comparação de capas, também não vai para o checkout
+  params.delete('capa'); // chaves das comparações de capas e de cards, também não vão para o checkout
+  params.delete('cards');
   links.forEach(function (a) {
     if (params.toString()) {
       var url = new URL(a.href);

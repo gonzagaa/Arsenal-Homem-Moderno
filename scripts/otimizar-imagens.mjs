@@ -48,6 +48,12 @@ const CARDS = {
   'card-04': { arquivo: 'card-04-original.png', corte: { left: 20, top: 15, width: 1500, height: 990 } },
 };
 const LARGURAS_CARD = [400, 640, 960, 1280];
+// Nossos cards da #transformacao, só para comparação (?cards=nossos): fotos sem texto, 1536x1024, em
+// assets/img/cards/card-0N-nosso.jpg. A foto cobre o card: até 1023px o card é 4:5 e a foto aparece com ~1,9
+// vez a largura do card (~610px em 390px, 3x); a partir de 1024px, 4:3 e ~1,1 vez (~570px em 1440px, 1x e 2x).
+// Sem o original, o script avisa e segue.
+const NOSSOS = ['card-01-nosso', 'card-02-nosso', 'card-03-nosso', 'card-04-nosso'];
+const LARGURAS_NOSSO = [480, 768, 1152, 1536];
 // Prints: ~250px na fileira do celular, ~350px no mosaico do desktop e até 520px no lightbox.
 // Os originais têm ~737px: 737 é o teto (nunca amplia; a maior versão fica na largura do original).
 const LARGURAS_PRINT = [360, 540, 737];
@@ -175,6 +181,11 @@ for (const [nome, larguras] of Object.entries(LARGURAS)) {
 }
 for (const [nome, { arquivo, corte }] of Object.entries(CARDS)) {
   await gerar(path.join(ORIGEM, 'cards', arquivo), nome, LARGURAS_CARD, CARD, corte);
+}
+for (const nome of NOSSOS) {
+  const arq = path.join(ORIGEM, 'cards', `${nome}.jpg`);
+  try { await stat(arq); } catch { console.log(`aviso: cards/${nome}.jpg não encontrado (pulado)`); continue; }
+  await gerar(arq, nome, LARGURAS_NOSSO, FOTO);
 }
 for (const arquivo of await listarPrints()) {
   await gerar(path.join(PRINTS, arquivo), nomeDoPrint(arquivo), LARGURAS_PRINT, TEXTO);
