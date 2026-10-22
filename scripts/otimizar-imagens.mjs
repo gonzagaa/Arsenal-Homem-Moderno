@@ -36,6 +36,18 @@ const LARGURAS = {
   'capa-oficial-azul': [360, 540, 800, 1080],
   'oferta-mesa': [960, 1280, 1672],
 };
+// Cards da #transformacao (originais em assets/img/cards/card-0N-original.png, 1536x1024, com o texto dentro da
+// arte): a arte vem com uma margem colorida irregular (6 a 21px) em volta do cartão desenhado. O recorte tira
+// essa margem (medida nos originais de 22/10, mais 3px para dentro) e padroniza os quatro em 1500x990; o raio
+// da moldura na página (16px) esconde os cantos. Se o cliente mandar outra arte, meça de novo.
+// Larguras: ~544px na grade 2 x 2 do desktop (1x e 2x) e ~326px no celular (3x).
+const CARDS = {
+  'card-01': { arquivo: 'card-01-original.png', corte: { left: 19, top: 9, width: 1500, height: 990 } },
+  'card-02': { arquivo: 'card-02-original.png', corte: { left: 18, top: 17, width: 1500, height: 990 } },
+  'card-03': { arquivo: 'card-03-original.png', corte: { left: 19, top: 14, width: 1500, height: 990 } },
+  'card-04': { arquivo: 'card-04-original.png', corte: { left: 20, top: 15, width: 1500, height: 990 } },
+};
+const LARGURAS_CARD = [400, 640, 960, 1280];
 // Prints: ~250px na fileira do celular, ~350px no mosaico do desktop e até 520px no lightbox.
 // Os originais têm ~737px: 737 é o teto (nunca amplia; a maior versão fica na largura do original).
 const LARGURAS_PRINT = [360, 540, 737];
@@ -62,6 +74,12 @@ const HERO = {
   jpg: { quality: 82, mozjpeg: true, progressive: true },
 };
 const HEROS = new Set(['hero-mobile', 'hero-desktop']);
+// Cards: foto com títulos e uma linha de texto pequena dentro da arte; croma 4:4:4 para o texto não borrar.
+const CARD = {
+  avif: { quality: 58, effort: 6, chromaSubsampling: '4:4:4', bitdepth: 10 },
+  webp: { quality: 82, effort: 6 },
+  jpg: { quality: 82, mozjpeg: true, progressive: true },
+};
 const TEXTO = {
   avif: { quality: 65, effort: 6, chromaSubsampling: '4:4:4' },
   webp: { quality: 88, effort: 6 },
@@ -86,10 +104,10 @@ async function atualizado(saida, mtimeOrigem) {
   }
 }
 
-async function gerar(arquivo, nome, larguras, qualidade) {
+async function gerar(arquivo, nome, larguras, qualidade, corte) {
   const { mtimeMs } = await stat(arquivo);
   const meta = await sharp(arquivo).metadata();
-  const { width: W, height: H } = meta.autoOrient ?? meta;
+  const { width: W, height: H } = corte ?? meta.autoOrient ?? meta;
   const alvos = [...new Set(larguras.map((l) => Math.min(l, W)))];
 
   for (const w of alvos) {
@@ -98,7 +116,9 @@ async function gerar(arquivo, nome, larguras, qualidade) {
       FORMATOS.map(async ([ext, aplicar]) => {
         const saida = path.join(DESTINO, `${nome}-${w}.${ext}`);
         if (!(await atualizado(saida, mtimeMs))) {
-          const base = sharp(arquivo).autoOrient().resize({ width: w, withoutEnlargement: true });
+          let base = sharp(arquivo).autoOrient();
+          if (corte) base = base.extract(corte);
+          base = base.resize({ width: w, withoutEnlargement: true });
           await aplicar(base, qualidade).toFile(saida);
         }
         linha[ext] = (await stat(saida)).size;
@@ -152,6 +172,9 @@ for (const [nome, larguras] of Object.entries(LARGURAS)) {
     throw e;
   }
   await gerar(arq, nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
+}
+for (const [nome, { arquivo, corte }] of Object.entries(CARDS)) {
+  await gerar(path.join(ORIGEM, 'cards', arquivo), nome, LARGURAS_CARD, CARD, corte);
 }
 for (const arquivo of await listarPrints()) {
   await gerar(path.join(PRINTS, arquivo), nomeDoPrint(arquivo), LARGURAS_PRINT, TEXTO);

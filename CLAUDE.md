@@ -1,6 +1,6 @@
 # De Desprezado a Respeitado: landing page
 
-Landing page de venda do De Desprezado a Respeitado, o método de Marcello Gomes (um livro digital em PDF, com 13 capítulos, 8 dossiês e um plano de ação de 30 dias) para o homem que é desrespeitado dentro do próprio relacionamento parar de aceitar humilhações calado e recuperar sua voz. Marcello é criador com 419 mil seguidores no Instagram e fala sobre posicionamento masculino, respeito próprio e relacionamentos.
+Landing page de venda do De Desprezado a Respeitado, o método de Marcello Gomes (um livro digital em PDF, com 13 capítulos e 8 dossiês sobre relacionamentos, mais quatro materiais complementares: plano de ação de 30 dias, diagnóstico pessoal, código de honra e diário do homem respeitado) para o homem que é desrespeitado dentro do próprio relacionamento parar de aceitar humilhações calado e recuperar sua voz. Marcello é criador com 419 mil seguidores no Instagram e fala sobre posicionamento masculino, respeito próprio e relacionamentos.
 
 O produto substituiu o Arsenal Homem Blindado (combo de quatro manuais), que deixou de existir. O repositório e a pasta mantêm o nome antigo. Domínio: `https://nunca-mais-seja-desprezado.com.br/`.
 
@@ -37,7 +37,7 @@ Quando o mockup e a copy discordarem num texto, a copy manda. Quando discordarem
 | --- | --- | --- |
 | `--abismo` | #050A14 | Fundo base da página |
 | `--abismo-hero` | #01050F | Fundo do hero, casa com a borda da foto |
-| `--noite` | #0C1729 | Seções intermediárias (sistema, antes e depois) |
+| `--noite` | #0C1729 | Seções intermediárias (fundo do #caminho) |
 | `--aco-1` | #16243A | Superfícies, círculos de ícone |
 | `--gelo` | #E9EEF5 | Texto principal |
 | `--nevoa` | #AEBBCC | Texto de apoio |
@@ -59,6 +59,8 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 - Grão sutil por cima da página inteira (`assets/img/grain.png`, `mix-blend-mode: overlay`).
 - Luz: cada seção tem um ponto de luz difusa (radial azul-noite), nunca fundo chapado.
 - Botão principal: pílula prateada metálica com texto escuro, dentro de um anel de vidro com brilho difuso, seta num círculo escuro e um reflexo que atravessa o botão a cada poucos segundos (desligado com `prefers-reduced-motion`). Ao passar o mouse ou com foco pelo teclado: o reflexo passa na hora, o botão sobe 2 px, clareia, o anel ganha brilho embaixo e a seta sai pela direita do círculo e volta pela esquerda (300 ms, `cubic-bezier(.2,.8,.2,1)`). No `:active`, em todos os aparelhos e também no botão da barra fixa: `scale(.98)` e menos brilho. Sem movimento, só o brilho muda.
+- Botão grande (`.cta--grande`, no hero e no #fechamento): o mesmo botão principal, com o mesmo prateado e os mesmos efeitos, com 76 px de altura e texto de 18 px no celular e 20 px no desktop (a partir de 400 px de tela, o rótulo fica em uma linha e o botão acompanha o texto, mesmo que passe da coluna; abaixo disso, quebra em duas linhas parelhas). Os outros botões de compra ficam no tamanho normal.
+- Cards da #transformacao: por enquanto, cada card é a arte original do cliente (`assets/img/cards/card-0N-original.png`, com número, título e linha dentro da imagem), recortada e otimizada pelo `scripts/otimizar-imagens.mjs` (`CARDS`: o recorte tira a margem colorida da arte; com outra arte, meça de novo) e servida em `<picture>` (AVIF, WebP e JPG, de 400 a 1280 px). Moldura de vidro escuro com cantos arredondados (o raio esconde os cantos desenhados na arte), sem hover (não são clicáveis) e com o texto completo do card no `alt`. Uma coluna no celular, 2 x 2 a partir de 761 px. As artes têm caixa alta, fonte condensada e cores saturadas, fora das regras abaixo: exceção aceita pelo cliente por enquanto, só dentro das imagens; o texto da página continua seguindo as regras.
 - Ícone da marca: o escudo (SVG do mockup). Usado em rótulos, listas e selo de garantia.
 
 ### Regras que não se negociam
@@ -75,18 +77,15 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 
 ## Ordem das seções (com os ids)
 
-1. `#hero`: foto de fundo, H1, subheadline, botão, dois cards de vidro (419 mil seguidores, +12 mil homens)
-2. `#identificacao`: checklist interativo de 7 itens com contador
-3. `#virada`: cinco palavras empilhadas e o texto
-4. `#conteudo` (substituiu o `#sistema`): capa do livro à esquerda, montada em HTML (sticky enquanto a lista rola), e os 8 aprendizados à direita (no celular, a capa primeiro); destaque "13 capítulos · 8 dossiês · Plano de ação de 30 dias", botão e, na emenda com a `#antes-depois`, o escudo que se enche de prata com a rolagem.
-5. `#antes-depois`: colunas "Desprezado" e "Respeitado"
-6. `#autor`
-7. `#resultados`: 8 prints reais da DM (`assets/img/prints/`, com o cabeçalho do Instagram borrado no próprio print); no desktop, carrossel contínuo de borda a borda
-8. `#para-quem`
-9. `#oferta`: o livro em pé no centro da mesa, com a capa nova, e quatro cadernos tipográficos dos lados (os materiais da lista "O que você recebe"; no celular, só dois) (`assets/img/capa-desprezado.jpg`; o palco sobe por trás da frase final do `#para-quem`) + painel de preço com o que o comprador recebe
-10. `#faq`: a garantia num card de vidro (`id="garantia"`) e as perguntas. No desktop, a garantia fica na coluna esquerda, abaixo do título; no celular, é o primeiro item, logo depois da oferta.
-11. `#fechamento` + rodapé
-12. Barra fixa no celular
+1. `#hero`: foto de fundo, o rótulo "De Desprezado a Respeitado" numa cápsula de vidro com o escudo, H1, subheadline, botão grande, dois cards de vidro (419 mil seguidores, +12 mil homens)
+2. `#transformacao`: título, apoio, os quatro cards (imagens, ver Superfícies e efeitos), frase e botão
+3. `#identificacao`: checklist interativo de 5 itens com contador, o texto que aparece a partir do primeiro item marcado e o destaque final
+4. `#caminho` (substituiu o `#conteudo`): as 3 etapas num trilho (horizontal a partir de 1024 px; vertical no celular e no tablet), botão e, na emenda com a `#oferta`, o escudo que se enche de prata com a rolagem
+5. `#oferta`: o livro em pé no centro da mesa, com a capa oficial dourada (`assets/img/capa-oficial-dourada.png`; `?capa=azul` e `?capa=html` só para comparação), e quatro cadernos tipográficos dos lados (no celular, só dois); no desktop, o palco começa por trás do fim do `#caminho`. Painel com "Entrega principal" (2 itens) e "Materiais complementares inclusos" (4 itens) e o bloco de preço, sem preço riscado e com a nota embaixo do botão
+6. `#autor`: o card do Marcello e, na mesma seção, a prova social ("Direto da DM"): 8 prints reais da DM (`assets/img/prints/`, com o cabeçalho do Instagram borrado no próprio print); no desktop, carrossel contínuo de borda a borda. Botão no fim
+7. `#faq`: a garantia num card de vidro (`id="garantia"`) e as perguntas. No desktop, a garantia fica na coluna esquerda, abaixo do título; no celular, é o primeiro item, logo depois da `#autor`.
+8. `#fechamento`: título grande, texto e bloco de compra com o botão grande; depois, o rodapé
+9. Barra fixa no celular
 
 ## Checkout, rastreamento e dados
 
@@ -96,13 +95,13 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 - Pixel da Meta `1434833234924777`. Antes de instalar o código base, perguntar ao desenvolvedor se o pixel já dispara dentro do GTM. Se sim, não instalar de novo (PageView duplicado estraga a otimização das campanhas).
 - `InitiateCheckout`: o checkout da Eduzz dispara sozinho ao abrir. A página não dispara esse evento (contaria em dobro); o clique de compra não tem nenhum evento do pixel. O `clique_botoes` do GA4 vem do contêiner do GTM.
 - Botões de compra abrem o checkout em nova guia (`target="_blank"`, `rel="noopener"`, sem `noreferrer`). No toque (`pointer: coarse`), o JS os deixa na mesma guia, por causa do navegador interno do Instagram.
-- Preço: R$ 97 à vista ou 12x de R$ 10,03. Preço de referência riscado: R$ 297.
+- Preço: R$ 97 à vista ou 12x de R$ 10,03. Sem preço de referência riscado (a copy v3 não tem; ver `PENDENCIAS.md`).
 
 ## Interações
 
-- Checklist: botões reais com `aria-pressed`, o contador em `aria-live="polite"`, a frase muda com 0, 1 a 2, ou 3 ou mais marcados. Sem JS, aparece a frase de 1 a 2. No celular, o contador é uma barra compacta de vidro, sticky no pé da tela enquanto a lista está na tela, que para logo abaixo do último item.
+- Checklist: botões reais com `aria-pressed`, o contador ("N de 5 situações marcadas") em `aria-live="polite"`. O texto abaixo da lista (`aria-live`) aparece a partir do primeiro item marcado e some com 0; sem JS, fica visível. O destaque final fica sempre visível, depois da lista. No celular, o contador é uma barra compacta de vidro, só com "N de 5 situações marcadas", sticky no pé da tela enquanto a lista está na tela, que para logo abaixo da lista.
 - FAQ: `<details>` e `<summary>` nativos, o primeiro aberto.
-- Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a #identificacao (onde fica a barra do contador), a oferta, o botão do #fechamento ou o rodapé estão visíveis (`IntersectionObserver`). Respeitar `env(safe-area-inset-bottom)`.
+- Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a lista da #identificacao (onde fica a barra do contador), o painel de preço da #oferta (a partir do momento em que o topo dele passa de 60% da altura da tela), o botão do #fechamento ou o rodapé estão visíveis (no #caminho e no palco dos livros, ela aparece) (`IntersectionObserver`). Respeitar `env(safe-area-inset-bottom)`.
 - Prints: cada card mostra o print inteiro, na altura natural (sem corte). As cores dos prints não mudam (só `brightness(.94)`). No celular, fileira horizontal com `scroll-snap`. A partir de 761px, carrossel de borda a borda em loop (~40px/s, só `transform`), com setas embaixo (um card por clique; o movimento volta 4s depois). Pausa com o mouse sobre um card (que cresce, enquanto os outros visíveis apagam), com um card focado pelo teclado, fora da tela e com a galeria aberta. Com `prefers-reduced-motion`, vira rolagem horizontal com `scroll-snap`, sem zoom.
 - Galeria dos prints (`<dialog>`): abre no print clicado, navega pelos 8 com botões, setas do teclado e, no toque, deslizando; dá a volta; contador "N de 8" em `aria-live`; o foco fica nos botões dela e volta para o card ao fechar.
 - Movimento: segue o Sistema de movimento, logo abaixo.
@@ -125,12 +124,12 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - Entrada: o bloco entra por baixo com `blur(10px)`, opacidade 0 e `translateY(24px)`, e fica nítido, opaco e no lugar quando chega a 35% da altura da tela, contando de baixo. No celular: blur de 6 px e 16 px de deslocamento.
 - Saída: ao passar pelo topo da tela, desfoca até 4 px e vai a 60% de opacidade. Discreta, para não atrapalhar quem volta para reler.
 - `.reveal-saida`: só a saída. Usada no hero, onde H1 e subheadline são o LCP e não podem ter entrada.
-- Aplicar em blocos: título, parágrafo, card, linha de lista. Nunca palavra por palavra. A exceção são as cinco palavras da virada, porque cada uma é uma linha.
+- Aplicar em blocos: título, parágrafo, card, linha de lista. Nunca palavra por palavra.
 - Itens de uma lista entram em sequência pelo próprio deslocamento. Itens lado a lado numa grade usam `--rv-atraso` (em `svh`) por item, que atrasa a faixa de rolagem, nunca o tempo.
 - Tudo dentro de `@supports (animation-timeline: view())` e de `prefers-reduced-motion: no-preference`. Sem suporte, o elemento aparece normal, sem efeito e sem JS de fallback.
 - Nunca aplicar num elemento que contém vidro (`backdrop-filter`): o `filter` do pai corta o fundo que o vidro desfoca. Aplique no próprio vidro ou nos filhos.
 - Nunca aplicar no elemento sticky; aplique nos filhos dele.
-- Nunca aplicar dentro de um elemento com `overflow: hidden` (nem `auto` ou `scroll`): ele vira contêiner de rolagem, o `view()` mede contra ele e a animação não roda. Para cortar, use `overflow: clip`. Numa fileira que rola de verdade (scroll-snap), use uma `view-timeline` com nome na própria fileira, como na #resultados.
+- Nunca aplicar dentro de um elemento com `overflow: hidden` (nem `auto` ou `scroll`): ele vira contêiner de rolagem, o `view()` mede contra ele e a animação não roda. Para cortar, use `overflow: clip`. Numa fileira que rola de verdade (scroll-snap), use uma `view-timeline` com nome na própria fileira, como nos prints da #autor.
 - Nunca aplicar nos blocos do fim da página (frase final do fechamento, rodapé): a rolagem acaba antes de eles chegarem a 35% da tela e ficariam desfocados.
 - Nunca aplicar em fotos grandes, palco de imagem ou seção inteira. O Chrome não leva animação de `blur` para a GPU: ela roda na thread principal e o custo cresce com a área desfocada. Use em blocos de texto e cards.
 

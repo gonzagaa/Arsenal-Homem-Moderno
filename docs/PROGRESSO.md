@@ -2,7 +2,7 @@
 
 Leia este arquivo antes de qualquer outra coisa numa sessão nova. Ele registra as etapas aprovadas e as decisões aprovadas nos relatórios que não estão no `CLAUDE.md` nem no `docs/PROMPTS.md`. Essas decisões vieram depois do mockup: quando discordarem dele, valem as decisões.
 
-Atualizado em 2026-10-21.
+Atualizado em 2026-10-22.
 
 ## Situação
 
@@ -40,6 +40,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Troca de produto, rodada A (De Desprezado a Respeitado: textos, domínio, hero, contador) | aprovada |
 | Troca de produto, rodada B (#conteudo com trilho, emenda do escudo, #oferta com o livro e quatro cadernos) | aprovada |
 | Comparação de capas por parâmetro (`?capa=dourada` e `?capa=azul`) | aprovada |
+| Copy v3, rodada C1 (página curta: #transformacao, #caminho, prints na #autor, botão grande, capa dourada padrão) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -385,6 +386,23 @@ O Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitad
 - `LARGURAS` no script da página: 360, 540, 800 e 1024 (a maior é a largura do original; o script de otimização nunca amplia). Se trocar os originais, confira.
 - `scripts/otimizar-imagens.mjs`: as duas capas com as mesmas larguras e o perfil de retrato; entram num conjunto `OPCIONAIS` (sem o original, o script avisa e segue).
 - O parâmetro `capa` não vai para o checkout (tirado do repasse, como o `rastreio`).
+
+### Copy v3, rodada C1 (2026-10-22)
+
+O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3, palavra por palavra em todas as seções, no rodapé, na barra e no SEO; `og.jpg` refeita com o H1 novo, 48px, contraste mínimo de 9,1:1).
+
+- Saíram #virada, #antes-depois e #para-quem, com o CSS e o JS que só elas usavam. Ordem nova: #hero, #transformacao, #identificacao, #caminho, #oferta, #autor (com os prints), #faq, #fechamento, rodapé e barra fixa.
+- Hero: rótulo "De Desprezado a Respeitado" numa cápsula de vidro com o escudo, acima do H1. H1 em 4 linhas no desktop (36 a 44px) e nos celulares baixos (26px), 5 linhas de 390x844 em diante (32px) e no tablet. Medido: pill de 38 a 146px abaixo da barba, H1 de 93 a 208px; contraste mínimo 4,8:1 no branco e 6,5:1 no prateado no celular (com a sombra do H1), 9,1:1 ou mais no desktop. "perdê-la." não quebra no hífen e a subheadline usa `text-wrap: pretty`.
+- Botão grande (`.cta--grande`, hero e fechamento): 76px de altura, texto de 18px no celular e 20px no desktop. A partir de 400px, rótulo em uma linha (`nowrap`) e o anel com `width: max-content` (no celular, `min-width: 100%`); abaixo, duas linhas. No celular, folgas menores (20px à esquerda, 10px de espaço, seta de 44px): o botão tem 353px e cabe em 400px. No tablet ele passa da coluna do hero e fica sobre o suéter, abaixo da barba.
+- #transformacao: os 4 cards são a arte original do cliente (recorte de 1500x990 no `scripts/otimizar-imagens.mjs`, `CARDS`; 400 a 1280px), em moldura de vidro escuro sem `backdrop-filter`, raio de 13px no celular e 16px no desktop, texto completo no `alt`. Uma coluna no celular, 2 x 2 a partir de 761px. Baixam 76 KB (versão 640) em 1440px 1x e 194 KB (versão 1280) em 390px 3x.
+- #identificacao: 5 itens, "N de 5 situações marcadas"; o texto de baixo da lista (`.chk-texto`, aria-live) é esvaziado com 0 e volta com 1 ou mais (sem JS, fica visível); destaque final sempre visível. Barra do contador no celular só com "N de 5 situações marcadas" (52px).
+- #caminho: trilho com círculos de vidro "Etapa N". Horizontal a partir de 1024px (linha do tempo `--etapas` na lista: o preenchimento corre enquanto o topo da lista sobe de 80% a 40% da tela, e cada círculo acende quando o preenchimento chega e continua aceso); vertical no celular e no tablet (como era o #conteudo; três colunas no tablet teriam ~195px).
+- #oferta: capa oficial dourada como padrão; `?capa=azul` e `?capa=html` (a capa em HTML) só para comparação. Painel com "Entrega principal" (2 itens, título em prata) e "Materiais complementares inclusos" (4 itens), títulos dos grupos com o escudo; a partir de 1280px, cada grupo em duas colunas. Preço sem riscado, com a nota embaixo do botão. A faixa dos detalhes saiu.
+- #autor: card sem margem negativa e, na mesma seção, "Direto da DM", o subtítulo (h3), o carrossel e o botão.
+- #faq: garantia nova (no desktop, o selo fica em cima do título) e 4 perguntas. #fechamento: título grande (34px no celular, até 64px), texto e bloco de compra em vidro.
+- Emendas e vazios medidos (celular / desktop): hero/transformação, círculo sobre a linha de luz, 71/91; transformação/identificação, luz que atravessa, 120/140; identificação/caminho, curva, 96/158; caminho/oferta, escudo que se enche com a linha até o rótulo (no desktop, `--emenda-ad: calc(235px - 2.24 * clamp(30px, 3vw, 44px) - 42px)`, a linha termina 12px antes do rótulo) e a foto do palco começando por trás do escudo, 56/94 a 126; oferta/autor, luz que atravessa, 110/120; autor/faq, luz que atravessa, 120/164; faq/fechamento, círculo do escudo, 116/141; fechamento/rodapé, fio, 65/73.
+- Barra fixa do celular: some com a lista da #identificacao (`.chks`, onde fica a barra do contador), com o painel da oferta (observador próprio com `rootMargin` de -40% embaixo: só conta quando o topo dele passa de 60% da tela), com o botão do fechamento e com o rodapé. No #caminho e no palco dos livros, ela aparece.
+- Lighthouse: acessibilidade e boas práticas 100 no celular e no desktop. Sem rolagem lateral de 360 a 1920px.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

@@ -31,8 +31,8 @@ fbq('track', 'PageView');
 }
 </script>
 <!-- End Meta Pixel Code -->
-<title>De Desprezado a Respeitado: chegou a hora de dar um basta</title>
-<meta name="description" content="O passo a passo de Marcello Gomes para parar de aceitar humilhações calado e recuperar sua voz dentro do relacionamento.">
+<title>De Desprezado a Respeitado, por Marcello Gomes</title>
+<meta name="description" content="Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado.">
 <link rel="canonical" href="https://nunca-mais-seja-desprezado.com.br/">
 <!-- Compartilhamento. A imagem precisa de endereço absoluto; ela é gerada por scripts/gerar-og.mjs. -->
 <meta property="og:type" content="website">
@@ -40,17 +40,17 @@ fbq('track', 'PageView');
 <meta property="og:site_name" content="De Desprezado a Respeitado">
 <meta property="og:url" content="https://nunca-mais-seja-desprezado.com.br/">
 <meta property="og:title" content="De Desprezado a Respeitado, por Marcello Gomes">
-<meta property="og:description" content="O passo a passo de Marcello Gomes para parar de aceitar humilhações calado e recuperar sua voz dentro do relacionamento.">
+<meta property="og:description" content="Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado.">
 <meta property="og:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/og.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. Chegou a hora de dar um basta nisso.">
+<meta property="og:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Meu objetivo é te fazer deixar de ser desprezado e voltar a ser respeitado dentro da sua própria casa.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="De Desprezado a Respeitado, por Marcello Gomes">
-<meta name="twitter:description" content="O passo a passo de Marcello Gomes para parar de aceitar humilhações calado e recuperar sua voz dentro do relacionamento.">
+<meta name="twitter:description" content="Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado.">
 <meta name="twitter:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/og.jpg">
-<meta name="twitter:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. Chegou a hora de dar um basta nisso.">
+<meta name="twitter:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Meu objetivo é te fazer deixar de ser desprezado e voltar a ser respeitado dentro da sua própria casa.">
 <!-- Favicons (o escudo). favicon.ico também fica na raiz, para quem o pede sem ler o <head>. -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
@@ -134,6 +134,7 @@ html.lenis{scroll-behavior:auto!important}
 /* Peças reutilizáveis (valores do mockup, celular primeiro) */
 .wrap{position:relative;max-width:1280px;margin:0 auto;padding:0 max(22px,env(safe-area-inset-right)) 0 max(22px,env(safe-area-inset-left))}
 
+.inteira{white-space:nowrap} /* palavra com hífen que não pode quebrar */
 .silver{background:var(--prata);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 .pill{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;letter-spacing:-.005em;color:#A9B8CB}
@@ -198,6 +199,20 @@ html.lenis{scroll-behavior:auto!important}
 @media (max-width:384px){
   .cta{gap:10px;font-size:13.5px}
 }
+/* Botão grande (.cta--grande, no hero e no fechamento): o mesmo prateado e os mesmos efeitos, com 76px de
+   altura e texto de 18px no celular e 20px no desktop. A partir de 400px de tela, o rótulo fica em uma linha
+   e o botão acompanha o texto, mesmo que passe da coluna (no celular, ocupa no mínimo a largura da coluna).
+   Abaixo de 400px, o rótulo quebra em duas linhas parelhas. No celular, as folgas menores (botão de 353px)
+   fazem ele caber em 400px. */
+.cta--grande{min-height:76px;gap:10px;padding:12px 10px 12px 20px;font-size:18px;line-height:1.25}
+.cta--grande .cta-arrow{width:44px;height:44px}
+@media (min-width:400px){
+  .cta--grande{white-space:nowrap}
+  .cta-ring--grande{width:max-content}
+}
+@media (min-width:400px) and (max-width:760px){
+  .cta-ring--grande{min-width:100%}
+}
 
 /* Marca do que falta do cliente. Nada com esta classe vai ao ar. */
 .pendente{outline:2px dashed #F5A524;outline-offset:3px;border-radius:4px;background:rgba(245,165,36,.14);color:#FFD9A0;-webkit-box-decoration-break:clone;box-decoration-break:clone}
@@ -216,6 +231,9 @@ html.lenis{scroll-behavior:auto!important}
   .cta-ring{display:inline-flex}
   .cta{width:auto;justify-content:flex-start;gap:18px;padding:10px 10px 10px 30px;font-size:15px;letter-spacing:.01em}
   .cta-arrow{width:42px;height:42px}
+  .cta-ring--grande{padding:6px}
+  .cta--grande{gap:24px;padding:12px 12px 12px 36px;font-size:20px;letter-spacing:0}
+  .cta--grande .cta-arrow{width:52px;height:52px}
 }
 
 /* Hero
@@ -228,8 +246,11 @@ html.lenis{scroll-behavior:auto!important}
 .shade{pointer-events:none;background:linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.94) 30%,rgba(5,10,20,.4) 52%,rgba(5,10,20,0) 66%)}
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;gap:24px;padding:0 max(22px,env(safe-area-inset-right)) 0 max(22px,env(safe-area-inset-left))}
 .hero-copy{display:flex;flex-direction:column;justify-content:flex-end;gap:24px;min-height:640px;min-height:100svh;padding-bottom:20px}
+.hero .lead{text-wrap:pretty}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .seam{position:absolute;left:0;right:0;bottom:0;z-index:4;height:1px;background:linear-gradient(90deg,transparent,rgba(169,184,203,.45) 50%,transparent)}
+/* Rótulo do produto acima do H1: o escudo e o nome numa cápsula de vidro sobre a foto. */
+.hero-pill{align-self:flex-start;padding:7px 14px 7px 12px;border-radius:999px;font-size:14px;color:#C9D3E0;background:linear-gradient(180deg,rgba(22,36,58,.55),rgba(10,20,36,.5));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 .notch{position:absolute;left:50%;bottom:-29px;z-index:5;transform:translateX(-50%);width:58px;height:58px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 0 8px #050A14,0 0 44px rgba(120,155,205,.3)}
 
 @media (max-width:760px) and (min-height:940px){
@@ -282,6 +303,7 @@ html.lenis{scroll-behavior:auto!important}
   .shade{background:var(--hero-sombra-esq),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
   .hero-inner{width:100%;gap:36px;padding:0 0 0 clamp(24px,6.5vw,128px)}
   .hero-copy{min-height:0;gap:30px;padding-bottom:0}
+  .hero-pill{padding:8px 16px 8px 14px;font-size:15px}
   .hero-copy,.chips{max-width:min(520px,38vw)}
   .chips{gap:12px}
 }
@@ -331,18 +353,49 @@ html.lenis{scroll-behavior:auto!important}
   }
 }
 
+/* A transformação (#transformacao). Os quatro cards são, por enquanto, a arte original de cada um (o texto
+   está dentro da imagem e, inteiro, no alt), numa moldura de vidro escuro com cantos arredondados: uma coluna
+   no celular, 2 x 2 a partir de 761px. Sem backdrop-filter na moldura: o card tem .reveal, e o filter dele
+   cortaria o fundo do vidro. Nada aqui é clicável, então nada tem hover.
+   Emenda com o hero: o círculo e a linha de luz do fim do hero (elemento sobre a emenda).
+   Emenda com a #identificacao: a luz de baixo (::after) atravessa a emenda e continua por trás do começo da
+   lista (z-index -1: fica sob o conteúdo; a #identificacao não tem fundo próprio). */
+.transf{position:relative;padding:100px 0 30px}
+.transf::before{content:"";position:absolute;left:-30%;top:10%;width:90%;height:55%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.24),rgba(30,58,104,0))}
+.transf::after{content:"";position:absolute;left:50%;bottom:-340px;z-index:-1;width:1100px;height:680px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.26),rgba(30,58,104,0))}
+.cartoes{list-style:none;padding:0;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.cartao-moldura{display:block;padding:10px;border-radius:22px;background:linear-gradient(180deg,rgba(24,38,60,.72),rgba(9,17,31,.9));border:1px solid rgba(169,184,203,.18);box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+/* O raio esconde os cantos arredondados desenhados na própria arte (~30px no original de 1500px). */
+.cartao img{width:100%;border-radius:13px}
+.transf-frase{max-width:22ch;margin:56px auto 0;text-align:center;font-weight:300;font-size:26px;line-height:1.18;letter-spacing:-.03em;text-wrap:balance}
+.transf-frase strong{font-weight:600}
+.transf-cta{margin-top:28px;text-align:center}
+.transf-cta .cta{text-align:left}
+@media (min-width:761px){
+  .transf{padding:120px 0 40px}
+  .cartoes{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+  /* O card da direita entra logo depois do da esquerda. */
+  .cartao:nth-child(even){--rv-atraso:4svh}
+  .cartao-moldura{border-radius:26px}
+  .cartao img{border-radius:16px}
+  .transf-frase{max-width:24ch;margin-top:80px;font-size:clamp(28px,3vw,42px)}
+  .transf-cta{margin-top:36px}
+}
+
 /* Identificação
    Celular: título e lista; o contador é uma barra de vidro (.contador-barra, no fim da lista) presa ao pé
-   da tela enquanto a lista está na tela, e que para logo abaixo do último item (sticky). O .counter fica
-   só no desktop: título e contador fixos à esquerda. Os dois são aria-live; só o visível é anunciado. */
-.ident{position:relative;padding:100px 0 20px}
+   da tela enquanto a lista está na tela, e que para logo abaixo da lista (sticky). O .counter fica
+   só no desktop: título e contador fixos à esquerda. Os dois são aria-live; só o visível é anunciado.
+   Depois da lista, o destaque final (sempre visível). Embaixo, a curva (.arc) com a linha de luz leva ao
+   fundo do #caminho: o ápice fica 70px (celular) e 132px (desktop) acima do pé da seção. */
+.ident{position:relative;padding:90px 0 110px}
 .ident::before{content:"";position:absolute;right:-30%;top:6%;width:90%;height:70%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.22),rgba(30,58,104,0))}
 .ident-grid{display:flex;flex-direction:column;gap:20px}
 .ident-side{display:contents}
 .ident .lead{max-width:40ch}
 .counter{order:2;margin-top:8px;padding:26px 28px;border-radius:22px;background:linear-gradient(180deg,rgba(24,38,60,.5),rgba(9,17,31,.75));border:1px solid rgba(169,184,203,.16)}
 .counter b{display:block;font-weight:300;font-size:54px;line-height:1;letter-spacing:-.04em}
-.counter p{margin-top:12px;font-size:16.5px;line-height:1.55;color:#C9D3E0}
+.counter span{display:block;margin-top:12px;font-size:16.5px;line-height:1.55;color:#C9D3E0}
 .chks{order:1;margin-top:8px;display:flex;flex-direction:column;gap:12px}
 .chk{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:16px;border-radius:18px;font-size:16px;line-height:1.45;text-align:left;color:#C9D3E0;background:rgba(12,23,41,.55);border:1px solid rgba(169,184,203,.13);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:border-color .2s,color .2s,box-shadow .2s}
 .chk[aria-pressed="true"]{color:#FFFFFF;background:linear-gradient(180deg,rgba(30,48,76,.75),rgba(14,26,46,.85));border-color:rgba(201,211,224,.4);box-shadow:0 0 40px -14px rgba(150,180,225,.5)}
@@ -353,62 +406,48 @@ html.lenis{scroll-behavior:auto!important}
 .chk[aria-pressed="true"] .esc-fundo,.chk[aria-pressed="true"] .esc-check{opacity:1}
 .chk[aria-pressed="true"] .esc-borda{stroke:#D9E2EE}
 @media (hover:hover){.chk:hover{border-color:rgba(169,184,203,.3)}}
-/* Barra do contador: "N" grande com "de 7" embaixo, e a frase ao lado (14px, até 2 linhas). A altura é a do
-   maior estado (2 linhas), para a barra não crescer por cima do item logo depois de um toque. Os itens
-   descontam a barra quando recebem foco pelo teclado (scroll-margin-bottom). Sem .reveal: é sticky. */
+/* Texto logo abaixo da lista, a partir do primeiro item marcado (aria-live; o JS o esvazia com 0 e o devolve
+   com 1 ou mais). Vazio, ele anula o próprio espaço na lista (gap de 12px). Sem JS, fica visível. */
+.chk-texto{padding:8px 2px 0;font-size:16.5px;line-height:1.65;color:#C9D3E0;text-wrap:pretty}
+.chk-texto:empty{padding:0;margin-bottom:-12px}
+/* Barra do contador (só no celular): "N de 5 situações marcadas" em uma linha. Sem .reveal: é sticky. Os
+   itens descontam a barra quando recebem foco pelo teclado (scroll-margin-bottom). */
 .contador-barra{display:none}
-/* Restante da frase de 3 ou mais (só no celular): abaixo do último item, vazio nos outros estados. Vazio, ele
-   anula o próprio espaço da lista (gap de 12px), para a barra continuar parando 12px abaixo do último item. */
-.chk-resto{display:none}
-@media (max-width:760px){
-  .chk-resto{display:block;padding:4px 2px 0;font-size:16px;line-height:1.6;color:#C9D3E0;text-wrap:pretty}
-  .chk-resto:empty{padding:0;margin-bottom:-12px}
-  .counter{display:none}
-  .contador-barra{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:center;gap:10px;margin:0 -10px;min-height:calc(2 * 14px * 1.4 + 20px);padding:9px 10px 9px 12px;border-radius:18px;background:linear-gradient(180deg,rgba(22,36,58,.74),rgba(10,20,36,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -14px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
-  .cb-num{flex:none;min-width:30px;text-align:center}
-  .cb-num b{display:block;font-weight:300;font-size:28px;line-height:1;letter-spacing:-.04em}
-  .cb-num span{display:block;margin-top:2px;font-size:13px;line-height:1.2;color:var(--nevoa-2);white-space:nowrap}
-  .contador-barra>p{font-size:14px;line-height:1.4;color:#C9D3E0;text-wrap:pretty}
-  .chk{scroll-margin-bottom:calc(2 * 14px * 1.4 + 44px + env(safe-area-inset-bottom))}
-}
-
-/* Virada. A opacidade cai palavra a palavra; a mais apagada (.52) ainda tem 5:1 de contraste. */
-.virada{position:relative;padding:110px 0 170px}
-.virada::before{content:"";position:absolute;left:-20%;top:0;width:70%;height:100%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.28),rgba(30,58,104,0))}
-.virada-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:36px}
-.words{margin-top:28px;font-weight:300;font-size:min(52px,13.4vw);line-height:1;letter-spacing:-.045em}
-.words span{display:block}
-.words span:nth-child(1){color:var(--gelo)}
-.words span:nth-child(2){color:rgba(233,238,245,.84)}
-.words span:nth-child(3){color:rgba(233,238,245,.68)}
-.words span:nth-child(4){color:rgba(233,238,245,.52)}
-.words span:nth-child(5){font-weight:500}
-.virada-texto{position:relative;z-index:2}
-.virada-texto .body p:last-child{color:var(--gelo)}
-.virada-cta{margin-top:14px}
+.ident-destaque{max-width:22ch;margin:48px auto 0;text-align:center;font-weight:300;font-size:28px;line-height:1.15;letter-spacing:-.03em;text-wrap:balance}
+.ident-destaque strong{font-weight:600}
 .arc{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:90px}
-
+@media (max-width:760px){
+  .counter{display:none}
+  .contador-barra{position:sticky;bottom:calc(12px + env(safe-area-inset-bottom));z-index:3;display:flex;align-items:center;justify-content:center;gap:8px;margin:0 -10px;min-height:52px;padding:10px 16px;border-radius:18px;background:linear-gradient(180deg,rgba(22,36,58,.74),rgba(10,20,36,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.22);box-shadow:0 20px 40px -14px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+  .contador-barra b{font-weight:300;font-size:26px;line-height:1;letter-spacing:-.04em}
+  .contador-barra span{font-size:14px;line-height:1.4;color:#C9D3E0}
+  .chk{scroll-margin-bottom:calc(52px + 24px + env(safe-area-inset-bottom))}
+}
 @media (min-width:761px){
-  .ident{padding:150px 0 40px}
+  .ident{padding:100px 0 190px}
   .ident-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,6vw,80px);align-items:start}
   .ident-side{position:sticky;top:60px;display:flex;flex-direction:column;gap:20px}
   .chks{order:0;margin-top:0}
   .counter{order:0;margin-top:18px}
   .chk{gap:18px;padding:18px 22px;font-size:17px}
-  .virada{padding:160px 0 230px}
-  .virada-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(40px,6vw,80px);align-items:end}
-  .words{font-size:clamp(54px,6.4vw,100px)}
+  .chk-texto{font-size:17.5px}
+  .ident-destaque{max-width:24ch;margin-top:110px;font-size:clamp(30px,3.2vw,46px)}
   .arc{height:170px}
 }
 
 /* Cabeçalho centralizado de seção (rótulo, título, apoio) */
 .sec-head{max-width:760px;margin:0 auto 40px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
 .sec-sub{font-size:16px;line-height:1.65;color:var(--nevoa);max-width:56ch}
+@media (min-width:761px){
+  .sec-head{margin-bottom:64px;gap:18px}
+  .sec-sub{font-size:17.5px}
+}
 
-/* Livro (peça comum ao #conteudo e à #oferta): a capa do De Desprezado a Respeitado montada em HTML, com a
-   arte de fundo e o texto real em cqw. Título embaixo à esquerda (300, com o final em 600 prateado), o autor
-   embaixo dele e, só na capa grande, a frase na coluna direita, na altura dos olhos (37% da altura da arte).
-   Em pé, com leve perspectiva, luz de lombada na borda esquerda e sombra de contato embaixo. */
+/* Livro principal da #oferta. Padrão: a capa oficial dourada (.capa-oficial: a imagem já traz o texto, então
+   o escurecimento e o texto em HTML saem). Só por parâmetro (ver o JS): ?capa=azul (a capa oficial azul) e
+   ?capa=html (a capa montada em HTML: a arte de fundo e o texto real em cqw, título embaixo à esquerda, em 300
+   com o final em 600 prateado, e o autor embaixo dele). Em pé, com luz de lombada na borda esquerda e sombra
+   de contato embaixo. */
 .livro{position:relative;perspective:1600px}
 .livro::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-18px;height:30px;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0))}
 .capa{position:relative;container-type:inline-size;aspect-ratio:2/3;overflow:hidden;background:#02060F;border-radius:3px 6px 6px 3px;box-shadow:-18px 24px 44px -14px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4);transform:rotateY(-8deg)}
@@ -420,67 +459,96 @@ html.lenis{scroll-behavior:auto!important}
 .capa-ti{font-weight:300;font-size:11.5cqw;line-height:1;letter-spacing:-.035em}
 .capa-ti strong{display:block;font-weight:600}
 .capa-au{margin-top:4cqw;font-size:4.4cqw;font-weight:500;line-height:1.2;letter-spacing:.005em;color:#D9E2EE}
-.capa-frase{position:absolute;left:60cqw;right:6cqw;top:41cqw;z-index:2;font-size:4cqw;font-weight:300;line-height:1.35;letter-spacing:-.01em;color:var(--gelo);text-wrap:pretty}
-.capa-frase b{font-weight:500}
-/* Comparação com a capa oficial do cliente (?capa=dourada ou ?capa=azul, ver o JS): a imagem já traz o texto,
-   então o escurecimento e o texto em HTML saem; ficam a lombada, a borda, a perspectiva e a sombra. */
-.capa-oficial .capa-ov,.capa-oficial .capa-frase,.capa-oficial .capa-pe{display:none}
+.capa-oficial .capa-ov,.capa-oficial .capa-pe{display:none}
 
-/* O conteúdo (#conteudo, substituiu o #sistema). O fundo começa e termina em #0C1729: emenda com a curva da
-   #virada e com a #antes-depois. Celular: a curva da #virada tem 90px e o ponto mais alto fica 69px acima do
-   topo da seção; o rótulo fica --curva-rotulo abaixo dele. Embaixo, sem espaço: a seção termina no escudo da
-   emenda. Celular: capa centrada com 62% da largura e a lista embaixo. A partir de 761px: capa à esquerda
-   (5 de 12 colunas), sticky e centrada na altura da tela enquanto a lista rola, solta quando a lista termina.
-   A lista é um trilho de passo a passo (ver abaixo). */
-.conteudo{--curva-rotulo:70px;position:relative;padding:calc(var(--curva-rotulo) - 69px) 0 0;background:linear-gradient(180deg,#0C1729 0%,#08111F 50%,#0C1729 100%)}
-.conteudo::before{content:"";position:absolute;left:50%;top:4%;width:900px;height:500px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(40,72,124,.22),rgba(40,72,124,0))}
-.cont-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:48px}
-.cont-capa{width:min(62vw,300px);margin:0 auto}
-/* A frase da capa só aparece com a capa a partir de 300px de largura (container query na própria capa). */
-@container (max-width:299px){.capa-frase{display:none}}
+/* Como a transformação acontece (#caminho, substituiu o #conteudo). O fundo começa em #0C1729 (a cor da
+   curva da #identificacao) e termina em #050A14, a cor da #oferta: no desktop, a foto do palco da oferta
+   começa por trás do fim desta seção. O rótulo fica --curva-rotulo abaixo do ápice da curva, que fica
+   --curva-apice acima do topo da seção (flow-root: a margem negativa não arrasta o fundo para cima da
+   curva). Embaixo, sem espaço: a seção termina no escudo da emenda (no desktop, --frase-palco abaixo dele). */
+.caminho{--curva-apice:70px;--curva-rotulo:56px;position:relative;display:flow-root;background:linear-gradient(0deg,#050A14 0,#050A14 calc(var(--frase-palco,0px) + 220px),#08111F calc(var(--frase-palco,0px) + 520px),#0C1729 100%)}
+.caminho::before{content:"";position:absolute;left:50%;top:4%;width:900px;height:500px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(40,72,124,.22),rgba(40,72,124,0))}
+/* z-index: o conteúdo fica por cima da foto e da luz do palco da #oferta, que sobem por trás da emenda. */
+.caminho>.wrap{z-index:1;margin-top:calc(var(--curva-rotulo) - var(--curva-apice))}
 
-/* Trilho dos aprendizados: o número num círculo de vidro de 52px; uma linha de 1px em prata a 15% liga os
-   centros dos círculos (um trecho por item, do centro do seu círculo ao centro do próximo: o item não tem
-   espaço entre ele e o próximo, só padding embaixo). Por cima, o preenchimento em prata cheia: cada trecho
-   cresce (scaleY) enquanto ele passa pelo meio da tela, com a própria linha do tempo (view() no trecho),
-   então a frente do preenchimento acompanha o meio da tela e chega a cada círculo junto com o acendimento.
-   O círculo no meio da tela fica aceso (borda clara e brilho difuso, só opacity e transform, view() no
-   próprio círculo). Sem suporte ou com movimento reduzido: trilho cheio e todos acesos (o padrão).
-   O trilho não leva .reveal (desfoque e deslocamento quebrariam a linha); o texto de cada item leva. */
-.aprend{list-style:none;padding:0}
-.aprend li{position:relative;isolation:isolate;display:grid;grid-template-columns:52px minmax(0,1fr);column-gap:18px;padding-bottom:32px}
-.aprend li:last-child{padding-bottom:0}
-.aprend li:not(:last-child)::before,.aprend li:not(:last-child)::after{content:"";position:absolute;left:25.5px;top:26px;width:1px;height:100%;transform-origin:top}
-.aprend li::before{background:rgba(217,226,238,.15)}
-.aprend li::after{background:linear-gradient(180deg,#FFFFFF,#D9E2EE 50%,#9FB2CB)}
-.ap-num{position:relative;z-index:1;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:17px;letter-spacing:-.01em;background:linear-gradient(180deg,rgba(30,48,76,.85),rgba(10,19,34,.95));border:1px solid rgba(201,211,224,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
-.ap-num::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(150,180,225,.42),rgba(150,180,225,0))}
-.ap-num::after{content:"";position:absolute;inset:-1px;border-radius:50%;pointer-events:none;border:1px solid rgba(233,238,245,.75);box-shadow:0 0 18px -4px rgba(170,200,240,.6)}
-.ap-txt{padding-top:13px}
-.aprend h3{font-weight:500;font-size:18px;line-height:1.3;letter-spacing:-.01em;color:var(--gelo)}
-.aprend p{margin-top:6px;font-size:16px;line-height:1.6;color:var(--nevoa)}
+/* Trilho das etapas. Cada etapa tem um círculo de vidro com "Etapa" e o número; uma linha de 1px em prata a
+   15% liga os centros dos círculos (um trecho por etapa, do centro do seu círculo ao centro do próximo) e,
+   por cima, o preenchimento em prata cheia acompanha a rolagem. Sem suporte ou com movimento reduzido:
+   trilho cheio e todos acesos (o padrão). O trilho não leva .reveal (desfoque e deslocamento quebrariam a
+   linha); o texto de cada etapa leva.
+   Celular e tablet: vertical. Cada trecho cresce (scaleY) enquanto passa pelo meio da tela, com a própria
+   linha do tempo, e o círculo no meio da tela fica aceso (borda clara e brilho difuso, só opacity e transform).
+   No tablet, três colunas teriam ~195px e até 11 linhas por etapa.
+   A partir de 1024px: horizontal, em três colunas. Os trechos usam a linha do tempo da lista inteira
+   (--etapas): o preenchimento corre da esquerda para a direita enquanto o topo da lista sobe de 80% a 40% da
+   altura da tela, e cada círculo acende quando o preenchimento chega nele e continua aceso. */
+.etapas{--et-c:60px;list-style:none;padding:0;max-width:640px;margin:0 auto}
+.etapas li{--et-i:0;position:relative;isolation:isolate;display:grid;grid-template-columns:var(--et-c) minmax(0,1fr);column-gap:18px;padding-bottom:36px}
+.etapas li:nth-child(2){--et-i:1}
+.etapas li:nth-child(3){--et-i:2}
+.etapas li:last-child{padding-bottom:0}
+.etapas li:not(:last-child)::before,.etapas li:not(:last-child)::after{content:"";position:absolute;left:calc(var(--et-c) / 2 - .5px);top:calc(var(--et-c) / 2);width:1px;height:100%;transform-origin:top}
+.etapas li::before{background:rgba(217,226,238,.15)}
+.etapas li::after{background:linear-gradient(180deg,#FFFFFF,#D9E2EE 50%,#9FB2CB)}
+.et-num{position:relative;z-index:1;width:var(--et-c);height:var(--et-c);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(30,48,76,.85),rgba(10,19,34,.95));border:1px solid rgba(201,211,224,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.et-num::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:140px;height:140px;margin:-70px 0 0 -70px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(150,180,225,.42),rgba(150,180,225,0))}
+.et-num::after{content:"";position:absolute;inset:-1px;border-radius:50%;pointer-events:none;border:1px solid rgba(233,238,245,.75);box-shadow:0 0 18px -4px rgba(170,200,240,.6)}
+.et-rot{font-size:11px;font-weight:500;line-height:1;color:var(--nevoa)}
+.et-n{margin-top:4px;font-weight:300;font-size:22px;line-height:1;letter-spacing:-.02em}
+.et-txt{padding-top:18px}
+.etapas h3{font-weight:500;font-size:18px;line-height:1.3;letter-spacing:-.01em;color:var(--gelo)}
+.etapas p{margin-top:6px;font-size:16px;line-height:1.6;color:var(--nevoa)}
 @keyframes trilho-enche{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes trilho-lado{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes passo-aceso{0%,32%{opacity:0;transform:scale(.6)}44%,56%{opacity:1;transform:scale(1)}68%,100%{opacity:0;transform:scale(.6)}}
 @keyframes passo-borda{0%,32%{opacity:0}44%,56%{opacity:1}68%,100%{opacity:0}}
+@keyframes etapa-acende{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes etapa-borda{from{opacity:0}to{opacity:1}}
+.caminho-cta{margin-top:48px;text-align:center}
+.caminho-cta .cta{text-align:left}
+@media (min-width:761px){
+  .caminho{--curva-apice:132px;--curva-rotulo:100px;padding-bottom:var(--frase-palco)}
+  .etapas h3{font-size:20px}
+  .etapas p{margin-top:8px;font-size:16.5px}
+  .caminho-cta{margin-top:64px}
+}
+@media (min-width:1024px){
+  .etapas{--et-c:72px;--et-gap:clamp(28px,3.4vw,56px);max-width:1080px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--et-gap);view-timeline:--etapas block}
+  .etapas li{display:block;padding:0}
+  .etapas li:not(:last-child)::before,.etapas li:not(:last-child)::after{left:calc(var(--et-c) / 2);top:calc(var(--et-c) / 2 - .5px);width:calc(100% + var(--et-gap));height:1px;transform-origin:left}
+  .etapas li::after{background:linear-gradient(90deg,#FFFFFF,#D9E2EE 50%,#9FB2CB)}
+  .et-rot{font-size:12px}
+  .et-n{font-size:26px}
+  .et-txt{max-width:34ch;padding-top:26px}
+  /* Lado a lado: cada texto entra logo depois do anterior. */
+  .etapas li:nth-child(2) .et-txt{--rv-atraso:4svh}
+  .etapas li:nth-child(3) .et-txt{--rv-atraso:8svh}
+}
 @supports (animation-timeline:view()){
-  @media (prefers-reduced-motion:no-preference){
-    .aprend li::after{animation:trilho-enche linear both;animation-timeline:view();animation-range:cover 50svh cover calc(100% - 50svh)}
-    .ap-num::before{animation:passo-aceso linear both;animation-timeline:view()}
-    .ap-num::after{animation:passo-borda linear both;animation-timeline:view()}
+  @media (prefers-reduced-motion:no-preference) and (max-width:1023px){
+    .etapas li::after{animation:trilho-enche linear both;animation-timeline:view();animation-range:cover 50svh cover calc(100% - 50svh)}
+    .et-num::before{animation:passo-aceso linear both;animation-timeline:view()}
+    .et-num::after{animation:passo-borda linear both;animation-timeline:view()}
+  }
+  @media (prefers-reduced-motion:no-preference) and (min-width:1024px){
+    .etapas li::after{animation:trilho-lado linear both}
+    .et-num::before{animation:etapa-acende ease-out both}
+    .et-num::after{animation:etapa-borda ease-out both}
+    /* depois do shorthand animation, que zera a linha do tempo e a faixa */
+    .etapas li::after,.et-num::before,.et-num::after{animation-timeline:--etapas}
+    .etapas li::after{animation-range:cover calc(20svh + var(--et-i) * 20svh) cover calc(40svh + var(--et-i) * 20svh)}
+    .et-num::before,.et-num::after{animation-range:cover calc(16svh + var(--et-i) * 20svh) cover calc(22svh + var(--et-i) * 20svh)}
   }
 }
-.cont-fim{margin-top:48px;text-align:center}
-.cont-destaque{font-weight:500;font-size:18px;line-height:1.4;letter-spacing:-.01em;color:var(--gelo);text-wrap:balance}
-.cont-fim .cta-ring{margin-top:24px}
-.cont-fim .cta{text-align:left}
 
-/* Emenda #conteudo / #antes-depois: um escudo só, que começa com o contorno prateado (vazio) e se enche de
-   baixo para cima com o degradê prateado conforme a rolagem, ganhando o brilho difuso no fim; dele desce uma
-   linha de luz até o rótulo "A transformação". Decorativo. O estado final (escudo cheio, brilho e linha) é o
-   padrão: sem suporte ou com movimento reduzido, é o que aparece. Escudo de 64x77px no desktop e 48x58px no
-   celular. O enchimento é um clip-path (inset) no escudo cheio, que fica por baixo do contorno. */
+/* Emenda #caminho / #oferta: um escudo só, que começa com o contorno prateado (vazio) e se enche de baixo
+   para cima com o degradê prateado conforme a rolagem, ganhando o brilho difuso no fim; dele desce uma linha
+   de luz até o rótulo "O que você recebe" (--emenda-ad: do pé do escudo ao rótulo). Decorativo. O estado
+   final (escudo cheio, brilho e linha) é o padrão: sem suporte ou com movimento reduzido, é o que aparece.
+   Escudo de 64x77px no desktop e 48x58px no celular. O enchimento é um clip-path (inset) no escudo cheio,
+   que fica por baixo do contorno. */
 :root{--emenda-ad:56px}
-.armadura{--arm-g:48px;--arm-gh:58px;--arm-brilho:165px;position:relative;z-index:1;width:var(--arm-g);height:var(--arm-gh);margin:40px auto 0;view-timeline:--armadura block}
+.armadura{--arm-g:48px;--arm-gh:58px;--arm-brilho:165px;position:relative;z-index:1;width:var(--arm-g);height:var(--arm-gh);margin:48px auto 0;view-timeline:--armadura block}
 .arm-cheio,.arm-contorno,.arm-brilho{position:absolute;left:50%;top:50%}
 .arm-cheio,.arm-contorno{width:var(--arm-g);height:var(--arm-gh);margin:calc(var(--arm-gh) / -2) 0 0 calc(var(--arm-g) / -2)}
 .arm-cheio{fill:url(#prata-escudo)}
@@ -490,27 +558,9 @@ html.lenis{scroll-behavior:auto!important}
 @keyframes arm-enche{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
 @keyframes arm-brilho{from,75%{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
 @keyframes arm-linha{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-
 @media (min-width:761px){
-  .sec-head{margin-bottom:64px;gap:18px}
-  .sec-sub{font-size:17.5px}
-  /* O ponto mais alto da curva da #virada fica 132px acima do topo do #conteudo (curva de 170px, ápice
-     a 37,5px do topo dela, 1px de sobreposição). O rótulo fica --curva-rotulo abaixo do ápice;
-     flow-root impede que a margem negativa arraste o fundo da seção para cima da curva. */
-  .conteudo{--curva-rotulo:120px;display:flow-root;padding:0}
-  .conteudo>.wrap{margin-top:calc(var(--curva-rotulo) - 132px)}
-  /* Emenda com a #antes-depois: escudo logo abaixo do botão; a linha atravessa a emenda até o rótulo. */
-  :root{--emenda-ad:72px}
-  .armadura{--arm-g:64px;--arm-gh:77px;--arm-brilho:220px;margin-top:56px}
-  /* Capa com largura em variável: a altura (1,5 x) dá o topo do sticky, centrado na altura da tela,
-     com no mínimo 30px na caixa (a perspectiva levanta a borda da capa ~5px, então a capa visível fica a
-     24px ou mais do topo e nunca é cortada). O topo da lista alinha com o da capa. */
-  .cont-grid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:start}
-  .cont-capa{--capa-l:clamp(220px,27vw,400px);grid-column:1 / span 5;justify-self:center;width:var(--capa-l);margin:0;position:sticky;top:max(30px,calc(50svh - var(--capa-l) * .75))}
-  .aprend{grid-column:6 / span 7;padding-left:clamp(0px,2vw,32px)}
-  .cont-fim{margin-top:72px}
-  .cont-destaque{font-size:20px}
-  .cont-fim .cta-ring{display:inline-flex}
+  :root{--emenda-ad:calc(235px - 2.24 * clamp(30px, 3vw, 44px) - 42px)}
+  .armadura{--arm-g:64px;--arm-gh:77px;--arm-brilho:220px;margin-top:64px}
 }
 /* Animação do escudo: o enchimento vai do centro do escudo a 50% da altura da tela até o centro a 30% do
    topo; o brilho chega no fim; a linha desce logo depois (até 15% do topo). Em "cover", o topo do escudo está
@@ -526,28 +576,15 @@ html.lenis{scroll-behavior:auto!important}
     .armadura>.arm-linha{animation-range:var(--arm-fim) cover calc(85svh + var(--arm-gh) / 2)}
   }
 }
-/* Antes e depois. Fundo #0C1729, o mesmo do fim do #conteudo e do começo da #autor.
-   O padding de baixo é grande porque o card do autor sobe por cima dele. */
-.antes{position:relative;padding:var(--emenda-ad) 0 160px;background:var(--noite)}
-.antes::before{content:"";position:absolute;right:-30%;top:10%;width:90%;height:75%;pointer-events:none;background:radial-gradient(closest-side,rgba(40,72,124,.22),rgba(40,72,124,0))}
-.cmp{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
-.col{border-radius:26px;padding:24px 22px 12px}
-.col-a{background:rgba(5,10,20,.35);border:1px solid rgba(169,184,203,.08)}
-.col-d{background:linear-gradient(180deg,rgba(30,48,76,.6),rgba(10,19,34,.85));border:1px solid rgba(201,211,224,.22);box-shadow:0 0 70px -24px rgba(150,180,225,.45),inset 0 1px 0 rgba(255,255,255,.07)}
-.col h3{margin:0 0 14px;font-weight:500;font-size:15px;line-height:1.4;color:#8FA3BE}
-.col-d h3{color:#D9E2EE}
-.rows{list-style:none;padding:0}
-.row{display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-top:1px solid rgba(169,184,203,.09);font-size:16.5px;line-height:1.5}
-.row svg{flex:none;margin-top:3px}
-.col-a .row{color:#7E8FA6}
-.col-d .row{color:var(--gelo)}
-.quote{max-width:24ch;margin:56px auto 26px;text-align:center;font-weight:300;font-size:26px;line-height:1.2;letter-spacing:-.03em;text-wrap:balance}
-.quote strong{font-weight:500}
 
-/* Quem escreveu. O card de vidro sobe por cima do fim da #antes-depois. */
-.autor{position:relative;padding:0 0 100px;background:linear-gradient(180deg,#0C1729 0%,#08111F 55%,#050A14 100%)}
-.autor::before{content:"";position:absolute;left:-25%;top:0;width:80%;height:80%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.26),rgba(30,58,104,0))}
-.card{position:relative;margin-top:-70px;border-radius:24px;padding:22px;display:grid;grid-template-columns:minmax(0,1fr);gap:34px;align-items:center;background:linear-gradient(180deg,rgba(24,38,60,.6),rgba(9,17,31,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.16);box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
+/* Quem está por trás (#autor), com a prova social. Sem fundo próprio: o brilho de baixo do painel da oferta
+   desce por trás do card (emenda #oferta / #autor). Depois do card: o rótulo "Direto da DM", o subtítulo, os
+   prints (fora do .wrap, de borda a borda) e o botão. A luz de baixo (::after) atravessa a emenda com o #faq
+   e continua por trás da garantia. */
+.autor{position:relative;padding:40px 0 64px}
+.autor::before{content:"";position:absolute;left:-25%;top:0;width:80%;height:40%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.26),rgba(30,58,104,0))}
+.autor::after{content:"";position:absolute;left:50%;bottom:-300px;z-index:-1;width:1100px;height:900px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.22),rgba(30,58,104,0))}
+.card{position:relative;border-radius:24px;padding:22px;display:grid;grid-template-columns:minmax(0,1fr);gap:34px;align-items:center;background:linear-gradient(180deg,rgba(24,38,60,.6),rgba(9,17,31,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.16);box-shadow:0 50px 100px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.06)}
 .frame{position:relative;border-radius:22px;padding:3px;background:linear-gradient(160deg,#F1F4F8 0%,#9FB2CB 38%,#2B3C56 100%);box-shadow:0 0 60px -16px rgba(150,180,225,.45)}
 .frame img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 18%;border-radius:19px}
 .badge{position:absolute;left:50%;top:-25px;transform:translateX(-50%)}
@@ -560,31 +597,29 @@ html.lenis{scroll-behavior:auto!important}
 .stat{display:flex;align-items:baseline;gap:12px;padding:18px 20px;border-radius:16px;background:rgba(5,10,20,.5);border:1px solid rgba(169,184,203,.13)}
 .stat b{display:block;font-weight:500;font-size:30px;line-height:1;letter-spacing:-.03em;white-space:nowrap}
 .stat span{display:block;font-size:13px;color:var(--nevoa-2)}
+.prova-head{margin-top:88px}
+.autor .prova-ti{margin:0;font-size:clamp(26px,2.6vw,38px)}
+.autor-cta{margin-top:36px;text-align:center}
+.autor-cta .cta{text-align:left}
 
 @media (min-width:761px){
-  .antes{padding:var(--emenda-ad) 0 220px}
-  .cmp{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .col{padding:34px 34px 20px}
-  /* Cada linha do Depois entra logo depois da linha do Antes ao lado. */
-  .col-d .reveal{--rv-atraso:4svh}
-  .quote{margin:80px auto 34px;font-size:clamp(28px,3vw,42px)}
-  .quote-cta{text-align:center}
-  .autor{padding-bottom:170px}
-  .card{margin-top:-120px;border-radius:30px;padding:36px;gap:36px}
+  .autor{padding:40px 0 100px}
+  .card{border-radius:30px;padding:36px;gap:36px}
   .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
   .stat{display:block}
   .stat span{margin-top:8px}
+  .prova-head{margin-top:140px}
+  .autor-cta{margin-top:48px}
 }
 /* Tablet (761 a 1023px): a foto de 380px ao lado do texto deixaria a coluna de texto estreita demais.
    A foto fica em cima, centrada e menor, e o texto ocupa a largura do card. */
 @media (min-width:761px) and (max-width:1023px){
   .frame{justify-self:center;width:min(100%,340px)}
 }
-/* Resultados. Os prints ficam numa faixa (.faixa) dentro do .carrossel, fora do .wrap: de borda a borda.
+/* Prova social (prints da DM, dentro da #autor). Os prints ficam numa faixa (.faixa) dentro do .carrossel,
+   fora do .wrap: de borda a borda.
    Celular: fileira com scroll-snap, mostrando um pedaço do próximo print (só os 8 originais).
    A partir de 761px: carrossel contínuo, logo abaixo. */
-.result{position:relative;padding:20px 0 100px;background:var(--abismo)}
-.result::before{content:"";position:absolute;left:50%;top:0;width:1000px;height:600px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
 .faixa{display:flex;align-items:flex-start;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 22px;padding:0 22px 8px;scrollbar-width:none;view-timeline:--prints block}
 .faixa::-webkit-scrollbar{display:none}
 .print.copia{display:none}
@@ -681,30 +716,15 @@ html:has(dialog[open]){overflow:hidden}
 .lb-fechar{position:fixed;top:max(16px,env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right));z-index:1;width:48px;height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 30px rgba(120,155,205,.25)}
 @media (hover:hover){.lb-fechar:hover{border-color:rgba(201,211,224,.6)}}
 
-/* Para quem é */
-.epara{position:relative;padding:10px 0 90px;background:var(--abismo)}
-.epara::before{content:"";position:absolute;right:-25%;top:0;width:85%;height:70%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.22),rgba(30,58,104,0))}
-.ep-grid{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:stretch}
-.ep{border-radius:26px;padding:26px 22px}
-.ep h3{margin:0 0 20px;font-weight:300;font-size:26px;line-height:1.2;letter-spacing:-.02em}
-.ep ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:16px}
-.ep li{display:flex;gap:14px;align-items:flex-start;font-size:16.5px;line-height:1.5}
-.ep li svg{flex:none;margin-top:3px}
-.ep-no{background:rgba(12,23,41,.4);border:1px solid rgba(169,184,203,.09);color:#8EA0B8}
-.ep-no h3{color:var(--nevoa)}
-.ep-yes{background:linear-gradient(180deg,rgba(30,48,76,.6),rgba(10,19,34,.85));border:1px solid rgba(201,211,224,.22);box-shadow:0 0 70px -24px rgba(150,180,225,.45),inset 0 1px 0 rgba(255,255,255,.07);color:var(--gelo)}
-.big-quote{max-width:18ch;margin:70px auto 0;text-align:center;font-weight:300;font-size:34px;line-height:1.08;letter-spacing:-.04em;text-wrap:balance}
-.big-quote strong{font-weight:500}
-
-/* Oferta. Palco com a mesa (dissolvendo nas bordas e no topo), o livro em pé no centro (a capa do #conteudo,
-   sem a frase) com os materiais dos lados (cadernos tipográficos, menores para as pontas, girados com
-   perspective) e o painel de preço em vidro subindo por cima da borda de baixo do palco.
+/* Oferta. Palco com a mesa (dissolvendo nas bordas e no topo), o livro em pé no centro (a capa oficial) com
+   os materiais dos lados (cadernos tipográficos, menores para as pontas, girados com perspective) e o painel
+   de preço em vidro subindo por cima da borda de baixo do palco.
    Celular: livro com 46% da largura, só dois cadernos (Plano de ação e Diário), um de cada lado, metidos
    atrás do livro; o palco cresce com o livro e a foto mantém a escala de 380px, presa embaixo.
    A partir de 761px, os cinco itens: livro clamp(150px, 21vw, 280px), cadernos de dentro com 62% dele e os
    das pontas com 50%; a altura do palco escala junto até 720px. */
-.oferta{position:relative;padding:20px 0 70px;background:var(--abismo)}
-/* Brilho atrás do painel; desce 240px para dentro do #faq, para a passagem não ficar seca. */
+.oferta{position:relative;padding:var(--emenda-ad) 0 70px;background:var(--abismo)}
+/* Brilho atrás do painel; desce 240px para dentro da #autor (emenda #oferta / #autor: luz que atravessa). */
 .oferta::before{content:"";position:absolute;left:50%;bottom:-240px;width:1100px;height:940px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
 .oferta .sec-head{margin-bottom:8px}
 /* overflow:clip, não hidden: hidden faria do palco um contêiner de rolagem e o view() do livro mediria contra ele. */
@@ -752,41 +772,39 @@ html:has(dialog[open]){overflow:hidden}
 /* Bloco de preço: superfície mais clara dentro do painel, centralizada. Sem backdrop-filter: o painel
    tem .reveal, e vidro dentro de um pai com filter perde o fundo. No celular, a superfície avança 10px
    além da margem interna, para o conteúdo ficar na mesma margem do resto. Ordem no código e no celular:
-   lista, preço, detalhes; a partir de 1280px a grade põe a lista à esquerda e o preço à direita. */
+   o que você recebe e o preço; a partir de 1280px a grade põe a lista à esquerda e o preço à direita.
+   Sem preço riscado (a copy não tem); a nota fica embaixo do botão. */
 .preco{margin:0 -10px;padding:24px 10px 22px;border-radius:20px;text-align:center;background:linear-gradient(180deg,rgba(46,68,102,.5),rgba(18,31,52,.55));border:1px solid rgba(201,211,224,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 50px -22px rgba(150,180,225,.45)}
-.price-old{font-size:15px;color:#8EA0B8}
+.preco-frase{max-width:28ch;margin:0 auto 14px;font-size:16.5px;line-height:1.45;color:var(--gelo);text-wrap:balance}
 .price-main{display:flex;justify-content:center;align-items:baseline;gap:10px;margin:6px 0 4px}
 .price-main small{font-size:18px;color:var(--nevoa);font-weight:400}
 .price-main b{font-weight:300;font-size:52px;line-height:1;letter-spacing:-.04em}
 .price-alt{font-size:15.5px;color:#B7C7DC}
 .preco .cta-ring{margin-top:22px}
-.preco .cta{text-align:left} /* abaixo de 385px o rótulo quebra em duas linhas, alinhado como nos outros botões */
-/* O que você recebe: seis linhas iguais, título em 500 e uma linha de apoio, sem caixa, separadas por um fio.
+.preco .cta{text-align:left} /* o rótulo pode quebrar em duas linhas, alinhado como nos outros botões */
+.preco-nota{max-width:40ch;margin:16px auto 0;font-size:13.5px;line-height:1.5;color:var(--nevoa-2);text-wrap:pretty}
+/* O que você recebe: dois grupos, cada um com o título em rótulo (escudo) e linhas sem caixa (título em 500
+   e uma linha de apoio), separadas por um fio. Os dois itens da entrega principal com o título em prata.
    Nada aqui é clicável, então nada parece selecionável. */
-.recebe .pill{margin-bottom:16px}
+.grupo{display:flex;align-items:flex-start;margin-bottom:14px}
+.grupo::before{margin-top:.25em}
+.items+.grupo{margin-top:30px}
 .items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.items li{display:flex;align-items:center;gap:14px;padding:12px 0}
+.items li{padding:12px 0}
 .items li+li{border-top:1px solid rgba(169,184,203,.1)}
 .items li:first-child{padding-top:0}
 .items li:last-child{padding-bottom:0}
 .items b{display:block;font-weight:500;font-size:16px;line-height:1.35;color:var(--gelo)}
+.items-2 b{font-weight:600;font-size:17px;background:var(--prata);-webkit-background-clip:text;background-clip:text;color:transparent}
 .items small{display:block;margin-top:3px;font-size:14px;line-height:1.45;color:var(--nevoa-2)}
-/* Detalhes: 2 x 2 no celular e no tablet, as duas fileiras com a mesma altura. Os quatro com a mesma
-   estrutura: ícone, título curto em 500 e uma linha de apoio menor, alinhados pelo topo. */
-.details{list-style:none;padding:22px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:20px 14px;border-top:1px solid rgba(169,184,203,.12)}
-.details li{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
-.details svg{flex:none;height:16px} /* a mesma altura nos quatro (o escudo tem 16px), para os títulos alinharem */
-.details b{display:block;font-weight:500;font-size:14.5px;line-height:1.3;color:var(--gelo)}
-.details small{display:block;margin-top:4px;font-size:13px;line-height:1.45;color:var(--nevoa-2);text-wrap:pretty}
 @media (max-width:760px){
-  /* Botão do painel: como o do hero abaixo de 385px, e o anel 1px mais justo, para o rótulo caber
-     em uma linha a partir de 385px. Abaixo disso, quebra em duas linhas parelhas. */
+  /* Botão do painel: fonte menor e o anel 1px mais justo; o rótulo quebra em duas linhas parelhas. */
   .panel .cta-ring{padding:4px}
   .panel .cta{gap:10px;font-size:13.5px}
 }
 
 /* Garantia: card de vidro dentro do #faq (id="garantia"). Celular e tablet: primeiro item do #faq,
-   logo depois da oferta. Desktop: coluna esquerda, abaixo do título do FAQ. */
+   logo depois da #autor. Desktop: coluna esquerda, abaixo do título do FAQ. */
 .g-card{position:relative;border-radius:24px;padding:24px 20px 22px;background:linear-gradient(180deg,rgba(24,38,60,.55),rgba(9,17,31,.82));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.18);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.07)}
 .g-topo{display:flex;align-items:center;gap:18px;margin-bottom:18px}
 .medal{flex:none;width:76px;height:auto}
@@ -794,8 +812,8 @@ html:has(dialog[open]){overflow:hidden}
 .g-titulo strong{font-weight:600}
 .g-card p{font-size:16px;line-height:1.65;color:var(--nevoa)}
 
-/* FAQ: <details> nativos, o primeiro aberto. Sem fundo próprio: o brilho de baixo do painel da oferta
-   continua por trás do começo do FAQ. */
+/* FAQ: <details> nativos, o primeiro aberto. Sem fundo próprio: a luz de baixo da #autor continua por trás
+   do começo do FAQ. */
 .faq{position:relative;padding-top:56px}
 .faq::before{content:"";position:absolute;right:-25%;top:10%;width:80%;height:80%;pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
 .faq-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:start}
@@ -810,16 +828,18 @@ html:has(dialog[open]){overflow:hidden}
 @media (hover:hover){.qa details:not([open]) summary:hover::after{background:rgba(169,184,203,.22)}}
 .qa p{margin:0 0 22px;font-size:16px;line-height:1.65;color:var(--nevoa);max-width:60ch}
 
-/* Fechamento e rodapé. A frase final e o rodapé ficam sem .reveal (a rolagem acaba antes de eles chegarem a 35% da tela). */
+/* Fechamento e rodapé. Título grande, o texto e o bloco de compra (vidro sobre o brilho do fechamento, com
+   .reveal no próprio vidro). O rodapé fica sem .reveal (a rolagem acaba antes de ele chegar a 35% da tela). */
 .fecho{position:relative;padding-bottom:40px;text-align:center}
 .fecho-escudo{margin:0 auto}
-.fecho .h2{max-width:20ch;margin:26px auto}
+.fecho-ti{max-width:18ch;margin:26px auto;font-size:34px;line-height:1.08}
 .fecho .body{max-width:54ch;margin:0 auto}
-.fecho .body p:last-child{color:var(--gelo)}
-.fecho-cta{margin-top:18px}
-.fecho .cta{text-align:left} /* abaixo de 385px o rótulo quebra em duas linhas, alinhado como nos outros botões */
-.motto{margin-top:56px;font-weight:300;font-size:18px;line-height:1.3;letter-spacing:-.01em;color:#C9D3E0}
-.motto strong{font-weight:500}
+.fecho .body p:last-child{margin-bottom:0;color:var(--gelo)}
+.compra{max-width:560px;margin:44px -10px 0;padding:28px 10px 24px;border-radius:26px;background:linear-gradient(180deg,rgba(24,38,60,.6),rgba(9,17,31,.82));-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(169,184,203,.18);box-shadow:0 40px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.07)}
+.compra-preco{margin-top:10px;font-size:17px;line-height:1.45;color:var(--gelo)}
+.fecho-cta{margin-top:22px}
+.fecho .cta{text-align:left} /* o rótulo quebra em duas linhas no celular, alinhado como nos outros botões */
+.compra-selos{margin-top:18px;font-size:13.5px;line-height:1.5;color:var(--nevoa-2);text-wrap:balance}
 /* Rodapé de uma linha: 24px em cima e embaixo no celular (mais a margem de segurança: a barra de compra fica
    escondida aqui) e 32px no desktop. */
 .foot{border-top:1px solid rgba(169,184,203,.1);padding:24px 0 calc(24px + env(safe-area-inset-bottom));font-size:13.5px;line-height:1.5;color:#7E8FA6}
@@ -857,16 +877,11 @@ html body #san-footer-badge{background:#000000!important}
   .faq-grid{max-width:680px;margin:0 auto}
   .qa details{padding:0 24px}
   .qa summary{font-size:17px}
+  .fecho-ti{font-size:clamp(40px,4.6vw,64px)}
+  .compra{margin:56px auto 0;padding:36px 40px 30px}
+  .compra-preco{font-size:19px}
   .fecho-cta .cta-ring{display:inline-flex}
-  .motto{margin-top:80px;font-size:22px}
   .foot{padding:32px 0}
-  .result{padding:20px 0 140px}
-  .epara{padding:20px 0 120px}
-  /* Tablet: lado a lado, as linhas ficariam com ~22 caracteres. Empilhados até 1023px. */
-  .ep-grid{max-width:680px}
-  .ep{padding:36px}
-  /* A frase nova tem ~100 letras: com 23ch fica em 4 linhas (com 18ch eram 5). */
-  .big-quote{max-width:23ch;margin-top:110px;font-size:clamp(34px,4.4vw,64px)}
   .oferta{padding:40px 0 80px}
   .stage{height:clamp(380px,50vw,720px)}
   .stage-bg img{top:0;height:100%;object-position:50% 50%}
@@ -882,21 +897,22 @@ html body #san-footer-badge{background:#000000!important}
   /* O painel sobe 21% da altura do palco (-150px em 720px, como no mockup) e não cobre o pé dos livros. */
   .panel{max-width:640px;margin:calc(clamp(380px,50vw,720px) * -.21) auto 0;border-radius:30px;padding:40px 44px;gap:32px}
   .preco{margin:0;padding:32px 28px 28px}
+  .preco-frase{font-size:17.5px}
   .price-main b{font-size:68px}
   .preco .cta-ring{display:flex}
   .preco .cta{width:100%;justify-content:space-between}
 }
 
 @media (min-width:1024px){
-  .ep-grid{max-width:1040px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
-  .ep-yes{--rv-atraso:5svh}
   /* FAQ: título e garantia na coluna esquerda, perguntas na direita. As perguntas descem 40px (o rótulo
      "Dúvidas" e o espaço até o título), para a primeira pergunta alinhar com o topo do título. */
   .faq-grid{max-width:none;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);grid-template-areas:"titulo qa" "garantia qa";grid-template-rows:auto 1fr;column-gap:clamp(40px,6vw,80px);row-gap:32px}
   .faq-titulo{grid-area:titulo}
   .g-card{grid-area:garantia;align-self:start}
+  .g-topo{flex-direction:column;align-items:flex-start;gap:16px}
+  .medal{width:84px}
   .qa{grid-area:qa;margin-top:40px}
-  /* A moldura tem a altura da coluna de texto: topo no rótulo "Quem escreveu", base no pé dos números.
+  /* A moldura tem a altura da coluna de texto: topo no rótulo "Quem está por trás", base no pé dos números.
      A foto fica por cima (absolute) para não ditar a altura da linha e cobre a moldura puxada para cima. */
   .card{padding:clamp(36px,3.6vw,46px);grid-template-columns:clamp(300px,31vw,420px) minmax(0,1fr);gap:clamp(40px,4vw,56px);align-items:stretch}
   .frame picture{position:absolute;inset:3px}
@@ -905,34 +921,26 @@ html body #san-footer-badge{background:#000000!important}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
 }
 
-/* Painel da oferta a partir de 1280px: 12 colunas, a lista "O que você recebe" em 7 e bloco de preço em 5, com o
-   mesmo topo e a mesma base; detalhes em 4 colunas iguais na largura toda, com fio vertical entre eles.
-   Abaixo de ~1250px, as 5 colunas não comportam o botão em uma linha: até 1279px o painel fica
-   empilhado como no tablet. A sobra de altura da lista vai para os espaços em volta dos fios (as linhas
-   do meio crescem o dobro das pontas), então cada fio fica no meio do espaço entre duas linhas. */
+/* Painel da oferta a partir de 1280px: 12 colunas, "O que você recebe" em 7 e o bloco de preço em 5, com o
+   mesmo topo e a mesma base. Cada grupo em duas colunas, com o fio entre as linhas. Abaixo de ~1250px, as
+   5 colunas não comportam o botão em uma linha: até 1279px o painel fica empilhado como no tablet. */
 @media (min-width:1280px){
-  .panel{max-width:1152px;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;row-gap:32px;padding:44px 48px}
-  /* Lista em duas colunas de 3 (01 a 03 à esquerda); o fio fica entre as linhas de cada coluna. */
-  .recebe{grid-column:1 / span 7;grid-row:1;align-self:center}
-  .items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:28px}
-  .items li{align-items:flex-start;padding:14px 0}
-  .items li+li{border-top:1px solid rgba(169,184,203,.1)}
-  .items li:nth-child(4){border-top:0}
-  .items li:nth-child(1),.items li:nth-child(4){padding-top:0}
-  .items li:nth-child(3),.items li:nth-child(6){padding-bottom:0}
-  .preco{grid-column:8 / span 5;grid-row:1;display:flex;flex-direction:column;justify-content:center;padding:24px 20px}
+  .panel{max-width:1152px;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:44px 48px}
+  .recebe{grid-column:1 / span 7;align-self:center}
+  .items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
+  .items li{padding:14px 0}
+  .items li+li{border-top:0}
+  .items li:nth-child(n+3){border-top:1px solid rgba(169,184,203,.1)}
+  .items li:nth-child(-n+2){padding-top:0}
+  .items li:nth-last-child(-n+2){padding-bottom:0}
+  .preco{grid-column:8 / span 5;display:flex;flex-direction:column;justify-content:center;padding:28px 20px}
   .preco .cta{gap:12px;padding-left:22px}
-  .details{grid-column:1 / -1;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding-top:24px}
-  .details li{padding:0 20px;border-left:1px solid rgba(169,184,203,.12)}
-  .details li:first-child{padding-left:0;border-left:0}
-  .details li:last-child{padding-right:0}
 }
 
-/* Emenda #para-quem / #oferta. A frase e os cards do #para-quem ficam por cima do palco e da luz dele. */
-.epara .ep-grid,.big-quote{position:relative;z-index:1}
-/* Celular: o palco começa atrás do título. A foto aparece inteira (os 80px de parede acima do palco, com o
-   foco de luz azul), com o topo dissolvido por máscara, e uma luz da cor da parede sobe por trás do
-   título e da frase final do #para-quem. A escala da foto não muda (os livros continuam sobre a mesa). */
+/* Emenda #caminho / #oferta no celular: o palco começa atrás do título. A foto aparece inteira (os 80px de
+   parede acima do palco, com o foco de luz azul), com o topo dissolvido por máscara, e uma luz da cor da
+   parede sobe por trás do título da oferta até o escudo da emenda. A escala da foto não muda (os livros
+   continuam sobre a mesa). */
 @media (max-width:760px){
   .oferta>.wrap:first-child{position:relative;z-index:3}
   .stage{overflow:visible;overflow-x:clip}
@@ -941,23 +949,22 @@ html body #san-footer-badge{background:#000000!important}
   .stage-bg img{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 150px),linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent 0,#000 150px),linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-composite:intersect}
   .stage-fade{background:linear-gradient(180deg,rgba(5,10,20,0) 70%,#050A14 100%)}
 }
-/* Desktop e tablet (a partir de 761px). O palco da mesa sobe por trás da frase final do
-   #para-quem ("Conhecimento custa..."), que fica na parede; o rótulo e o título da oferta descem para o
-   palco, 80px acima do topo do livro. A ordem de leitura não muda.
+/* Desktop e tablet (a partir de 761px). O palco da mesa começa por trás do fim do #caminho (o escudo da
+   emenda fica na parede); o rótulo e o título da oferta descem para o palco, 80px acima do topo do livro.
+   A ordem de leitura não muda.
    --palco-h: altura do palco; --livro-l: largura do livro (altura = 1,5 x);
    --titulo-fundo: distância do topo do palco até o pé do título;
-   --frase-palco: espaço sob a frase, para ficar ~110px entre a frase e o rótulo em qualquer largura;
-   --palco-sobe: quanto a foto sobe acima do palco (até o fim dos cards do #para-quem). */
+   --frase-palco: espaço sob o escudo, para ficar ~--emenda-ad entre ele e o rótulo em qualquer largura;
+   --palco-sobe: quanto a foto sobe acima do palco (até a altura do escudo). */
 @media (min-width:761px){
   :root{
     --palco-h:clamp(380px,50vw,720px);
     --livro-l:clamp(150px,21vw,280px);
     --titulo-fundo:calc(.75 * var(--palco-h) - 1.5 * var(--livro-l) - 80px);
-    /* 235px: o título da oferta tem duas linhas no desktop (com uma linha, eram 190px) */
+    /* 235px: o título da oferta tem duas linhas no desktop */
     --frase-palco:calc(235px - var(--titulo-fundo));
-    --palco-sobe:calc(var(--frase-palco) + 250px);
+    --palco-sobe:calc(var(--frase-palco) + 160px);
   }
-  .epara{padding-bottom:var(--frase-palco)}
   .oferta{padding-top:0}
   .oferta>.wrap:first-child{position:absolute;left:0;right:0;top:var(--titulo-fundo);z-index:3;transform:translateY(-100%)}
   .oferta .sec-head{margin-bottom:0}
@@ -965,8 +972,8 @@ html body #san-footer-badge{background:#000000!important}
   .stage-bg img{top:calc(-1 * var(--palco-sobe));height:calc(100% + var(--palco-sobe))}
   .stage-fade{top:calc(-1 * var(--palco-sobe));background:linear-gradient(180deg,#050A14 0,rgba(5,10,20,.6) 130px,rgba(5,10,20,.15) 290px,rgba(5,10,20,0) 380px,rgba(5,10,20,0) calc(100% - .3 * var(--palco-h)),#050A14 100%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,0) 14%,rgba(5,10,20,0) 86%,#050A14 100%)}
 }
-/* Tablet (761 a 1279px): com a foto subindo até a frase, ela encaixa pela altura e a mesa ficava no topo do
-   palco (sem parede atrás dos livros). Aqui a foto tem 162% da altura do palco e começa 62% acima dele: a
+/* Tablet (761 a 1279px): com a foto subindo acima do palco, ela encaixa pela altura e a mesa ficava no topo
+   do palco (sem parede atrás dos livros). Aqui a foto tem 162% da altura do palco e começa 62% acima dele: a
    borda de trás da mesa (58% da foto) cai a 32% do palco e a da frente (87%) a 79%, como no desktop. O topo
    da foto se dissolve por máscara. */
 @media (min-width:761px) and (max-width:1279px){
@@ -1030,9 +1037,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="shade" aria-hidden="true"></div>
 <div class="hero-inner">
 <div class="hero-copy">
-<h1 class="h1 reveal-saida">Na frente dos amigos, ela debocha de você. Em casa, te trata como se você não existisse. <strong class="silver">Chegou a hora de dar um basta nisso.</strong></h1>
-<p class="lead reveal-saida">No meu método De Desprezado a Respeitado, eu te mostro o passo a passo para parar de aceitar humilhações calado, se posicionar com firmeza e recuperar sua voz dentro do relacionamento. Sem brigar com ela, sem implorar atenção e sem viver com medo de perdê-la.</p>
-<div class="reveal-saida"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<span class="pill hero-pill reveal-saida">De Desprezado a Respeitado</span>
+<h1 class="h1 reveal-saida">Meu objetivo é te fazer deixar de ser desprezado e <strong class="silver">voltar a ser respeitado dentro da sua própria casa.</strong></h1>
+<p class="lead reveal-saida">Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado. Sem precisar brigar, implorar atenção ou viver com medo de <span class="inteira">perdê-la.</span></p>
+<div class="reveal-saida"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 <div class="chips">
 <div class="glass reveal-saida">
@@ -1048,59 +1056,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="seam" aria-hidden="true"></div>
 <div class="notch" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B7C7DC" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
 </section>
+<section id="transformacao" class="transf">
+<div class="wrap">
+<div class="sec-head">
+<span class="pill reveal">A transformação</span>
+<h2 class="h2 reveal">Chega de viver com medo de desagradar. <strong class="silver">Aprenda a ser um homem que sabe se posicionar.</strong></h2>
+<p class="sec-sub reveal">Você não precisa se tornar agressivo para ser firme e ser um homem de verdade.</p>
+</div>
+<!-- Cards: por enquanto, a arte original de cada card (com o texto dentro), recortada e otimizada pelo
+     scripts/otimizar-imagens.mjs (CARDS). O texto completo de cada card está no alt. -->
+<ul class="cartoes">
+<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-01-400.avif 400w, assets/img/opt/card-01-640.avif 640w, assets/img/opt/card-01-960.avif 960w, assets/img/opt/card-01-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-01-400.webp 400w, assets/img/opt/card-01-640.webp 640w, assets/img/opt/card-01-960.webp 960w, assets/img/opt/card-01-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-01-640.jpg" srcset="assets/img/opt/card-01-400.jpg 400w, assets/img/opt/card-01-640.jpg 640w, assets/img/opt/card-01-960.jpg 960w, assets/img/opt/card-01-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 01. Recupere sua voz. Aprenda a falar o que pensa sem precisar levantar a voz ou pedir desculpas por tudo."></picture></span></li>
+<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-02-400.avif 400w, assets/img/opt/card-02-640.avif 640w, assets/img/opt/card-02-960.avif 960w, assets/img/opt/card-02-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-02-400.webp 400w, assets/img/opt/card-02-640.webp 640w, assets/img/opt/card-02-960.webp 960w, assets/img/opt/card-02-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-02-640.jpg" srcset="assets/img/opt/card-02-400.jpg 400w, assets/img/opt/card-02-640.jpg 640w, assets/img/opt/card-02-960.jpg 960w, assets/img/opt/card-02-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 02. Imponha limites. Saiba reagir a deboches, ofensas e atitudes desrespeitosas sem perder o controle."></picture></span></li>
+<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-03-400.avif 400w, assets/img/opt/card-03-640.avif 640w, assets/img/opt/card-03-960.avif 960w, assets/img/opt/card-03-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-03-400.webp 400w, assets/img/opt/card-03-640.webp 640w, assets/img/opt/card-03-960.webp 960w, assets/img/opt/card-03-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-03-640.jpg" srcset="assets/img/opt/card-03-400.jpg 400w, assets/img/opt/card-03-640.jpg 640w, assets/img/opt/card-03-960.jpg 960w, assets/img/opt/card-03-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 03. Pare de implorar atenção. Deixe de depender da aprovação da sua esposa para se sentir valorizado."></picture></span></li>
+<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-04-400.avif 400w, assets/img/opt/card-04-640.avif 640w, assets/img/opt/card-04-960.avif 960w, assets/img/opt/card-04-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-04-400.webp 400w, assets/img/opt/card-04-640.webp 640w, assets/img/opt/card-04-960.webp 960w, assets/img/opt/card-04-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-04-640.jpg" srcset="assets/img/opt/card-04-400.jpg 400w, assets/img/opt/card-04-640.jpg 640w, assets/img/opt/card-04-960.jpg 960w, assets/img/opt/card-04-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 04. Volte a ser seguro. Aprenda a tomar decisões sem viver dominado pelo medo de perdê-la."></picture></span></li>
+</ul>
+<p class="transf-frase reveal">O primeiro respeito que você precisa recuperar é <strong class="silver">o respeito por você mesmo.</strong></p>
+<div class="transf-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero começar minha mudança<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+</div>
+</section>
 <section id="identificacao" class="ident">
 <div class="wrap">
 <div class="ident-grid">
 <div class="ident-side">
-<span class="pill reveal">Antes de qualquer coisa</span>
-<h2 class="h2 reveal">Marque o que você já viveu <strong class="silver">dentro do seu relacionamento.</strong></h2>
+<h2 class="h2 reveal">Quantas dessas situações você ainda aceita <strong class="silver">dentro do seu relacionamento?</strong></h2>
 <p class="lead reveal">Seja sincero. Ninguém está vendo.</p>
-<div class="counter reveal" aria-live="polite" aria-atomic="true">
-<b class="silver">0 de 7</b>
-<p>Se marcou uma, preste atenção. É sempre assim que começa.</p>
-</div>
+<p class="counter reveal" aria-live="polite" aria-atomic="true"><b class="silver">0 de 5</b> <span>situações marcadas</span></p>
 </div>
 <div class="chks">
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Ela já debochou de você na frente de conhecidos ou da família.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Você tenta conversar e sente que sua opinião não tem importância nenhuma.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Já pediu desculpas sem estar errado, só para evitar outra briga.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Paga as contas, resolve os problemas e, mesmo assim, sente que nunca é suficiente.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Sua esposa já debochou de você na frente de outras pessoas.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Você já pediu desculpas sem estar errado para evitar uma briga.</span></button>
 <button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Tem medo de dizer não porque não sabe como ela vai reagir.</span></button>
-<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Vive implorando por atenção, carinho ou consideração.</span></button>
+<button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Faz de tudo para agradar e sente que nunca é suficiente.</span></button>
 <button type="button" class="chk reveal" aria-pressed="false"><span class="box"><svg width="24" height="28" viewBox="0 0 200 240" aria-hidden="true"><use class="esc-fundo" href="#escudo"/><use class="esc-borda" href="#escudo"/><path class="esc-check" d="M66 120 L92 146 L138 98"/></svg></span><span>Sente que deixou de ser o homem que era antes desse relacionamento.</span></button>
-<p class="chk-resto" aria-live="polite"></p>
-<div class="contador-barra" aria-live="polite" aria-atomic="true">
-<span class="cb-num"><b class="silver">0</b> <span>de 7</span></span>
-<p>Se marcou uma, preste atenção. É sempre assim que começa.</p>
+<p class="chk-texto" aria-live="polite">Você pode ter passado anos tentando manter a paz dentro de casa ou fora dela. Mas isso não significa que precise continuar abrindo mão da sua voz, da sua masculinidade, dos seus limites e do seu respeito próprio.</p>
+<p class="contador-barra" aria-live="polite" aria-atomic="true"><b class="silver">0</b> <span>de 5 situações marcadas</span></p>
 </div>
 </div>
-</div>
-</div>
-</section>
-<section id="virada" class="virada">
-<div class="wrap">
-<div class="virada-grid">
-<div>
-<span class="pill reveal">Pare de aceitar tudo calado</span>
-<h2 class="words">
-<span class="reveal">Deboche.</span>
-<span class="reveal">Indiferença.</span>
-<span class="reveal">Humilhações.</span>
-<span class="reveal">Silêncio.</span>
-<span class="silver reveal">Desrespeito.</span>
-</h2>
-</div>
-<div class="virada-texto">
-<div class="body">
-<p class="reveal">No começo, você ignorou uma brincadeira. Depois, deixou passar uma grosseria. Começou a evitar discussões, aceitar coisas que não queria e pedir desculpas apenas para manter a paz.</p>
-<p class="reveal">Até que chegou o dia em que você percebeu que já não conseguia se posicionar dentro da própria casa.</p>
-<p class="reveal">Talvez você esteja em um relacionamento há 5, 15 ou até 28 anos. E o mais difícil não é apenas o que está acontecendo.</p>
-<p class="reveal">É não saber como mudar essa situação sem colocar tudo a perder.</p>
-<p class="reveal">O meu método De Desprezado a Respeitado foi desenvolvido para ajudar você a identificar esses padrões, recuperar sua voz e aprender a agir com firmeza e autoridade, sem agressividade e sem abandonar sua dignidade.</p>
-</div>
-<div class="virada-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
-</div>
-</div>
+<p class="ident-destaque reveal">O que você já viveu não precisa definir <strong class="silver">como vai se posicionar daqui para a frente.</strong></p>
 </div>
 <svg class="arc" viewBox="0 0 1440 170" preserveAspectRatio="none" aria-hidden="true">
 <defs><linearGradient id="arc-luz" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#A9B8CB" stop-opacity="0"/><stop offset=".5" stop-color="#A9B8CB" stop-opacity=".55"/><stop offset="1" stop-color="#A9B8CB" stop-opacity="0"/></linearGradient></defs>
@@ -1108,30 +1101,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <path d="M0 120 C 420 10, 1020 10, 1440 120" fill="none" stroke="url(#arc-luz)" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
 </svg>
 </section>
-<section id="conteudo" class="conteudo">
+<section id="caminho" class="caminho">
 <div class="wrap">
 <div class="sec-head">
-<span class="pill reveal">O que você vai descobrir</span>
-<h2 class="h2 reveal">O passo a passo para deixar de aceitar o desrespeito e <strong class="silver">recuperar sua voz dentro do seu relacionamento.</strong></h2>
-<p class="sec-sub reveal">Você não precisa se tornar um homem agressivo ou frio para estabelecer limites. Precisa aprender a se posicionar com clareza, firmeza e respeito próprio.</p>
+<span class="pill reveal">Como a transformação acontece</span>
+<h2 class="h2 reveal">Um caminho prático que eu te entrego para deixar de aceitar o desrespeito e <strong class="silver">reconstruir a sua postura.</strong></h2>
+<p class="sec-sub reveal">Em De Desprezado a Respeitado, você aprende a reconhecer padrões, mudar suas reações e colocar novas atitudes em prática.</p>
 </div>
-<div class="cont-grid">
-<div class="cont-capa"><div class="livro reveal"><div class="capa" role="img" aria-label="Capa do livro De Desprezado a Respeitado, de Marcello Gomes"><picture><source type="image/avif" srcset="assets/img/opt/capa-desprezado-360.avif 360w, assets/img/opt/capa-desprezado-540.avif 540w, assets/img/opt/capa-desprezado-800.avif 800w, assets/img/opt/capa-desprezado-1080.avif 1080w" sizes="(min-width: 1280px) 400px, (min-width: 761px) 30vw, min(62vw, 300px)"><source type="image/webp" srcset="assets/img/opt/capa-desprezado-360.webp 360w, assets/img/opt/capa-desprezado-540.webp 540w, assets/img/opt/capa-desprezado-800.webp 800w, assets/img/opt/capa-desprezado-1080.webp 1080w" sizes="(min-width: 1280px) 400px, (min-width: 761px) 30vw, min(62vw, 300px)"><img src="assets/img/opt/capa-desprezado-540.jpg" srcset="assets/img/opt/capa-desprezado-360.jpg 360w, assets/img/opt/capa-desprezado-540.jpg 540w, assets/img/opt/capa-desprezado-800.jpg 800w, assets/img/opt/capa-desprezado-1080.jpg 1080w" sizes="(min-width: 1280px) 400px, (min-width: 761px) 30vw, min(62vw, 300px)" width="1080" height="1620" loading="lazy" decoding="async" alt=""></picture><div class="capa-ov"></div><p class="capa-frase">Descubra como recuperar sua <b>postura</b>, seu <b>valor</b> e o <b>respeito</b> dentro do seu relacionamento.</p><div class="capa-pe"><p class="capa-ti">De desprezado <strong class="silver">a respeitado</strong></p><p class="capa-au">Marcello Gomes</p></div></div></div></div>
-<ol class="aprend">
-<li><span class="ap-num" aria-hidden="true"><span class="silver">01</span></span><div class="ap-txt reveal"><h3>Recupere sua voz</h3><p>Entenda por que você deixou de ser ouvido dentro de casa e como começar a se posicionar novamente.</p></div></li>
-<li><span class="ap-num" aria-hidden="true"><span class="silver">02</span></span><div class="ap-txt reveal"><h3>Pare de aceitar humilhações</h3><p>Aprenda a reagir a deboches, ofensas e comparações sem perder o controle emocional.</p></div></li>
-<li><span class="ap-num" aria-hidden="true"><span class="silver">03</span></span><div class="ap-txt reveal"><h3>Vença o medo de perder</h3><p>Deixe de concordar com tudo apenas para evitar discussões ou uma possível separação.</p></div></li>
-<li><span class="ap-num" aria-hidden="true"><span class="silver">04</span></span><div class="ap-txt reveal"><h3>Aprenda a colocar limites</h3><p>Descubra como dizer não, parar de se justificar por tudo e sustentar suas decisões.</p></div></li>
-<li><span class="ap-num" aria-hidden="true"><span class="silver">05</span></span><div class="ap-txt reveal"><h3>Pare de implorar atenção</h3><p>Desenvolva sua autonomia emocional e deixe de depender constantemente da aprovação da sua parceira.</p></div></li>
-<li><span class="ap-num" aria-hidden="true"><span class="silver">06</span></span><div class="ap-txt reveal"><h3>Reconstrua sua postura no casamento</h3><p>Saiba como abordar conversas difíceis, assumir responsabilidades e buscar mais reciprocidade, mesmo depois de muitos anos juntos.</p></div></li>
-<li><span class="ap-num" aria-hidden="true"><span class="silver">07</span></span><div class="ap-txt reveal"><h3>Decida com clareza</h3><p>Aprenda a diferenciar promessas de atitudes e identificar quando existe espaço para reconstruir a relação.</p></div></li>
-<li><span class="ap-num" aria-hidden="true"><span class="silver">08</span></span><div class="ap-txt reveal"><h3>Coloque em prática em 30 dias</h3><p>Siga exercícios diários para fortalecer seu respeito próprio e transformar conhecimento em atitudes.</p></div></li>
+<ol class="etapas">
+<li><span class="et-num"><span class="et-rot">Etapa</span> <span class="et-n silver">1</span></span><div class="et-txt reveal"><h3>Enxergue onde você está errando</h3><p>Descubra como você deixou de ser o homem que era para evitar discussões, agradar sua esposa ou namorada e não perdê-la, aceitando humilhações e colocando a aprovação dela acima do seu próprio respeito.</p></div></li>
+<li><span class="et-num"><span class="et-rot">Etapa</span> <span class="et-n silver">2</span></span><div class="et-txt reveal"><h3>Aprenda a se posicionar</h3><p>Descubra como dizer não, reagir ao deboche, conversar com firmeza e estabelecer limites sem transformar tudo em uma briga.</p></div></li>
+<li><span class="et-num"><span class="et-rot">Etapa</span> <span class="et-n silver">3</span></span><div class="et-txt reveal"><h3>Coloque em prática por 30 dias</h3><p>Use exercícios, reflexões e ações diárias para desenvolver mais segurança, autonomia emocional e respeito próprio.</p></div></li>
 </ol>
-</div>
-<div class="cont-fim">
-<p class="cont-destaque reveal">13 capítulos · 8 dossiês · Plano de ação de 30 dias</p>
-<div class="reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero começar minha transformação<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
-</div>
+<div class="caminho-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero aprender o passo a passo<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 <div class="armadura" aria-hidden="true">
 <div class="arm-brilho"></div>
 <svg class="arm-cheio" viewBox="0 0 200 240"><use href="#escudo"/></svg>
@@ -1140,38 +1122,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 </div>
 </section>
-<section id="antes-depois" class="antes">
+<section id="oferta" class="oferta">
 <div class="wrap">
 <div class="sec-head">
-<span class="pill reveal">A transformação</span>
-<h2 class="h2 reveal">De desprezado a respeitado: <strong class="silver">o que muda quando você recupera sua postura.</strong></h2>
+<span class="pill reveal">O que você recebe</span>
+<h2 class="h2 reveal">Tudo o que você precisa para começar a recuperar sua postura <strong class="silver">está aqui.</strong></h2>
 </div>
-<div class="cmp">
-<div class="col col-a">
-<h3 class="reveal">Desprezado</h3>
-<ul class="rows">
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>É ignorado quando fala.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Aceita piadas que o humilham.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Implora atenção e carinho.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Explica e pede desculpas por tudo.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Decide pelo medo de perdê-la.</li>
-<li class="row reveal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>Só fica bem quando ela está bem com ele.</li>
+</div>
+<div class="stage">
+<picture class="stage-bg">
+<source type="image/avif" srcset="assets/img/opt/oferta-mesa-960.avif 960w, assets/img/opt/oferta-mesa-1280.avif 1280w, assets/img/opt/oferta-mesa-1672.avif 1672w" sizes="max(min(100vw, 1600px), 676px)">
+<source type="image/webp" srcset="assets/img/opt/oferta-mesa-960.webp 960w, assets/img/opt/oferta-mesa-1280.webp 1280w, assets/img/opt/oferta-mesa-1672.webp 1672w" sizes="max(min(100vw, 1600px), 676px)">
+<img src="assets/img/opt/oferta-mesa-1280.jpg" srcset="assets/img/opt/oferta-mesa-960.jpg 960w, assets/img/opt/oferta-mesa-1280.jpg 1280w, assets/img/opt/oferta-mesa-1672.jpg 1672w" sizes="max(min(100vw, 1600px), 676px)" width="1672" height="941" loading="lazy" decoding="async" alt="">
+</picture>
+<div class="stage-fade" aria-hidden="true"></div>
+<div class="books reveal" role="img" aria-label="O livro De Desprezado a Respeitado, de Marcello Gomes, sobre a mesa, com o Plano de ação de 30 dias, o Diagnóstico pessoal, o Diário do homem respeitado e o Código de honra">
+<div class="caderno cad-diag cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diagnóstico <strong class="silver">pessoal</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+<div class="caderno cad-plano"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><span class="cad-30 silver">30</span><div class="cad-pe"><p class="cad-ti">Plano de ação <strong class="silver">de 30 dias</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+<div class="livro livro-oferta"><div class="capa capa-oficial"><picture><source type="image/avif" srcset="assets/img/opt/capa-oficial-dourada-360.avif 360w, assets/img/opt/capa-oficial-dourada-540.avif 540w, assets/img/opt/capa-oficial-dourada-800.avif 800w, assets/img/opt/capa-oficial-dourada-1024.avif 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><source type="image/webp" srcset="assets/img/opt/capa-oficial-dourada-360.webp 360w, assets/img/opt/capa-oficial-dourada-540.webp 540w, assets/img/opt/capa-oficial-dourada-800.webp 800w, assets/img/opt/capa-oficial-dourada-1024.webp 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><img src="assets/img/opt/capa-oficial-dourada-540.jpg" srcset="assets/img/opt/capa-oficial-dourada-360.jpg 360w, assets/img/opt/capa-oficial-dourada-540.jpg 540w, assets/img/opt/capa-oficial-dourada-800.jpg 800w, assets/img/opt/capa-oficial-dourada-1024.jpg 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw" width="1024" height="1536" loading="lazy" decoding="async" alt=""></picture><div class="capa-ov"></div><div class="capa-pe"><p class="capa-ti">De desprezado <strong class="silver">a respeitado</strong></p><p class="capa-au">Marcello Gomes</p></div></div></div>
+
+<div class="caderno cad-diario"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diário do homem <strong class="silver">respeitado</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+<div class="caderno cad-codigo cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Código <strong class="silver">de honra</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+</div>
+</div>
+<div class="wrap">
+<div class="panel reveal">
+<div class="recebe">
+<h3 class="pill grupo">Entrega principal: De Desprezado a Respeitado</h3>
+<ul class="items items-2">
+<li><span><b>13 capítulos estratégicos</b><small>Aprenda a reconhecer situações de desrespeito, recuperar o seu valor de verdade, estabelecer limites e fortalecer sua postura.</small></span></li>
+<li><span><b>8 dossiês sobre relacionamentos</b><small>Orientações para lidar com situações envolvendo casamento, namoro, indiferença, traição, conflitos, dinheiro e medo de terminar.</small></span></li>
+</ul>
+<h3 class="pill grupo">Materiais complementares inclusos</h3>
+<ul class="items items-4">
+<li><span><b>Plano de ação de 30 dias</b><small>Atividades práticas para começar a transformar os aprendizados em atitudes no dia a dia.</small></span></li>
+<li><span><b>Diagnóstico pessoal</b><small>Identifique padrões de comportamento que merecem atenção e os pontos que você precisa trabalhar.</small></span></li>
+<li><span><b>Código de honra</b><small>Dez princípios para orientar suas decisões, seus limites e a maneira como você se posiciona.</small></span></li>
+<li><span><b>Diário do homem respeitado</b><small>Registre seus avanços, reflita sobre suas atitudes e acompanhe sua evolução.</small></span></li>
 </ul>
 </div>
-<div class="col col-d">
-<h3 class="reveal">Respeitado</h3>
-<ul class="rows">
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Aprende a se posicionar sem levantar a voz.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Comunica o que não aceita.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Reconhece o próprio valor.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Estabelece limites e os sustenta.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Decide com clareza, mesmo sentindo muito.</li>
-<li class="row reveal"><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Desenvolve uma paz que não depende do humor de ninguém.</li>
-</ul>
+<div class="preco">
+<p class="preco-frase">Comece hoje a construir uma postura que você mesmo respeitaria.</p>
+<p class="price-main"><small>12x de</small> <b class="silver">R$&nbsp;10,03</b></p>
+<p class="price-alt">ou R$&nbsp;97 à vista.</p>
+<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito agora<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
+<p class="preco-nota">Acesso digital após a confirmação do pagamento. Material em PDF para ler no celular, tablet ou computador.</p>
 </div>
 </div>
-<p class="quote reveal">Você não controla o que os outros fazem. <strong class="silver">Mas pode decidir como se posicionar diante da maneira como é tratado.</strong></p>
-<div class="quote-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 </section>
 <section id="autor" class="autor">
@@ -1187,12 +1184,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <div>
 <span class="pill">Quem está por trás</span>
-<h2 class="h2">Marcello Gomes fala sobre o que muitos homens <strong class="silver">passam anos aceitando calados.</strong></h2>
+<h2 class="h2">Marcello Gomes fala sobre o que muitos homens <strong class="silver">passam anos escondendo.</strong></h2>
 <a class="perfil" href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener">@marcellopgomes<svg width="15" height="15" viewBox="0 0 24 24" role="img" aria-label="verificado"><path d="M12 2l2.4 2.1 3.2-.3.9 3.1 2.8 1.6-1.1 3 1.1 3-2.8 1.6-.9 3.1-3.2-.3L12 22l-2.4-2.1-3.2.3-.9-3.1-2.8-1.6 1.1-3-1.1-3 2.8-1.6.9-3.1 3.2.3z" fill="#3897F0"/><path d="M8 12.2l2.6 2.6L16 9.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 <div class="body">
-<p>Marcello Gomes aborda temas que muitos homens têm dificuldade de discutir: respeito próprio, posicionamento, relacionamentos, dependência emocional e o medo de perder uma mulher.</p>
-<p>Seu trabalho é ajudar homens a enxergarem situações que antes ignoravam e desenvolverem uma postura mais segura diante dos próprios relacionamentos.</p>
-<p>Com uma linguagem direta, Marcello fala sobre o que significa ser um homem firme sem ser agressivo, estabelecer limites sem humilhar ninguém e assumir o controle das próprias decisões.</p>
+<p>Marcello Gomes aborda respeito próprio, posicionamento, dependência emocional e os desafios que muitos homens enfrentam dentro dos relacionamentos.</p>
+<p>Com uma comunicação direta, ensina a importância de estabelecer limites, desenvolver segurança emocional e assumir o controle das próprias decisões, sem agressividade.</p>
 </div>
 <ul class="stats">
 <li class="stat"><b>419 mil</b><span>seguidores</span></li>
@@ -1201,14 +1197,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 </div>
 </div>
-</div>
-</section>
-<section id="resultados" class="result">
-<div class="wrap">
-<div class="sec-head">
+<div class="sec-head prova-head">
 <span class="pill reveal">Direto da DM</span>
-<h2 class="h2 reveal">O que os homens dizem depois de começar a enxergar <strong class="silver">seus relacionamentos de outra maneira.</strong></h2>
-<p class="sec-sub reveal">Mensagens reais recebidas por Marcello Gomes no Instagram, de homens que encontraram em seus conteúdos novas perspectivas sobre posicionamento, respeito próprio e relacionamentos.</p>
+<h3 class="h2 prova-ti reveal">Veja o que os homens dizem <strong class="silver">sobre os conteúdos do Marcello.</strong></h3>
 </div>
 </div>
 <!-- Prints: originais em assets/img/prints/ (já tratados, com o cabeçalho do Instagram borrado). Para trocar ou
@@ -1247,86 +1238,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <button type="button" class="seta" data-passo="-1" aria-label="Print anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
 <button type="button" class="seta" data-passo="1" aria-label="Próximo print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 </div>
-</section>
-<section id="para-quem" class="epara">
 <div class="wrap">
-<div class="sec-head">
-<span class="pill reveal">Para quem é</span>
-<h2 class="h2 reveal">Antes de começar, <strong class="silver">leia isto.</strong></h2>
-</div>
-<div class="ep-grid">
-<div class="ep ep-no reveal">
-<h3>Não é para você se</h3>
-<ul>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Procura uma frase mágica que resolva todos os problemas.</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Acredita que respeito significa gritar, ameaçar ou intimidar.</li>
-<li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5E708A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Não está disposto a rever suas próprias atitudes.</li>
-</ul>
-</div>
-<div class="ep ep-yes reveal">
-<h3>É para você se</h3>
-<ul>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Está cansado de ser ignorado ou diminuído dentro do relacionamento.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer parar de implorar por atenção e carinho.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Deseja aprender a colocar limites e sustentar suas decisões.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer recuperar sua voz mesmo depois de anos de casamento.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Deseja ser um homem mais firme, seguro e emocionalmente independente.</li>
-<li><svg width="15" height="18" viewBox="0 0 200 240" fill="none" stroke="#D9E2EE" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#escudo" stroke-width="14"/><path d="M66 120 L92 146 L138 98" stroke-width="16"/></svg>Quer construir uma relação com respeito, reciprocidade e dignidade.</li>
-</ul>
-</div>
-</div>
-<p class="big-quote reveal">Você não precisa deixar de ser um homem bom. <strong class="silver">Precisa parar de acreditar que ser bom significa aceitar tudo.</strong></p>
-</div>
-</section>
-<section id="oferta" class="oferta">
-<div class="wrap">
-<div class="sec-head">
-<span class="pill reveal">Seu próximo passo</span>
-<h2 class="h2 reveal">Tudo o que você precisa para começar a reconstruir sua postura <strong class="silver">está aqui.</strong></h2>
-</div>
-</div>
-<div class="stage">
-<picture class="stage-bg">
-<source type="image/avif" srcset="assets/img/opt/oferta-mesa-960.avif 960w, assets/img/opt/oferta-mesa-1280.avif 1280w, assets/img/opt/oferta-mesa-1672.avif 1672w" sizes="max(min(100vw, 1600px), 676px)">
-<source type="image/webp" srcset="assets/img/opt/oferta-mesa-960.webp 960w, assets/img/opt/oferta-mesa-1280.webp 1280w, assets/img/opt/oferta-mesa-1672.webp 1672w" sizes="max(min(100vw, 1600px), 676px)">
-<img src="assets/img/opt/oferta-mesa-1280.jpg" srcset="assets/img/opt/oferta-mesa-960.jpg 960w, assets/img/opt/oferta-mesa-1280.jpg 1280w, assets/img/opt/oferta-mesa-1672.jpg 1672w" sizes="max(min(100vw, 1600px), 676px)" width="1672" height="941" loading="lazy" decoding="async" alt="">
-</picture>
-<div class="stage-fade" aria-hidden="true"></div>
-<div class="books reveal" role="img" aria-label="O livro De Desprezado a Respeitado, de Marcello Gomes, sobre a mesa, com o Plano de ação de 30 dias, o Diagnóstico pessoal, o Diário do homem respeitado e o Código de honra">
-<div class="caderno cad-diag cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diagnóstico <strong class="silver">pessoal</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-<div class="caderno cad-plano"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><span class="cad-30 silver">30</span><div class="cad-pe"><p class="cad-ti">Plano de ação <strong class="silver">de 30 dias</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-<div class="livro livro-oferta"><div class="capa"><picture><source type="image/avif" srcset="assets/img/opt/capa-desprezado-360.avif 360w, assets/img/opt/capa-desprezado-540.avif 540w, assets/img/opt/capa-desprezado-800.avif 800w, assets/img/opt/capa-desprezado-1080.avif 1080w" sizes="(min-width: 761px) clamp(120px, 18vw, 260px), 46vw"><source type="image/webp" srcset="assets/img/opt/capa-desprezado-360.webp 360w, assets/img/opt/capa-desprezado-540.webp 540w, assets/img/opt/capa-desprezado-800.webp 800w, assets/img/opt/capa-desprezado-1080.webp 1080w" sizes="(min-width: 761px) clamp(120px, 18vw, 260px), 46vw"><img src="assets/img/opt/capa-desprezado-540.jpg" srcset="assets/img/opt/capa-desprezado-360.jpg 360w, assets/img/opt/capa-desprezado-540.jpg 540w, assets/img/opt/capa-desprezado-800.jpg 800w, assets/img/opt/capa-desprezado-1080.jpg 1080w" sizes="(min-width: 761px) clamp(120px, 18vw, 260px), 46vw" width="1080" height="1620" loading="lazy" decoding="async" alt=""></picture><div class="capa-ov"></div><div class="capa-pe"><p class="capa-ti">De desprezado <strong class="silver">a respeitado</strong></p><p class="capa-au">Marcello Gomes</p></div></div></div>
-
-<div class="caderno cad-diario"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diário do homem <strong class="silver">respeitado</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-<div class="caderno cad-codigo cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Código <strong class="silver">de honra</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-</div>
-</div>
-<div class="wrap">
-<div class="panel reveal">
-<div class="recebe">
-<span class="pill">O que você recebe</span>
-<ul class="items">
-<li><span><b>13 capítulos estratégicos</b><small>Para reconhecer padrões de desrespeito, fortalecer sua postura e recuperar sua voz.</small></span></li>
-<li><span><b>8 dossiês sobre relacionamentos</b><small>Com situações envolvendo casamento, distanciamento emocional, traição, dinheiro e medo de ir embora.</small></span></li>
-<li><span><b>Plano de ação de 30 dias</b><small>Atividades práticas para desenvolver mais clareza, autonomia e firmeza.</small></span></li>
-<li><span><b>Diagnóstico pessoal</b><small>Para refletir sobre o que está acontecendo e identificar pontos que precisam de atenção.</small></span></li>
-<li><span><b>Código de honra</b><small>Dez princípios para orientar sua postura e suas decisões.</small></span></li>
-<li><span><b>Diário do homem respeitado</b><small>Ferramenta para registrar aprendizados, limites e mudanças de atitude.</small></span></li>
-</ul>
-</div>
-<div class="preco">
-<p class="price-old">De <s>R$&nbsp;297</s> por</p>
-<p class="price-main"><small>12x de</small> <b class="silver">R$&nbsp;10,03</b></p>
-<p class="price-alt">ou R$&nbsp;97 à vista</p>
-<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado agora<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
-</div>
-<ul class="details">
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg><span><b>Acesso digital</b><small>Liberado após a confirmação do pagamento.</small></span></li>
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg><span><b>Leia onde quiser</b><small>Em PDF, no celular, tablet ou computador.</small></span></li>
-<li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#A9B8CB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Pagamento seguro</b><small>Processado pela própria Eduzz.</small></span></li>
-<li><svg width="14" height="16" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="#A9B8CB" stroke-width="16" stroke-linejoin="round"/></svg><span><b>Garantia de 7 dias</b><small>Reembolso pela Eduzz, sem precisar explicar nada.</small></span></li>
-</ul>
-</div>
+<div class="autor-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero aprender com Marcello<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 </section>
 <section id="faq" class="faq">
@@ -1345,23 +1258,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <text x="100" y="140" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="300" font-size="92" fill="url(#medalha-texto)">7</text>
 <text x="100" y="172" text-anchor="middle" font-family="Geist, system-ui, sans-serif" font-weight="500" font-size="17" fill="#B7C7DC">dias</text>
 </svg>
-<h3 class="g-titulo">Você tem 7 dias para conhecer o conteúdo. <strong class="silver">Se não fizer sentido para você, seu dinheiro volta.</strong></h3>
+<h3 class="g-titulo">Garantia de 7 dias. <strong class="silver">Conheça o conteúdo sem ficar preso à sua decisão.</strong></h3>
 </div>
-<p>Acesse De Desprezado a Respeitado, conheça as orientações e avalie se o conteúdo atende às suas expectativas.</p>
-<p>Caso não fique satisfeito, você poderá solicitar o reembolso dentro do prazo de garantia, seguindo as condições informadas no checkout.</p>
+<p>Você tem 7 dias para acessar o material e avaliar se ele atende às suas expectativas. Caso não fique satisfeito, poderá solicitar o reembolso dentro do prazo da garantia, conforme as condições informadas no checkout.</p>
 </div>
 <div class="faq-titulo">
-<span class="pill reveal">Dúvidas</span>
+<span class="pill reveal">Dúvidas frequentes</span>
 <h2 class="h2 reveal">Perguntas que chegam <strong class="silver">toda semana.</strong></h2>
 </div>
 <div class="qa">
-<details class="reveal" open><summary>Em que formato recebo o conteúdo?</summary><p>O material é digital, em PDF. Você pode acessar pelo celular, computador ou tablet.</p></details>
-<details class="reveal"><summary>Quanto tempo leva para receber?</summary><p>O acesso é disponibilizado após a confirmação do pagamento, conforme as instruções da plataforma.</p></details>
-<details class="reveal"><summary>Serve para quem está casado há muitos anos?</summary><p>Sim. O conteúdo aborda situações vividas por homens em casamentos longos, inclusive a dificuldade de recuperar sua voz depois de anos de convivência.</p></details>
-<details class="reveal"><summary>Preciso terminar meu relacionamento para recuperar meu respeito?</summary><p>Não. Você vai aprender a reconhecer os problemas, estabelecer limites e avaliar se existe disposição dos dois lados para reconstruir a relação.</p></details>
-<details class="reveal"><summary>Minha esposa vai voltar a me respeitar?</summary><p>Você aprenderá a fortalecer sua postura e comunicar limites com clareza. A reação de outra pessoa não pode ser garantida, mas sua maneira de agir pode começar a mudar.</p></details>
-<details class="reveal"><summary>Quanto tempo tenho para colocar em prática?</summary><p>Você pode começar imediatamente e seguir o plano de atividades de 30 dias no seu próprio ritmo.</p></details>
-<details class="reveal"><summary>E se eu não gostar?</summary><p>Você tem 7 dias para pedir o reembolso pela própria Eduzz e receber o valor de volta.</p></details>
+<details class="reveal" open><summary>Como recebo o material?</summary><p>Após a confirmação do pagamento, você recebe acesso ao conteúdo digital, em PDF.</p></details>
+<details class="reveal"><summary>Serve para quem está casado há muitos anos?</summary><p>Sim. Os conteúdos abordam situações comuns em relacionamentos de diferentes durações, inclusive casamentos de longa data.</p></details>
+<details class="reveal"><summary>Preciso terminar meu relacionamento?</summary><p>Não. O objetivo é ajudar você a desenvolver respeito próprio, reconhecer limites e tomar decisões com mais clareza. Isso não significa que toda relação possa ou deva continuar.</p></details>
+<details class="reveal"><summary>Minha esposa vai voltar a me respeitar?</summary><p>Ninguém pode garantir a reação de outra pessoa. O que você pode aprender é a mudar sua postura, comunicar seus limites e deixar de aceitar comportamentos que desrespeitam você.</p></details>
 </div>
 </div>
 </div>
@@ -1369,18 +1278,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="fechamento" class="fecho">
 <div class="wrap">
 <div class="fecho-selo"><svg class="fecho-escudo reveal" width="34" height="40" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo" fill="none" stroke="url(#prata-escudo)" stroke-width="10" stroke-linejoin="round"/></svg></div>
-<h2 class="h2 reveal">Quantos anos mais você vai passar tentando salvar seu relacionamento <strong class="silver">enquanto perde o respeito por si mesmo?</strong></h2>
+<h2 class="h2 fecho-ti reveal">Quanto tempo mais você vai continuar <strong class="silver">se calando para evitar uma briga?</strong></h2>
 <div class="body">
-<p class="reveal">Você já tentou agradar mais.</p>
-<p class="reveal">Já ficou calado para evitar discussões.</p>
-<p class="reveal">Já pediu desculpas por coisas que não fez.</p>
-<p class="reveal">E, mesmo assim, continua sentindo que sua voz perdeu importância dentro do relacionamento.</p>
-<p class="reveal">A mudança não começa quando sua esposa decide agir diferente.</p>
-<p class="reveal">Começa quando você aprende a reconhecer seu valor, estabelecer limites e tomar decisões sem abandonar a si mesmo.</p>
-<p class="reveal">Em De Desprezado a Respeitado, você encontra um passo a passo para começar essa transformação.</p>
+<p class="reveal">Você já tentou agradar mais, explicar mais e abrir mão do que sente.</p>
+<p class="reveal">Agora é hora de aprender a se posicionar com firmeza, recuperar sua voz e voltar a respeitar o homem que você vê no espelho.</p>
 </div>
-<div class="fecho-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
-<p class="motto">Torne-se um homem que você mesmo <strong class="silver">respeitaria.</strong></p>
+<div class="compra reveal">
+<p class="pill compra-nome">De Desprezado a Respeitado</p>
+<p class="compra-preco">12x de R$&nbsp;10,03 ou R$&nbsp;97 à vista</p>
+<div class="fecho-cta"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<p class="compra-selos">Material digital · Pagamento seguro · Garantia de 7&nbsp;dias</p>
+</div>
 </div>
 </section>
 </main>
@@ -1392,7 +1300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <div class="barra" id="barra">
 <span>De Desprezado a Respeitado<b>12x de R$&nbsp;10,03</b></span>
-<a href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero ser respeitado</a>
+<a href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero meu respeito</a>
 </div>
 <dialog class="lightbox" aria-label="Galeria dos prints">
 <button type="button" class="lb-fechar" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -1444,27 +1352,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.addEventListener('touchstart', function () {}, { passive: true });
 })();
 
-// Comparação de capas, só por parâmetro: ?capa=dourada ou ?capa=azul troca a arte do livro da #conteudo e do
-// livro principal da #oferta pela capa oficial do cliente (a imagem já traz o texto). Qualquer outro valor é
-// ignorado. Sem o parâmetro, nada muda e as imagens oficiais não são baixadas: as capas têm loading="lazy" e
-// ficam abaixo da dobra, então a troca acontece antes de o navegador pedir a arte padrão.
-// LARGURAS: as que o scripts/otimizar-imagens.mjs gera. Os originais têm 1024x1536 (2:3), então a maior
-// versão é a de 1024 (o script nunca amplia). Se trocar os originais, confira aqui.
+// Capa do livro principal da #oferta. A padrão é a capa oficial dourada (no HTML). Só por parâmetro, para
+// comparação: ?capa=azul troca pela capa oficial azul e ?capa=html pela capa montada em HTML (a arte de fundo
+// com o título e o autor em texto real). Qualquer outro valor é ignorado. A capa tem loading="lazy" e fica
+// abaixo da dobra, então a troca acontece antes de o navegador pedir a imagem padrão.
+// larguras: as que o scripts/otimizar-imagens.mjs gera (a oficial azul tem 1024x1536 e a arte da capa em
+// HTML, 1080x1620; o script nunca amplia). Se trocar os originais, confira aqui.
 (function () {
+  var ARTES = {
+    azul: { base: 'assets/img/opt/capa-oficial-azul-', larguras: [360, 540, 800, 1024], w: 1024, h: 1536, oficial: true },
+    html: { base: 'assets/img/opt/capa-desprezado-', larguras: [360, 540, 800, 1080], w: 1080, h: 1620, oficial: false }
+  };
   var variante = new URLSearchParams(location.search).get('capa');
-  if (variante !== 'dourada' && variante !== 'azul') return;
-  var LARGURAS = [360, 540, 800, 1024];
-  var base = 'assets/img/opt/capa-oficial-' + variante + '-';
+  var arte = Object.prototype.hasOwnProperty.call(ARTES, variante) && ARTES[variante];
+  var capa = document.querySelector('.livro-oferta .capa');
+  if (!arte || !capa) return;
   function lista(ext) {
-    return LARGURAS.map(function (l) { return base + l + '.' + ext + ' ' + l + 'w'; }).join(', ');
+    return arte.larguras.map(function (l) { return arte.base + l + '.' + ext + ' ' + l + 'w'; }).join(', ');
   }
-  document.querySelectorAll('.cont-capa .capa, .livro-oferta .capa').forEach(function (capa) {
-    capa.classList.add('capa-oficial');
-    capa.querySelectorAll('source').forEach(function (s) { s.srcset = lista(s.type.split('/')[1]); });
-    var img = capa.querySelector('img');
-    img.srcset = lista('jpg');
-    img.src = base + '540.jpg';
-  });
+  capa.classList.toggle('capa-oficial', arte.oficial);
+  capa.querySelectorAll('source').forEach(function (s) { s.srcset = lista(s.type.split('/')[1]); });
+  var img = capa.querySelector('img');
+  img.srcset = lista('jpg');
+  img.src = arte.base + '540.jpg';
+  img.width = arte.w;
+  img.height = arte.h;
 })();
 
 // Rolagem suave (Lenis): só com mouse/trackpad e sem movimento reduzido. No toque, rolagem nativa.
@@ -1514,33 +1426,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['open'] });
 })();
 
-// Checklist da #identificacao. Sem JS, os botões ficam parados e o contador mostra a frase de 1 a 2.
-// Dois contadores: o bloco do desktop (.counter) mostra a frase inteira; a barra do celular (.contador-barra)
-// mostra só a primeira frase do estado de 3 ou mais, e o restante aparece logo abaixo do último item
-// (.chk-resto, aria-live), só com 3 ou mais marcados.
+// Checklist da #identificacao. Sem JS, os botões ficam parados, os contadores mostram 0 e o texto abaixo da
+// lista aparece. Com JS, o texto (.chk-texto, aria-live) aparece a partir do primeiro item marcado e some com 0.
+// Dois contadores ("N de 5 situações marcadas"): o bloco do desktop (.counter) e a barra do celular
+// (.contador-barra).
 (function () {
   var botoes = document.querySelectorAll('.chk');
   var numero = document.querySelector('.counter b');
-  var frase = document.querySelector('.counter p');
-  var numeroBarra = document.querySelector('.cb-num b');
-  var fraseBarra = document.querySelector('.contador-barra > p');
-  var resto = document.querySelector('.chk-resto');
-  var FRASES = [
-    'Quantas dessas situações você marcou?',
-    'Se marcou uma, preste atenção. É sempre assim que começa.',
-    'Você vive pisando em ovos para evitar outra briga.'
-  ];
-  var RESTO = 'Engole o que sente, aceita situações que te machucam e vai deixando suas próprias vontades de lado. E o pior? De tanto tentar não perder seu relacionamento, você pode estar perdendo a si mesmo.';
+  var numeroBarra = document.querySelector('.contador-barra b');
+  var texto = document.querySelector('.chk-texto');
+  var TEXTO = texto.textContent;
   function atualizar() {
     var n = document.querySelectorAll('.chk[aria-pressed="true"]').length;
-    var estado = n === 0 ? 0 : n < 3 ? 1 : 2;
     numero.textContent = n + ' de ' + botoes.length;
     numeroBarra.textContent = n;
-    fraseBarra.textContent = FRASES[estado];
-    frase.textContent = estado === 2 ? FRASES[2] + ' ' + RESTO : FRASES[estado];
-    // Só muda quando o estado muda, para o leitor de tela não repetir o trecho a cada toque.
-    var novo = estado === 2 ? RESTO : '';
-    if (resto.textContent !== novo) resto.textContent = novo;
+    // Só muda quando o texto aparece ou some, para o leitor de tela não repetir o trecho a cada toque.
+    var novo = n ? TEXTO : '';
+    if (texto.textContent !== novo) texto.textContent = novo;
   }
   botoes.forEach(function (b) {
     b.addEventListener('click', function () {
@@ -1551,7 +1453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   atualizar();
 })();
 
-// Galeria dos prints da #resultados (o <dialog> .lightbox). Abre no print clicado (a cópia do carrossel abre o
+// Galeria dos prints da #autor (o <dialog> .lightbox). Abre no print clicado (a cópia do carrossel abre o
 // original), navega pelos 8 com os botões, as setas do teclado e, no toque, deslizando para o lado (pointer
 // events); dá a volta do 8 para o 1 e do 1 para o 8. Pré-carrega o anterior e o próximo (cópias ocultas em
 // .lb-pre, com a mesma escolha de formato do <picture>). Troca com uma transição curta de opacidade, ou direta
@@ -1643,7 +1545,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 })();
 
-// Carrossel da #resultados (a partir de 761px; o movimento é CSS). Aqui: pausar quando a seção não está na
+// Carrossel dos prints da #autor (a partir de 761px; o movimento é CSS). Aqui: pausar quando a seção não está na
 // tela; as setas; e, quando um card recebe foco pelo teclado fora da área nítida, levar a faixa até ele.
 // - A volta começa com o primeiro original na borda da máscara e o card k fica k x 360px depois dele, então o
 //   tempo da animação que o põe ali é (distância / 2880px) da duração.
@@ -1714,23 +1616,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   });
 })();
 
-// Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a #identificacao
-// (onde fica a barra do contador), a #oferta, o botão de compra do #fechamento ou o rodapé estiverem
-// visíveis. O CSS só a mostra até 760px; sem JS ela nunca recebe .visivel.
+// Barra fixa do celular: aparece depois que o hero sai da tela e some enquanto a lista da #identificacao
+// (onde fica a barra do contador), o painel de preço da #oferta, o botão de compra do #fechamento ou o rodapé
+// estiverem visíveis. No #caminho e no palco dos livros da oferta, ela aparece. O CSS só a mostra até 760px;
+// sem JS ela nunca recebe .visivel.
+// O painel só conta depois que o topo dele passa de 60% da altura da tela (observador próprio, com a margem
+// de baixo em -40%): no celular, o palco dos livros e o começo do painel cabem juntos na tela.
 (function () {
   var barra = document.getElementById('barra');
   var hero = document.getElementById('hero');
-  var escondem = [hero, document.getElementById('identificacao'), document.getElementById('oferta'), document.querySelector('.fecho-cta'), document.querySelector('.foot')];
+  var painel = document.querySelector('#oferta .panel');
+  var escondem = [hero, document.querySelector('#identificacao .chks'), painel, document.querySelector('.fecho-cta'), document.querySelector('.foot')];
   if (!barra || escondem.indexOf(null) !== -1 || !('IntersectionObserver' in window)) return;
   var naTela = new Map([[hero, true]]);
-  var observador = new IntersectionObserver(function (entradas) {
+  function atualizar(entradas) {
     entradas.forEach(function (e) { naTela.set(e.target, e.isIntersecting); });
     var visivel = !escondem.some(function (el) { return naTela.get(el); });
     barra.classList.toggle('visivel', visivel);
     // inert tira o link da ordem do Tab na hora, enquanto a barra ainda desliza para fora.
     barra.inert = !visivel;
-  });
-  escondem.forEach(function (el) { observador.observe(el); });
+  }
+  var observador = new IntersectionObserver(atualizar);
+  escondem.forEach(function (el) { if (el !== painel) observador.observe(el); });
+  new IntersectionObserver(atualizar, { rootMargin: '0px 0px -40% 0px' }).observe(painel);
 })();
 </script>
 </body>
