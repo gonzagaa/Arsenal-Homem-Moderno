@@ -12,7 +12,8 @@ O produto mudou: o Arsenal Homem Blindado (quatro manuais) deu lugar ao De Despr
 - [ ] Confirmar as respostas do FAQ: entrega em PDF depois da confirmação do pagamento e que o conteúdo trata de casamentos de longa data.
 - [ ] Preço riscado: a copy v3 não tem preço de referência (a anterior tinha R$ 297 riscado), e a página saiu sem ele. Confirmar que foi de propósito.
 - [ ] Formas de pagamento aceitas (Pix, cartão, boleto) e prazo de liberação no boleto.
-- [ ] Onde a página vai ser hospedada (no domínio novo) e como é feita a publicação. A hospedagem precisa servir com compressão (gzip ou brotli) e com cache longo para `assets/`: sem compressão, o HTML vai de ~25 KB para 98 KB e o LCP simulado do PageSpeed sobe de 2,0 para 2,9 s.
+- [x] Hospedagem: resolvido. Hostinger do cliente, com deploy pelo Git; compressão, cache e rotas no `.htaccess` (a Netlify fica só como prévia).
+- [ ] Depois do primeiro deploy na Hostinger, conferir no domínio: /bio/, /sdr/, /tfg/ e /story/ abrindo a página; http e www indo para https sem www; /docs/, /CLAUDE.md e /.git/config sem abrir; HTML com `Cache-Control: no-cache` e /assets/ com 1 ano; resposta comprimida (gzip ou br). As regras do `.htaccess` não puderam ser testadas num Apache antes.
 
 ## Marcações `.pendente` na página (0)
 

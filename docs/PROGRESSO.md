@@ -48,6 +48,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rodada B: botões grandes em toda a página, preço em destaque e rótulo novo do hero | aprovada |
 | Rodada C: consolidação da identidade oficial (antes `?tema=vibrante`) e dos nossos cards | aprovada |
 | Origens de tráfego (/bio/, /sdr/, /tfg/, /story/) com checkout por rota, preparando a Netlify | aprovada |
+| `.htaccess` para a hospedagem final (Hostinger) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -72,7 +73,7 @@ A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PR
 - O escudo é um SVG único no fim do `<body>` (`#escudo` e o degradê `#prata-escudo`), reaproveitado com `<use>`.
 - Hover que muda a aparência vai dentro de `@media (hover:hover)`, para não ficar preso no toque.
 - Aspas retas, como na copy ("tudo bem").
-- Publicação: sobem só `index.html`, os favicons e `assets/`. `docs/`, `scripts/`, `CLAUDE.md` e `PENDENCIAS.md` não vão para a hospedagem.
+- Publicação: hospedagem final na Hostinger do cliente, com deploy pelo Git deste repositório inteiro na raiz do domínio; o `.htaccess` responde 404 para `docs/`, `scripts/`, `node_modules/`, `.git`, os `.md`, `package*.json`, `_redirects` e os `.htaccess`. A Netlify fica só como prévia (`_redirects`).
 
 ### Etapa 1: base e imagens
 
@@ -471,6 +472,13 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Teste: servidor aplicando o próprio `_redirects` e o domínio de produção apontado para ele, com os links marcados por origem. Localhost com e sem `?origem=`, `/bio/` com utm, `/bio` sem barra, `/sdr/`, `/tfg/?fbclid=`, `/story/` e `/story/?origem=bio` (ignorado): todos com o checkout certo e os parâmetros; nenhum 404, nenhuma imagem quebrada.
 - Pendente (PENDENCIAS.md): preencher o CHECKOUTS com os quatro links da Eduzz quando o cliente enviar; confirmar com a gestora o pixel em cada produto/oferta.
 
+### `.htaccess` para a Hostinger (2026-10-25)
+
+- Hospedagem final: Hostinger do cliente (LiteSpeed compatível com Apache), deploy pelo Git na raiz do domínio. A Netlify fica só como prévia, com o `_redirects` (mudou uma rota num, mude no outro).
+- `.htaccess` na raiz, com os blocos dependentes de módulo em `<IfModule>`: `DirectoryIndex` e `Options -Indexes`; 404 com a própria página (`ErrorDocument 404 /index.html`, escolhido por ser o mais seguro: o visitante vê a página e compra pelo checkout padrão, buscadores recebem 404); bloqueio dos arquivos internos em três camadas (`RedirectMatch 404`, `FilesMatch` negado e `RewriteRule [F]`), menos `/.well-known/`; www para sem www e http para https (301, com a condição do `X-Forwarded-Proto` contra laço); rotas `/bio`, `/sdr`, `/tfg` e `/story` (com ou sem barra, qualquer caixa) reescritas para o `/index.html`; tipos avif, webp, woff2, svg e js; brotli e gzip; HTML `no-cache`, favicons 1 semana, `nosniff`.
+- `assets/.htaccess` com cache de 1 ano (immutable), num arquivo próprio da pasta porque separar por pasta no `.htaccess` da raiz exige expressões que o LiteSpeed nem sempre aceita. Os nomes não têm versão: para trocar um arquivo de `assets/`, use um nome novo.
+- Sem Apache na máquina: os padrões foram testados em Node, lidos do próprio arquivo. 440 endereços liberados (os 208 que a página usa, os 227 de `assets/`, raiz, rotas, `/.well-known/`), 24 internos bloqueados e 13 casos de rota corretos. A conferência no domínio depois do primeiro deploy está no `PENDENCIAS.md`.
+
 ## Pendências técnicas (do projeto, não do cliente)
 
 - Nenhuma.
@@ -506,7 +514,7 @@ Resultado final, na etapa 11. Lighthouse 12 em modo celular, servidor local com 
 
 1. Clone o repositório e abra a pasta no VS Code.
 2. Instale a extensão Live Server (Ritwick Dey), abra no VS Code a pasta raiz do projeto (a que tem o `index.html`) e clique em "Go Live". A página abre em http://127.0.0.1:5500/index.html. Todo arquivo é pedido a partir da raiz (`/assets/...`), então o servidor precisa servir a raiz do projeto: aberto numa pasta acima, as imagens e a fonte não carregam. Qualquer servidor estático na raiz também serve (por exemplo, `npx live-server --port=5500`).
-   - O Live Server não lê o `_redirects`: para testar uma origem de tráfego, abra `/?origem=bio` (ou `sdr`, `tfg`, `story`). Na Netlify, as rotas `/bio/` etc. funcionam direto.
+   - O Live Server não lê o `.htaccess` nem o `_redirects`: para testar uma origem de tráfego, abra `/?origem=bio` (ou `sdr`, `tfg`, `story`). Na Hostinger e na Netlify, as rotas `/bio/` etc. funcionam direto.
 3. Não é preciso gerar nada: `assets/img/opt/`, `assets/img/og.jpg`, os favicons e `assets/js/lenis.min.js` estão no repositório.
 4. No localhost, o GTM e o pixel não carregam. Para testar o rastreio, abra com `?rastreio=1`.
 5. O Node (versão 20 ou mais nova; foram usadas a 24 e a 22) só é necessário para regenerar arquivos:
