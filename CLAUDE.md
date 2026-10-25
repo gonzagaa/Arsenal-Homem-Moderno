@@ -102,8 +102,10 @@ Aprovada pelo cliente em 25/10/2026 (antes testada como `?tema=vibrante`). A cla
 
 ## Checkout, rastreamento e dados
 
-- Todo botão de compra aponta para `https://chk.eduzz.com/7WXGDYN20A`. Provisório: é o checkout do produto antigo e muda quando o De Desprezado a Respeitado estiver cadastrado na Eduzz (ver `PENDENCIAS.md`).
-- Um script curto repassa para o link do checkout todos os parâmetros que chegaram na URL da página (`utm_*`, `src`, `sck`, `fbclid` e o que mais vier), para o tráfego pago não perder a origem da venda. Só `rastreio` (a chave de teste do rastreio no localhost) não vai.
+- Origens de tráfego: a mesma página abre na raiz (`/`) e em `/bio/`, `/sdr/`, `/tfg/` e `/story/`, cada rota com o seu checkout. Uma página só: o `_redirects` na raiz (Netlify) reescreve `/bio`, `/bio/` e as outras, com status 200, para o `/index.html`, e o endereço na barra continua o da rota. Nunca copie o `index.html` para pastas. As quatro rotas mantêm o `canonical` na raiz.
+- Checkouts: no topo do script do checkout (no fim do `index.html`), o objeto `CHECKOUTS` (`padrao`, `bio`, `sdr`, `tfg`, `story`). O script lê o primeiro segmento do caminho e põe o checkout correspondente em todos os botões de compra, inclusive o da barra fixa; qualquer outro caminho usa o `padrao`. Sem JavaScript, os botões levam ao href do HTML, que é o `padrao` (se ele mudar, troque também os href). Hoje todos são `https://chk.eduzz.com/7WXGDYN20A`, provisório: é o checkout do produto antigo. Preencher o CHECKOUTS com os quatro links da Eduzz quando o cliente enviar. Confirmar com a gestora o pixel em cada produto/oferta.
+- Teste das rotas no localhost: o Live Server não lê o `_redirects`. Só em `localhost` e `127.0.0.1`, `?origem=bio` (`sdr`, `tfg`, `story`) simula a rota; em produção, o parâmetro é ignorado.
+- Um script curto repassa para o link do checkout todos os parâmetros que chegaram na URL da página (`utm_*`, `src`, `sck`, `fbclid` e o que mais vier), para o tráfego pago não perder a origem da venda. Só `rastreio` e `origem` (as chaves de teste do localhost) não vão.
 - Google Tag Manager `GTM-5KX5J7J6` no `<head>` e o `<noscript>` logo após o `<body>`, como na página atual.
 - Pixel da Meta `1434833234924777`. Antes de instalar o código base, perguntar ao desenvolvedor se o pixel já dispara dentro do GTM. Se sim, não instalar de novo (PageView duplicado estraga a otimização das campanhas).
 - `InitiateCheckout`: o checkout da Eduzz dispara sozinho ao abrir. A página não dispara esse evento (contaria em dobro); o clique de compra não tem nenhum evento do pixel. O `clique_botoes` do GA4 vem do contêiner do GTM.
@@ -162,7 +164,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - Em uma sessão nova, leia docs/PROGRESSO.md antes de qualquer outra coisa.
 - O trabalho segue as etapas de `docs/PROMPTS.md`, uma por vez. Toda etapa termina na regra de parada descrita lá: pare, mande o relatório no formato pedido e espere a palavra APROVADO antes de seguir.
 - A cada APROVADO, nesta ordem: atualize o `docs/PROGRESSO.md` com a etapa e as decisões aprovadas, faça commit e push, e só então comece a etapa seguinte.
-- A página é conferida com o Live Server do VS Code (localhost). Todo caminho de arquivo é relativo, nunca começando com `/`.
+- A página é conferida com o Live Server do VS Code (localhost), aberto na raiz do projeto. Todo arquivo do projeto (imagens, fontes, favicons, scripts, preload, srcset, `url()` do CSS) é pedido a partir da raiz (`/assets/...`, `/favicon.svg`): a mesma página abre em `/bio/`, `/sdr/`, `/tfg/` e `/story/`, e um caminho relativo viraria `/bio/assets/...`, que não existe. Links de âncora (`#oferta`) continuam como estão.
 - Não altere uma seção já aprovada sem pedido explícito.
 - Trechos entre colchetes na copy (por exemplo `[dado que falta do cliente]`) são pendências: renderize com a classe `.pendente` (contorno tracejado âmbar, bem visível) e liste em `PENDENCIAS.md`. Nada com essa classe pode ir ao ar.
 - Ao final de cada seção, confira no celular (390 px) e no desktop (1440 px).

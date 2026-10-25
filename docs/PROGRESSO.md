@@ -47,6 +47,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | H1 novo e #oferta com os três livros do método | aprovada |
 | Rodada B: botões grandes em toda a página, preço em destaque e rótulo novo do hero | aprovada |
 | Rodada C: consolidação da identidade oficial (antes `?tema=vibrante`) e dos nossos cards | aprovada |
+| Origens de tráfego (/bio/, /sdr/, /tfg/, /story/) com checkout por rota, preparando a Netlify | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -461,6 +462,15 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - `og.jpg` refeito com a identidade oficial: rótulo "Conheça o método De Desprezado a Respeitado" na cápsula azul (13,5px, .16em, uma linha) e H1 em 700 com o destaque azul.
 - `CLAUDE.md` ("Identidade oficial" no lugar da variação para teste, cores, pesos, botão, exceção do rótulo do hero, cards), `docs/copy.md` e `PENDENCIAS.md` (identidade e cards resolvidos; itens do produto atualizados para os três livros) atualizados. As seções anteriores deste arquivo que citam `?tema=` e `?cards=` ficam como histórico.
 
+### Origens de tráfego (2026-10-25)
+
+- A mesma página abre na raiz e em `/bio/`, `/sdr/`, `/tfg/` e `/story/`. `_redirects` na raiz (Netlify) com reescritas 200 de `/bio`, `/bio/` e das outras para o `/index.html`; o endereço na barra continua o da rota. Nenhuma cópia do `index.html`. Canonical na raiz em todas.
+- Todos os arquivos do projeto pedidos a partir da raiz (`/assets/...`, `/favicon...`): 397 referências (imagens, srcset, fonte e preload, `url()` do CSS, Lenis, favicons). Âncoras e URLs completas sem mudança. Regra atualizada no CLAUDE.md e no docs/PROMPTS.md.
+- `CHECKOUTS` (`padrao`, `bio`, `sdr`, `tfg`, `story`) no topo do script do checkout, todos com o link provisório. O primeiro segmento do caminho (em minúsculas) escolhe o checkout dos 7 botões de compra, inclusive o da barra fixa; qualquer outro caminho usa o padrão; o repasse de parâmetros continua. Sem JS, o href do HTML (o padrão).
+- `?origem=bio` (`sdr`, `tfg`, `story`) simula a rota só em `localhost` e `127.0.0.1`; em produção é ignorado. `origem` e `rastreio` não vão para o checkout.
+- Teste: servidor aplicando o próprio `_redirects` e o domínio de produção apontado para ele, com os links marcados por origem. Localhost com e sem `?origem=`, `/bio/` com utm, `/bio` sem barra, `/sdr/`, `/tfg/?fbclid=`, `/story/` e `/story/?origem=bio` (ignorado): todos com o checkout certo e os parâmetros; nenhum 404, nenhuma imagem quebrada.
+- Pendente (PENDENCIAS.md): preencher o CHECKOUTS com os quatro links da Eduzz quando o cliente enviar; confirmar com a gestora o pixel em cada produto/oferta.
+
 ## Pendências técnicas (do projeto, não do cliente)
 
 - Nenhuma.
@@ -495,7 +505,8 @@ Resultado final, na etapa 11. Lighthouse 12 em modo celular, servidor local com 
 ## Como rodar numa máquina nova
 
 1. Clone o repositório e abra a pasta no VS Code.
-2. Instale a extensão Live Server (Ritwick Dey) e clique em "Go Live". A página abre em http://127.0.0.1:5500/index.html. Todo caminho é relativo, então qualquer servidor estático na raiz também serve (por exemplo, `npx live-server --port=5500`).
+2. Instale a extensão Live Server (Ritwick Dey), abra no VS Code a pasta raiz do projeto (a que tem o `index.html`) e clique em "Go Live". A página abre em http://127.0.0.1:5500/index.html. Todo arquivo é pedido a partir da raiz (`/assets/...`), então o servidor precisa servir a raiz do projeto: aberto numa pasta acima, as imagens e a fonte não carregam. Qualquer servidor estático na raiz também serve (por exemplo, `npx live-server --port=5500`).
+   - O Live Server não lê o `_redirects`: para testar uma origem de tráfego, abra `/?origem=bio` (ou `sdr`, `tfg`, `story`). Na Netlify, as rotas `/bio/` etc. funcionam direto.
 3. Não é preciso gerar nada: `assets/img/opt/`, `assets/img/og.jpg`, os favicons e `assets/js/lenis.min.js` estão no repositório.
 4. No localhost, o GTM e o pixel não carregam. Para testar o rastreio, abra com `?rastreio=1`.
 5. O Node (versão 20 ou mais nova; foram usadas a 24 e a 22) só é necessário para regenerar arquivos:

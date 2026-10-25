@@ -4,7 +4,8 @@ Nada marcado com `.pendente` vai ao ar. Atualize esta lista conforme as resposta
 
 O produto mudou: o Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitado (três livros: o principal, O Jogo Sujo dos Relacionamentos e Chega de Engolir Calado!, com os materiais de aplicação prática). Domínio novo: `https://nunca-mais-seja-desprezado.com.br/`.
 
-- [ ] **Checkout do produto novo:** os botões de compra ainda apontam para `https://chk.eduzz.com/7WXGDYN20A`, o checkout do produto antigo. Quando o De Desprezado a Respeitado estiver cadastrado na Eduzz, trocar o link em todos os botões (o repasse dos parâmetros da URL continua valendo).
+- [ ] **Checkout do produto novo:** os botões de compra ainda apontam para `https://chk.eduzz.com/7WXGDYN20A`, o checkout do produto antigo. Quando o De Desprezado a Respeitado estiver cadastrado na Eduzz, trocar o `padrao` do `CHECKOUTS` e os href dos botões (o repasse dos parâmetros da URL continua valendo).
+- [ ] **Checkouts das origens de tráfego (/bio/, /sdr/, /tfg/, /story/):** Preencher o CHECKOUTS com os quatro links da Eduzz quando o cliente enviar. Confirmar com a gestora o pixel em cada produto/oferta.
 - [ ] **Pixel no produto novo:** a gestora precisa configurar o pixel 1434833234924777 no produto novo dentro da Eduzz (ID e token da API de Conversões), como foi feito no Arsenal, e confirmar que o checkout novo também dispara o InitiateCheckout ao abrir.
 - [ ] Confirmar que os três livros são entregues em PDF e quantas páginas tem cada um.
 - [ ] Confirmar que o que a página promete está de fato no material: as 3 etapas do #caminho, as "respostas para 30 situações de desrespeito" do Chega de Engolir Calado!, o plano de ação de 30 dias, o diagnóstico pessoal, o código de honra e o diário de evolução (#caminho e #oferta).

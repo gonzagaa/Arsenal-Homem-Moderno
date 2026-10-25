@@ -18,7 +18,7 @@ Ao terminar a etapa:
    - **Como conferir:** o que olhar na página (seção, largura de tela, interação a testar).
 3. **Espere a palavra APROVADO** antes de seguir. Se vier uma lista de ajustes no lugar, faça só os ajustes, mande o relatório de novo e espere outra vez.
 
-A página é conferida no navegador com o Live Server do VS Code (localhost). Por isso todo caminho de arquivo é relativo (`assets/img/...`), nunca começando com `/`, para funcionar igual no localhost e na hospedagem.
+A página é conferida no navegador com o Live Server do VS Code (localhost). Todo caminho de arquivo começa na raiz (`/assets/img/...`), para funcionar igual no localhost (Live Server aberto na raiz do projeto) e nas rotas `/bio/`, `/sdr/`, `/tfg/` e `/story/` da hospedagem (ver o CLAUDE.md).
 
 ---
 
