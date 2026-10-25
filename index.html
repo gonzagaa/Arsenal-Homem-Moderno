@@ -204,21 +204,25 @@ html.lenis{scroll-behavior:auto!important}
 @media (max-width:384px){
   .cta{gap:10px;font-size:13.5px}
 }
-/* Botão grande (.cta--grande, no hero e no fechamento): o mesmo prateado e os mesmos efeitos, com 76px de
-   altura. A partir de 400px de tela, o rótulo fica em uma linha e o botão acompanha o texto, mesmo que passe
-   da coluna (no celular, ocupa no mínimo a largura da coluna). Abaixo de 400px, quebra em duas linhas parelhas.
-   Em maiúsculas, "Quero recuperar meu respeito" mede 331px em 18px e 276px em 15px. Para caber em uma linha
-   dentro do bloco de compra do fechamento (largura da tela menos 36px), a fonte vai de 15px em 400px a 18px a
-   partir de ~451px, com folgas menores; no desktop, 18px (o anel de 469px cabe nos 480px do bloco de compra). */
+/* Botão grande (.cta--grande): todos os botões de compra da página (hero, #transformacao, #caminho, #oferta,
+   #autor e #fechamento), com o mesmo prateado, os mesmos efeitos e 76px de altura; cada um com o seu texto. A
+   barra fixa continua com o botão compacto. A partir de 375px de tela, o rótulo fica em uma linha e o botão
+   acompanha o texto, mesmo que passe da coluna (no celular, ocupa no mínimo a largura da coluna). Abaixo de
+   375px, quebra em duas linhas parelhas. Em maiúsculas, o rótulo mais longo fora da oferta ("Quero aprender o
+   passo a passo") mede 350px em 18px e 253px em 13px: no celular a fonte vai de 13,7px em 375px a 18px em
+   ~458px, para o anel ficar a pelo menos 12px das bordas da tela. No desktop, 18px. O botão da oferta tem
+   conta própria (ver o bloco de preço). */
 .cta--grande{min-height:76px;gap:10px;padding:12px 10px 12px 20px;font-size:18px;line-height:1.25}
 .cta--grande .cta-arrow{width:44px;height:44px}
-@media (min-width:400px){
+@media (min-width:375px){
   .cta--grande{white-space:nowrap}
   .cta-ring--grande{width:max-content}
 }
-@media (min-width:400px) and (max-width:760px){
-  .cta-ring--grande{min-width:100%}
-  .cta--grande{gap:8px;padding:12px 8px 12px 16px;font-size:clamp(15px,calc(15px + (100vw - 400px) * .0588),18px)}
+@media (min-width:375px) and (max-width:760px){
+  .cta-ring--grande{flex:none;min-width:100%}
+  /* Quando o anel passa da coluna, sai por igual dos dois lados. */
+  :has(> .cta-ring--grande){display:flex;flex-direction:column;align-items:center}
+  .cta--grande{gap:8px;padding:12px 8px 12px 16px;font-size:clamp(13px,calc((100vw - 108px) * .0514),18px)}
   .cta--grande .cta-arrow{width:40px;height:40px}
 }
 
@@ -258,9 +262,17 @@ html.lenis{scroll-behavior:auto!important}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .seam{position:absolute;left:0;right:0;bottom:0;z-index:4;height:1px;background:linear-gradient(90deg,transparent,rgba(169,184,203,.45) 50%,transparent)}
 /* Rótulo do produto acima do H1: o escudo e o nome numa cápsula de vidro sobre a foto. */
-.hero-pill{align-self:flex-start;padding:7px 14px 7px 12px;border-radius:999px;font-size:14px;color:#C9D3E0;background:linear-gradient(180deg,rgba(22,36,58,.55),rgba(10,20,36,.5));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+/* Celular: "Conheça o método De Desprezado a Respeitado" em uma linha a partir de 380px (13px, ~290px de texto);
+   abaixo disso, duas linhas centradas. */
+.hero-pill{align-self:flex-start;padding:7px 13px 7px 11px;gap:8px;border-radius:999px;font-size:13px;line-height:1.3;color:#C9D3E0;background:linear-gradient(180deg,rgba(22,36,58,.55),rgba(10,20,36,.5));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 .notch{position:absolute;left:50%;bottom:-29px;z-index:5;transform:translateX(-50%);width:58px;height:58px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 0 8px #050A14,0 0 44px rgba(120,155,205,.3)}
 
+@media (min-width:380px) and (max-width:760px){
+  .hero-pill{white-space:nowrap}
+}
+@media (max-width:379px){
+  .hero-pill{text-align:center;text-wrap:balance}
+}
 @media (max-width:760px) and (min-height:940px){
   .hero{display:flex;flex-direction:column;justify-content:flex-end;min-height:100svh}
   .hero-copy{min-height:0;padding-bottom:0}
@@ -311,7 +323,7 @@ html.lenis{scroll-behavior:auto!important}
   .shade{background:var(--hero-sombra-esq),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
   .hero-inner{width:100%;gap:36px;padding:0 0 0 clamp(24px,6.5vw,128px)}
   .hero-copy{min-height:0;gap:30px;padding-bottom:0}
-  .hero-pill{padding:8px 16px 8px 14px;font-size:15px}
+  .hero-pill{gap:10px;padding:8px 16px 8px 14px;font-size:15px}
   .hero-copy,.chips{max-width:min(520px,38vw)}
   .chips{gap:12px}
 }
@@ -321,6 +333,8 @@ html.lenis{scroll-behavior:auto!important}
 /* Tablet (761 a 1023px): a foto fica mais estreita que a tela; o rosto (centro em x=3112 de 2566 de altura,
    1,213 vezes a altura) fica centrado no espaço à direita da coluna de texto (~72vw), sem a foto descobrir a borda. */
 @media (min-width:761px) and (max-width:1023px){
+  /* Tablet: a coluna do texto tem ~290px; o rótulo fica em uma linha e passa dela, sobre a parede. */
+  .hero-pill{font-size:13px;white-space:nowrap}
   .hero{
     --hero-foto-pos:clamp(calc(100cqw - max(100cqw, 177.7cqh)), calc(72cqw - 121.3cqh), 0px) 30%;
     /* O texto vai até ~45% da largura e a ponta da poltrona (couro com reflexo) fica atrás do fim do H1:
@@ -787,15 +801,24 @@ html:has(dialog[open]){overflow:hidden}
    além da margem interna, para o conteúdo ficar na mesma margem do resto. Ordem no código e no celular:
    o que você recebe e o preço; a partir de 1280px a grade põe a lista à esquerda e o preço à direita.
    Sem preço riscado (a copy não tem); a nota fica embaixo do botão. */
-.preco{margin:0 -10px;padding:24px 10px 22px;border-radius:20px;text-align:center;background:linear-gradient(180deg,rgba(46,68,102,.5),rgba(18,31,52,.55));border:1px solid rgba(201,211,224,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 50px -22px rgba(150,180,225,.45)}
-.preco-frase{max-width:28ch;margin:0 auto 14px;font-size:16.5px;line-height:1.45;color:var(--gelo);text-wrap:balance}
-.price-main{display:flex;justify-content:center;align-items:baseline;gap:10px;margin:6px 0 4px}
-.price-main small{font-size:18px;color:var(--nevoa);font-weight:400}
-.price-main b{font-weight:300;font-size:52px;line-height:1;letter-spacing:-.04em}
-.price-alt{font-size:15.5px;color:#B7C7DC}
-.preco .cta-ring{margin-top:22px}
-.preco .cta{text-align:left} /* o rótulo pode quebrar em duas linhas, alinhado como nos outros botões */
-.preco-nota{max-width:40ch;margin:16px auto 0;font-size:13.5px;line-height:1.5;color:var(--nevoa-2);text-wrap:pretty}
+/* Destaque do preço: a frase em cima, "12x de" pequeno acima do valor, "R$ 10,03" grande em 600 com o degradê
+   dos destaques e um brilho difuso atrás, "ou R$ 97 à vista" numa cápsula (sem backdrop-filter, pelo mesmo
+   motivo do bloco), o botão e, embaixo dele, o escudo com "Garantia de 7 dias" e a nota. O valor nunca quebra:
+   em 360px ele mede ~280px em 72px e o bloco tem 312px por dentro.
+   Celular: o bloco avança 12px além da margem interna do painel e tem 4px de recuo, para o botão da oferta (o
+   rótulo mais longo da página) caber em uma linha a partir de 375px. */
+.preco{margin:0 -12px;padding:26px 4px 22px;border-radius:20px;text-align:center;background:linear-gradient(180deg,rgba(52,76,112,.55),rgba(18,31,52,.6));border:1px solid rgba(201,211,224,.34);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 60px -14px rgba(150,180,225,.4)}
+.preco-frase{max-width:30ch;margin:0 auto 20px;font-size:16px;line-height:1.5;color:var(--nevoa);text-wrap:balance}
+.price-main{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:6px;margin:0}
+.price-main::before{content:"";position:absolute;left:50%;top:58%;z-index:-1;width:min(340px,100%);height:150px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(150,180,225,.26),rgba(150,180,225,0));pointer-events:none}
+.price-main small{font-size:15px;line-height:1.2;color:var(--nevoa);font-weight:400}
+.price-main b{font-weight:600;font-size:72px;line-height:1.05;letter-spacing:-.04em;white-space:nowrap}
+.price-alt{width:fit-content;margin:14px auto 0;padding:6px 14px;border-radius:999px;font-size:14.5px;line-height:1.3;color:#C9D3E0;background:linear-gradient(180deg,rgba(22,36,58,.7),rgba(10,20,36,.6));border:1px solid rgba(169,184,203,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.preco .cta-ring{margin-top:24px}
+.preco .cta{text-align:left}
+.preco-garantia{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:14.5px;font-weight:500;line-height:1.3;color:#C9D3E0}
+.preco-garantia::before{content:"";flex:none;width:11px;height:13px;background:linear-gradient(180deg,#F1F4F8,#8FA3BE);clip-path:polygon(50% 0,100% 13%,100% 46%,86% 74%,50% 100%,14% 74%,0 46%,0 13%)}
+.preco-nota{max-width:40ch;margin:10px auto 0;font-size:13.5px;line-height:1.5;color:var(--nevoa-2);text-wrap:pretty}
 /* Os três livros do método: o número no círculo de vidro (o mesmo das etapas do #caminho, menor e sem
    animação), uma linha pequena em destaque acima (a primeira frase), o nome do livro em 600 e a linha de apoio.
    Depois, o bloco "Do conhecimento à ação" com a engrenagem e os quatro materiais numa linha, separados por
@@ -814,9 +837,15 @@ html:has(dialog[open]){overflow:hidden}
 .acao-itens{margin-top:4px;font-size:14.5px;line-height:1.55;color:var(--nevoa)}
 .acao-itens span{padding:0 .3em;color:#8FA3BE}
 @media (max-width:760px){
-  /* Botão do painel: fonte menor e o anel 1px mais justo; o rótulo quebra em duas linhas parelhas. */
-  .panel .cta-ring{padding:4px}
-  .panel .cta{gap:10px;font-size:13.5px}
+  /* Botão da oferta: "Quero acessar o método completo" mede ~264px em 13px (com .02em) e o bloco tem a largura
+     da tela menos 44px por dentro. Anel de 3px, folgas apertadas, seta de 40px e a fonte acompanhando a tela:
+     13px em 375px, ~13,8px em 390px, ~15,8px em 430px. Abaixo de 375px, duas linhas, como os outros. */
+  .preco .cta-ring{padding:3px}
+  .preco .cta--grande{gap:4px;padding:12px 4px 12px 12px;letter-spacing:.02em}
+  .preco .cta--grande .cta-arrow{width:40px;height:40px}
+}
+@media (min-width:375px) and (max-width:760px){
+  .preco .cta--grande{font-size:clamp(13px,calc((100vw - 112px) * .0492),18px)}
 }
 
 /* Garantia: card de vidro dentro do #faq (id="garantia"). Celular e tablet: primeiro item do #faq,
@@ -910,10 +939,11 @@ html body #san-footer-badge{background:#000000!important}
      livros; o painel fica logo abaixo dela. */
   .metodo-cap{margin:calc(clamp(380px,50vw,720px) * -.21) auto 22px;padding:10px 20px 10px 16px;font-size:15px}
   .panel{max-width:640px;margin:0 auto;border-radius:30px;padding:40px 44px;gap:32px}
-  .preco{margin:0;padding:32px 28px 28px}
-  .preco-frase{font-size:17.5px}
-  .price-main b{font-size:68px}
-  .preco .cta-ring{display:flex}
+  .preco{margin:0;padding:34px 28px 28px}
+  .preco-frase{font-size:16px}
+  .price-main b{font-size:88px}
+  .price-main::before{width:min(420px,100%);height:180px}
+  .preco .cta-ring{display:flex;width:auto}
   .preco .cta{width:100%;justify-content:space-between}
 }
 
@@ -942,8 +972,8 @@ html body #san-footer-badge{background:#000000!important}
 @media (min-width:1280px){
   .panel{max-width:1152px;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:44px 48px}
   .metodo{grid-column:1 / span 6;align-self:center}
-  .preco{grid-column:7 / span 6;display:flex;flex-direction:column;justify-content:center;padding:28px 20px}
-  .preco .cta{gap:12px;padding-left:22px}
+  .preco{grid-column:7 / span 6;display:flex;flex-direction:column;justify-content:center;padding:32px 14px 28px}
+  .preco .cta{gap:12px;padding-left:24px}
 }
 
 /* Emenda #caminho / #oferta no celular: o palco começa atrás do título. A foto aparece inteira (os 80px de
@@ -1041,6 +1071,7 @@ html body #san-footer-badge{background:#000000!important}
 .tema-vibrante .hero .h1{position:relative;isolation:isolate}
 .tema-vibrante .hero .h1::before{content:"";position:absolute;z-index:-1;inset:-14% -6%;pointer-events:none;background:radial-gradient(closest-side,rgba(1,5,15,.72) 50%,rgba(1,5,15,0) 100%)}
 @media (min-width:761px) and (max-width:1023px){
+  .tema-vibrante .hero .hero-pill{font-size:11px;letter-spacing:.06em}
   .tema-vibrante .hero .h1::before{inset:-16% -22% -22% -8%;background:radial-gradient(closest-side,rgba(1,5,15,.85) 60%,rgba(1,5,15,0) 100%)}
 }
 @media (min-width:1024px){
@@ -1073,6 +1104,8 @@ html body #san-footer-badge{background:#000000!important}
 .tema-vibrante .qa details[open]{border-color:rgba(61,139,255,.45)}
 .tema-vibrante .counter{box-shadow:0 0 30px -12px rgba(61,139,255,.3)}
 .tema-vibrante .cartao-moldura{box-shadow:0 30px 60px -30px rgba(0,0,0,.9),0 0 30px -12px rgba(61,139,255,.3),inset 0 1px 0 rgba(255,255,255,.08)}
+.tema-vibrante .preco{border-color:rgba(61,139,255,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 60px -14px rgba(61,139,255,.4)}
+.tema-vibrante .price-main::before{background:radial-gradient(closest-side,rgba(61,139,255,.3),rgba(61,139,255,0))}
 .tema-vibrante .panel{box-shadow:0 50px 100px -40px rgba(0,0,0,.95),0 0 44px -14px rgba(61,139,255,.3),inset 0 1px 0 rgba(255,255,255,.07)}
 .tema-vibrante .g-card{box-shadow:0 40px 80px -40px rgba(0,0,0,.9),0 0 34px -12px rgba(61,139,255,.3),inset 0 1px 0 rgba(255,255,255,.07)}
 @media (hover:hover) and (pointer:fine){
@@ -1082,7 +1115,7 @@ html body #san-footer-badge{background:#000000!important}
 .tema-vibrante .cta-ring:has(.cta:active){box-shadow:0 0 44px -18px rgba(61,139,255,.6)}
 @media (max-width:760px){
   .tema-vibrante .hero-copy{text-align:center}
-  .tema-vibrante .hero-pill{align-self:center}
+  .tema-vibrante .hero-pill{align-self:center;padding:7px 11px 7px 10px;gap:7px;font-size:11px;letter-spacing:.02em}
   .tema-vibrante .glass{flex-direction:row;align-items:center;gap:10px;padding:10px}
 }
 </style>
@@ -1110,7 +1143,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="shade" aria-hidden="true"></div>
 <div class="hero-inner">
 <div class="hero-copy">
-<span class="pill hero-pill reveal-saida">De Desprezado a Respeitado</span>
+<span class="pill hero-pill reveal-saida">Conheça o método De Desprezado a Respeitado</span>
 <h1 class="h1 reveal-saida">Vou te mostrar como deixar de ser desprezado e <strong class="silver">voltar a ser respeitado dentro da sua própria casa.</strong></h1>
 <p class="lead reveal-saida">Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado. <span class="lead-2">Sem precisar brigar, implorar atenção ou viver com medo de <span class="inteira">perdê-la.</span></span></p>
 <div class="reveal-saida"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
@@ -1166,7 +1199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 })();
 </script>
 <p class="transf-frase reveal">O primeiro respeito que você precisa recuperar é <strong class="silver">o respeito por você mesmo.</strong></p>
-<div class="transf-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero começar minha mudança<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<div class="transf-cta reveal"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero começar minha mudança<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 </section>
 <section id="identificacao" class="ident">
@@ -1207,7 +1240,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><span class="et-num"><span class="et-rot">Etapa</span> <span class="et-n silver">2</span></span><div class="et-txt reveal"><h3>Aprenda a se posicionar</h3><p>Descubra como dizer não, reagir ao deboche, conversar com firmeza e estabelecer limites sem transformar tudo em uma briga.</p></div></li>
 <li><span class="et-num"><span class="et-rot">Etapa</span> <span class="et-n silver">3</span></span><div class="et-txt reveal"><h3>Coloque em prática por 30 dias</h3><p>Use exercícios, reflexões e ações diárias para desenvolver mais segurança, autonomia emocional e respeito próprio.</p></div></li>
 </ol>
-<div class="caminho-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero aprender o passo a passo<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<div class="caminho-cta reveal"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero aprender o passo a passo<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 <div class="armadura" aria-hidden="true">
 <div class="arm-brilho"></div>
 <svg class="arm-cheio" viewBox="0 0 200 240"><use href="#escudo"/></svg>
@@ -1252,7 +1285,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p class="preco-frase">Comece hoje a construir uma postura que você mesmo respeitaria.</p>
 <p class="price-main"><small>12x de</small> <b class="silver">R$&nbsp;10,03</b></p>
 <p class="price-alt">ou R$&nbsp;97 à vista.</p>
-<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero acessar o método completo<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></a></span>
+<span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero acessar o método completo<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></a></span>
+<p class="preco-garantia">Garantia de 7 dias</p>
 <p class="preco-nota">Acesso digital após a confirmação do pagamento. Material em PDF para ler no celular, tablet ou computador.</p>
 </div>
 </div>
@@ -1326,7 +1360,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <button type="button" class="seta" data-passo="1" aria-label="Próximo print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
 </div>
 <div class="wrap">
-<div class="autor-cta reveal"><span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero aprender com Marcello<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
+<div class="autor-cta reveal"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero aprender com Marcello<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
 </section>
 <section id="faq" class="faq">

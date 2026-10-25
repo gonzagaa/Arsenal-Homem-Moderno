@@ -20,7 +20,7 @@ Saem da página: #virada (palavras empilhadas), #antes-depois e #para-quem.
 
 ## 1. Hero (#hero)
 
-**Rótulo (pill com o escudo, acima do H1):** De Desprezado a Respeitado
+**Rótulo (pill com o escudo, acima do H1):** Conheça o método De Desprezado a Respeitado
 
 **H1:** Vou te mostrar como deixar de ser desprezado e **voltar a ser respeitado dentro da sua própria casa.**
 
@@ -110,6 +110,7 @@ Sem rótulo.
 - 12x de **R$ 10,03**
 - ou R$ 97 à vista.
 - Botão: Quero acessar o método completo
+- Abaixo do botão, com o escudo: Garantia de 7 dias
 - Nota: Acesso digital após a confirmação do pagamento. Material em PDF para ler no celular, tablet ou computador.
 
 ## 6. Quem está por trás (#autor), com a prova social

@@ -45,6 +45,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Capa oficial dourada definitiva (sai o `?capa=`) | aprovada |
 | Botões em maiúsculas e variação de identidade `?tema=vibrante` | aprovada |
 | H1 novo e #oferta com os três livros do método | aprovada |
+| Rodada B: botões grandes em toda a página, preço em destaque e rótulo novo do hero | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -442,6 +443,13 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Cápsula de vidro "3 materiais integrados + aplicação prática" com o ícone de camadas, sobe por cima do pé do palco no lugar de onde o painel subia; sempre em uma linha (fonte de 12,5 a 14px no celular, 15px a partir de 761px). O painel fica logo abaixo dela.
 - Painel: os três livros (número no círculo de vidro, linha de destaque com `--prata`, nome em 600 e apoio em `--nevoa`) e o bloco "Do conhecimento à ação" com a engrenagem e os quatro materiais separados por ponto médio. Preço igual; botão "Quero acessar o método completo". No `?tema=vibrante`, círculos e cápsula com borda azul e destaques em azul.
 - `docs/copy.md` (H1 e seção 5) e `CLAUDE.md` atualizados. O botão do preço ainda quebra em duas linhas no celular: fica para a rodada seguinte (botões iguais).
+
+### Rodada B: botões iguais, preço em destaque e rótulo do hero (2026-10-25)
+
+- Os seis botões de compra (hero, #transformacao, #caminho, #oferta, #autor, #fechamento) com `.cta--grande`: 76px de altura, maiúsculas, seta no círculo, cada um com o seu texto. Barra fixa com o botão compacto.
+- Uma linha a partir de 375px (ajuste pedido na aprovação; antes era 400px), duas linhas parelhas abaixo. No celular, o anel que passa da coluna sai por igual dos dois lados (o pai vira flex centrado), a pelo menos 12px das bordas. Fonte `clamp(13px, (100vw - 108px) * .0514, 18px)`; botão da oferta `clamp(13px, (100vw - 112px) * .0492, 18px)` com .02em, anel de 3px, folgas 12/4px e seta de 40px. Medido (todos em uma linha, nos dois temas): 375px 13,72px (oferta 13px); 390px 14,49 (13,68); 393px 14,65 (13,83); 412px 15,63 (14,76); 430px 16,55 (15,65); desktop 18px. Em 360px, duas linhas com 18px.
+- Bloco de preço: frase em cima (16px, `--nevoa`), "12x de" pequeno acima, "R$ 10,03" com 72px no celular e 88px a partir de 761px, 600, degradê `--prata` e brilho radial atrás (azul no vibrante), sem quebra (281px em 360px); "ou R$ 97 à vista" numa cápsula sem backdrop-filter; borda mais clara e brilho externo; depois do botão, o escudo com "Garantia de 7 dias"; a nota embaixo. No celular o bloco avança 12px além da margem do painel, com 4px de recuo.
+- Rótulo do hero: "Conheça o método De Desprezado a Respeitado". Padrão 13px no celular e no tablet; vibrante 11px com .02em no celular e .06em no tablet (desktop sem mudança). Uma linha a partir de 380px (também no tablet, passando da coluna sobre a parede); abaixo, duas linhas centradas. Abaixo da barba em todas as telas (mínimo 6px no vibrante em 360x640).
 
 ## Pendências técnicas (do projeto, não do cliente)
 
