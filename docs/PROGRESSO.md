@@ -46,6 +46,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Botões em maiúsculas e variação de identidade `?tema=vibrante` | aprovada |
 | H1 novo e #oferta com os três livros do método | aprovada |
 | Rodada B: botões grandes em toda a página, preço em destaque e rótulo novo do hero | aprovada |
+| Rodada C: consolidação da identidade oficial (antes `?tema=vibrante`) e dos nossos cards | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -450,6 +451,15 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Uma linha a partir de 375px (ajuste pedido na aprovação; antes era 400px), duas linhas parelhas abaixo. No celular, o anel que passa da coluna sai por igual dos dois lados (o pai vira flex centrado), a pelo menos 12px das bordas. Fonte `clamp(13px, (100vw - 108px) * .0514, 18px)`; botão da oferta `clamp(13px, (100vw - 112px) * .0492, 18px)` com .02em, anel de 3px, folgas 12/4px e seta de 40px. Medido (todos em uma linha, nos dois temas): 375px 13,72px (oferta 13px); 390px 14,49 (13,68); 393px 14,65 (13,83); 412px 15,63 (14,76); 430px 16,55 (15,65); desktop 18px. Em 360px, duas linhas com 18px.
 - Bloco de preço: frase em cima (16px, `--nevoa`), "12x de" pequeno acima, "R$ 10,03" com 72px no celular e 88px a partir de 761px, 600, degradê `--prata` e brilho radial atrás (azul no vibrante), sem quebra (281px em 360px); "ou R$ 97 à vista" numa cápsula sem backdrop-filter; borda mais clara e brilho externo; depois do botão, o escudo com "Garantia de 7 dias"; a nota embaixo. No celular o bloco avança 12px além da margem do painel, com 4px de recuo.
 - Rótulo do hero: "Conheça o método De Desprezado a Respeitado". Padrão 13px no celular e no tablet; vibrante 11px com .02em no celular e .06em no tablet (desktop sem mudança). Uma linha a partir de 380px (também no tablet, passando da coluna sobre a parede); abaixo, duas linhas centradas. Abaixo da barba em todas as telas (mínimo 6px no vibrante em 360x640).
+
+### Rodada C: consolidação (2026-10-25)
+
+- O cliente aprovou `?tema=vibrante&cards=nossos`, que virou a página sem parâmetros. Conferido: a raiz ficou idêntica, pixel a pixel, ao `?tema=vibrante&cards=nossos` de antes, em 360, 390, 768, 1280 e 1440px (página inteira, mesma altura).
+- Identidade: a classe `.tema-vibrante` fica fixa no `<html>` e o script do `?tema=` saiu. As regras continuam no fim do `<style>`, sob a classe, por cima da camada base prateada (juntar tudo no CSS base seriam dezenas de trocas espalhadas, com risco de mudar algo sem querer).
+- Cards: os nossos cards ficam direto na lista; saíram o `<template>`, o script do `?cards=`, as regras `.cartao img` das artes, as artes `card-0N-original.png` e os 48 derivados; o otimizador perdeu `CARDS`, `LARGURAS_CARD` e o perfil `CARD`.
+- Checkout: `tema` e `cards` vão para o checkout como qualquer parâmetro; só `rastreio` continua fora.
+- `og.jpg` refeito com a identidade oficial: rótulo "Conheça o método De Desprezado a Respeitado" na cápsula azul (13,5px, .16em, uma linha) e H1 em 700 com o destaque azul.
+- `CLAUDE.md` ("Identidade oficial" no lugar da variação para teste, cores, pesos, botão, exceção do rótulo do hero, cards), `docs/copy.md` e `PENDENCIAS.md` (identidade e cards resolvidos; itens do produto atualizados para os três livros) atualizados. As seções anteriores deste arquivo que citam `?tema=` e `?cards=` ficam como histórico.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

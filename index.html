@@ -1,13 +1,8 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="tema-vibrante">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<script>
-// Variação de identidade para teste: ?tema=vibrante põe a classe .tema-vibrante no <html> antes da pintura
-// (todo o resto da variação fica no CSS, sob essa classe). Qualquer outro valor é ignorado.
-if (/[?&]tema=vibrante(&|$)/.test(location.search)) document.documentElement.classList.add('tema-vibrante');
-</script>
 <script>
 // Rastreio desligado no localhost (Live Server), para as conferências não virarem dados reais no GTM, no pixel
 // e no Gateway. Para testar no "Testar eventos" do Gerenciador de Eventos, abra com ?rastreio=1.
@@ -375,9 +370,8 @@ html.lenis{scroll-behavior:auto!important}
   }
 }
 
-/* A transformação (#transformacao). Os quatro cards são, por enquanto, a arte original de cada um (o texto
-   está dentro da imagem e, inteiro, no alt), numa moldura de vidro escuro com cantos arredondados: uma coluna
-   no celular, 2 x 2 a partir de 761px. Sem backdrop-filter na moldura: o card tem .reveal, e o filter dele
+/* A transformação (#transformacao). Os quatro cards (foto com o texto real por cima, ver abaixo) numa moldura de
+   vidro escuro com cantos arredondados: uma coluna no celular, 2 x 2 a partir de 761px. Sem backdrop-filter na moldura: o card tem .reveal, e o filter dele
    cortaria o fundo do vidro. Nada aqui é clicável, então nada tem hover.
    Emenda com o hero: o círculo e a linha de luz do fim do hero (elemento sobre a emenda).
    Emenda com a #identificacao: a luz de baixo (::after) atravessa a emenda e continua por trás do começo da
@@ -387,8 +381,6 @@ html.lenis{scroll-behavior:auto!important}
 .transf::after{content:"";position:absolute;left:50%;bottom:-340px;z-index:-1;width:1100px;height:680px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.26),rgba(30,58,104,0))}
 .cartoes{list-style:none;padding:0;max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
 .cartao-moldura{display:block;padding:10px;border-radius:22px;background:linear-gradient(180deg,rgba(24,38,60,.72),rgba(9,17,31,.9));border:1px solid rgba(169,184,203,.18);box-shadow:0 30px 60px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
-/* O raio esconde os cantos arredondados desenhados na própria arte (~30px no original de 1500px). */
-.cartao img{width:100%;border-radius:13px}
 .transf-frase{max-width:22ch;margin:56px auto 0;text-align:center;font-weight:300;font-size:26px;line-height:1.18;letter-spacing:-.03em;text-wrap:balance}
 .transf-frase strong{font-weight:600}
 .transf-cta{margin-top:28px;text-align:center}
@@ -399,11 +391,10 @@ html.lenis{scroll-behavior:auto!important}
   /* O card da direita entra logo depois do da esquerda. */
   .cartao:nth-child(even){--rv-atraso:4svh}
   .cartao-moldura{border-radius:26px}
-  .cartao img{border-radius:16px}
   .transf-frase{max-width:24ch;margin-top:80px;font-size:clamp(28px,3vw,42px)}
   .transf-cta{margin-top:36px}
 }
-/* Nossos cards (comparação, só com ?cards=nossos; ver o <template> na #transformacao). A foto cobre o card, um
+/* Cards da #transformacao. A foto cobre o card, um
    degradê do azul-noite cobre o lado do texto, e o texto é real: no alto, o número em prata no círculo de vidro
    do trilho (sem backdrop-filter: o card tem .reveal), com um fio prateado ao lado; embaixo, o título (300, com
    o final em 600 prateado) e a linha em --nevoa, com no máximo ~34 caracteres por linha. Mesma moldura dos cards
@@ -1052,8 +1043,9 @@ html body #san-footer-badge{background:#000000!important}
   .barra,.barra.visivel{transition:none}
 }
 
-/* Variação de identidade para teste (?tema=vibrante; o script no topo do <head> põe .tema-vibrante no <html>
-   antes da pintura). A versão sem a classe é a padrão. Fundo, foto do hero, capa e layout não mudam.
+/* Identidade oficial (aprovada pelo cliente em 25/10, antes testada como ?tema=vibrante): a classe .tema-vibrante
+   fica fixa no <html> e as regras abaixo vêm por cima da camada base (prateada) do resto do CSS, que continua
+   valendo onde a identidade não muda nada. Fundo, foto do hero, capa e layout são os mesmos.
    - Destaques (o degradê prateado dos trechos em destaque) em azul vivo, de #8FD0FF a #3D8BFF, com brilho
      suave; o texto principal em #FFFFFF. O palco (fotos e capas) não muda.
    - H1 inteiro em 700; títulos de seção em 600 com o destaque em 700; letter-spacing de -0.02em.
@@ -1169,35 +1161,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 class="h2 reveal">Chega de viver com medo de desagradar. <strong class="silver">Aprenda a ser um homem que sabe se posicionar.</strong></h2>
 <p class="sec-sub reveal">Você não precisa se tornar agressivo para ser firme e ser um homem de verdade.</p>
 </div>
-<!-- Cards: por enquanto, a arte original de cada card (com o texto dentro), recortada e otimizada pelo
-     scripts/otimizar-imagens.mjs (CARDS). O texto completo de cada card está no alt. -->
+<!-- Cards: foto sem texto (assets/img/cards/card-0N-nosso.jpg) com o número, o título e a linha em texto real. -->
 <ul class="cartoes">
-<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-01-400.avif 400w, assets/img/opt/card-01-640.avif 640w, assets/img/opt/card-01-960.avif 960w, assets/img/opt/card-01-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-01-400.webp 400w, assets/img/opt/card-01-640.webp 640w, assets/img/opt/card-01-960.webp 960w, assets/img/opt/card-01-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-01-640.jpg" srcset="assets/img/opt/card-01-400.jpg 400w, assets/img/opt/card-01-640.jpg 640w, assets/img/opt/card-01-960.jpg 960w, assets/img/opt/card-01-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 01. Recupere sua voz. Aprenda a falar o que pensa sem precisar levantar a voz ou pedir desculpas por tudo."></picture></span></li>
-<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-02-400.avif 400w, assets/img/opt/card-02-640.avif 640w, assets/img/opt/card-02-960.avif 960w, assets/img/opt/card-02-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-02-400.webp 400w, assets/img/opt/card-02-640.webp 640w, assets/img/opt/card-02-960.webp 960w, assets/img/opt/card-02-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-02-640.jpg" srcset="assets/img/opt/card-02-400.jpg 400w, assets/img/opt/card-02-640.jpg 640w, assets/img/opt/card-02-960.jpg 960w, assets/img/opt/card-02-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 02. Imponha limites. Saiba reagir a deboches, ofensas e atitudes desrespeitosas sem perder o controle."></picture></span></li>
-<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-03-400.avif 400w, assets/img/opt/card-03-640.avif 640w, assets/img/opt/card-03-960.avif 960w, assets/img/opt/card-03-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-03-400.webp 400w, assets/img/opt/card-03-640.webp 640w, assets/img/opt/card-03-960.webp 960w, assets/img/opt/card-03-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-03-640.jpg" srcset="assets/img/opt/card-03-400.jpg 400w, assets/img/opt/card-03-640.jpg 640w, assets/img/opt/card-03-960.jpg 960w, assets/img/opt/card-03-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 03. Pare de implorar atenção. Deixe de depender da aprovação da sua esposa para se sentir valorizado."></picture></span></li>
-<li class="cartao reveal"><span class="cartao-moldura"><picture><source type="image/avif" srcset="assets/img/opt/card-04-400.avif 400w, assets/img/opt/card-04-640.avif 640w, assets/img/opt/card-04-960.avif 960w, assets/img/opt/card-04-1280.avif 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><source type="image/webp" srcset="assets/img/opt/card-04-400.webp 400w, assets/img/opt/card-04-640.webp 640w, assets/img/opt/card-04-960.webp 960w, assets/img/opt/card-04-1280.webp 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)"><img src="assets/img/opt/card-04-640.jpg" srcset="assets/img/opt/card-04-400.jpg 400w, assets/img/opt/card-04-640.jpg 640w, assets/img/opt/card-04-960.jpg 960w, assets/img/opt/card-04-1280.jpg 1280w" sizes="(min-width: 761px) calc((min(100vw - 128px, 1080px) - 24px) / 2 - 22px), calc(100vw - 66px)" width="1500" height="990" loading="lazy" decoding="async" alt="Transformação 04. Volte a ser seguro. Aprenda a tomar decisões sem viver dominado pelo medo de perdê-la."></picture></span></li>
-</ul>
-<!-- Nossos cards, só para comparação (?cards=nossos): foto sem texto (assets/img/cards/card-0N-nosso.jpg) com
-     o número, o título e a linha em texto real. O <template> não é desenhado nem baixa as fotos; o script logo
-     abaixo troca a lista antes de o navegador pedir as imagens. -->
-<template id="cartoes-nossos">
 <li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-01-nosso-480.avif 480w, assets/img/opt/card-01-nosso-768.avif 768w, assets/img/opt/card-01-nosso-1152.avif 1152w, assets/img/opt/card-01-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-01-nosso-480.webp 480w, assets/img/opt/card-01-nosso-768.webp 768w, assets/img/opt/card-01-nosso-1152.webp 1152w, assets/img/opt/card-01-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-01-nosso-768.jpg" srcset="assets/img/opt/card-01-nosso-480.jpg 480w, assets/img/opt/card-01-nosso-768.jpg 768w, assets/img/opt/card-01-nosso-1152.jpg 1152w, assets/img/opt/card-01-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">01</span></span></div><div class="cn-texto"><h3 class="cn-ti">Recupere <strong class="silver">sua voz</strong></h3><p class="cn-linha">Aprenda a falar o que pensa sem precisar levantar a voz ou pedir desculpas por tudo.</p></div></div></div></li>
 <li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-02-nosso-480.avif 480w, assets/img/opt/card-02-nosso-768.avif 768w, assets/img/opt/card-02-nosso-1152.avif 1152w, assets/img/opt/card-02-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-02-nosso-480.webp 480w, assets/img/opt/card-02-nosso-768.webp 768w, assets/img/opt/card-02-nosso-1152.webp 1152w, assets/img/opt/card-02-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-02-nosso-768.jpg" srcset="assets/img/opt/card-02-nosso-480.jpg 480w, assets/img/opt/card-02-nosso-768.jpg 768w, assets/img/opt/card-02-nosso-1152.jpg 1152w, assets/img/opt/card-02-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">02</span></span></div><div class="cn-texto"><h3 class="cn-ti">Imponha <strong class="silver">limites</strong></h3><p class="cn-linha">Saiba reagir a deboches, ofensas e atitudes desrespeitosas sem perder o controle.</p></div></div></div></li>
 <li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-03-nosso-480.avif 480w, assets/img/opt/card-03-nosso-768.avif 768w, assets/img/opt/card-03-nosso-1152.avif 1152w, assets/img/opt/card-03-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-03-nosso-480.webp 480w, assets/img/opt/card-03-nosso-768.webp 768w, assets/img/opt/card-03-nosso-1152.webp 1152w, assets/img/opt/card-03-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-03-nosso-768.jpg" srcset="assets/img/opt/card-03-nosso-480.jpg 480w, assets/img/opt/card-03-nosso-768.jpg 768w, assets/img/opt/card-03-nosso-1152.jpg 1152w, assets/img/opt/card-03-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">03</span></span></div><div class="cn-texto"><h3 class="cn-ti">Pare de implorar <strong class="silver">atenção</strong></h3><p class="cn-linha">Deixe de depender da aprovação da sua esposa para se sentir valorizado.</p></div></div></div></li>
 <li class="cartao cartao-nosso reveal"><div class="cartao-moldura"><div class="cn"><picture class="cn-foto"><source type="image/avif" srcset="assets/img/opt/card-04-nosso-480.avif 480w, assets/img/opt/card-04-nosso-768.avif 768w, assets/img/opt/card-04-nosso-1152.avif 1152w, assets/img/opt/card-04-nosso-1536.avif 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><source type="image/webp" srcset="assets/img/opt/card-04-nosso-480.webp 480w, assets/img/opt/card-04-nosso-768.webp 768w, assets/img/opt/card-04-nosso-1152.webp 1152w, assets/img/opt/card-04-nosso-1536.webp 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)"><img src="assets/img/opt/card-04-nosso-768.jpg" srcset="assets/img/opt/card-04-nosso-480.jpg 480w, assets/img/opt/card-04-nosso-768.jpg 768w, assets/img/opt/card-04-nosso-1152.jpg 1152w, assets/img/opt/card-04-nosso-1536.jpg 1536w" sizes="(min-width: 1024px) calc(((min(100vw - 128px, 1080px) - 24px) / 2 - 22px) * 1.125), (min-width: 761px) calc(((100vw - 152px) / 2 - 22px) * 1.875), calc((100vw - 66px) * 1.875)" width="1536" height="1024" loading="lazy" decoding="async" alt=""></picture><div class="cn-topo"><span class="cn-num"><span class="silver">04</span></span></div><div class="cn-texto"><h3 class="cn-ti">Volte a ser <strong class="silver">seguro</strong></h3><p class="cn-linha">Aprenda a tomar decisões sem viver dominado pelo medo de perdê-la.</p></div></div></div></li>
-</template>
-<script>
-// Comparação dos cards da #transformacao, só por parâmetro: ?cards=nossos troca as artes do cliente pelos nossos
-// cards (do <template> logo acima). Qualquer outro valor é ignorado. Fica logo depois da lista para a troca
-// acontecer antes de o navegador pedir as imagens: com o parâmetro, as artes do cliente não são baixadas; sem
-// ele, as nossas fotos não são.
-(function () {
-  if (new URLSearchParams(location.search).get('cards') !== 'nossos') return;
-  var lista = document.querySelector('.cartoes');
-  var modelo = document.getElementById('cartoes-nossos');
-  if (lista && modelo) lista.replaceChildren(modelo.content.cloneNode(true));
-})();
-</script>
+</ul>
 <p class="transf-frase reveal">O primeiro respeito que você precisa recuperar é <strong class="silver">o respeito por você mesmo.</strong></p>
 <div class="transf-cta reveal"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero começar minha mudança<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
@@ -1457,8 +1427,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var links = document.querySelectorAll('a[href^="https://chk.eduzz.com/"]');
   var params = new URLSearchParams(location.search);
   params.delete('rastreio'); // chave de teste do rastreio no localhost, não vai para o checkout
-  params.delete('cards'); // chaves da comparação dos cards e da variação de identidade, também não vão para
-  params.delete('tema'); // o checkout
   links.forEach(function (a) {
     if (params.toString()) {
       var url = new URL(a.href);

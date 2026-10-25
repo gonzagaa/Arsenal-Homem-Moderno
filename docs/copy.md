@@ -1,6 +1,6 @@
 # Copy final v3: De Desprezado a Respeitado (página curta)
 
-Reformulação comercial pedida pelo cliente: página mais curta, direta e orientada à compra. Substitui a copy v2. Use palavra por palavra. O trecho em **negrito** é o destaque (peso 600 com o degradê prateado). Botões, rótulos e títulos sempre em caixa normal, nunca em maiúsculas.
+Reformulação comercial pedida pelo cliente: página mais curta, direta e orientada à compra. Substitui a copy v2. Use palavra por palavra. O trecho em **negrito** é o destaque (peso 700 com o degradê azul da identidade oficial). O texto vai aqui em caixa normal; na página, os botões e o rótulo do hero aparecem em maiúsculas por CSS.
 
 Domínio: https://nunca-mais-seja-desprezado.com.br/
 Checkout (provisório, vai mudar): https://chk.eduzz.com/7WXGDYN20A

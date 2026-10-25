@@ -39,17 +39,17 @@ Quando o mockup e a copy discordarem num texto, a copy manda. Quando discordarem
 | `--abismo-hero` | #01050F | Fundo do hero, casa com a borda da foto |
 | `--noite` | #0C1729 | Seções intermediárias (fundo do #caminho) |
 | `--aco-1` | #16243A | Superfícies, círculos de ícone |
-| `--gelo` | #E9EEF5 | Texto principal |
+| `--gelo` | #FFFFFF | Texto principal (na camada base, #E9EEF5) |
 | `--nevoa` | #AEBBCC | Texto de apoio |
 | `--nevoa-2` | #93A3B8 | Legendas |
-| `--prata` | degradê #FFFFFF → #D9E2EE → #9FB2CB | Destaques de título (texto com `background-clip`) |
+| `--prata` | degradê azul #8FD0FF → #3D8BFF, com brilho suave (`text-shadow` azul a 25%) | Destaques de título e de preço (texto com `background-clip`). O nome ficou da camada base, que era prateada (#FFFFFF → #D9E2EE → #9FB2CB) |
 
-Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da página. O azul vem das fotos; a interface é azul-noite e prata.
+A interface é azul-noite com os destaques em azul (identidade aprovada pelo cliente; ver Identidade oficial). Nenhum neon, roxo ou outra cor saturada. Nenhum botão de cor que destoe da página: o botão continua prateado.
 
 ### Tipografia
 
-- Geist em tudo. O contraste vem do peso: títulos em 300, o trecho de destaque em 600 com o degradê prateado.
-- Títulos com `letter-spacing` negativo (cerca de -0.03em) e `text-wrap: balance`.
+- Geist em tudo. H1 inteiro em 700; títulos de seção (`.h2`) em 600 com o destaque em 700, no degradê azul.
+- Títulos com `letter-spacing` negativo (-0.02em) e `text-wrap: balance`.
 - O H1 é uma frase corrida, sem quebra forçada.
 - Corpo entre 16 e 18 px, `line-height` 1.6 a 1.7, linha com no máximo uns 60 caracteres.
 
@@ -58,10 +58,10 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 - Vidro: degradê escuro translúcido + `backdrop-filter: blur(16 a 20px)` + borda de 1 px em prata a 15 a 20 por cento + brilho interno no topo. Só onde há imagem ou luz atrás.
 - Grão sutil por cima da página inteira (`assets/img/grain.png`, `mix-blend-mode: overlay`).
 - Luz: cada seção tem um ponto de luz difusa (radial azul-noite), nunca fundo chapado.
-- Botão principal: pílula prateada metálica com texto escuro, dentro de um anel de vidro com brilho difuso, seta num círculo escuro e um reflexo que atravessa o botão a cada poucos segundos (desligado com `prefers-reduced-motion`). Ao passar o mouse ou com foco pelo teclado: o reflexo passa na hora, o botão sobe 2 px, clareia, o anel ganha brilho embaixo e a seta sai pela direita do círculo e volta pela esquerda (300 ms, `cubic-bezier(.2,.8,.2,1)`). No `:active`, em todos os aparelhos e também no botão da barra fixa: `scale(.98)` e menos brilho. Sem movimento, só o brilho muda.
+- Botão principal: pílula prateada metálica com texto escuro, dentro de um anel de vidro (borda #3D8BFF a 60% e brilho azul), seta branca num círculo em degradê de #2F6FE0 a #0E2F70 e um reflexo que atravessa o botão a cada poucos segundos (desligado com `prefers-reduced-motion`). Ao passar o mouse ou com foco pelo teclado: o reflexo passa na hora, o botão sobe 2 px, clareia, o anel ganha brilho embaixo e a seta sai pela direita do círculo e volta pela esquerda (300 ms, `cubic-bezier(.2,.8,.2,1)`). No `:active`, em todos os aparelhos e também no botão da barra fixa: `scale(.98)` e menos brilho. Sem movimento, só o brilho muda.
 - Botões em maiúsculas (pedido do cliente, vale para a página inteira): todos os botões de compra e de ação, inclusive o da barra fixa, com o texto em maiúsculas por CSS (`text-transform: uppercase`), `letter-spacing: .04em` e peso 600. No HTML, o texto continua em caixa normal. Só os botões: rótulos, títulos e o resto da página continuam em caixa normal.
 - Botão grande (`.cta--grande`) em todos os botões de compra (hero, #transformacao, #caminho, #oferta, #autor e #fechamento), cada um com o seu texto: o mesmo botão principal, com o mesmo prateado e os mesmos efeitos, com 76 px de altura e a seta no círculo. A barra fixa continua com o botão compacto. A partir de 375 px de tela (os iPhones de 390 e 393 px incluídos), o rótulo fica em uma linha e o botão acompanha o texto, mesmo que passe da coluna (centrado, a pelo menos 12 px das bordas da tela); abaixo de 375 px, quebra em duas linhas parelhas. No celular, a fonte vai de 13,7 px em 375 px a 18 px em ~458 px; no desktop, 18 px (mínimos: 13 px no celular, com espaçamento até .02em, folgas menores e o círculo da seta com pelo menos 40 px; 17 px no desktop. Se não couber, reduza a fonte antes de deixar quebrar). O botão da oferta ("Quero acessar o método completo", o rótulo mais longo, dentro do bloco de preço) tem conta própria: 13 px em 375 px, ~13,8 px em 390 px e ~15,6 px em 430 px, com .02em e o anel de 3 px.
-- Cards da #transformacao: por enquanto, cada card é a arte original do cliente (`assets/img/cards/card-0N-original.png`, com número, título e linha dentro da imagem), recortada e otimizada pelo `scripts/otimizar-imagens.mjs` (`CARDS`: o recorte tira a margem colorida da arte; com outra arte, meça de novo) e servida em `<picture>` (AVIF, WebP e JPG, de 400 a 1280 px). Moldura de vidro escuro com cantos arredondados (o raio esconde os cantos desenhados na arte), sem hover (não são clicáveis) e com o texto completo do card no `alt`. Uma coluna no celular, 2 x 2 a partir de 761 px. As artes têm caixa alta, fonte condensada e cores saturadas, fora das regras abaixo: exceção aceita pelo cliente por enquanto, só dentro das imagens; o texto da página continua seguindo as regras. Só para comparação, `?cards=nossos` troca as artes pelos nossos cards (fotos sem texto `assets/img/cards/card-0N-nosso.jpg`, com número, título e linha em texto real, num `<template>` logo depois da lista); sem o parâmetro, nada muda e as fotos não são baixadas. É o único parâmetro de comparação da página, e não vai para o checkout.
+- Cards da #transformacao: foto sem texto (`assets/img/cards/card-0N-nosso.jpg`, otimizada pelo `scripts/otimizar-imagens.mjs` de 480 a 1536 px) cobrindo o card, com um degradê azul-noite do lado do texto e o texto real por cima: o número no círculo de vidro com um fio prateado, o título (com o final em destaque) e a linha em `--nevoa`. Moldura de vidro escuro com cantos arredondados, sem hover (não são clicáveis). Uma coluna no celular (card 4:5, texto embaixo), 2 x 2 a partir de 761 px (4:3 a partir de 1024 px, texto à esquerda).
 - Ícone da marca: o escudo (SVG do mockup). Usado em rótulos, listas e selo de garantia.
 
 ### Regras que não se negociam
@@ -70,27 +70,28 @@ Nenhum azul elétrico, neon ou cor saturada. Nenhum botão de cor que destoe da 
 - Emenda entre seções não é espaço vazio. Toda passagem de uma seção para outra tem um elemento que pertence às duas: luz que atravessa, imagem que começa antes, objeto sobre a emenda ou conteúdo que sobe por cima. No desktop, no máximo uns 200 px de vazio entre o último conteúdo de uma seção e o primeiro da próxima.
 - A foto do hero ocupa todo o fundo do hero, no desktop e no celular.
 - As duas versões do hero (`hero-mobile.png` e `hero-desktop.png`) usam a mesma foto do Marcello: o banner do desktop é a foto do celular ampliada para os lados. Qualquer troca futura precisa manter isso.
-- Rótulo de seção é texto em caixa normal com o pequeno escudo prateado. Nunca caixa alta com letras espaçadas e fio decorativo. (Exceção: o rótulo do hero na variação `?tema=vibrante`, pedido do cliente; ver abaixo.)
+- Rótulo de seção é texto em caixa normal com o pequeno escudo prateado. Nunca caixa alta com letras espaçadas e fio decorativo. (Exceção aprovada pelo cliente: o rótulo do hero, em maiúsculas espaçadas; ver Identidade oficial.)
 - Nunca usar travessão (—) em nenhum texto.
-- Nunca usar: fonte condensada, Inter, Roboto, emoji, cards idênticos com ícone, animação de entrada fora do Sistema de movimento (fade-and-slide-up disparado por tempo, cascata com delay), gradiente roxo ou azul vivo, cantos e sombras iguais em tudo.
+- Nunca usar: fonte condensada, Inter, Roboto, emoji, cards idênticos com ícone, animação de entrada fora do Sistema de movimento (fade-and-slide-up disparado por tempo, cascata com delay), gradiente roxo, azul vivo fora dos destaques de texto, cantos e sombras iguais em tudo.
 - Nunca inventar depoimento, número, prazo, conteúdo de manual ou prova social. O que não estiver na copy não existe.
 - Nunca colocar efeito de hover em elemento que não é clicável. Hover só em link, botão e controle interativo.
 
-### Variação de identidade para teste (`?tema=vibrante`)
+### Identidade oficial
 
-A versão sem parâmetro é a padrão. Com `?tema=vibrante`, um script no topo do `<head>` põe a classe `.tema-vibrante` no `<html>` antes da pintura; tudo da variação fica no CSS, sob essa classe (no fim do `<style>`), trocando variáveis sempre que possível. O H1 é o mesmo nas duas versões. Funciona junto com `?cards=nossos`; `tema` não vai para o checkout; valor desconhecido é ignorado. Fundo, foto do hero, capa e layout não mudam.
+Aprovada pelo cliente em 25/10/2026 (antes testada como `?tema=vibrante`). A classe `.tema-vibrante` fica fixa no `<html>` e as regras da identidade ficam no fim do `<style>`, sob essa classe, por cima da camada base (prateada) do resto do CSS, trocando variáveis sempre que possível. Não há mais parâmetros de comparação na página.
 
-- Destaques (`--prata`) em azul vivo, de #8FD0FF a #3D8BFF, com brilho suave (`text-shadow` azul a 25%); texto principal (`--gelo`) em #FFFFFF. O "30" do caderno da mesa continua prateado.
-- H1 inteiro em 700; títulos de seção (`.h2`) em 600 com o destaque em 700; `letter-spacing: -0.02em`. Números das etapas em 700. O título da oferta fica com até 900 px, para continuar em duas linhas (a emenda do escudo conta com duas).
-- Hero: a segunda frase da subheadline (`.lead-2`) em 600 e branca; rótulo com borda #3D8BFF, brilho azul e texto em maiúsculas espaçadas (.2em); no celular, rótulo, H1, subheadline e botão centralizados. Sombra presa ao H1 mais forte e também no tablet: o azul é mais escuro que o prateado (contraste mínimo medido de 5,1:1).
+- Destaques (`--prata`) em azul, de #8FD0FF a #3D8BFF, com brilho suave; texto principal (`--gelo`) em #FFFFFF.
+- H1 inteiro em 700; títulos de seção em 600 com o destaque em 700; `letter-spacing: -0.02em`. Números das etapas e dos livros da oferta em 700.
+- Hero: a segunda frase da subheadline (`.lead-2`) em 600 e branca; rótulo com borda #3D8BFF, brilho azul e texto em maiúsculas espaçadas (.2em no desktop; .06em no tablet e .02em no celular, em 11 px, para caber em uma linha a partir de 380 px); no celular, rótulo, H1, subheadline e botão centralizados. Sombra presa ao H1 mais forte e também no tablet: o azul é mais escuro que o prateado (contraste mínimo medido de 5,1:1).
 - Caixas de números do hero: ícone à esquerda e um fio vertical (também no celular); a logo do Instagram em cores (SVG) e um grupo de pessoas em #3D8BFF.
-- Botões: o mesmo prateado; o anel com borda #3D8BFF a 60% e brilho azul mais forte; o círculo da seta em degradê de #2F6FE0 a #0E2F70, com a seta branca.
-- Cards e painéis de vidro (cards do hero, checklist e contador, cards da transformação, painel da oferta, garantia, FAQ): borda azul (#3D8BFF a 30%) e brilho azul bem suave.
+- Botões em maiúsculas, prateados, com o anel e a seta azuis (ver Superfícies e efeitos).
+- Cards e painéis de vidro (cards do hero, checklist e contador, cards da transformação, painel e bloco de preço da oferta, cápsula e círculos dos livros, garantia, FAQ): borda azul (#3D8BFF a 30 a 45%) e brilho azul bem suave.
+- Imagem de compartilhamento (`assets/img/og.jpg`, `npm run og --prefix scripts`) com a mesma identidade: rótulo na cápsula azul e H1 em 700 com o destaque azul.
 
 ## Ordem das seções (com os ids)
 
 1. `#hero`: foto de fundo, o rótulo "Conheça o método De Desprezado a Respeitado" numa cápsula de vidro com o escudo (uma linha a partir de 380 px; abaixo disso, duas linhas centradas; sempre abaixo da barba), H1, subheadline, botão grande, dois cards de vidro (419 mil seguidores, +12 mil homens)
-2. `#transformacao`: título, apoio, os quatro cards (imagens, ver Superfícies e efeitos), frase e botão
+2. `#transformacao`: título, apoio, os quatro cards (foto com texto real, ver Superfícies e efeitos), frase e botão
 3. `#identificacao`: checklist interativo de 5 itens com contador, o texto que aparece a partir do primeiro item marcado e o destaque final
 4. `#caminho` (substituiu o `#conteudo`): as 3 etapas num trilho (horizontal a partir de 1024 px; vertical no celular e no tablet), botão e, na emenda com a `#oferta`, o escudo que se enche de prata com a rolagem
 5. `#oferta`: rótulo "Conheça o método" e título "De Desprezado a Respeitado"; os três livros em pé na mesa, o principal no centro, maior, com a capa oficial dourada (`assets/img/capa-oficial-dourada.png`, aprovada pelo cliente e definitiva), e dos lados O Jogo Sujo dos Relacionamentos (`capa-jogo-sujo.png`) e Chega de Engolir Calado! (`capa-engolir-calado.png`), com 80% da largura e girados para dentro (no celular, metidos atrás do central); no desktop, o palco começa por trás do fim do `#caminho`. Abaixo do palco, a cápsula "3 materiais integrados + aplicação prática". Painel com os três livros (número no círculo de vidro, linha de destaque, nome e apoio), o bloco "Do conhecimento à ação" e o bloco de preço, sem preço riscado: a frase em cima (16 px, --nevoa), "12x de" pequeno acima de "R$ 10,03" grande (72 px no celular, 88 px no desktop, 600, com o degradê dos destaques e um brilho difuso atrás, nunca quebra), "ou R$ 97 à vista" numa cápsula, o botão, o escudo com "Garantia de 7 dias" e a nota
@@ -102,7 +103,7 @@ A versão sem parâmetro é a padrão. Com `?tema=vibrante`, um script no topo d
 ## Checkout, rastreamento e dados
 
 - Todo botão de compra aponta para `https://chk.eduzz.com/7WXGDYN20A`. Provisório: é o checkout do produto antigo e muda quando o De Desprezado a Respeitado estiver cadastrado na Eduzz (ver `PENDENCIAS.md`).
-- Um script curto repassa para o link do checkout todos os parâmetros que chegaram na URL da página (`utm_*`, `src`, `sck`, `fbclid` e o que mais vier), para o tráfego pago não perder a origem da venda.
+- Um script curto repassa para o link do checkout todos os parâmetros que chegaram na URL da página (`utm_*`, `src`, `sck`, `fbclid` e o que mais vier), para o tráfego pago não perder a origem da venda. Só `rastreio` (a chave de teste do rastreio no localhost) não vai.
 - Google Tag Manager `GTM-5KX5J7J6` no `<head>` e o `<noscript>` logo após o `<body>`, como na página atual.
 - Pixel da Meta `1434833234924777`. Antes de instalar o código base, perguntar ao desenvolvedor se o pixel já dispara dentro do GTM. Se sim, não instalar de novo (PageView duplicado estraga a otimização das campanhas).
 - `InitiateCheckout`: o checkout da Eduzz dispara sozinho ao abrir. A página não dispara esse evento (contaria em dobro); o clique de compra não tem nenhum evento do pixel. O `clique_botoes` do GA4 vem do contêiner do GTM.

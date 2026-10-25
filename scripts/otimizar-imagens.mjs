@@ -36,20 +36,8 @@ const LARGURAS = {
   'capa-engolir-calado': [360, 540, 800, 1080],
   'oferta-mesa': [960, 1280, 1672],
 };
-// Cards da #transformacao (originais em assets/img/cards/card-0N-original.png, 1536x1024, com o texto dentro da
-// arte): a arte vem com uma margem colorida irregular (6 a 21px) em volta do cartão desenhado. O recorte tira
-// essa margem (medida nos originais de 22/10, mais 3px para dentro) e padroniza os quatro em 1500x990; o raio
-// da moldura na página (16px) esconde os cantos. Se o cliente mandar outra arte, meça de novo.
-// Larguras: ~544px na grade 2 x 2 do desktop (1x e 2x) e ~326px no celular (3x).
-const CARDS = {
-  'card-01': { arquivo: 'card-01-original.png', corte: { left: 19, top: 9, width: 1500, height: 990 } },
-  'card-02': { arquivo: 'card-02-original.png', corte: { left: 18, top: 17, width: 1500, height: 990 } },
-  'card-03': { arquivo: 'card-03-original.png', corte: { left: 19, top: 14, width: 1500, height: 990 } },
-  'card-04': { arquivo: 'card-04-original.png', corte: { left: 20, top: 15, width: 1500, height: 990 } },
-};
-const LARGURAS_CARD = [400, 640, 960, 1280];
-// Nossos cards da #transformacao, só para comparação (?cards=nossos): fotos sem texto, 1536x1024, em
-// assets/img/cards/card-0N-nosso.jpg. A foto cobre o card: até 1023px o card é 4:5 e a foto aparece com ~1,9
+// Cards da #transformacao: fotos sem texto, 1536x1024, em assets/img/cards/card-0N-nosso.jpg (o número, o título
+// e a linha são texto real na página). A foto cobre o card: até 1023px o card é 4:5 e a foto aparece com ~1,9
 // vez a largura do card (~610px em 390px, 3x); a partir de 1024px, 4:3 e ~1,1 vez (~570px em 1440px, 1x e 2x).
 // Sem o original, o script avisa e segue.
 const NOSSOS = ['card-01-nosso', 'card-02-nosso', 'card-03-nosso', 'card-04-nosso'];
@@ -78,12 +66,6 @@ const HERO = {
   jpg: { quality: 82, mozjpeg: true, progressive: true },
 };
 const HEROS = new Set(['hero-mobile', 'hero-desktop']);
-// Cards: foto com títulos e uma linha de texto pequena dentro da arte; croma 4:4:4 para o texto não borrar.
-const CARD = {
-  avif: { quality: 58, effort: 6, chromaSubsampling: '4:4:4', bitdepth: 10 },
-  webp: { quality: 82, effort: 6 },
-  jpg: { quality: 82, mozjpeg: true, progressive: true },
-};
 const TEXTO = {
   avif: { quality: 65, effort: 6, chromaSubsampling: '4:4:4' },
   webp: { quality: 88, effort: 6 },
@@ -171,9 +153,6 @@ async function original(nome) {
 }
 for (const [nome, larguras] of Object.entries(LARGURAS)) {
   await gerar(await original(nome), nome, larguras, HEROS.has(nome) ? HERO : RETRATOS.has(nome) ? RETRATO : FOTO);
-}
-for (const [nome, { arquivo, corte }] of Object.entries(CARDS)) {
-  await gerar(path.join(ORIGEM, 'cards', arquivo), nome, LARGURAS_CARD, CARD, corte);
 }
 for (const nome of NOSSOS) {
   const arq = path.join(ORIGEM, 'cards', `${nome}.jpg`);

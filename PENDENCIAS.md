@@ -2,14 +2,13 @@
 
 Nada marcado com `.pendente` vai ao ar. Atualize esta lista conforme as respostas chegarem.
 
-O produto mudou: o Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitado (um livro). Domínio novo: `https://nunca-mais-seja-desprezado.com.br/`.
+O produto mudou: o Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitado (três livros: o principal, O Jogo Sujo dos Relacionamentos e Chega de Engolir Calado!, com os materiais de aplicação prática). Domínio novo: `https://nunca-mais-seja-desprezado.com.br/`.
 
 - [ ] **Checkout do produto novo:** os botões de compra ainda apontam para `https://chk.eduzz.com/7WXGDYN20A`, o checkout do produto antigo. Quando o De Desprezado a Respeitado estiver cadastrado na Eduzz, trocar o link em todos os botões (o repasse dos parâmetros da URL continua valendo).
 - [ ] **Pixel no produto novo:** a gestora precisa configurar o pixel 1434833234924777 no produto novo dentro da Eduzz (ID e token da API de Conversões), como foi feito no Arsenal, e confirmar que o checkout novo também dispara o InitiateCheckout ao abrir.
-- [ ] Confirmar que o De Desprezado a Respeitado é entregue em PDF e quantas páginas tem.
-- [ ] Confirmar que o que a página promete está de fato no material: as 3 etapas do #caminho, 13 capítulos, 8 dossiês sobre relacionamentos, plano de ação de 30 dias, diagnóstico pessoal, código de honra (dez princípios) e diário do homem respeitado (#caminho e #oferta).
+- [ ] Confirmar que os três livros são entregues em PDF e quantas páginas tem cada um.
+- [ ] Confirmar que o que a página promete está de fato no material: as 3 etapas do #caminho, as "respostas para 30 situações de desrespeito" do Chega de Engolir Calado!, o plano de ação de 30 dias, o diagnóstico pessoal, o código de honra e o diário de evolução (#caminho e #oferta).
 - [ ] Confirmar as respostas do FAQ: entrega em PDF depois da confirmação do pagamento e que o conteúdo trata de casamentos de longa data.
-- [ ] "recuperar o seu valor de verdade" (#oferta, item "13 capítulos estratégicos"): confirmar com o cliente se a frase é essa mesma.
 - [ ] Preço riscado: a copy v3 não tem preço de referência (a anterior tinha R$ 297 riscado), e a página saiu sem ele. Confirmar que foi de propósito.
 - [ ] Formas de pagamento aceitas (Pix, cartão, boleto) e prazo de liberação no boleto.
 - [ ] Onde a página vai ser hospedada (no domínio novo) e como é feita a publicação. A hospedagem precisa servir com compressão (gzip ou brotli) e com cache longo para `assets/`: sem compressão, o HTML vai de ~25 KB para 98 KB e o LCP simulado do PageSpeed sobe de 2,0 para 2,9 s.
@@ -22,9 +21,8 @@ Nenhuma. Se surgir um trecho entre colchetes na copy, marque com `.pendente` e l
 
 - [ ] Se o Marcello enviar uma história pessoal (2 a 3 frases), ela entra entre o primeiro e o segundo parágrafo da #autor.
 - [ ] Depoimentos de compradores: a prova social de hoje são conversas sobre os conteúdos do Marcello, não sobre o livro. Quando houver depoimentos de quem comprou o De Desprezado a Respeitado (com autorização), eles entram na #autor, junto dos prints.
-- [ ] Cards da #transformacao: as artes enviadas têm caixa alta, fonte condensada e cores saturadas (dourado, verde, vermelho, azul), fora do padrão visual da página. Ficam por enquanto. A versão no estilo da página (fotos na paleta, texto real) está pronta para comparação em `?cards=nossos`: decidir com o cliente qual fica.
-
-- [ ] Identidade: a variação de cores mais fortes está pronta para teste em `?tema=vibrante` (junto com `?cards=nossos`, se quiser). Decidir com o cliente qual identidade fica.
+- [x] Cards da #transformacao: resolvido. O cliente aprovou os nossos cards (fotos na paleta, texto real); as artes enviadas saíram do projeto.
+- [x] Identidade: resolvido. O cliente aprovou a identidade com os destaques em azul (antes `?tema=vibrante`), que passou a ser a única.
 
 ## Confirmar antes de publicar
 
