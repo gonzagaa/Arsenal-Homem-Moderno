@@ -31,6 +31,9 @@ const LARGURAS = {
   // Capa oficial dourada do livro (1024x1536, a maior versão fica com 1024): até 280px na oferta no desktop
   // (2x) e 46% da tela no celular (3x).
   'capa-oficial-dourada': [360, 540, 800, 1080],
+  // Os dois livros dos lados da mesa (1024x1536): ~224px no desktop (2x) e 30vw no celular (3x).
+  'capa-jogo-sujo': [360, 540, 800, 1080],
+  'capa-engolir-calado': [360, 540, 800, 1080],
   'oferta-mesa': [960, 1280, 1672],
 };
 // Cards da #transformacao (originais em assets/img/cards/card-0N-original.png, 1536x1024, com o texto dentro da
@@ -67,7 +70,7 @@ const RETRATO = {
   webp: { quality: 84, effort: 6, smartSubsample: true },
   jpg: { quality: 84, mozjpeg: true, progressive: true },
 };
-const RETRATOS = new Set(['autor', 'capa-oficial-dourada']);
+const RETRATOS = new Set(['autor', 'capa-oficial-dourada', 'capa-jogo-sujo', 'capa-engolir-calado']);
 // Hero: a primeira coisa que se vê. AVIF no topo da faixa 62 a 68 (o 1290 do celular fica com ~85 KB).
 const HERO = {
   avif: { quality: 68, effort: 6, bitdepth: 10 },

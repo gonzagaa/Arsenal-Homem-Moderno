@@ -22,7 +22,7 @@ Saem da página: #virada (palavras empilhadas), #antes-depois e #para-quem.
 
 **Rótulo (pill com o escudo, acima do H1):** De Desprezado a Respeitado
 
-**H1:** Meu objetivo é te fazer deixar de ser desprezado e **voltar a ser respeitado dentro da sua própria casa.**
+**H1:** Vou te mostrar como deixar de ser desprezado e **voltar a ser respeitado dentro da sua própria casa.**
 
 **Subheadline:** Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado. Sem precisar brigar, implorar atenção ou viver com medo de perdê-la.
 
@@ -86,31 +86,30 @@ Sem rótulo.
 
 **Botão:** Quero aprender o passo a passo
 
-## 5. O que você recebe (#oferta)
+## 5. O método (#oferta)
 
-**Rótulo:** O que você recebe
+**Rótulo:** Conheça o método
 
-**Título:** Tudo o que você precisa para começar a recuperar sua postura **está aqui.**
+**Título:** De Desprezado **a Respeitado**
 
-**Palco:** o livro principal (capa oficial dourada, aprovada pelo cliente e definitiva) no centro da mesa e os quatro cadernos dos lados.
+**Apoio:** Reconheça o desrespeito. Dê um basta. Sustente seus limites.
 
-**Painel, lado esquerdo:**
+**Palco:** os três livros em pé na mesa. No centro, o principal, De Desprezado a Respeitado (capa oficial dourada, aprovada pelo cliente e definitiva), maior; à esquerda, O Jogo Sujo dos Relacionamentos; à direita, Chega de Engolir Calado!
 
-Entrega principal: De Desprezado a Respeitado
-- 13 capítulos estratégicos / Aprenda a reconhecer situações de desrespeito, recuperar o seu valor de verdade, estabelecer limites e fortalecer sua postura.
-- 8 dossiês sobre relacionamentos / Orientações para lidar com situações envolvendo casamento, namoro, indiferença, traição, conflitos, dinheiro e medo de terminar.
+**Cápsula abaixo do palco:** 3 materiais integrados + aplicação prática
 
-Materiais complementares inclusos
-- Plano de ação de 30 dias / Atividades práticas para começar a transformar os aprendizados em atitudes no dia a dia.
-- Diagnóstico pessoal / Identifique padrões de comportamento que merecem atenção e os pontos que você precisa trabalhar.
-- Código de honra / Dez princípios para orientar suas decisões, seus limites e a maneira como você se posiciona.
-- Diário do homem respeitado / Registre seus avanços, reflita sobre suas atitudes e acompanhe sua evolução.
+**Painel, lado esquerdo (número / linha de destaque / livro / apoio):**
+- 01 / Reconstrua sua postura / De Desprezado a Respeitado / Aprenda a colocar limites e pare de buscar aprovação.
+- 02 / Enxergue além das palavras / O Jogo Sujo dos Relacionamentos / Reconheça pressões e cobranças. Proteja sua paz.
+- 03 / Saiba o que dizer / Chega de Engolir Calado! / Respostas para 30 situações de desrespeito.
+
+**Bloco da engrenagem:** Do conhecimento à ação / Plano de ação de 30 dias · Diagnóstico pessoal · Código de honra · Diário de evolução
 
 **Painel, bloco de preço:**
 - Comece hoje a construir uma postura que você mesmo respeitaria.
 - 12x de **R$ 10,03**
 - ou R$ 97 à vista.
-- Botão: Quero recuperar meu respeito agora
+- Botão: Quero acessar o método completo
 - Nota: Acesso digital após a confirmação do pagamento. Material em PDF para ler no celular, tablet ou computador.
 
 ## 6. Quem está por trás (#autor), com a prova social

@@ -44,6 +44,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rodada C2 (nossos cards da #transformacao para comparação, `?cards=nossos`) | aprovada |
 | Capa oficial dourada definitiva (sai o `?capa=`) | aprovada |
 | Botões em maiúsculas e variação de identidade `?tema=vibrante` | aprovada |
+| H1 novo e #oferta com os três livros do método | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -432,6 +433,15 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - `?tema=vibrante`: script no topo do `<head>` põe `.tema-vibrante` no `<html>` antes da pintura; CSS no fim do `<style>`, trocando `--prata` (degradê de #8FD0FF a #3D8BFF, `text-shadow` azul a 25%) e `--gelo` (#FFFFFF). H1 próprio por um script logo depois do H1 (sem a variação, sem JS e para buscadores, vale o padrão); `.lead-2` em 600 e branca; rótulo do hero com borda #3D8BFF, brilho e maiúsculas espaçadas (exceção à regra dos rótulos, a pedido do cliente); hero centralizado no celular; caixas de números com ícone à esquerda e fio vertical (logo do Instagram em cores e grupo de pessoas em #3D8BFF, SVG; os ícones padrão ficam com `.ico-padrao`); botões com anel em borda e brilho azuis e seta em degradê azul; vidros (cards do hero, checklist e contador, cards da transformação, painel, garantia, FAQ) com borda azul a 30% e brilho suave. O "30" do caderno continua prateado.
 - Ajustes da variação: sombra presa ao H1 mais forte e também no tablet (contraste mínimo de 5,1:1 de 360 a 1920px); números das etapas em 700 (texto grande; 3,6:1 ou mais no pior caso); título da oferta com até 900px, para ficar em duas linhas (a emenda do escudo conta com duas). Hero da variação no celular: rótulo de 15 a 35px abaixo da barba nas telas baixas, H1 de 67 a 87px, botão na primeira tela.
 - `?tema=` funciona junto com `?cards=`, em qualquer ordem; valor desconhecido é ignorado; `tema` fora do repasse para o checkout (com `cards` e `rastreio`). Lighthouse: acessibilidade e boas práticas 100 nas duas versões.
+
+### H1 novo e #oferta com os três livros (2026-10-25)
+
+- H1 único nas duas versões: "Vou te mostrar como deixar de ser desprezado e **voltar a ser respeitado dentro da sua própria casa.**". Saiu o script que trocava o H1 no `?tema=vibrante`. Hero conferido nas duas: H1 em 4 linhas no desktop e 4 a 5 no celular, botão na primeira tela, rótulo abaixo da barba, contraste mínimo 5,36:1. `og.jpg` refeito com o H1 novo (identidade padrão).
+- O produto passou a ser três livros: De Desprezado a Respeitado (principal), O Jogo Sujo dos Relacionamentos e Chega de Engolir Calado!, com os materiais de aplicação prática. Os quatro cadernos tipográficos saíram (CSS `.caderno`/`.cad-*`, `.recebe`, `.items`).
+- #oferta: rótulo "Conheça o método", título "De Desprezado **a Respeitado**" e apoio. Palco com o livro principal no centro (`--lv`: 44vw no celular, clamp(150px, 21vw, 280px) a partir de 761px) e os laterais com 80% (30vw no celular), girados para dentro (16° no celular, 14° a partir de 761px); no celular, metidos 7vw atrás do central. Capas novas `capa-jogo-sujo.png` e `capa-engolir-calado.png` (1024x1536) no perfil de retrato, de 360 a 1024px.
+- Cápsula de vidro "3 materiais integrados + aplicação prática" com o ícone de camadas, sobe por cima do pé do palco no lugar de onde o painel subia; sempre em uma linha (fonte de 12,5 a 14px no celular, 15px a partir de 761px). O painel fica logo abaixo dela.
+- Painel: os três livros (número no círculo de vidro, linha de destaque com `--prata`, nome em 600 e apoio em `--nevoa`) e o bloco "Do conhecimento à ação" com a engrenagem e os quatro materiais separados por ponto médio. Preço igual; botão "Quero acessar o método completo". No `?tema=vibrante`, círculos e cápsula com borda azul e destaques em azul.
+- `docs/copy.md` (H1 e seção 5) e `CLAUDE.md` atualizados. O botão do preço ainda quebra em duas linhas no celular: fica para a rodada seguinte (botões iguais).
 
 ## Pendências técnicas (do projeto, não do cliente)
 

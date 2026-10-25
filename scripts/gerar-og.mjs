@@ -51,7 +51,7 @@ h1 strong{font-weight:600;background:linear-gradient(180deg,#FFFFFF 0%,#D9E2EE 4
 <img class="foto" src="data:image/jpeg;base64,${foto}" alt="">
 <div class="sombra"></div>
 <div class="texto"><span class="pill">De Desprezado a Respeitado</span>
-<h1>Meu objetivo é te fazer deixar de ser desprezado e <strong>voltar a ser respeitado dentro da sua própria casa.</strong></h1></div>
+<h1>Vou te mostrar como deixar de ser desprezado e <strong>voltar a ser respeitado dentro da sua própria casa.</strong></h1></div>
 </body></html>`;
 
 const browser = await puppeteer.launch({ executablePath: chrome, headless: true });

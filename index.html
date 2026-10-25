@@ -50,12 +50,12 @@ fbq('track', 'PageView');
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Meu objetivo é te fazer deixar de ser desprezado e voltar a ser respeitado dentro da sua própria casa.">
+<meta property="og:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Vou te mostrar como deixar de ser desprezado e voltar a ser respeitado dentro da sua própria casa.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="De Desprezado a Respeitado, por Marcello Gomes">
 <meta name="twitter:description" content="Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado.">
 <meta name="twitter:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/og.jpg">
-<meta name="twitter:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Meu objetivo é te fazer deixar de ser desprezado e voltar a ser respeitado dentro da sua própria casa.">
+<meta name="twitter:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Vou te mostrar como deixar de ser desprezado e voltar a ser respeitado dentro da sua própria casa.">
 <!-- Favicons (o escudo). favicon.ico também fica na raiz, para quem o pede sem ler o <head>. -->
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
@@ -577,7 +577,7 @@ html.lenis{scroll-behavior:auto!important}
 
 /* Emenda #caminho / #oferta: um escudo só, que começa com o contorno prateado (vazio) e se enche de baixo
    para cima com o degradê prateado conforme a rolagem, ganhando o brilho difuso no fim; dele desce uma linha
-   de luz até o rótulo "O que você recebe" (--emenda-ad: do pé do escudo ao rótulo). Decorativo. O estado
+   de luz até o rótulo "Conheça o método" (--emenda-ad: do pé do escudo ao rótulo). Decorativo. O estado
    final (escudo cheio, brilho e linha) é o padrão: sem suporte ou com movimento reduzido, é o que aparece.
    Escudo de 64x77px no desktop e 48x58px no celular. O enchimento é um clip-path (inset) no escudo cheio,
    que fica por baixo do contorno. */
@@ -750,59 +750,38 @@ html:has(dialog[open]){overflow:hidden}
 .lb-fechar{position:fixed;top:max(16px,env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right));z-index:1;width:48px;height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(180deg,#16243A,#0A1424);border:1px solid rgba(169,184,203,.3);box-shadow:0 0 30px rgba(120,155,205,.25)}
 @media (hover:hover){.lb-fechar:hover{border-color:rgba(201,211,224,.6)}}
 
-/* Oferta. Palco com a mesa (dissolvendo nas bordas e no topo), o livro em pé no centro (a capa oficial) com
-   os materiais dos lados (cadernos tipográficos, menores para as pontas, girados com perspective) e o painel
-   de preço em vidro subindo por cima da borda de baixo do palco.
-   Celular: livro com 46% da largura, só dois cadernos (Plano de ação e Diário), um de cada lado, metidos
-   atrás do livro; o palco cresce com o livro e a foto mantém a escala de 380px, presa embaixo.
-   A partir de 761px, os cinco itens: livro clamp(150px, 21vw, 280px), cadernos de dentro com 62% dele e os
-   das pontas com 50%; a altura do palco escala junto até 720px. */
+/* Oferta. Palco com a mesa (dissolvendo nas bordas e no topo) com os três livros do método em pé: no centro o
+   principal (capa oficial dourada), maior, e dos lados O Jogo Sujo dos Relacionamentos e Chega de Engolir
+   Calado!, com 80% da largura dele e girados para dentro. Logo abaixo do palco, a cápsula "3 materiais
+   integrados + aplicação prática" e o painel de preço em vidro.
+   Celular: livro do centro com 44vw e os laterais com 30vw, metidos 7vw atrás dele; o palco cresce com o
+   livro e a foto mantém a escala de 380px, presa embaixo.
+   A partir de 761px: livro clamp(150px, 21vw, 280px); a altura do palco escala junto até 720px. */
 .oferta{position:relative;padding:var(--emenda-ad) 0 70px;background:var(--abismo)}
 /* Brilho atrás do painel; desce 240px para dentro da #autor (emenda #oferta / #autor: luz que atravessa). */
 .oferta::before{content:"";position:absolute;left:50%;bottom:-240px;width:1100px;height:940px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(closest-side,rgba(30,58,104,.2),rgba(30,58,104,0))}
 .oferta .sec-head{margin-bottom:8px}
 /* overflow:clip, não hidden: hidden faria do palco um contêiner de rolagem e o view() do livro mediria contra ele. */
-.stage{position:relative;height:max(300px,calc(69vw + 110px));max-width:1600px;margin:0 auto;overflow:clip}
+.stage{position:relative;height:max(300px,calc(66vw + 110px));max-width:1600px;margin:0 auto;overflow:clip}
 .stage-bg img{position:absolute;left:0;bottom:0;width:100%;height:380px;object-fit:cover;object-position:40% 50%}
 .stage-fade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#050A14 0%,rgba(5,10,20,0) 22%,rgba(5,10,20,0) 70%,#050A14 100%),linear-gradient(90deg,#050A14 0%,rgba(5,10,20,0) 14%,rgba(5,10,20,0) 86%,#050A14 100%)}
-.books{--lv:46vw;--cad:27vw;position:absolute;left:0;right:0;bottom:70px;z-index:2;display:flex;align-items:flex-end;justify-content:center;perspective:1600px}
+.books{--lv:44vw;--lado:30vw;position:absolute;left:0;right:0;bottom:70px;z-index:2;display:flex;align-items:flex-end;justify-content:center;perspective:1600px}
 .livro-oferta{position:relative;z-index:2;width:var(--lv)}
 .livro-oferta .capa{transform:none}
-/* Cadernos: capa só tipográfica (escudo no topo, título embaixo, autor no pé), com a mesma luz de lombada,
-   contorno e sombra de contato do livro. O grão vem da página (o body::after cobre tudo). */
-.caderno{position:relative;width:var(--cad)}
-.caderno::after{content:"";position:absolute;left:-8%;right:-8%;bottom:-14px;height:24px;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(0,0,0,.8),rgba(0,0,0,0))}
-.cad-capa{position:relative;container-type:inline-size;aspect-ratio:5/7;overflow:hidden;border-radius:2px 5px 5px 2px;background:radial-gradient(120% 70% at 70% 0%,rgba(52,84,132,.55),rgba(52,84,132,0) 60%),linear-gradient(165deg,#16243A 0%,#0C1729 45%,#050A14 100%);box-shadow:-14px 20px 36px -12px rgba(0,0,0,.9),0 0 0 1px rgba(0,0,0,.4)}
-.cad-capa::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6cqw;z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(255,255,255,.14) 30%,rgba(255,255,255,0) 100%)}
-.cad-capa::after{content:"";position:absolute;inset:0;z-index:3;border:1px solid rgba(201,211,224,.16);border-radius:inherit;pointer-events:none}
-/* Escudo grande da marca, só contorno, tom sobre tom, saindo cortado pela borda direita; um fio prateado
-   acima do título; e dois tons alternados na fileira (Diagnóstico e Diário mais azulados, Plano e Código
-   mais próximos do preto), sempre mais escuros que o livro. */
-.cad-marca{position:absolute;right:-30cqw;top:18cqw;width:86cqw;height:auto;fill:none;stroke:rgba(217,226,238,.06);stroke-width:5;stroke-linejoin:round}
-.cad-pe::before{content:"";display:block;width:34cqw;height:1px;margin-bottom:6cqw;background:rgba(217,226,238,.2)}
-.cad-diag .cad-capa,.cad-diario .cad-capa{background:radial-gradient(120% 70% at 70% 0%,rgba(58,94,148,.6),rgba(58,94,148,0) 62%),linear-gradient(165deg,#192A44 0%,#0E1A2F 45%,#060C18 100%)}
-.cad-plano .cad-capa,.cad-codigo .cad-capa{background:radial-gradient(120% 70% at 70% 0%,rgba(40,64,104,.4),rgba(40,64,104,0) 58%),linear-gradient(165deg,#0F1828 0%,#080F1C 45%,#03070F 100%)}
-.cad-escudo{position:absolute;left:12cqw;top:12cqw;width:11cqw;height:auto;fill:url(#prata-escudo)}
-.cad-30{position:absolute;right:9cqw;top:6cqw;font-weight:300;font-size:46cqw;line-height:1;letter-spacing:-.06em;opacity:.9}
-.cad-pe{position:absolute;left:12cqw;right:9cqw;bottom:10cqw;color:var(--gelo)}
-.cad-ti{font-weight:300;font-size:12cqw;line-height:1.02;letter-spacing:-.03em}
-.cad-ti strong{display:block;font-weight:600}
-.cad-au{margin-top:5cqw;font-size:5.6cqw;font-weight:500;line-height:1.2;color:#D9E2EE}
-.cad-plano{transform:rotateY(14deg);margin-right:-5vw}
-.cad-diario{transform:rotateY(-14deg);margin-left:-5vw}
-.cad-ponta{display:none}
-/* Celular: os dois cadernos ficam metidos 5vw atrás do livro; no Diário (à direita) a borda coberta é a
-   esquerda, então o texto vai para a direita. */
-@media (max-width:760px){
-  .cad-plano .cad-pe{right:22cqw}
-  .cad-plano .cad-30{right:auto;left:11cqw;top:27cqw;font-size:36cqw}
-  .cad-diario .cad-pe{left:22cqw;text-align:right}
-  .cad-diario .cad-pe::before{margin-left:auto}
-  .cad-diario .cad-escudo{left:auto;right:12cqw}
-}
+/* Laterais: a mesma lombada, borda e sombra de contato do livro (a peça .livro/.capa), girados para dentro. */
+.livro-lado{width:var(--lado);z-index:1}
+.livro-esq{margin-right:-7vw}
+.livro-dir{margin-left:-7vw}
+.livro-esq .capa{transform:rotateY(16deg)}
+.livro-dir .capa{transform:rotateY(-16deg)}
+
+/* Cápsula abaixo do palco (vidro, como o rótulo do hero), com o ícone de camadas. Sobe por cima da borda de
+   baixo do palco, no lugar de onde o painel subia; o painel fica logo abaixo dela. */
+.metodo-cap{position:relative;z-index:3;display:flex;align-items:center;gap:10px;width:max-content;max-width:100%;margin:-38px auto 18px;padding:9px 16px 9px 13px;border-radius:999px;font-size:clamp(12.5px,3.6vw,14px);white-space:nowrap;font-weight:500;line-height:1.3;color:#C9D3E0;text-align:center;background:linear-gradient(180deg,rgba(22,36,58,.7),rgba(10,20,36,.62));-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:1px solid rgba(169,184,203,.22);box-shadow:0 18px 40px -16px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,255,255,.08)}
+.metodo-cap svg{flex:none;color:#D9E2EE}
 
 /* Celular: 12px entre o painel e a borda da tela (o .wrap tem 22px). */
-.panel{position:relative;z-index:3;max-width:980px;margin:-50px -10px 0;border-radius:24px;padding:26px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;background:linear-gradient(180deg,rgba(24,38,60,.66),rgba(9,17,31,.9));-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(169,184,203,.18);box-shadow:0 50px 100px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.07)}
+.panel{position:relative;z-index:3;max-width:980px;margin:0 -10px;border-radius:24px;padding:26px 16px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;background:linear-gradient(180deg,rgba(24,38,60,.66),rgba(9,17,31,.9));-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(169,184,203,.18);box-shadow:0 50px 100px -40px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.07)}
 /* Bloco de preço: superfície mais clara dentro do painel, centralizada. Sem backdrop-filter: o painel
    tem .reveal, e vidro dentro de um pai com filter perde o fundo. No celular, a superfície avança 10px
    além da margem interna, para o conteúdo ficar na mesma margem do resto. Ordem no código e no celular:
@@ -817,20 +796,23 @@ html:has(dialog[open]){overflow:hidden}
 .preco .cta-ring{margin-top:22px}
 .preco .cta{text-align:left} /* o rótulo pode quebrar em duas linhas, alinhado como nos outros botões */
 .preco-nota{max-width:40ch;margin:16px auto 0;font-size:13.5px;line-height:1.5;color:var(--nevoa-2);text-wrap:pretty}
-/* O que você recebe: dois grupos, cada um com o título em rótulo (escudo) e linhas sem caixa (título em 500
-   e uma linha de apoio), separadas por um fio. Os dois itens da entrega principal com o título em prata.
-   Nada aqui é clicável, então nada parece selecionável. */
-.grupo{display:flex;align-items:flex-start;margin-bottom:14px}
-.grupo::before{margin-top:.25em}
-.items+.grupo{margin-top:30px}
-.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.items li{padding:12px 0}
-.items li+li{border-top:1px solid rgba(169,184,203,.1)}
-.items li:first-child{padding-top:0}
-.items li:last-child{padding-bottom:0}
-.items b{display:block;font-weight:500;font-size:16px;line-height:1.35;color:var(--gelo)}
-.items-2 b{font-weight:600;font-size:17px;background:var(--prata);-webkit-background-clip:text;background-clip:text;color:transparent}
-.items small{display:block;margin-top:3px;font-size:14px;line-height:1.45;color:var(--nevoa-2)}
+/* Os três livros do método: o número no círculo de vidro (o mesmo das etapas do #caminho, menor e sem
+   animação), uma linha pequena em destaque acima (a primeira frase), o nome do livro em 600 e a linha de apoio.
+   Depois, o bloco "Do conhecimento à ação" com a engrenagem e os quatro materiais numa linha, separados por
+   ponto médio. Nada aqui é clicável, então nada parece selecionável. */
+.livros-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.livros-lista li{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;align-items:start;padding:16px 0}
+.livros-lista li+li{border-top:1px solid rgba(169,184,203,.1)}
+.livros-lista li:first-child{padding-top:0}
+.ml-num{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:16px;letter-spacing:-.01em;background:linear-gradient(180deg,rgba(30,48,76,.85),rgba(10,19,34,.95));border:1px solid rgba(201,211,224,.28);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 18px -6px rgba(150,180,225,.4)}
+.ml-sup{font-size:13.5px;font-weight:500;line-height:1.35;background:var(--prata);-webkit-background-clip:text;background-clip:text;color:transparent}
+.livros-lista h3{margin-top:3px;font-weight:600;font-size:17.5px;line-height:1.3;letter-spacing:-.01em;color:var(--gelo)}
+.ml-txt{margin-top:4px;font-size:15px;line-height:1.5;color:var(--nevoa)}
+.acao{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:16px;align-items:start;margin-top:18px;padding-top:18px;border-top:1px solid rgba(169,184,203,.16)}
+.acao-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#D9E2EE;background:linear-gradient(160deg,#2A3F60,#111D30);border:1px solid rgba(169,184,203,.25)}
+.acao-rot{padding-top:2px;font-weight:600;font-size:16px;line-height:1.35;color:var(--gelo)}
+.acao-itens{margin-top:4px;font-size:14.5px;line-height:1.55;color:var(--nevoa)}
+.acao-itens span{padding:0 .3em;color:#8FA3BE}
 @media (max-width:760px){
   /* Botão do painel: fonte menor e o anel 1px mais justo; o rótulo quebra em duas linhas parelhas. */
   .panel .cta-ring{padding:4px}
@@ -919,17 +901,15 @@ html body #san-footer-badge{background:#000000!important}
   .oferta{padding:40px 0 80px}
   .stage{height:clamp(380px,50vw,720px)}
   .stage-bg img{top:0;height:100%;object-position:50% 50%}
-  .books{--lv:clamp(150px,21vw,280px);bottom:25%;gap:clamp(10px,1.4vw,20px)}
-  .caderno{width:calc(var(--lv) * .62)}
-  .cad-ponta{display:block;width:calc(var(--lv) * .5)}
-  .cad-plano,.cad-diario{margin:0}
-  .cad-plano{transform:rotateY(10deg)}
-  .cad-diario{transform:rotateY(-10deg)}
-  .cad-diag{transform:rotateY(20deg)}
-  .cad-codigo{transform:rotateY(-20deg)}
+  .books{--lv:clamp(150px,21vw,280px);--lado:calc(var(--lv) * .8);bottom:25%;gap:clamp(14px,2vw,28px)}
+  .livro-esq,.livro-dir{margin:0}
+  .livro-esq .capa{transform:rotateY(14deg)}
+  .livro-dir .capa{transform:rotateY(-14deg)}
   /* Tablet: o painel fica em uma coluna, centrado. */
-  /* O painel sobe 21% da altura do palco (-150px em 720px, como no mockup) e não cobre o pé dos livros. */
-  .panel{max-width:640px;margin:calc(clamp(380px,50vw,720px) * -.21) auto 0;border-radius:30px;padding:40px 44px;gap:32px}
+  /* A cápsula sobe 21% da altura do palco (-150px em 720px, onde antes subia o painel) e não cobre o pé dos
+     livros; o painel fica logo abaixo dela. */
+  .metodo-cap{margin:calc(clamp(380px,50vw,720px) * -.21) auto 22px;padding:10px 20px 10px 16px;font-size:15px}
+  .panel{max-width:640px;margin:0 auto;border-radius:30px;padding:40px 44px;gap:32px}
   .preco{margin:0;padding:32px 28px 28px}
   .preco-frase{font-size:17.5px}
   .price-main b{font-size:68px}
@@ -955,19 +935,13 @@ html body #san-footer-badge{background:#000000!important}
   .stat b{font-size:clamp(24px,2.35vw,30px)}
 }
 
-/* Painel da oferta a partir de 1280px: 12 colunas, "O que você recebe" em 6 e o bloco de preço em 6, com o
-   mesmo topo e a mesma base. Cada grupo em duas colunas, com o fio entre as linhas. Com o botão em maiúsculas,
+/* Painel da oferta a partir de 1280px: 12 colunas, os três livros e a ação em 6 e o bloco de preço em 6, com o
+   mesmo topo e a mesma base. Com o botão em maiúsculas,
    o preço precisa de 6 colunas para o rótulo caber em uma linha (em 5, quebrava); até 1279px o painel fica
    empilhado como no tablet. */
 @media (min-width:1280px){
   .panel{max-width:1152px;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;padding:44px 48px}
-  .recebe{grid-column:1 / span 6;align-self:center}
-  .items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px}
-  .items li{padding:14px 0}
-  .items li+li{border-top:0}
-  .items li:nth-child(n+3){border-top:1px solid rgba(169,184,203,.1)}
-  .items li:nth-child(-n+2){padding-top:0}
-  .items li:nth-last-child(-n+2){padding-bottom:0}
+  .metodo{grid-column:1 / span 6;align-self:center}
   .preco{grid-column:7 / span 6;display:flex;flex-direction:column;justify-content:center;padding:28px 20px}
   .preco .cta{gap:12px;padding-left:22px}
 }
@@ -1051,9 +1025,9 @@ html body #san-footer-badge{background:#000000!important}
 /* Variação de identidade para teste (?tema=vibrante; o script no topo do <head> põe .tema-vibrante no <html>
    antes da pintura). A versão sem a classe é a padrão. Fundo, foto do hero, capa e layout não mudam.
    - Destaques (o degradê prateado dos trechos em destaque) em azul vivo, de #8FD0FF a #3D8BFF, com brilho
-     suave; o texto principal em #FFFFFF. O "30" do caderno da mesa continua prateado (o palco não muda).
+     suave; o texto principal em #FFFFFF. O palco (fotos e capas) não muda.
    - H1 inteiro em 700; títulos de seção em 600 com o destaque em 700; letter-spacing de -0.02em.
-   - Hero: H1 próprio (script logo depois do H1), a segunda frase da subheadline em 600 e branca, o rótulo com
+   - Hero: o mesmo H1 da versão padrão, a segunda frase da subheadline em 600 e branca, o rótulo com
      borda e brilho azuis e o texto em maiúsculas espaçadas; no celular, rótulo, H1, subheadline e botão
      centralizados. Caixas de números com o ícone à esquerda e um fio vertical (a logo do Instagram em cores e
      um grupo de pessoas em azul).
@@ -1072,13 +1046,15 @@ html body #san-footer-badge{background:#000000!important}
 @media (min-width:1024px){
   .tema-vibrante .hero .h1::before{inset:-28% -10% -28% -8%}
 }
-.tema-vibrante .cad-30{background-image:linear-gradient(180deg,#FFFFFF 0%,#D9E2EE 45%,#9FB2CB 100%);text-shadow:none}
 .tema-vibrante .h1,.tema-vibrante .h1 strong{font-weight:700;letter-spacing:-.02em}
 .tema-vibrante .h2{font-weight:600;letter-spacing:-.02em}
 .tema-vibrante .h2 strong{font-weight:700}
 /* Números das etapas em 700: com o azul, o número de 22px do celular fica em 3,7:1 no pior caso, e em negrito
    ele conta como texto grande (mínimo de 3:1). */
 .tema-vibrante .et-n{font-weight:700}
+.tema-vibrante .ml-num{border-color:rgba(61,139,255,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 18px -6px rgba(61,139,255,.45)}
+.tema-vibrante .ml-num .silver{font-weight:700}
+.tema-vibrante .metodo-cap{border-color:rgba(61,139,255,.45);box-shadow:0 18px 40px -16px rgba(0,0,0,.9),0 0 18px -4px rgba(61,139,255,.35),inset 0 1px 0 rgba(255,255,255,.08)}
 /* O título da oferta mais largo, para continuar em duas linhas em 600 (a emenda do escudo conta com duas). */
 .tema-vibrante .oferta .sec-head{max-width:900px}
 .tema-vibrante .lead-2{font-weight:600;color:#FFFFFF}
@@ -1135,12 +1111,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="hero-inner">
 <div class="hero-copy">
 <span class="pill hero-pill reveal-saida">De Desprezado a Respeitado</span>
-<h1 class="h1 reveal-saida">Meu objetivo é te fazer deixar de ser desprezado e <strong class="silver">voltar a ser respeitado dentro da sua própria casa.</strong></h1>
-<script>
-// ?tema=vibrante: o H1 desta variação. Logo depois do H1, para trocar o texto antes de ele aparecer; sem a
-// variação (e para buscadores), o H1 é o padrão.
-if (document.documentElement.classList.contains('tema-vibrante')) document.querySelector('.hero .h1').firstChild.data = 'Meu objetivo é te mostrar como deixar de ser desprezado e ';
-</script>
+<h1 class="h1 reveal-saida">Vou te mostrar como deixar de ser desprezado e <strong class="silver">voltar a ser respeitado dentro da sua própria casa.</strong></h1>
 <p class="lead reveal-saida">Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado. <span class="lead-2">Sem precisar brigar, implorar atenção ou viver com medo de <span class="inteira">perdê-la.</span></span></p>
 <div class="reveal-saida"><span class="cta-ring cta-ring--grande"><a class="cta cta--grande" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span></div>
 </div>
@@ -1248,8 +1219,9 @@ if (document.documentElement.classList.contains('tema-vibrante')) document.query
 <section id="oferta" class="oferta">
 <div class="wrap">
 <div class="sec-head">
-<span class="pill reveal">O que você recebe</span>
-<h2 class="h2 reveal">Tudo o que você precisa para começar a recuperar sua postura <strong class="silver">está aqui.</strong></h2>
+<span class="pill reveal">Conheça o método</span>
+<h2 class="h2 reveal">De Desprezado <strong class="silver">a Respeitado</strong></h2>
+<p class="sec-sub reveal">Reconheça o desrespeito. Dê um basta. Sustente seus limites.</p>
 </div>
 </div>
 <div class="stage">
@@ -1259,36 +1231,28 @@ if (document.documentElement.classList.contains('tema-vibrante')) document.query
 <img src="assets/img/opt/oferta-mesa-1280.jpg" srcset="assets/img/opt/oferta-mesa-960.jpg 960w, assets/img/opt/oferta-mesa-1280.jpg 1280w, assets/img/opt/oferta-mesa-1672.jpg 1672w" sizes="max(min(100vw, 1600px), 676px)" width="1672" height="941" loading="lazy" decoding="async" alt="">
 </picture>
 <div class="stage-fade" aria-hidden="true"></div>
-<div class="books reveal" role="img" aria-label="O livro De Desprezado a Respeitado, de Marcello Gomes, sobre a mesa, com o Plano de ação de 30 dias, o Diagnóstico pessoal, o Diário do homem respeitado e o Código de honra">
-<div class="caderno cad-diag cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diagnóstico <strong class="silver">pessoal</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-<div class="caderno cad-plano"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><span class="cad-30 silver">30</span><div class="cad-pe"><p class="cad-ti">Plano de ação <strong class="silver">de 30 dias</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-<div class="livro livro-oferta"><div class="capa"><picture><source type="image/avif" srcset="assets/img/opt/capa-oficial-dourada-360.avif 360w, assets/img/opt/capa-oficial-dourada-540.avif 540w, assets/img/opt/capa-oficial-dourada-800.avif 800w, assets/img/opt/capa-oficial-dourada-1024.avif 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><source type="image/webp" srcset="assets/img/opt/capa-oficial-dourada-360.webp 360w, assets/img/opt/capa-oficial-dourada-540.webp 540w, assets/img/opt/capa-oficial-dourada-800.webp 800w, assets/img/opt/capa-oficial-dourada-1024.webp 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw"><img src="assets/img/opt/capa-oficial-dourada-540.jpg" srcset="assets/img/opt/capa-oficial-dourada-360.jpg 360w, assets/img/opt/capa-oficial-dourada-540.jpg 540w, assets/img/opt/capa-oficial-dourada-800.jpg 800w, assets/img/opt/capa-oficial-dourada-1024.jpg 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 46vw" width="1024" height="1536" loading="lazy" decoding="async" alt=""></picture></div></div>
-
-<div class="caderno cad-diario"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Diário do homem <strong class="silver">respeitado</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
-<div class="caderno cad-codigo cad-ponta"><div class="cad-capa"><svg class="cad-marca" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><svg class="cad-escudo" viewBox="0 0 200 240" aria-hidden="true"><use href="#escudo"/></svg><div class="cad-pe"><p class="cad-ti">Código <strong class="silver">de honra</strong></p><p class="cad-au">Marcello Gomes</p></div></div></div>
+<div class="books reveal" role="img" aria-label="Os três livros do método sobre a mesa: De Desprezado a Respeitado, de Marcello Gomes, no centro, com O Jogo Sujo dos Relacionamentos à esquerda e Chega de Engolir Calado! à direita">
+<div class="livro livro-lado livro-esq"><div class="capa"><picture><source type="image/avif" srcset="assets/img/opt/capa-jogo-sujo-360.avif 360w, assets/img/opt/capa-jogo-sujo-540.avif 540w, assets/img/opt/capa-jogo-sujo-800.avif 800w, assets/img/opt/capa-jogo-sujo-1024.avif 1024w" sizes="(min-width: 761px) calc(clamp(150px, 21vw, 280px) * .8), 30vw"><source type="image/webp" srcset="assets/img/opt/capa-jogo-sujo-360.webp 360w, assets/img/opt/capa-jogo-sujo-540.webp 540w, assets/img/opt/capa-jogo-sujo-800.webp 800w, assets/img/opt/capa-jogo-sujo-1024.webp 1024w" sizes="(min-width: 761px) calc(clamp(150px, 21vw, 280px) * .8), 30vw"><img src="assets/img/opt/capa-jogo-sujo-540.jpg" srcset="assets/img/opt/capa-jogo-sujo-360.jpg 360w, assets/img/opt/capa-jogo-sujo-540.jpg 540w, assets/img/opt/capa-jogo-sujo-800.jpg 800w, assets/img/opt/capa-jogo-sujo-1024.jpg 1024w" sizes="(min-width: 761px) calc(clamp(150px, 21vw, 280px) * .8), 30vw" width="1024" height="1536" loading="lazy" decoding="async" alt=""></picture></div></div>
+<div class="livro livro-oferta"><div class="capa"><picture><source type="image/avif" srcset="assets/img/opt/capa-oficial-dourada-360.avif 360w, assets/img/opt/capa-oficial-dourada-540.avif 540w, assets/img/opt/capa-oficial-dourada-800.avif 800w, assets/img/opt/capa-oficial-dourada-1024.avif 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 44vw"><source type="image/webp" srcset="assets/img/opt/capa-oficial-dourada-360.webp 360w, assets/img/opt/capa-oficial-dourada-540.webp 540w, assets/img/opt/capa-oficial-dourada-800.webp 800w, assets/img/opt/capa-oficial-dourada-1024.webp 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 44vw"><img src="assets/img/opt/capa-oficial-dourada-540.jpg" srcset="assets/img/opt/capa-oficial-dourada-360.jpg 360w, assets/img/opt/capa-oficial-dourada-540.jpg 540w, assets/img/opt/capa-oficial-dourada-800.jpg 800w, assets/img/opt/capa-oficial-dourada-1024.jpg 1024w" sizes="(min-width: 761px) clamp(150px, 21vw, 280px), 44vw" width="1024" height="1536" loading="lazy" decoding="async" alt=""></picture></div></div>
+<div class="livro livro-lado livro-dir"><div class="capa"><picture><source type="image/avif" srcset="assets/img/opt/capa-engolir-calado-360.avif 360w, assets/img/opt/capa-engolir-calado-540.avif 540w, assets/img/opt/capa-engolir-calado-800.avif 800w, assets/img/opt/capa-engolir-calado-1024.avif 1024w" sizes="(min-width: 761px) calc(clamp(150px, 21vw, 280px) * .8), 30vw"><source type="image/webp" srcset="assets/img/opt/capa-engolir-calado-360.webp 360w, assets/img/opt/capa-engolir-calado-540.webp 540w, assets/img/opt/capa-engolir-calado-800.webp 800w, assets/img/opt/capa-engolir-calado-1024.webp 1024w" sizes="(min-width: 761px) calc(clamp(150px, 21vw, 280px) * .8), 30vw"><img src="assets/img/opt/capa-engolir-calado-540.jpg" srcset="assets/img/opt/capa-engolir-calado-360.jpg 360w, assets/img/opt/capa-engolir-calado-540.jpg 540w, assets/img/opt/capa-engolir-calado-800.jpg 800w, assets/img/opt/capa-engolir-calado-1024.jpg 1024w" sizes="(min-width: 761px) calc(clamp(150px, 21vw, 280px) * .8), 30vw" width="1024" height="1536" loading="lazy" decoding="async" alt=""></picture></div></div>
 </div>
 </div>
 <div class="wrap">
+<p class="metodo-cap reveal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>3 materiais integrados + aplicação prática</p>
 <div class="panel reveal">
-<div class="recebe">
-<h3 class="pill grupo">Entrega principal: De Desprezado a Respeitado</h3>
-<ul class="items items-2">
-<li><span><b>13 capítulos estratégicos</b><small>Aprenda a reconhecer situações de desrespeito, recuperar o seu valor de verdade, estabelecer limites e fortalecer sua postura.</small></span></li>
-<li><span><b>8 dossiês sobre relacionamentos</b><small>Orientações para lidar com situações envolvendo casamento, namoro, indiferença, traição, conflitos, dinheiro e medo de terminar.</small></span></li>
-</ul>
-<h3 class="pill grupo">Materiais complementares inclusos</h3>
-<ul class="items items-4">
-<li><span><b>Plano de ação de 30 dias</b><small>Atividades práticas para começar a transformar os aprendizados em atitudes no dia a dia.</small></span></li>
-<li><span><b>Diagnóstico pessoal</b><small>Identifique padrões de comportamento que merecem atenção e os pontos que você precisa trabalhar.</small></span></li>
-<li><span><b>Código de honra</b><small>Dez princípios para orientar suas decisões, seus limites e a maneira como você se posiciona.</small></span></li>
-<li><span><b>Diário do homem respeitado</b><small>Registre seus avanços, reflita sobre suas atitudes e acompanhe sua evolução.</small></span></li>
-</ul>
+<div class="metodo">
+<ol class="livros-lista">
+<li><span class="ml-num" aria-hidden="true"><span class="silver">01</span></span><div><p class="ml-sup">Reconstrua sua postura</p><h3>De Desprezado a Respeitado</h3><p class="ml-txt">Aprenda a colocar limites e pare de buscar aprovação.</p></div></li>
+<li><span class="ml-num" aria-hidden="true"><span class="silver">02</span></span><div><p class="ml-sup">Enxergue além das palavras</p><h3>O Jogo Sujo dos Relacionamentos</h3><p class="ml-txt">Reconheça pressões e cobranças. Proteja sua paz.</p></div></li>
+<li><span class="ml-num" aria-hidden="true"><span class="silver">03</span></span><div><p class="ml-sup">Saiba o que dizer</p><h3>Chega de Engolir Calado!</h3><p class="ml-txt">Respostas para 30 situações de desrespeito.</p></div></li>
+</ol>
+<div class="acao"><span class="acao-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span><div><h3 class="acao-rot">Do conhecimento à ação</h3><p class="acao-itens">Plano de ação de 30 dias <span aria-hidden="true">·</span> Diagnóstico pessoal <span aria-hidden="true">·</span> Código de honra <span aria-hidden="true">·</span> Diário de evolução</p></div></div>
 </div>
 <div class="preco">
 <p class="preco-frase">Comece hoje a construir uma postura que você mesmo respeitaria.</p>
 <p class="price-main"><small>12x de</small> <b class="silver">R$&nbsp;10,03</b></p>
 <p class="price-alt">ou R$&nbsp;97 à vista.</p>
-<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero recuperar meu respeito agora<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
+<span class="cta-ring"><a class="cta" href="https://chk.eduzz.com/7WXGDYN20A" target="_blank" rel="noopener">Quero acessar o método completo<span class="cta-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D9E2EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></a></span>
 <p class="preco-nota">Acesso digital após a confirmação do pagamento. Material em PDF para ler no celular, tablet ou computador.</p>
 </div>
 </div>
