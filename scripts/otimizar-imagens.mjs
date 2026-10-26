@@ -20,7 +20,8 @@ const ORIGEM = path.join(RAIZ, 'assets', 'img');
 const PRINTS = path.join(ORIGEM, 'prints');
 const DESTINO = path.join(ORIGEM, 'opt');
 
-// Larguras em px. Cada uma cobre o tamanho da imagem na tela em 1x, 2x e 3x.
+// Larguras em px. Cada uma cobre o tamanho da imagem na tela em 1x e 2x; o hero, também em 3x. Fora o hero, o
+// sizes do index.html limita o celular a 2x (com densidade alta, ele encolhe e o navegador pede a versão de 2x).
 // Uma largura maior que o original vira o próprio original: nunca amplia.
 const LARGURAS = {
   // Hero: a foto é cortada pela altura (object-fit: cover), então aparece mais larga que a tela.
@@ -29,19 +30,21 @@ const LARGURAS = {
   'hero-desktop': [1280, 1600, 1920, 2560, 3200],
   'autor': [400, 640, 900],
   // Capa oficial dourada do livro (1024x1536, a maior versão fica com 1024): até 280px na oferta no desktop
-  // (2x) e 46% da tela no celular (3x).
+  // (2x) e 44% da tela no celular.
   'capa-oficial-dourada': [360, 540, 800, 1080],
-  // Os dois livros dos lados da mesa (1024x1536): ~224px no desktop (2x) e 30vw no celular (3x).
+  // Os dois livros dos lados da mesa (1024x1536): ~224px no desktop (2x) e 30vw no celular.
   'capa-jogo-sujo': [360, 540, 800, 1080],
   'capa-engolir-calado': [360, 540, 800, 1080],
-  'oferta-mesa': [960, 1280, 1672],
+  // Mesa da oferta: 676px no celular, limitada a 2x (1360); até 1600px no desktop.
+  'oferta-mesa': [960, 1280, 1360, 1672],
 };
 // Cards da #transformacao: fotos sem texto, 1536x1024, em assets/img/cards/card-0N-nosso.jpg (o número, o título
 // e a linha são texto real na página). A foto cobre o card: até 1023px o card é 4:5 e a foto aparece com ~1,9
-// vez a largura do card (~610px em 390px, 3x); a partir de 1024px, 4:3 e ~1,1 vez (~570px em 1440px, 1x e 2x).
+// vez a largura do card (~610px em 390px); a partir de 1024px, 4:3 e ~1,1 vez (~570px em 1440px, 1x e 2x). No celular,
+// as imagens fora o hero ficam limitadas a 2x (o sizes encolhe com densidade alta): ~1215px em 390px, daí o 1280.
 // Sem o original, o script avisa e segue.
 const NOSSOS = ['card-01-nosso', 'card-02-nosso', 'card-03-nosso', 'card-04-nosso'];
-const LARGURAS_NOSSO = [480, 768, 1152, 1536];
+const LARGURAS_NOSSO = [480, 768, 1152, 1280, 1536];
 // Prints: ~250px na fileira do celular, ~350px no mosaico do desktop e até 520px no lightbox.
 // Os originais têm ~737px: 737 é o teto (nunca amplia; a maior versão fica na largura do original).
 const LARGURAS_PRINT = [360, 540, 737];

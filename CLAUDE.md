@@ -22,12 +22,12 @@ Quando o mockup e a copy discordarem num texto, a copy manda. Quando discordarem
 
 ## Entrega técnica
 
-- Site estático. Um `index.html` na raiz (e a `404.html`, a página de erro), com CSS e JS inline (são poucos KB e evitam requisições extras). Única exceção: o Lenis, em `assets/js/lenis.min.js` (ver Sistema de movimento). Sem framework, sem build obrigatório, sem jQuery.
-- Imagens otimizadas em `assets/img/opt/`, em AVIF e WebP com fallback JPG, servidas por `<picture>` com `srcset` e `sizes`. Toda `<img>` com `width` e `height` para não haver salto de layout.
+- Site estático. Um `index.html` na raiz (e a `404.html`, a página de erro), com CSS e JS inline (são poucos KB e evitam requisições extras). Única exceção: o Lenis, em `assets/js/lenis.min.js`, baixado depois do load (ver Sistema de movimento). Sem framework, sem build obrigatório, sem jQuery.
+- Imagens otimizadas em `assets/img/opt/`, em AVIF e WebP com fallback JPG, servidas por `<picture>` com `srcset` e `sizes`. Toda `<img>` com `width` e `height` para não haver salto de layout. Fora o hero, as imagens ficam limitadas a 2x no celular: até 760 px de tela, o `sizes` encolhe com densidade alta (x0,8 a partir de 2,4 dppx e x2/3 a partir de 2,9 dppx) e o navegador pede a versão de ~2x. O hero continua até 3x.
 - Fonte: Geist hospedada localmente (`assets/fonts/geist-latin.woff2`, arquivo variável com subset latino, licença OFL ao lado), com `preload` e `font-display: swap`. Nenhuma outra família.
 - Mobile-first de verdade. Testar em 390 px de largura antes de qualquer outra.
 - Funcionar sem JavaScript: todo o conteúdo aparece, os links levam ao checkout. O JS só melhora (checklist, barra fixa, lightbox, rolagem suave).
-- Exceção pedida pelo desenvolvedor: a assinatura do Studio Alto Nível (`https://cdn.studioaltonivel.com/footer.js`, com `defer`), que insere o rodapé "Desenvolvido por" no fim do `<body>` com estilo e fonte próprios. O único ajuste da página sobre ele é o fundo #000000 (`html body #san-footer-badge`).
+- Exceção pedida pelo desenvolvedor: a assinatura do Studio Alto Nível (`https://cdn.studioaltonivel.com/footer.js`, com `defer`), que insere o rodapé "Desenvolvido por" no fim do `<body>` com estilo e fonte próprios. Ela carrega com a página: adiada para perto do rodapé, a primeira pintura atrasava no Lighthouse e a nota do celular com rastreio caía (rodada de performance, fase 2). O único ajuste da página sobre ele é o fundo #000000 (`html body #san-footer-badge`).
 - Hospedagem final: a Hostinger do cliente (LiteSpeed compatível com Apache), com deploy pelo Git a partir deste repositório, na raiz do domínio. A configuração está no `.htaccess` da raiz: rotas das origens de tráfego (reescrita interna), http para https e www para o domínio sem www (301), bloqueio dos arquivos internos (`docs/`, `scripts/`, `node_modules/`, `.git`, qualquer `.md`, README, `package*.json`, `_redirects` e os `.htaccess`), compressão, tipos (avif, webp, woff2), `no-cache` no HTML, a raiz e o pedido direto de `/index.html` em 404 e a página de erro `404.html` (status 404). O cache de 1 ano (immutable) de `assets/` fica em `assets/.htaccess`: como os nomes não têm versão, para trocar um arquivo de `assets/` use um nome novo, senão quem já visitou continua vendo o antigo. A Netlify fica só como prévia, com o `_redirects` (rotas) e o `_headers` (o mesmo cache): mudou uma rota ou um cache num, mude no outro. O Live Server não lê nenhum dos dois.
 
 ## Design (os valores exatos estão no CSS do mockup)
@@ -57,12 +57,12 @@ A interface é azul-noite com os destaques em azul (identidade aprovada pelo cli
 ### Superfícies e efeitos
 
 - Vidro: degradê escuro translúcido + `backdrop-filter: blur(16 a 20px)` + borda de 1 px em prata a 15 a 20 por cento + brilho interno no topo. Só onde há imagem ou luz atrás.
-- Grão sutil por cima da página inteira (`assets/img/grain.png`, `mix-blend-mode: overlay`).
+- Grão sutil por cima da página inteira (`assets/img/grain.png`, `mix-blend-mode: overlay`). Ele carrega com a página: adiado para depois do load, piorou o Lighthouse (o `body::after` cobre a tela inteira, vira o candidato a LCP quando aparece e atrasa o Speed Index).
 - Luz: cada seção tem um ponto de luz difusa (radial azul-noite), nunca fundo chapado.
 - Botão principal: pílula prateada metálica com texto escuro, dentro de um anel de vidro (borda #3D8BFF a 60% e brilho azul), seta branca num círculo em degradê de #2F6FE0 a #0E2F70 e um reflexo que atravessa o botão a cada poucos segundos (desligado com `prefers-reduced-motion`). Ao passar o mouse ou com foco pelo teclado: o reflexo passa na hora, o botão sobe 2 px, clareia, o anel ganha brilho embaixo e a seta sai pela direita do círculo e volta pela esquerda (300 ms, `cubic-bezier(.2,.8,.2,1)`). No `:active`, em todos os aparelhos e também no botão da barra fixa: `scale(.98)` e menos brilho. Sem movimento, só o brilho muda.
 - Botões em maiúsculas (pedido do cliente, vale para a página inteira): todos os botões de compra e de ação, inclusive o da barra fixa, com o texto em maiúsculas por CSS (`text-transform: uppercase`), `letter-spacing: .04em` e peso 600. No HTML, o texto continua em caixa normal. Só os botões: rótulos, títulos e o resto da página continuam em caixa normal.
 - Botão grande (`.cta--grande`) em todos os botões de compra (hero, #transformacao, #caminho, #oferta, #autor e #fechamento), cada um com o seu texto: o mesmo botão principal, com o mesmo prateado e os mesmos efeitos, com 76 px de altura e a seta no círculo. A barra fixa continua com o botão compacto. A partir de 375 px de tela (os iPhones de 390 e 393 px incluídos), o rótulo fica em uma linha e o botão acompanha o texto, mesmo que passe da coluna (centrado, a pelo menos 12 px das bordas da tela); abaixo de 375 px, quebra em duas linhas parelhas. No celular, a fonte vai de 13,7 px em 375 px a 18 px em ~458 px; no desktop, 18 px (mínimos: 13 px no celular, com espaçamento até .02em, folgas menores e o círculo da seta com pelo menos 40 px; 17 px no desktop. Se não couber, reduza a fonte antes de deixar quebrar). O botão da oferta ("Quero acessar o método completo", o rótulo mais longo, dentro do bloco de preço) tem conta própria: 13 px em 375 px, ~13,8 px em 390 px e ~15,6 px em 430 px, com .02em e o anel de 3 px.
-- Cards da #transformacao: foto sem texto (`assets/img/cards/card-0N-nosso.jpg`, otimizada pelo `scripts/otimizar-imagens.mjs` de 480 a 1536 px) cobrindo o card, com um degradê azul-noite do lado do texto e o texto real por cima: o número no círculo de vidro com um fio prateado, o título (com o final em destaque) e a linha em `--nevoa`. Moldura de vidro escuro com cantos arredondados, sem hover (não são clicáveis). Uma coluna no celular (card 4:5, texto embaixo), 2 x 2 a partir de 761 px (4:3 a partir de 1024 px, texto à esquerda).
+- Cards da #transformacao: foto sem texto (`assets/img/cards/card-0N-nosso.jpg`, otimizada pelo `scripts/otimizar-imagens.mjs` de 480 a 1536 px, com 1280 para o celular em 2x) cobrindo o card, com um degradê azul-noite do lado do texto e o texto real por cima: o número no círculo de vidro com um fio prateado, o título (com o final em destaque) e a linha em `--nevoa`. Moldura de vidro escuro com cantos arredondados, sem hover (não são clicáveis). Uma coluna no celular (card 4:5, texto embaixo), 2 x 2 a partir de 761 px (4:3 a partir de 1024 px, texto à esquerda).
 - Ícone da marca: o escudo (SVG do mockup). Usado em rótulos, listas e selo de garantia.
 
 ### Regras que não se negociam
@@ -128,7 +128,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 
 ### Rolagem suave (Lenis)
 
-- Lenis como arquivo local em `assets/js/lenis.min.js`, sem CDN, carregado com `defer` no fim da página. A versão fica registrada em `scripts/package.json`; para atualizar: `npm install --prefix scripts` e `npm run lenis --prefix scripts`.
+- Lenis como arquivo local em `assets/js/lenis.min.js`, sem CDN. O script do fim da página só o baixa depois do load, e só quando ele vai ser usado (mouse ou trackpad, sem movimento reduzido); até lá, a rolagem é nativa. Assim ele fica fora da abertura da página. A versão fica registrada em `scripts/package.json`; para atualizar: `npm install --prefix scripts` e `npm run lenis --prefix scripts`.
 - Ativo só com mouse ou trackpad (`any-pointer: fine`). No toque, rolagem nativa (`syncTouch: false`). Desligado com `prefers-reduced-motion`. Sem JS, rolagem nativa.
 - Com o Lenis ativo, `html` fica com `scroll-behavior: auto`, para as rolagens do próprio navegador (foco por Tab, busca na página) não brigarem com ele.
 - Links internos (`href="#..."`) rolam pelo Lenis, descontam o que estiver fixo no topo (`scroll-margin-top`, variável `--topo-fixo`) e levam o foco ao destino. Se surgir um elemento fixo no topo, ajuste `--topo-fixo`.
@@ -139,6 +139,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - Amarrada à rolagem (`animation-timeline: view()`), nunca a tempo: nada de `animation-delay`, `setTimeout` ou `IntersectionObserver` para animar entrada.
 - Entrada: o bloco entra por baixo com `blur(10px)`, opacidade 0 e `translateY(24px)`, e fica nítido, opaco e no lugar quando chega a 35% da altura da tela, contando de baixo. No celular: blur de 6 px e 16 px de deslocamento.
 - Saída: ao passar pelo topo da tela, desfoca até 4 px e vai a 60% de opacidade. Discreta, para não atrapalhar quem volta para reler.
+- O desfoque fica nos textos e títulos. Imagens, cards grandes (cards da #transformacao, livros da mesa, painel da oferta, card do autor, prints, card da garantia) e blocos com mais de ~400 px de altura usam `.reveal.rv-leve`: a mesma faixa de rolagem, sem desfoque (entrada só com opacidade e deslocamento; saída só até 60% de opacidade). O `blur` roda na thread principal e era a maior causa de quadros lentos na rolagem do desktop.
 - `.reveal-saida`: só a saída. Usada no hero, onde H1 e subheadline são o LCP e não podem ter entrada.
 - Aplicar em blocos: título, parágrafo, card, linha de lista. Nunca palavra por palavra.
 - Itens de uma lista entram em sequência pelo próprio deslocamento. Itens lado a lado numa grade usam `--rv-atraso` (em `svh`) por item, que atrasa a faixa de rolagem, nunca o tempo.
@@ -147,7 +148,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - Nunca aplicar no elemento sticky; aplique nos filhos dele.
 - Nunca aplicar dentro de um elemento com `overflow: hidden` (nem `auto` ou `scroll`): ele vira contêiner de rolagem, o `view()` mede contra ele e a animação não roda. Para cortar, use `overflow: clip`. Numa fileira que rola de verdade (scroll-snap), use uma `view-timeline` com nome na própria fileira, como nos prints da #autor.
 - Nunca aplicar nos blocos do fim da página (frase final do fechamento, rodapé): a rolagem acaba antes de eles chegarem a 35% da tela e ficariam desfocados.
-- Nunca aplicar em fotos grandes, palco de imagem ou seção inteira. O Chrome não leva animação de `blur` para a GPU: ela roda na thread principal e o custo cresce com a área desfocada. Use em blocos de texto e cards.
+- Nunca aplicar em fotos grandes, palco de imagem ou seção inteira. O Chrome não leva animação de `blur` para a GPU: ela roda na thread principal e o custo cresce com a área desfocada. O desfoque vai em blocos de texto; nos blocos grandes e com imagem, `.rv-leve`.
 
 ## Performance e acessibilidade
 
@@ -155,6 +156,7 @@ Vale para a página inteira, inclusive para as seções que ainda vão ser feita
 - Peso total da primeira tela no celular: abaixo de 400 KB.
 - Contraste mínimo 4,5:1 no texto. Foco de teclado visível. Alvos de toque com pelo menos 44 px. `alt` descritivo em toda imagem de conteúdo, `alt=""` nas decorativas. `lang="pt-BR"`.
 - Unidades `svh`/`dvh` no lugar de `vh` em alturas de tela.
+- `content-visibility` não está aplicado: a contenção de pintura que ele liga corta tudo que passa da borda da seção (as luzes que atravessam as emendas e o palco da #oferta, que começa por trás do #caminho), e o ganho medido foi pequeno (cerca de 16 ms no FCP com CPU 4x). Ver a rodada de performance no `docs/PROGRESSO.md`.
 
 ## SEO e compartilhamento
 

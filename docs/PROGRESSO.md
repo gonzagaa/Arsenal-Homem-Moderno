@@ -51,6 +51,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | `.htaccess` para a hospedagem final (Hostinger) | aprovada |
 | Checkouts da Eduzz por origem de tráfego | aprovada |
 | Sem página na raiz: só as quatro rotas vendem, `404.html`; `_headers` da Netlify | aprovada |
+| Performance (revelação sem desfoque nos blocos grandes, imagens a 2x no celular, Lenis depois do load) | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -492,12 +493,35 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 
 - O cliente confirmou que não vai existir página na raiz: só /bio/, /sdr/, /tfg/ e /story/ vendem, com os mesmos links.
 - `404.html` nova: fundo azul-noite com a luz difusa e o grão, o escudo prateado com brilho azul, "Esta página não está disponível." (300, até 36px) e um link discreto "@marcellopgomes no Instagram" (sublinhado, `--nevoa`, mesma guia). Sem botão de compra, sem nenhum script (sem GTM e sem pixel), `noindex`, caminhos a partir da raiz. Lighthouse: acessibilidade e boas práticas 100 (SEO 50 pelo `noindex`, de propósito).
-- `.htaccess` (Hostinger): `ErrorDocument 404 /404.html`; a raiz e o pedido direto de `/index.html` respondem 404 por uma regra só: `RewriteCond %{THE_REQUEST} ^[A-Z]+s(?:https?://[^/s]+)?/+(?:index.html)?(?:?S*)?s [NC]` com `RewriteRule ^(?:index.html)?$ - [R=404,NC,L]`, antes da regra das rotas. O `THE_REQUEST` não muda nas passagens internas: o /bio/ reescrito para o index.html não cai na regra, e a 404.html servida como página de erro fica fora do padrão (sem laço). Se o servidor resolver o `DirectoryIndex` antes da reescrita, a regra continua pegando a raiz. O `DirectoryIndex index.html` ficou como segurança.
+- `.htaccess` (Hostinger): `ErrorDocument 404 /404.html`; a raiz e o pedido direto de `/index.html` respondem 404 por uma regra só: `RewriteCond %{THE_REQUEST} ^[A-Z]+\s(?:https?://[^/\s]+)?/+(?:index\.html)?(?:\?\S*)?\s [NC]` com `RewriteRule ^(?:index\.html)?$ - [R=404,NC,L]`, antes da regra das rotas. O `THE_REQUEST` não muda nas passagens internas: o /bio/ reescrito para o index.html não cai na regra, e a 404.html servida como página de erro fica fora do padrão (sem laço). Se o servidor resolver o `DirectoryIndex` antes da reescrita, a regra continua pegando a raiz. O `DirectoryIndex index.html` ficou como segurança.
 - `_redirects` (Netlify): `/` e `/index.html` com `/404.html 404!` (forçado, porque o index.html existe), as oito linhas das rotas com 200 para o `/index.html` e, por último, `/* /404.html 404` sem "!" (os arquivos que existem continuam servidos).
 - Sem Apache nem WSL na máquina: as duas configurações foram simuladas em Node, lendo as regras dos próprios arquivos, em 20 pedidos (raiz com e sem query, HEAD, `/index.html` em várias formas, as quatro rotas com e sem barra e em caixa alta, `/bio/index.html`, endereços inventados, a 404.html e arquivos de `assets/`): todos com o status e o arquivo esperados, inclusive com o `DirectoryIndex` antes da reescrita. A conferência no domínio fica no `PENDENCIAS.md` (a regra usa `[R=404]`, que o LiteSpeed precisa aceitar).
 - Canonical e `og:url` em `https://nunca-mais-seja-desprezado.com.br/bio/`. `CHECKOUTS`: o `padrao` e os href dos botões continuam com o link da bio, só como segurança; comentário atualizado. Localmente, o Live Server não lê essas regras e a raiz continua abrindo a página; os testes seguem com `?origem=` (rotas conferidas de novo, iguais à rodada anterior).
 - `CLAUDE.md`, `docs/copy.md` e `PENDENCIAS.md` (link da raiz resolvido; conferência pós-deploy ampliada) atualizados.
 - `_headers` (Netlify, prévia) com o mesmo cache do `.htaccess`: `assets/` com 1 ano e immutable, HTML (raiz, `/index.html`, `/404.html` e as rotas, com e sem barra) com `no-cache`, favicons com 1 semana e `nosniff` em tudo. O Cache-Control vai em caminhos que não se sobrepõem (a Netlify junta os valores quando duas regras casam). O `.htaccess` passou a esconder o `_headers` na Hostinger, como o `_redirects`.
+
+### Performance (2026-10-26)
+
+- Fase 1 (só medição): o LCP é a foto do hero; o preload casa com o srcset. O rastreio (GTM e pixel) fica como está (opção A, aprovada).
+- Revelação: o desfoque fica só nos textos e títulos. `.reveal.rv-leve` (a mesma faixa de rolagem; entrada só com opacidade e deslocamento, saída só até 60% de opacidade) nos 4 cards da #transformacao, no palco dos livros (`.books`), no painel da oferta, no card do autor, nos 8 prints (e nas 16 cópias do carrossel) e no card da garantia: os blocos com imagem ou com mais de ~400 px de altura, medidos a 1440 e 390 px. Capturas antes e depois a 1440 px enviadas.
+- Imagens fora o hero limitadas a 2x no celular: o `sizes` ganhou `(min-resolution: 2.9dppx)` (x2/3) e `(min-resolution: 2.4dppx)` (x0,8) antes do valor do celular, nos cards, na mesa da oferta, nas capas, no autor e nos prints. Larguras novas: cards em 1280 e mesa em 1360 (arquivos novos; nenhum existente mudou, por causa do cache de 1 ano). Página inteira em 390 px: 439 para 347 KB com densidade 3 e 364 para 329 KB com densidade 2. Qualidade conferida nos pixels reais com densidade 3 (card, autor, print e capa).
+- Lenis depois do load (item 6, aprovado depois): o script do fim da página só baixa o `lenis.min.js` no load, e só quando ele vai ser usado (mouse ou trackpad, sem movimento reduzido). No toque, o arquivo nem é pedido.
+- Testados e desfeitos (pela regra: item que piora a nota sai):
+  - Grão depois do load: o `body::after` cobre a tela inteira e é candidato a LCP. Adiado, virava o LCP (6,6 s com rastreio) e levava o Speed Index de 0,9 para 3,7 s.
+  - Assinatura do estúdio carregada perto do rodapé (`IntersectionObserver`): neste notebook, o Chrome do Lighthouse às vezes atrasa a primeira pintura em degraus de ~1 s. Sem a assinatura no começo, o atraso ia de ~1,2 s para ~2,2 s, o GTM e o pixel entravam no LCP simulado e a nota do celular com rastreio caía para 50 a 60. Voltou ao `defer`, como era.
+- `content-visibility`: não aplicado (decisão do desenvolvedor). Nas seções abaixo da dobra, o ganho medido foi de 16 ms no FCP com CPU 4x (496 para 480 ms), e a contenção de pintura corta as emendas: o palco e o título da #oferta somem na emenda com o #caminho, e a luz da #transformacao termina numa linha seca.
+- Visual: página inteira idêntica à versão anterior em 390 e 1440 px (movimento reduzido, rolada até o fim, comparação pixel a pixel). Sem erros de JS.
+- Medição final: servidor local parecido com a Hostinger (brotli, cache do `.htaccess`), Lighthouse 12.8.2 com GPU desligada, envios ao Meta, ao Gateway e ao GA4 bloqueados, mediana de 5, alternando a versão anterior e a final, com o notebook livre:
+
+| Configuração | Anterior | Final | Referência da fase 1 |
+| --- | --- | --- | --- |
+| Celular com rastreio | 91 (89-95), LCP 2,0s, TBT 354ms | 95 (75-97), LCP 1,9s, TBT 249ms | 95 (89-96), LCP 2,0s, TBT 243ms |
+| Celular sem rastreio | 99, LCP 2,0s, TBT 11ms | 99, LCP 2,0s, TBT 0ms | 99 |
+| Desktop com rastreio | 100 (95-100), LCP 0,5s, TBT 26ms | 100 (100-100), LCP 0,7s, TBT 2ms | 100 |
+| Desktop sem rastreio | 100 | 100 | 100 |
+
+- CLS 0 em todas. A rolagem com CPU 4x no desktop não deu números confiáveis nesta máquina hoje (quadros lentos acima de 85% nas duas versões, contra 32,5% na fase 1); a pintura na thread principal caiu ~13% sem o desfoque nos blocos grandes.
+- Para medir de novo: alterne A/B, use mediana e confira o `observedFirstContentfulPaint` (audit `metrics` do JSON): rodadas com a primeira pintura atrasada em degraus de ~1 s são o atraso do Chrome desta máquina, não da página.
 
 ## Pendências técnicas (do projeto, não do cliente)
 
