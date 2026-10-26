@@ -50,6 +50,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Origens de tráfego (/bio/, /sdr/, /tfg/, /story/) com checkout por rota, preparando a Netlify | aprovada |
 | `.htaccess` para a hospedagem final (Hostinger) | aprovada |
 | Checkouts da Eduzz por origem de tráfego | aprovada |
+| Sem página na raiz: só as quatro rotas vendem, `404.html`; `_headers` da Netlify | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -487,6 +488,17 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Testado num servidor local na raiz (porta 5500, como o Live Server), com `&utm_source=teste`: sem origem e com `?origem=bio`, os 7 botões em R9JXO4OZ0X; `sdr` em 60E2O4KBW3; `tfg` em E0DKJ47691; `story` em 39VKR26KWR; `?origem=BIO` igual à bio e `?origem=xyz` no padrão; todos com `?utm_source=teste`. Sem JS, o padrão sem parâmetros. `rastreio` e `origem` continuam fora do repasse; `fbclid` vai. Nenhum erro de JS.
 - PENDENCIAS.md: checkout resolvido; ficam confirmar o link da raiz e confirmar com a gestora o pixel e o token nos quatro checkouts.
 
+### Sem página na raiz: só as quatro rotas vendem (2026-10-26)
+
+- O cliente confirmou que não vai existir página na raiz: só /bio/, /sdr/, /tfg/ e /story/ vendem, com os mesmos links.
+- `404.html` nova: fundo azul-noite com a luz difusa e o grão, o escudo prateado com brilho azul, "Esta página não está disponível." (300, até 36px) e um link discreto "@marcellopgomes no Instagram" (sublinhado, `--nevoa`, mesma guia). Sem botão de compra, sem nenhum script (sem GTM e sem pixel), `noindex`, caminhos a partir da raiz. Lighthouse: acessibilidade e boas práticas 100 (SEO 50 pelo `noindex`, de propósito).
+- `.htaccess` (Hostinger): `ErrorDocument 404 /404.html`; a raiz e o pedido direto de `/index.html` respondem 404 por uma regra só: `RewriteCond %{THE_REQUEST} ^[A-Z]+s(?:https?://[^/s]+)?/+(?:index.html)?(?:?S*)?s [NC]` com `RewriteRule ^(?:index.html)?$ - [R=404,NC,L]`, antes da regra das rotas. O `THE_REQUEST` não muda nas passagens internas: o /bio/ reescrito para o index.html não cai na regra, e a 404.html servida como página de erro fica fora do padrão (sem laço). Se o servidor resolver o `DirectoryIndex` antes da reescrita, a regra continua pegando a raiz. O `DirectoryIndex index.html` ficou como segurança.
+- `_redirects` (Netlify): `/` e `/index.html` com `/404.html 404!` (forçado, porque o index.html existe), as oito linhas das rotas com 200 para o `/index.html` e, por último, `/* /404.html 404` sem "!" (os arquivos que existem continuam servidos).
+- Sem Apache nem WSL na máquina: as duas configurações foram simuladas em Node, lendo as regras dos próprios arquivos, em 20 pedidos (raiz com e sem query, HEAD, `/index.html` em várias formas, as quatro rotas com e sem barra e em caixa alta, `/bio/index.html`, endereços inventados, a 404.html e arquivos de `assets/`): todos com o status e o arquivo esperados, inclusive com o `DirectoryIndex` antes da reescrita. A conferência no domínio fica no `PENDENCIAS.md` (a regra usa `[R=404]`, que o LiteSpeed precisa aceitar).
+- Canonical e `og:url` em `https://nunca-mais-seja-desprezado.com.br/bio/`. `CHECKOUTS`: o `padrao` e os href dos botões continuam com o link da bio, só como segurança; comentário atualizado. Localmente, o Live Server não lê essas regras e a raiz continua abrindo a página; os testes seguem com `?origem=` (rotas conferidas de novo, iguais à rodada anterior).
+- `CLAUDE.md`, `docs/copy.md` e `PENDENCIAS.md` (link da raiz resolvido; conferência pós-deploy ampliada) atualizados.
+- `_headers` (Netlify, prévia) com o mesmo cache do `.htaccess`: `assets/` com 1 ano e immutable, HTML (raiz, `/index.html`, `/404.html` e as rotas, com e sem barra) com `no-cache`, favicons com 1 semana e `nosniff` em tudo. O Cache-Control vai em caminhos que não se sobrepõem (a Netlify junta os valores quando duas regras casam). O `.htaccess` passou a esconder o `_headers` na Hostinger, como o `_redirects`.
+
 ## Pendências técnicas (do projeto, não do cliente)
 
 - Nenhuma.
@@ -522,7 +534,7 @@ Resultado final, na etapa 11. Lighthouse 12 em modo celular, servidor local com 
 
 1. Clone o repositório e abra a pasta no VS Code.
 2. Instale a extensão Live Server (Ritwick Dey), abra no VS Code a pasta raiz do projeto (a que tem o `index.html`) e clique em "Go Live". A página abre em http://127.0.0.1:5500/index.html. Todo arquivo é pedido a partir da raiz (`/assets/...`), então o servidor precisa servir a raiz do projeto: aberto numa pasta acima, as imagens e a fonte não carregam. Qualquer servidor estático na raiz também serve (por exemplo, `npx live-server --port=5500`).
-   - O Live Server não lê o `.htaccess` nem o `_redirects`: para testar uma origem de tráfego, abra `/?origem=bio` (ou `sdr`, `tfg`, `story`). Na Hostinger e na Netlify, as rotas `/bio/` etc. funcionam direto.
+   - O Live Server não lê o `.htaccess` nem o `_redirects`: para testar uma origem de tráfego, abra `/?origem=bio` (ou `sdr`, `tfg`, `story`). Na Hostinger e na Netlify, as rotas `/bio/` etc. funcionam direto, e a raiz responde 404 com a `404.html` (localmente, ela abre a página com o checkout padrão). A `404.html` se confere direto em `/404.html`.
 3. Não é preciso gerar nada: `assets/img/opt/`, `assets/img/og.jpg`, os favicons e `assets/js/lenis.min.js` estão no repositório.
 4. No localhost, o GTM e o pixel não carregam. Para testar o rastreio, abra com `?rastreio=1`.
 5. O Node (versão 20 ou mais nova; foram usadas a 24 e a 22) só é necessário para regenerar arquivos:

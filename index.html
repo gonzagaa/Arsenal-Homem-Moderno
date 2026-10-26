@@ -33,12 +33,12 @@ fbq('track', 'PageView');
 <!-- End Meta Pixel Code -->
 <title>De Desprezado a Respeitado, por Marcello Gomes</title>
 <meta name="description" content="Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado.">
-<link rel="canonical" href="https://nunca-mais-seja-desprezado.com.br/">
+<link rel="canonical" href="https://nunca-mais-seja-desprezado.com.br/bio/">
 <!-- Compartilhamento. A imagem precisa de endereço absoluto; ela é gerada por scripts/gerar-og.mjs. -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="De Desprezado a Respeitado">
-<meta property="og:url" content="https://nunca-mais-seja-desprezado.com.br/">
+<meta property="og:url" content="https://nunca-mais-seja-desprezado.com.br/bio/">
 <meta property="og:title" content="De Desprezado a Respeitado, por Marcello Gomes">
 <meta property="og:description" content="Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado.">
 <meta property="og:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/og.jpg">
@@ -1417,12 +1417,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Assinatura do Studio Alto Nível (pedido do desenvolvedor): o script insere o rodapé "Desenvolvido por" no fim do <body>. -->
 <script src="https://cdn.studioaltonivel.com/footer.js" defer></script>
 <script>
-// Checkout de cada origem de tráfego. A mesma página abre na raiz e em /bio/, /sdr/, /tfg/ e /story/ (o
-// _redirects reescreve essas rotas para o /index.html, sem mudar o endereço). O primeiro segmento do caminho
-// escolhe o checkout de todos os botões de compra, inclusive o da barra fixa; qualquer outro caminho usa o
-// padrão. Sem JS, os botões levam ao href do HTML, que é o padrão: se ele mudar, troque também os href.
-// O padrão (raiz e qualquer outro caminho) é, provisoriamente, o mesmo da bio, até o cliente confirmar o link
-// da raiz.
+// Checkout de cada origem de tráfego. Só as quatro rotas vendem: a página abre em /bio/, /sdr/, /tfg/ e
+// /story/ (o .htaccess e o _redirects reescrevem essas rotas para o /index.html, sem mudar o endereço). O
+// primeiro segmento do caminho escolhe o checkout de todos os botões de compra, inclusive o da barra fixa.
+// A raiz não vende: no servidor, / e /index.html respondem 404 (a 404.html). O padrão fica com o link da bio só
+// como segurança, para o caso de a página abrir fora das quatro rotas (como a raiz no Live Server, que não lê
+// essas regras). Sem JS, os botões levam ao href do HTML, que é o padrão: se ele mudar, troque também os href.
 var CHECKOUTS = {
   padrao: 'https://chk.eduzz.com/R9JXO4OZ0X',
   bio:    'https://chk.eduzz.com/R9JXO4OZ0X',
