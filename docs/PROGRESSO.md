@@ -2,7 +2,7 @@
 
 Leia este arquivo antes de qualquer outra coisa numa sessão nova. Ele registra as etapas aprovadas e as decisões aprovadas nos relatórios que não estão no `CLAUDE.md` nem no `docs/PROMPTS.md`. Essas decisões vieram depois do mockup: quando discordarem dele, valem as decisões.
 
-Atualizado em 2026-10-22.
+Atualizado em 2026-10-26.
 
 ## Situação
 
@@ -49,6 +49,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rodada C: consolidação da identidade oficial (antes `?tema=vibrante`) e dos nossos cards | aprovada |
 | Origens de tráfego (/bio/, /sdr/, /tfg/, /story/) com checkout por rota, preparando a Netlify | aprovada |
 | `.htaccess` para a hospedagem final (Hostinger) | aprovada |
+| Checkouts da Eduzz por origem de tráfego | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -478,6 +479,13 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - `.htaccess` na raiz, com os blocos dependentes de módulo em `<IfModule>`: `DirectoryIndex` e `Options -Indexes`; 404 com a própria página (`ErrorDocument 404 /index.html`, escolhido por ser o mais seguro: o visitante vê a página e compra pelo checkout padrão, buscadores recebem 404); bloqueio dos arquivos internos em três camadas (`RedirectMatch 404`, `FilesMatch` negado e `RewriteRule [F]`), menos `/.well-known/`; www para sem www e http para https (301, com a condição do `X-Forwarded-Proto` contra laço); rotas `/bio`, `/sdr`, `/tfg` e `/story` (com ou sem barra, qualquer caixa) reescritas para o `/index.html`; tipos avif, webp, woff2, svg e js; brotli e gzip; HTML `no-cache`, favicons 1 semana, `nosniff`.
 - `assets/.htaccess` com cache de 1 ano (immutable), num arquivo próprio da pasta porque separar por pasta no `.htaccess` da raiz exige expressões que o LiteSpeed nem sempre aceita. Os nomes não têm versão: para trocar um arquivo de `assets/`, use um nome novo.
 - Sem Apache na máquina: os padrões foram testados em Node, lidos do próprio arquivo. 440 endereços liberados (os 208 que a página usa, os 227 de `assets/`, raiz, rotas, `/.well-known/`), 24 internos bloqueados e 13 casos de rota corretos. A conferência no domínio depois do primeiro deploy está no `PENDENCIAS.md`.
+
+### Checkouts da Eduzz por origem de tráfego (2026-10-26)
+
+- `CHECKOUTS` preenchido: `padrao` https://chk.eduzz.com/R9JXO4OZ0X (provisoriamente o mesmo da bio, até o cliente confirmar o link da raiz), `bio` https://chk.eduzz.com/R9JXO4OZ0X, `sdr` https://chk.eduzz.com/60E2O4KBW3, `tfg` https://chk.eduzz.com/E0DKJ47691, `story` https://chk.eduzz.com/39VKR26KWR.
+- Os href dos 7 botões de compra no HTML (o que vale sem JS) passaram para o padrão. O checkout provisório do produto antigo (7WXGDYN20A) não aparece mais no projeto (`index.html`, `CLAUDE.md`, `PENDENCIAS.md` e `docs/copy.md` atualizados).
+- Testado num servidor local na raiz (porta 5500, como o Live Server), com `&utm_source=teste`: sem origem e com `?origem=bio`, os 7 botões em R9JXO4OZ0X; `sdr` em 60E2O4KBW3; `tfg` em E0DKJ47691; `story` em 39VKR26KWR; `?origem=BIO` igual à bio e `?origem=xyz` no padrão; todos com `?utm_source=teste`. Sem JS, o padrão sem parâmetros. `rastreio` e `origem` continuam fora do repasse; `fbclid` vai. Nenhum erro de JS.
+- PENDENCIAS.md: checkout resolvido; ficam confirmar o link da raiz e confirmar com a gestora o pixel e o token nos quatro checkouts.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

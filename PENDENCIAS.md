@@ -4,9 +4,9 @@ Nada marcado com `.pendente` vai ao ar. Atualize esta lista conforme as resposta
 
 O produto mudou: o Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitado (três livros: o principal, O Jogo Sujo dos Relacionamentos e Chega de Engolir Calado!, com os materiais de aplicação prática). Domínio novo: `https://nunca-mais-seja-desprezado.com.br/`.
 
-- [ ] **Checkout do produto novo:** os botões de compra ainda apontam para `https://chk.eduzz.com/7WXGDYN20A`, o checkout do produto antigo. Quando o De Desprezado a Respeitado estiver cadastrado na Eduzz, trocar o `padrao` do `CHECKOUTS` e os href dos botões (o repasse dos parâmetros da URL continua valendo).
-- [ ] **Checkouts das origens de tráfego (/bio/, /sdr/, /tfg/, /story/):** Preencher o CHECKOUTS com os quatro links da Eduzz quando o cliente enviar. Confirmar com a gestora o pixel em cada produto/oferta.
-- [ ] **Pixel no produto novo:** a gestora precisa configurar o pixel 1434833234924777 no produto novo dentro da Eduzz (ID e token da API de Conversões), como foi feito no Arsenal, e confirmar que o checkout novo também dispara o InitiateCheckout ao abrir.
+- [x] **Checkout:** resolvido. O `CHECKOUTS` tem os quatro links da Eduzz (bio, sdr, tfg, story), e os href dos botões no HTML levam ao padrão.
+- [ ] **Confirmar o link da raiz:** a raiz (e qualquer caminho fora das quatro rotas) usa, provisoriamente, o mesmo checkout da bio (`https://chk.eduzz.com/R9JXO4OZ0X`). Quando o cliente confirmar o link da raiz, trocar o `padrao` do `CHECKOUTS` e os href dos 7 botões.
+- [ ] **Confirmar com a gestora o pixel e o token nos quatro checkouts:** pixel 1434833234924777 e token da API de Conversões configurados em cada um dos quatro checkouts da Eduzz (bio, sdr, tfg, story), como foi feito no Arsenal, e o InitiateCheckout disparando ao abrir cada um.
 - [ ] Confirmar que os três livros são entregues em PDF e quantas páginas tem cada um.
 - [ ] Confirmar que o que a página promete está de fato no material: as 3 etapas do #caminho, as "respostas para 30 situações de desrespeito" do Chega de Engolir Calado!, o plano de ação de 30 dias, o diagnóstico pessoal, o código de honra e o diário de evolução (#caminho e #oferta).
 - [ ] Confirmar as respostas do FAQ: entrega em PDF depois da confirmação do pagamento e que o conteúdo trata de casamentos de longa data.
