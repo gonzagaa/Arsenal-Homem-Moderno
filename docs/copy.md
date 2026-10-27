@@ -111,8 +111,8 @@ Sem rótulo.
 
 **Painel, bloco de preço:**
 - Comece hoje a construir uma postura que você mesmo respeitaria.
-- 12x de **R$ 10,03**
-- ou R$ 97 à vista.
+- 12x de **R$ 9,83**
+- ou R$ 95 à vista.
 - Botão: Quero acessar o método completo
 - Abaixo do botão, com o escudo: Garantia de 7 dias
 - Nota: Acesso digital após a confirmação do pagamento. Material em PDF para ler no celular, tablet ou computador.
@@ -167,7 +167,7 @@ Agora é hora de aprender a se posicionar com firmeza, recuperar sua voz e volta
 
 **Bloco de compra:**
 - De Desprezado a Respeitado
-- 12x de R$ 10,03 ou R$ 97 à vista
+- 12x de R$ 9,83 ou R$ 95 à vista
 - Botão (versão grande): Quero recuperar meu respeito
 - Material digital · Pagamento seguro · Garantia de 7 dias
 
@@ -175,4 +175,4 @@ Agora é hora de aprender a se posicionar com firmeza, recuperar sua voz e volta
 
 ## 9. Barra fixa (celular)
 
-De Desprezado a Respeitado / **12x de R$ 10,03** / botão "Quero meu respeito"
+De Desprezado a Respeitado / **12x de R$ 9,83** / botão "Quero meu respeito"

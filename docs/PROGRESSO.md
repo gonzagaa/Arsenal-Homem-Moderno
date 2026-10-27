@@ -52,6 +52,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Checkouts da Eduzz por origem de tráfego | aprovada |
 | Sem página na raiz: só as quatro rotas vendem, `404.html`; `_headers` da Netlify | aprovada |
 | Performance (revelação sem desfoque nos blocos grandes, imagens a 2x no celular, Lenis depois do load) | aprovada |
+| Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
 
@@ -522,6 +523,11 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 
 - CLS 0 em todas. A rolagem com CPU 4x no desktop não deu números confiáveis nesta máquina hoje (quadros lentos acima de 85% nas duas versões, contra 32,5% na fase 1); a pintura na thread principal caiu ~13% sem o desfoque nos blocos grandes.
 - Para medir de novo: alterne A/B, use mediana e confira o `observedFirstContentfulPaint` (audit `metrics` do JSON): rodadas com a primeira pintura atrasada em degraus de ~1 s são o atraso do Chrome desta máquina, não da página.
+
+### Preço novo (2026-10-27)
+
+- O cliente mudou o preço (print do checkout da bio na Eduzz): 12x de R$ 9,83 ou R$ 95 à vista, no lugar de 12x de R$ 10,03 ou R$ 97. Trocado no bloco de preço da #oferta, no bloco de compra do #fechamento, na barra fixa, no comentário do CSS, no docs/copy.md e no CLAUDE.md, no formato da página ("R$ 95", sem ",00"). A 404.html não tem preço.
+- A confirmar: se sdr, tfg e story também cobram esse valor (a página mostra o mesmo preço nas quatro rotas).
 
 ## Pendências técnicas (do projeto, não do cliente)
 
