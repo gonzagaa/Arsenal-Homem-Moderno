@@ -93,11 +93,11 @@ const PRODUTO = {
 };
 
 // Página de links (links.html, a raiz do domínio): originais em assets/img/links/.
-// Avatar: 102px na página (120 e 240 cobrem 1x e 2x; 22px no celular desenhado do bloco do WhatsApp) e 480 para o
+// Foto de perfil (a atual do Instagram dele): 102px na página (120 e 240 cobrem 1x e 2x; 22px no celular desenhado do bloco do WhatsApp) e 480 para o
 // og:image. Foto do bloco 1: ~450px de largura dentro do bloco (480 e 960); o fundo desfocado do desktop usa a de
 // 480. Produto do Arsenal (PNG com transparência): 236px no bloco (240 e 480).
 const LINKS = [
-  ['marcello-avatar.jpg', 'links-avatar', [120, 240, 480], RETRATO, FORMATOS],
+  ['marcello-perfil.jpg', 'links-perfil', [120, 240, 480], RETRATO, FORMATOS],
   ['marcello-fundo.jpg', 'links-fundo', [480, 960], RETRATO, FORMATOS],
   ['arsenal-produto.png', 'links-arsenal', [240, 480], PRODUTO, FORMATOS_ALFA],
 ];

@@ -39,7 +39,7 @@ fbq('track', 'PageView');
 <meta property="og:url" content="https://nunca-mais-seja-desprezado.com.br/">
 <meta property="og:title" content="Marcello Gomes | Links">
 <meta property="og:description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
-<meta property="og:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-avatar-480.jpg">
+<meta property="og:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-perfil-480.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="480">
 <meta property="og:image:height" content="480">
@@ -47,7 +47,7 @@ fbq('track', 'PageView');
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Marcello Gomes | Links">
 <meta name="twitter:description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
-<meta name="twitter:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-avatar-480.jpg">
+<meta name="twitter:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-perfil-480.jpg">
 <meta name="twitter:image:alt" content="Marcello Gomes">
 <!-- Favicons (o escudo, os mesmos da página de vendas). Todo arquivo é pedido a partir da raiz (/assets/...). -->
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -120,9 +120,11 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;back
 .bloco h2{font-size:21px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
 .camada{position:absolute;pointer-events:none}
 
-/* Botão pílula prateado, igual nos três blocos; só o brilho e o círculo da seta mudam de cor. Nunca quebra. */
-.pilula{margin-top:4px;align-self:flex-start;flex-shrink:0;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 4px 0 14px;border-radius:999px;background:linear-gradient(180deg,#FFFFFF 0%,#E3EAF3 55%,#C2CEDC 100%);font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-.seta{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;transition:transform .3s}
+/* Botão pílula prateado, igual nos três blocos; só o brilho e o círculo da seta mudam de cor. Nunca quebra.
+   44px de altura, texto de 12,5px e seta num círculo de 34px (pedido da cliente: maiores que no mockup). Fica
+   por cima da foto, do produto e do celular (o texto do bloco vem depois deles e tem position: relative). */
+.pilula{margin-top:4px;align-self:flex-start;flex-shrink:0;white-space:nowrap;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 5px 0 18px;border-radius:999px;background:linear-gradient(180deg,#FFFFFF 0%,#E3EAF3 55%,#C2CEDC 100%);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.seta{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;transition:transform .3s}
 
 /* Bloco 1: De Desprezado a Respeitado. A foto cobre o bloco com o enquadramento do mockup (118% da altura,
    posição 72% 14%), num <img> para o navegador escolher o tamanho e baixá-la cedo. */
@@ -206,9 +208,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="perfil entra e1">
 <div class="avatar">
 <picture>
-<source type="image/avif" srcset="/assets/img/opt/links-avatar-120.avif 120w, /assets/img/opt/links-avatar-240.avif 240w" sizes="102px">
-<source type="image/webp" srcset="/assets/img/opt/links-avatar-120.webp 120w, /assets/img/opt/links-avatar-240.webp 240w" sizes="102px">
-<img src="/assets/img/opt/links-avatar-240.jpg" srcset="/assets/img/opt/links-avatar-120.jpg 120w, /assets/img/opt/links-avatar-240.jpg 240w" sizes="102px" width="240" height="240" fetchpriority="high" alt="Marcello Gomes">
+<source type="image/avif" srcset="/assets/img/opt/links-perfil-120.avif 120w, /assets/img/opt/links-perfil-240.avif 240w" sizes="102px">
+<source type="image/webp" srcset="/assets/img/opt/links-perfil-120.webp 120w, /assets/img/opt/links-perfil-240.webp 240w" sizes="102px">
+<img src="/assets/img/opt/links-perfil-240.jpg" srcset="/assets/img/opt/links-perfil-120.jpg 120w, /assets/img/opt/links-perfil-240.jpg 240w" sizes="102px" width="240" height="240" fetchpriority="high" alt="Marcello Gomes">
 </picture>
 </div>
 <div class="nome">
@@ -230,7 +232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span class="camada b1-base" aria-hidden="true"></span>
 <div class="bloco-txt">
 <h2>Deixe de ser desprezado. <span class="destaque-azul">Volte a ser respeitado.</span></h2>
-<span class="pilula">Quero meu respeito<span class="seta"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+<span class="pilula">Quero meu respeito<span class="seta"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
 </div>
 </div>
 </a>
@@ -245,7 +247,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </picture>
 <div class="bloco-txt">
 <h2>A <span class="verdade">Verdade</span><br>Que Ninguém<br>Te Contou</h2>
-<span class="pilula">Quero ser blindado<span class="seta"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+<span class="pilula">Quero ser blindado<span class="seta"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
 </div>
 </div>
 </a>
@@ -256,7 +258,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="camada celular" aria-hidden="true">
 <div class="tela">
 <div class="tela-topo">
-<img src="/assets/img/opt/links-avatar-120.jpg" width="120" height="120" decoding="async" alt="">
+<img src="/assets/img/opt/links-perfil-120.jpg" width="120" height="120" decoding="async" alt="">
 <div class="tela-nome"><b>Equipe Marcello</b><span>online</span></div>
 </div>
 <div class="conversa">
@@ -268,7 +270,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <div class="bloco-txt">
 <h2>Ficou com<br>alguma dúvida?</h2>
-<span class="pilula">Chamar no WhatsApp<span class="seta"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+<span class="pilula">Chamar no WhatsApp<span class="seta"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
 </div>
 </div>
 </a>
