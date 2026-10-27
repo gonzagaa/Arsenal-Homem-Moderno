@@ -53,6 +53,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Sem página na raiz: só as quatro rotas vendem, `404.html`; `_headers` da Netlify | aprovada |
 | Performance (revelação sem desfoque nos blocos grandes, imagens a 2x no celular, Lenis depois do load) | aprovada |
 | Página de links do Marcello na raiz do domínio (`links.html`) | aprovada |
+| Página de links: textos novos do Marcello, botões menores, blocos de 188 px, caixa do Arsenal e celular do WhatsApp | aprovada |
 | Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
@@ -544,6 +545,15 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 
 - Botões dos três blocos maiores (pedido da cliente), no mesmo desenho: 44 px de altura, texto de 12,5 px, padding esquerdo de 18 px e a seta de 16 px num círculo de 34 px (com 10 px entre o texto e o círculo e 5 px em volta dele). Numa linha só em 360, 375, 390 e 430 px, a pelo menos 75 px da borda do card, sempre por cima da foto, do produto e do celular; os títulos e as imagens não precisaram mudar. `scrollWidth` igual a `clientWidth` nas quatro larguras.
 - Foto de perfil trocada pela atual do Instagram (`assets/img/links/marcello-perfil.jpg`, 1254 px), no avatar do topo e no cabeçalho do celular do WhatsApp: versões novas `links-perfil` em 120, 240 e 480 px (nome novo por causa do cache de 1 ano), `og:image` e `twitter:image` na de 480. O `links-avatar` e o original antigo saíram do projeto.
+
+### Página de links: textos novos, botões menores e blocos de 188 px (2026-10-27)
+
+- Textos do Marcello: bio "Mentor de relacionamentos." / "Especialista em comportamento humano.", em duas linhas fixas (15 px, a segunda mede 282 px de 320 em 360 px), e o mesmo texto no `meta description`, `og:description` e `twitter:description`. Botões: "Chega de ser desprezado", "Não quero mais ser enganado" e "Chamar no WhatsApp". Título do Arsenal: "Chega de ser / enganado / ou traído!" em Cinzel 700, com o carmim só em "enganado" e "traído!" ("ou" branco). A Cinzel do subset cobre "í" e "!" (o Chrome usa só Cinzel no título).
+- Botões dos três blocos: 40 px de altura, texto de 11,5 px (o mesmo nos três), círculo de 30 px e padding esquerdo de 16 px; numa linha em 360, 375, 390 e 430 px, o do Arsenal a 34,7 px da borda do card em 360.
+- Alturas: bloco 1 com 214 px; Arsenal e WhatsApp com 188 px, conteúdo centralizado (respiro de ~30 a 35 px e ~40 px).
+- Arsenal: caixa com `min(60%, 210px)`, `right: -28px`, `bottom: -4px`, ocupando a parte de cima do card. Topo da caixa a 25 / 17 / 10 / 9 px da borda de cima, logo "ARSENAL" a 11,7 / 17,6 / 23,5 / 25,8 px do topo do botão e título a 11,2 / 10,2 / 9,2 / 31 px dos livros (360 / 375 / 390 / 430). O logo termina a 46% da altura da imagem (medido nos pixels).
+- WhatsApp: o celular gira pelo topo, então a borda esquerda fica mais à esquerda quanto mais alto o ponto; com o bloco mais baixo, o botão subiu e encostou nele. Medido pela matriz de transformação do navegador. Abaixo de 390 px ele diminui (escala .88 e 8 px para fora em 375; .82, 16 px para fora e no topo em 360: com .88 em 360 ele sairia ~17 px), a mesma inclinação e máscara. Botão / título / saída pela borda: 12,5 / 51,9 / 9 px (360), 15,1 / 39,7 / 4,9 (375), 14,8 / 39,5 / 4,7 (390), 44,8 / 69,5 / 4,7 (430). "Equipe Marcello" e as mensagens inteiros.
+- `scrollWidth` igual à largura em 360, 375, 390 e 430 px. Atenção: o `@container` mede o bloco por dentro da borda (348 px na tela de 390).
 
 ## Pendências técnicas (do projeto, não do cliente)
 

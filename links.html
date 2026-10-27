@@ -32,13 +32,13 @@ fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
 <title>Marcello Gomes | Links</title>
-<meta name="description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
+<meta name="description" content="Mentor de relacionamentos. Especialista em comportamento humano.">
 <link rel="canonical" href="https://nunca-mais-seja-desprezado.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="https://nunca-mais-seja-desprezado.com.br/">
 <meta property="og:title" content="Marcello Gomes | Links">
-<meta property="og:description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
+<meta property="og:description" content="Mentor de relacionamentos. Especialista em comportamento humano.">
 <meta property="og:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-perfil-480.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="480">
@@ -46,7 +46,7 @@ fbq('track', 'PageView');
 <meta property="og:image:alt" content="Marcello Gomes">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Marcello Gomes | Links">
-<meta name="twitter:description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
+<meta name="twitter:description" content="Mentor de relacionamentos. Especialista em comportamento humano.">
 <meta name="twitter:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-perfil-480.jpg">
 <meta name="twitter:image:alt" content="Marcello Gomes">
 <!-- Favicons (o escudo, os mesmos da página de vendas). Todo arquivo é pedido a partir da raiz (/assets/...). -->
@@ -100,7 +100,8 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;back
 .nome{display:flex;align-items:center;gap:6px;margin-top:6px}
 .nome h1{font-size:23px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
 .arroba{margin-top:-4px;font-size:14px;color:#93A3B8}
-.bio{margin-top:2px;max-width:300px;font-size:15px;line-height:1.5;color:#C9D3E0}
+/* Bio: uma frase por linha (quebra fixa no HTML), sem quebrar a segunda. */
+.bio{margin-top:2px;font-size:15px;line-height:1.5;color:#C9D3E0;white-space:nowrap}
 
 /* Blocos: o bloco inteiro é o link. Hover só em aparelho com mouse. */
 /* Cada bloco é um contêiner: os tamanhos de dentro acompanham a largura do bloco (cqi), e o desktop, com a
@@ -119,12 +120,14 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;back
 .bloco-txt{position:relative;width:70%;height:100%;padding:18px 0 18px 18px;display:flex;flex-direction:column;justify-content:center;gap:14px}
 .bloco h2{font-size:21px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
 .camada{position:absolute;pointer-events:none}
+/* O bloco 1 (o produto principal) fica com 214px; o Arsenal e o WhatsApp, com 188px (a diferença é intencional). */
+.b-arsenal,.b-wpp{height:188px}
 
 /* Botão pílula prateado, igual nos três blocos; só o brilho e o círculo da seta mudam de cor. Nunca quebra.
-   44px de altura, texto de 12,5px e seta num círculo de 34px (pedido da cliente: maiores que no mockup). Fica
+   40px de altura, texto de 11,5px (o mesmo nos três) e seta num círculo de 30px, para os textos longos caberem. Fica
    por cima da foto, do produto e do celular (o texto do bloco vem depois deles e tem position: relative). */
-.pilula{margin-top:4px;align-self:flex-start;flex-shrink:0;white-space:nowrap;display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 5px 0 18px;border-radius:999px;background:linear-gradient(180deg,#FFFFFF 0%,#E3EAF3 55%,#C2CEDC 100%);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
-.seta{display:inline-flex;width:34px;height:34px;border-radius:50%;align-items:center;justify-content:center;transition:transform .3s}
+.pilula{margin-top:4px;align-self:flex-start;flex-shrink:0;white-space:nowrap;display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 5px 0 16px;border-radius:999px;background:linear-gradient(180deg,#FFFFFF 0%,#E3EAF3 55%,#C2CEDC 100%);font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.seta{display:inline-flex;width:30px;height:30px;border-radius:50%;align-items:center;justify-content:center;transition:transform .3s}
 
 /* Bloco 1: De Desprezado a Respeitado. A foto cobre o bloco com o enquadramento do mockup (118% da altura,
    posição 72% 14%), num <img> para o navegador escolher o tamanho e baixá-la cedo. */
@@ -140,11 +143,11 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;back
 /* Bloco 2: Arsenal Homem Blindado (outro site). Fundo vinho, produto saindo pela borda, título em Cinzel. */
 .b-arsenal{background:radial-gradient(80% 90% at 82% 70%,#5A0018 0%,#2A000A 40%,#000000 85%);border:1px solid rgba(187,0,61,.6);box-shadow:0 0 0 4px rgba(187,0,61,.08),0 22px 50px -24px rgba(187,0,61,.7)}
 .b2-veu{inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.4) 38%,rgba(0,0,0,0) 55%)}
-/* Título e produto não se encostam: a linha mais longa ("Que Ninguém") termina pelo menos 8px antes da borda
+/* Título e produto não se encostam: a linha mais longa ("Chega de ser") termina pelo menos 8px antes da borda
    esquerda dos livros. Título de 18px (bloco de 320px, tela de 360px) a 20px (bloco de 350px) e até 21px. */
-.b2-produto img{position:absolute;right:-28px;bottom:-10px;width:min(57%,214px);height:auto;filter:drop-shadow(0 16px 22px rgba(0,0,0,.75))}
+.b2-produto img{position:absolute;right:-28px;bottom:-4px;width:min(60%,210px);height:auto;filter:drop-shadow(0 16px 22px rgba(0,0,0,.75))}
 .b-arsenal h2{font-family:'Cinzel',serif;font-size:20px;font-size:clamp(18px,calc(6.667cqi - 3.2px),21px);line-height:1.12;letter-spacing:0;white-space:nowrap}
-.verdade{background:linear-gradient(180deg,#FF3C6E 0%,#BB003D 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.verdade{-webkit-box-decoration-break:clone;box-decoration-break:clone;background:linear-gradient(180deg,#FF3C6E 0%,#BB003D 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .b-arsenal .pilula{color:#1A0008;box-shadow:0 0 0 3px rgba(187,0,61,.24),0 0 18px rgba(187,0,61,.5)}
 .b-arsenal .seta{background:linear-gradient(180deg,#E0185A 0%,#7A0026 100%)}
 
@@ -156,8 +159,11 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;back
 .b-wpp{background:radial-gradient(circle at calc(100% - 65px) 75px,rgba(37,211,102,.31) 0,rgba(37,211,102,.27) 45px,rgba(37,211,102,.17) 105px,rgba(37,211,102,.07) 150px,rgba(37,211,102,.015) 195px,rgba(37,211,102,0) 215px),radial-gradient(ellipse 210px 170px at 50px calc(100% + 10px),rgba(18,140,126,.25) 0,rgba(18,140,126,.2) 25%,rgba(18,140,126,.13) 50%,rgba(18,140,126,.05) 75%,rgba(18,140,126,0) 100%),#040D0A;border:1px solid rgba(37,211,102,.26);box-shadow:0 22px 50px -26px rgba(37,211,102,.55)}
 .b3-grao{inset:0;background-image:url(/assets/img/grain.png);background-image:image-set(url(/assets/img/opt/grain.webp) type("image/webp"),url(/assets/img/grain.png) type("image/png"));background-size:180px;mix-blend-mode:overlay;opacity:.2}
 /* Título e botão a pelo menos 12px do celular: título de 22px (bloco abaixo de 335px, tela abaixo de 375px) e
-   24px; celular de 120px a 4px da borda (nos blocos abaixo de 333px, ele sai 12px pela borda). */
-.celular{right:var(--cel-dir,4px);top:26px;width:120px;height:262px;transform:rotate(-7deg);transform-origin:50% 0;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,.15) 100%);mask-image:linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,.15) 100%);border-radius:26px;padding:5px;background:linear-gradient(160deg,#2A3A40 0%,#11191C 60%,#0A1012 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 24px 40px -10px rgba(0,0,0,.8),0 0 40px -6px rgba(37,211,102,.35)}
+   24px. Celular de 120px a 8px do topo e na borda direita (0px). Nas telas abaixo de 390px ele diminui, com a mesma
+   inclinação e máscara, e sai no máximo 10px pela borda: escala .88 saindo 8px (blocos de 333 a 347px por dentro da
+   borda, tela de 375; em 390 o bloco tem 348px) e .82 saindo 16px do box, encostado no topo (blocos abaixo de 333px, tela de 360). Ele gira pelo topo, então
+   a borda esquerda fica mais à esquerda quanto mais alto o ponto: é ela que limita a folga até o botão. */
+.celular{right:var(--cel-dir,0px);top:var(--cel-topo,8px);width:120px;height:262px;transform:rotate(-7deg) scale(var(--cel-esc,1));transform-origin:50% 0;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,.15) 100%);mask-image:linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,.15) 100%);border-radius:26px;padding:5px;background:linear-gradient(160deg,#2A3A40 0%,#11191C 60%,#0A1012 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 24px 40px -10px rgba(0,0,0,.8),0 0 40px -6px rgba(37,211,102,.35)}
 .tela{width:100%;height:100%;border-radius:21px;overflow:hidden;background:#0B141A;display:flex;flex-direction:column}
 .tela-topo{display:flex;align-items:center;gap:6px;padding:16px 8px 7px;background:#1F2C34}
 .tela-topo img{width:22px;height:22px;border-radius:50%;object-fit:cover}
@@ -172,7 +178,8 @@ body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;back
 .b-wpp .bloco-txt{width:auto;max-width:248px;padding:20px 0 20px 20px;gap:0}
 .b-wpp h2{font-size:22px;line-height:1.06;letter-spacing:-.03em;white-space:nowrap}
 @container (min-width:333px){.b-wpp h2{font-size:24px}}
-@container (max-width:332.98px){.celular{--cel-dir:-12px}}
+@container (max-width:332.98px){.celular{--cel-esc:.82;--cel-dir:-16px;--cel-topo:0px}}
+@container (min-width:333px) and (max-width:347.98px){.celular{--cel-esc:.88;--cel-dir:-8px}}
 .b-wpp .pilula{margin-top:18px;color:#03241A;box-shadow:0 0 0 3px rgba(37,211,102,.22),0 0 18px rgba(37,211,102,.45)}
 .b-wpp .seta{background:linear-gradient(180deg,#2EDB72 0%,#0E7A45 100%)}
 
@@ -218,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <svg width="19" height="19" viewBox="0 0 24 24" role="img" aria-label="Perfil verificado"><path fill="#3D8BFF" d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3.1 1 3.1-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3-2.6-1.9 1-3.1-1-3.1 2.6-1.9 1-3 3.2.1z"/><path d="M8 12.2l2.7 2.7L16.3 9.3" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </div>
 <p class="arroba">@marcellopgomes</p>
-<p class="bio">Respeito próprio, posicionamento e relacionamentos. Sem rodeio.</p>
+<p class="bio">Mentor de relacionamentos.<br>Especialista em comportamento humano.</p>
 </header>
 
 <a class="bloco b-desprezado entra e2" href="https://nunca-mais-seja-desprezado.com.br/bio/" data-destino="desprezado" data-utm>
@@ -232,7 +239,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span class="camada b1-base" aria-hidden="true"></span>
 <div class="bloco-txt">
 <h2>Deixe de ser desprezado. <span class="destaque-azul">Volte a ser respeitado.</span></h2>
-<span class="pilula">Quero meu respeito<span class="seta"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+<span class="pilula">Chega de ser desprezado<span class="seta"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
 </div>
 </div>
 </a>
@@ -246,8 +253,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <img src="/assets/img/opt/links-arsenal-480.png" srcset="/assets/img/opt/links-arsenal-240.png 240w, /assets/img/opt/links-arsenal-480.png 480w" sizes="236px" width="480" height="417" decoding="async" alt="Os manuais do Arsenal Homem Blindado">
 </picture>
 <div class="bloco-txt">
-<h2>A <span class="verdade">Verdade</span><br>Que Ninguém<br>Te Contou</h2>
-<span class="pilula">Quero ser blindado<span class="seta"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+<h2>Chega de ser<br><span class="verdade">enganado</span><br>ou <span class="verdade">traído!</span></h2>
+<span class="pilula">Não quero mais ser enganado<span class="seta"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
 </div>
 </div>
 </a>
