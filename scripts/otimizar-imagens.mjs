@@ -80,6 +80,27 @@ const FORMATOS = [
   ['webp', (s, q) => s.webp(q.webp)],
   ['jpg', (s, q) => s.jpeg(q.jpg)],
 ];
+// Imagens com transparência: AVIF e WebP com alfa e PNG de reserva no lugar do JPG.
+const FORMATOS_ALFA = [
+  ['avif', (s, q) => s.avif(q.avif)],
+  ['webp', (s, q) => s.webp(q.webp)],
+  ['png', (s, q) => s.png(q.png)],
+];
+const PRODUTO = {
+  avif: { quality: 64, effort: 6, bitdepth: 10 },
+  webp: { quality: 84, effort: 6, alphaQuality: 90 },
+  png: { compressionLevel: 9, palette: true, quality: 90, effort: 10 },
+};
+
+// Página de links (links.html, a raiz do domínio): originais em assets/img/links/.
+// Avatar: 102px na página (120 e 240 cobrem 1x e 2x; 22px no celular desenhado do bloco do WhatsApp) e 480 para o
+// og:image. Foto do bloco 1: ~450px de largura dentro do bloco (480 e 960); o fundo desfocado do desktop usa a de
+// 480. Produto do Arsenal (PNG com transparência): 236px no bloco (240 e 480).
+const LINKS = [
+  ['marcello-avatar.jpg', 'links-avatar', [120, 240, 480], RETRATO, FORMATOS],
+  ['marcello-fundo.jpg', 'links-fundo', [480, 960], RETRATO, FORMATOS],
+  ['arsenal-produto.png', 'links-arsenal', [240, 480], PRODUTO, FORMATOS_ALFA],
+];
 
 const refazerTudo = process.argv.includes('--tudo');
 const relatorio = [];
@@ -93,7 +114,7 @@ async function atualizado(saida, mtimeOrigem) {
   }
 }
 
-async function gerar(arquivo, nome, larguras, qualidade, corte) {
+async function gerar(arquivo, nome, larguras, qualidade, corte, formatos = FORMATOS) {
   const { mtimeMs } = await stat(arquivo);
   const meta = await sharp(arquivo).metadata();
   const { width: W, height: H } = corte ?? meta.autoOrient ?? meta;
@@ -102,7 +123,7 @@ async function gerar(arquivo, nome, larguras, qualidade, corte) {
   for (const w of alvos) {
     const linha = { arquivo: `${nome}-${w}`, dimensoes: `${w} x ${Math.round((H * w) / W)}` };
     await Promise.all(
-      FORMATOS.map(async ([ext, aplicar]) => {
+      formatos.map(async ([ext, aplicar]) => {
         const saida = path.join(DESTINO, `${nome}-${w}.${ext}`);
         if (!(await atualizado(saida, mtimeMs))) {
           let base = sharp(arquivo).autoOrient();
@@ -110,7 +131,7 @@ async function gerar(arquivo, nome, larguras, qualidade, corte) {
           base = base.resize({ width: w, withoutEnlargement: true });
           await aplicar(base, qualidade).toFile(saida);
         }
-        linha[ext] = (await stat(saida)).size;
+        linha[ext === 'png' ? 'jpg' : ext] = (await stat(saida)).size;
       }),
     );
     relatorio.push(linha);
@@ -165,9 +186,12 @@ for (const nome of NOSSOS) {
 for (const arquivo of await listarPrints()) {
   await gerar(path.join(PRINTS, arquivo), nomeDoPrint(arquivo), LARGURAS_PRINT, TEXTO);
 }
+for (const [arquivo, nome, larguras, qualidade, formatos] of LINKS) {
+  await gerar(path.join(ORIGEM, 'links', arquivo), nome, larguras, qualidade, undefined, formatos);
+}
 await gerarGrao();
 
-console.log('\narquivo                  dimensões       AVIF KB  WebP KB   JPG KB');
+console.log('\narquivo                  dimensões       AVIF KB  WebP KB   JPG KB (PNG no produto)');
 for (const l of relatorio) {
   console.log(`${l.arquivo.padEnd(24)} ${l.dimensoes.padEnd(13)} ${kb(l.avif)}  ${kb(l.webp)}  ${kb(l.jpg)}`);
 }

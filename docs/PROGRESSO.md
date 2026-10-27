@@ -2,7 +2,7 @@
 
 Leia este arquivo antes de qualquer outra coisa numa sessão nova. Ele registra as etapas aprovadas e as decisões aprovadas nos relatórios que não estão no `CLAUDE.md` nem no `docs/PROMPTS.md`. Essas decisões vieram depois do mockup: quando discordarem dele, valem as decisões.
 
-Atualizado em 2026-10-26.
+Atualizado em 2026-10-27.
 
 ## Situação
 
@@ -52,6 +52,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Checkouts da Eduzz por origem de tráfego | aprovada |
 | Sem página na raiz: só as quatro rotas vendem, `404.html`; `_headers` da Netlify | aprovada |
 | Performance (revelação sem desfoque nos blocos grandes, imagens a 2x no celular, Lenis depois do load) | aprovada |
+| Página de links do Marcello na raiz do domínio (`links.html`) | aprovada |
 | Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
@@ -528,6 +529,16 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 
 - O cliente mudou o preço (print do checkout da bio na Eduzz): 12x de R$ 9,83 ou R$ 95 à vista, no lugar de 12x de R$ 10,03 ou R$ 97. Trocado no bloco de preço da #oferta, no bloco de compra do #fechamento, na barra fixa, no comentário do CSS, no docs/copy.md e no CLAUDE.md, no formato da página ("R$ 95", sem ",00"). A 404.html não tem preço.
 - A confirmar: se sdr, tfg e story também cobram esse valor (a página mostra o mesmo preço nas quatro rotas).
+
+### Página de links na raiz (2026-10-27)
+
+- A raiz do domínio passou a ser a página de links do Marcello (`links.html`); a página de vendas continua igual nas quatro rotas. Mockup aprovado em `_entrada/links-assets/` (fora do git, no `.gitignore`), reescrito em HTML e CSS limpos.
+- Roteamento: `.htaccess` com `DirectoryIndex links.html` e `RewriteRule ^$ /links.html [L]`; a regra do `THE_REQUEST` manda para 404 o pedido direto de `/index.html` e de `/links.html` (com ou sem query) e deixou de pegar a raiz. `_redirects` com `/ /links.html 200!` primeiro e os dois `404!`. `_headers` com `/links.html` em `no-cache`. Simulado em Node (26 pedidos, inclusive com o `DirectoryIndex` antes da reescrita) e conferido no servidor local que imita a Hostinger: `/` 200 com os links; `/links.html`, `/links.html?x=1`, `/index.html` e uma rota inexistente em 404; as quatro rotas com os checkouts certos.
+- Layout fiel ao mockup, com os ajustes aprovados: sem sobreposição nos blocos do Arsenal e do WhatsApp (folgas medidas em 360, 375, 390 e 430 px; cada bloco é um contêiner, então o desktop fica igual ao celular de 390 px), 28 px acima do avatar no celular, borrões do WhatsApp em degradê no fundo do card e recorte dos blocos numa camada com `clip-path` (o Safari cortava os cantos; conferido no WebKit, parado e com o hover), brilho do topo numa camada com `overflow: hidden` e `overflow-x: clip` no `html` e no `body` (sem rolagem lateral: `scrollWidth` igual a `clientWidth` de 360 a 1440 px).
+- Cascata de entrada só com deslocamento, sem fade (decisão do desenvolvedor): com o fade, o LCP esperava a animação e a nota do celular com rastreio caía para 66.
+- Sem a assinatura do Studio Alto Nível. Cinzel 700 local (15 KB) só no título do Arsenal. Imagens novas `links-avatar`, `links-fundo` e `links-arsenal` (com transparência), geradas pelo `scripts/otimizar-imagens.mjs`. `og:image` com o avatar de 480 px, com width, height e alt.
+- WhatsApp: `WHATSAPP_NUMERO` vazio, bloqueador para publicar (`PENDENCIAS.md`). `clique_link` no dataLayer (o GA4 só recebe com uma tag no contêiner).
+- Medição (servidor local, Lighthouse, mediana de 5): celular com rastreio 88 a 90 (o resto é o TBT do GTM e do pixel), celular sem rastreio 100, desktop com rastreio 96 a 100, desktop sem rastreio 100, CLS 0 em todas.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

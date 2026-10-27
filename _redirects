@@ -1,10 +1,13 @@
-# Netlify (prévia). O mesmo comportamento do .htaccess (Hostinger): só as quatro rotas vendem.
-# A ordem importa: vale a primeira regra que casar. O "!" força a regra mesmo quando o arquivo existe: o
-# index.html existe de verdade e, sem o "!", seria servido na raiz e em /index.html.
+# Netlify (prévia). O mesmo comportamento do .htaccess (Hostinger): a raiz é a página de links do Marcello e as
+# quatro rotas vendem. A ordem importa: vale a primeira regra que casar. O "!" força a regra mesmo quando o
+# arquivo existe: o index.html existe de verdade e, sem o "!", seria servido na raiz e em /index.html.
 
-# A raiz não vende: / e /index.html respondem 404 com a 404.html (forçado).
-/             /404.html    404!
+# Raiz: a página de links (links.html), com o endereço "/" na barra (forçado).
+/             /links.html  200!
+
+# O pedido direto das duas páginas responde 404 com a 404.html (forçado).
 /index.html   /404.html    404!
+/links.html   /404.html    404!
 
 # Origens de tráfego: a mesma página (o /index.html) nas quatro rotas, com o endereço na barra mantido.
 # O script do checkout lê o primeiro segmento do caminho e escolhe o link do CHECKOUTS (index.html).

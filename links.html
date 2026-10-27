@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+// Rastreio desligado no localhost (Live Server), para as conferências não virarem dados reais no GTM, no pixel
+// e no Gateway. Para testar no "Testar eventos" do Gerenciador de Eventos, abra com ?rastreio=1.
+var rastrear = !/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || /[?&]rastreio=1(&|$)/.test(location.search);
+</script>
+<!-- Google Tag Manager (leva o GA4; não criar tag do pixel da Meta aqui) -->
+<script>if (rastrear) (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5KX5J7J6');</script>
+<!-- End Google Tag Manager -->
+<!-- Meta Pixel Code (só aqui, nunca no GTM: PageView duplicado estraga a otimização das campanhas) -->
+<script>
+if (rastrear) {
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1434833234924777');
+fbq('track', 'PageView');
+}
+</script>
+<!-- End Meta Pixel Code -->
+<title>Marcello Gomes | Links</title>
+<meta name="description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
+<link rel="canonical" href="https://nunca-mais-seja-desprezado.com.br/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://nunca-mais-seja-desprezado.com.br/">
+<meta property="og:title" content="Marcello Gomes | Links">
+<meta property="og:description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
+<meta property="og:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-avatar-480.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="480">
+<meta property="og:image:height" content="480">
+<meta property="og:image:alt" content="Marcello Gomes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Marcello Gomes | Links">
+<meta name="twitter:description" content="Respeito próprio, posicionamento e relacionamentos. Sem rodeio.">
+<meta name="twitter:image" content="https://nunca-mais-seja-desprezado.com.br/assets/img/opt/links-avatar-480.jpg">
+<meta name="twitter:image:alt" content="Marcello Gomes">
+<!-- Favicons (o escudo, os mesmos da página de vendas). Todo arquivo é pedido a partir da raiz (/assets/...). -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#050A14">
+<meta name="color-scheme" content="dark">
+<!-- Geist (tudo) e Cinzel 700 (só o título do Arsenal, que aparece na primeira tela), locais, subset latino. -->
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/geist-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/cinzel-700-latin.woff2" crossorigin>
+<style>
+@font-face{font-family:'Geist';font-style:normal;font-weight:100 900;font-display:swap;src:url(/assets/fonts/geist-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Cinzel';font-style:normal;font-weight:700;font-display:swap;src:url(/assets/fonts/cinzel-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* Página de links do Marcello (a raiz do domínio). Valores do mockup aprovado: uma coluna de 390px de
+   referência (100% com 20px de margem no celular, até 420px); a partir de 768px, a coluna de 390px sobre a foto
+   desfocada. Exceções às regras da página de vendas, só aqui: a fonte Cinzel e as cores vinho e verde nos blocos
+   do Arsenal e do WhatsApp, e a entrada em cascata no carregamento. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Sem rolagem lateral: o que passa da tela (o brilho do topo) fica cortado. clip onde houver; hidden de reserva. */
+html,body{overflow-x:hidden;overflow-x:clip}
+body,h1,h2,p{margin:0}
+img,picture,svg{display:block}
+body{position:relative;min-height:100svh;font-family:'Geist',system-ui,sans-serif;color:#FFFFFF;background:#050A14;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit}
+:focus-visible{outline:2px solid #8FD0FF;outline-offset:4px}
+
+/* Fundo: brilho azul no topo (dentro de uma camada que corta o que passa da largura da tela) e grão por cima de
+   tudo que é fundo (o conteúdo fica acima do grão). */
+.luz{position:absolute;top:0;left:0;width:100%;height:520px;overflow:hidden;pointer-events:none}
+.brilho{position:absolute;left:50%;top:-160px;width:620px;height:560px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(50% 50% at 50% 50%,rgba(46,111,224,.42) 0%,rgba(14,47,112,.18) 45%,rgba(5,10,20,0) 75%)}
+body::after{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;background-image:url(/assets/img/grain.png);background-image:image-set(url(/assets/img/opt/grain.webp) type("image/webp"),url(/assets/img/grain.png) type("image/png"));background-size:180px;mix-blend-mode:overlay;opacity:.28}
+.fundo{display:none}
+
+.col{position:relative;z-index:2;width:100%;max-width:420px;margin:0 auto;padding:28px 20px 40px;display:flex;flex-direction:column;gap:16px}
+
+/* Entrada em cascata no carregamento (pedido do desenvolvedor para esta página), só com deslocamento e sem fade:
+   os blocos ficam visíveis desde o primeiro quadro, e o LCP não espera a animação (com o fade, ele esperava, e
+   o GTM e o pixel entravam no LCP do Lighthouse). "backwards": depois de entrar, o hover funciona. */
+@keyframes sobe{from{transform:translateY(18px)}to{transform:none}}
+.entra{animation:sobe .7s cubic-bezier(.2,.8,.2,1) backwards}
+.e1{animation-delay:.05s}.e2{animation-delay:.16s}.e3{animation-delay:.27s}.e4{animation-delay:.38s}
+@media (prefers-reduced-motion:reduce){.entra{animation:none}}
+
+/* Perfil */
+.perfil{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:14px}
+.avatar{width:108px;height:108px;border-radius:50%;padding:3px;background:linear-gradient(160deg,#B9E3FF 0%,#3D8BFF 55%,rgba(61,139,255,.15) 100%);box-shadow:0 0 0 6px rgba(61,139,255,.08),0 10px 40px -6px rgba(61,139,255,.55)}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #050A14}
+.nome{display:flex;align-items:center;gap:6px;margin-top:6px}
+.nome h1{font-size:23px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.arroba{margin-top:-4px;font-size:14px;color:#93A3B8}
+.bio{margin-top:2px;max-width:300px;font-size:15px;line-height:1.5;color:#C9D3E0}
+
+/* Blocos: o bloco inteiro é o link. Hover só em aparelho com mouse. */
+/* Cada bloco é um contêiner: os tamanhos de dentro acompanham a largura do bloco (cqi), e o desktop, com a
+   coluna de 390px, fica igual ao celular de 390px. */
+.bloco{container-type:inline-size;position:relative;display:block;height:214px;overflow:hidden;isolation:isolate;border-radius:20px;text-decoration:none;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+@media (hover:hover){
+  .bloco:hover{transform:translateY(-3px)}
+  .bloco:hover .seta{transform:translateX(3px)}
+}
+.bloco:active{transform:scale(.985)}
+/* Recorte dos cantos: o WebKit (Safari) não respeita o border-radius do overflow:hidden em filhos com filter,
+   transform ou animação (o celular inclinado, a foto do bloco 1, a entrada e o hover do próprio bloco). O
+   clip-path numa camada interna, do tamanho da área dentro da borda (raio 19px), recorta em qualquer caso; no
+   próprio <a>, ele cortaria também os halos e as sombras de fora. */
+.recorte{position:absolute;inset:0;overflow:hidden;border-radius:19px;clip-path:inset(0 round 19px);isolation:isolate}
+.bloco-txt{position:relative;width:70%;height:100%;padding:18px 0 18px 18px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.bloco h2{font-size:21px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
+.camada{position:absolute;pointer-events:none}
+
+/* Botão pílula prateado, igual nos três blocos; só o brilho e o círculo da seta mudam de cor. Nunca quebra. */
+.pilula{margin-top:4px;align-self:flex-start;flex-shrink:0;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 4px 0 14px;border-radius:999px;background:linear-gradient(180deg,#FFFFFF 0%,#E3EAF3 55%,#C2CEDC 100%);font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.seta{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;transition:transform .3s}
+
+/* Bloco 1: De Desprezado a Respeitado. A foto cobre o bloco com o enquadramento do mockup (118% da altura,
+   posição 72% 14%), num <img> para o navegador escolher o tamanho e baixá-la cedo. */
+.b-desprezado{background-color:#01050F;border:1px solid rgba(61,139,255,.55);box-shadow:0 0 0 4px rgba(61,139,255,.07),0 22px 50px -24px rgba(61,139,255,.7)}
+.b1-foto img{position:absolute;left:72%;top:14%;height:118%;width:auto;max-width:none;transform:translate(-72%,-14%)}
+.b1-veu{inset:0;background:linear-gradient(90deg,rgba(1,5,15,.94) 0%,rgba(1,5,15,.78) 34%,rgba(1,5,15,.1) 58%,rgba(1,5,15,0) 100%)}
+.b1-base{left:0;right:0;bottom:0;height:60px;background:linear-gradient(0deg,rgba(1,5,15,.7) 0%,rgba(1,5,15,0) 100%)}
+.b-desprezado h2{max-width:178px}
+.destaque-azul{background:linear-gradient(180deg,#B9E3FF 0%,#8FD0FF 40%,#3D8BFF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.b-desprezado .pilula{color:#07111F;box-shadow:0 0 0 3px rgba(61,139,255,.22),0 0 18px rgba(61,139,255,.45)}
+.b-desprezado .seta{background:linear-gradient(180deg,#2F6FE0 0%,#0E2F70 100%)}
+
+/* Bloco 2: Arsenal Homem Blindado (outro site). Fundo vinho, produto saindo pela borda, título em Cinzel. */
+.b-arsenal{background:radial-gradient(80% 90% at 82% 70%,#5A0018 0%,#2A000A 40%,#000000 85%);border:1px solid rgba(187,0,61,.6);box-shadow:0 0 0 4px rgba(187,0,61,.08),0 22px 50px -24px rgba(187,0,61,.7)}
+.b2-veu{inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.4) 38%,rgba(0,0,0,0) 55%)}
+/* Título e produto não se encostam: a linha mais longa ("Que Ninguém") termina pelo menos 8px antes da borda
+   esquerda dos livros. Título de 18px (bloco de 320px, tela de 360px) a 20px (bloco de 350px) e até 21px. */
+.b2-produto img{position:absolute;right:-28px;bottom:-10px;width:min(57%,214px);height:auto;filter:drop-shadow(0 16px 22px rgba(0,0,0,.75))}
+.b-arsenal h2{font-family:'Cinzel',serif;font-size:20px;font-size:clamp(18px,calc(6.667cqi - 3.2px),21px);line-height:1.12;letter-spacing:0;white-space:nowrap}
+.verdade{background:linear-gradient(180deg,#FF3C6E 0%,#BB003D 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.b-arsenal .pilula{color:#1A0008;box-shadow:0 0 0 3px rgba(187,0,61,.24),0 0 18px rgba(187,0,61,.5)}
+.b-arsenal .seta{background:linear-gradient(180deg,#E0185A 0%,#7A0026 100%)}
+
+/* Bloco 3: WhatsApp. Fundo quase preto com dois borrões verdes e grão; à direita, um celular inclinado com a
+   conversa no modo escuro do WhatsApp, que desbota embaixo. */
+/* Os dois borrões são degradês radiais no fundo do próprio card (com filter: blur, o Safari cortava os cantos):
+   verde #25D366 no canto superior direito e verde petróleo #128C7E no inferior esquerdo, com a queda suave de
+   um círculo desfocado. */
+.b-wpp{background:radial-gradient(circle at calc(100% - 65px) 75px,rgba(37,211,102,.31) 0,rgba(37,211,102,.27) 45px,rgba(37,211,102,.17) 105px,rgba(37,211,102,.07) 150px,rgba(37,211,102,.015) 195px,rgba(37,211,102,0) 215px),radial-gradient(ellipse 210px 170px at 50px calc(100% + 10px),rgba(18,140,126,.25) 0,rgba(18,140,126,.2) 25%,rgba(18,140,126,.13) 50%,rgba(18,140,126,.05) 75%,rgba(18,140,126,0) 100%),#040D0A;border:1px solid rgba(37,211,102,.26);box-shadow:0 22px 50px -26px rgba(37,211,102,.55)}
+.b3-grao{inset:0;background-image:url(/assets/img/grain.png);background-image:image-set(url(/assets/img/opt/grain.webp) type("image/webp"),url(/assets/img/grain.png) type("image/png"));background-size:180px;mix-blend-mode:overlay;opacity:.2}
+/* Título e botão a pelo menos 12px do celular: título de 22px (bloco abaixo de 335px, tela abaixo de 375px) e
+   24px; celular de 120px a 4px da borda (nos blocos abaixo de 333px, ele sai 12px pela borda). */
+.celular{right:var(--cel-dir,4px);top:26px;width:120px;height:262px;transform:rotate(-7deg);transform-origin:50% 0;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,.15) 100%);mask-image:linear-gradient(180deg,#000 0%,#000 62%,rgba(0,0,0,.15) 100%);border-radius:26px;padding:5px;background:linear-gradient(160deg,#2A3A40 0%,#11191C 60%,#0A1012 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 24px 40px -10px rgba(0,0,0,.8),0 0 40px -6px rgba(37,211,102,.35)}
+.tela{width:100%;height:100%;border-radius:21px;overflow:hidden;background:#0B141A;display:flex;flex-direction:column}
+.tela-topo{display:flex;align-items:center;gap:6px;padding:16px 8px 7px;background:#1F2C34}
+.tela-topo img{width:22px;height:22px;border-radius:50%;object-fit:cover}
+.tela-nome{display:flex;flex-direction:column;line-height:1.15}
+.tela-nome b{font-size:8.5px;font-weight:600;color:#E9EDEF}
+.tela-nome span{font-size:7px;color:#25D366}
+.conversa{flex:1;display:flex;flex-direction:column;gap:5px;padding:9px 7px;background:radial-gradient(120% 80% at 50% 0%,rgba(37,211,102,.06),rgba(0,0,0,0) 60%),#0B141A}
+.msg{max-width:86%;padding:5px 7px 4px;font-size:8.5px;line-height:1.3;color:#E9EDEF;box-shadow:0 1px 1px rgba(0,0,0,.25)}
+.msg small{display:block;text-align:right;font-size:6px;color:rgba(233,237,239,.55);margin-top:1px}
+.msg-eu{align-self:flex-end;background:#005C4B;border-radius:8px 8px 2px 8px}
+.msg-ela{align-self:flex-start;background:#1F2C34;border-radius:8px 8px 8px 2px}
+.b-wpp .bloco-txt{width:auto;max-width:248px;padding:20px 0 20px 20px;gap:0}
+.b-wpp h2{font-size:22px;line-height:1.06;letter-spacing:-.03em;white-space:nowrap}
+@container (min-width:333px){.b-wpp h2{font-size:24px}}
+@container (max-width:332.98px){.celular{--cel-dir:-12px}}
+.b-wpp .pilula{margin-top:18px;color:#03241A;box-shadow:0 0 0 3px rgba(37,211,102,.22),0 0 18px rgba(37,211,102,.45)}
+.b-wpp .seta{background:linear-gradient(180deg,#2EDB72 0%,#0E7A45 100%)}
+
+/* Rodapé */
+.rodape{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:22px}
+.insta{display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(201,211,224,.16);color:#C9D3E0;transition:border-color .25s,color .25s}
+@media (hover:hover){.insta:hover{color:#FFFFFF;border-color:rgba(201,211,224,.4)}}
+.rodape small{font-size:12px;color:#7F8EA3}
+
+/* Desktop: a mesma coluna de 390px, centralizada sobre a foto do Marcello desfocada, com um véu escuro. */
+@media (min-width:768px){
+  .fundo{display:block;position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+  .fundo-foto{position:absolute;inset:0;opacity:.55;background-image:url(/assets/img/opt/links-fundo-480.jpg);background-image:image-set(url(/assets/img/opt/links-fundo-480.avif) type("image/avif"),url(/assets/img/opt/links-fundo-480.webp) type("image/webp"),url(/assets/img/opt/links-fundo-480.jpg) type("image/jpeg"));background-size:cover;background-position:70% 30%;filter:blur(26px) saturate(1.1);transform:scale(1.12)}
+  .fundo-veu{position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,10,20,.55) 0%,rgba(5,10,20,.88) 34%,rgba(5,10,20,.92) 50%,rgba(5,10,20,.88) 66%,rgba(5,10,20,.55) 100%)}
+  .brilho{top:-200px;width:900px;height:700px;background:radial-gradient(50% 50% at 50% 50%,rgba(46,111,224,.38) 0%,rgba(14,47,112,.14) 45%,rgba(5,10,20,0) 75%)}
+  body::after{opacity:.25}
+  .col{max-width:390px;padding-top:96px} /* os 40px do mockup acima da coluna + os 56px dela, em padding: margem vazaria para o body */
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript). Os <noscript> só carregam com o JS desligado. -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KX5J7J6"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Meta Pixel (noscript) -->
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1434833234924777&amp;ev=PageView&amp;noscript=1"></noscript>
+<div class="fundo" aria-hidden="true"><div class="fundo-foto"></div><div class="fundo-veu"></div></div>
+<div class="luz" aria-hidden="true"><div class="brilho"></div></div>
+
+<main class="col">
+
+<header class="perfil entra e1">
+<div class="avatar">
+<picture>
+<source type="image/avif" srcset="/assets/img/opt/links-avatar-120.avif 120w, /assets/img/opt/links-avatar-240.avif 240w" sizes="102px">
+<source type="image/webp" srcset="/assets/img/opt/links-avatar-120.webp 120w, /assets/img/opt/links-avatar-240.webp 240w" sizes="102px">
+<img src="/assets/img/opt/links-avatar-240.jpg" srcset="/assets/img/opt/links-avatar-120.jpg 120w, /assets/img/opt/links-avatar-240.jpg 240w" sizes="102px" width="240" height="240" fetchpriority="high" alt="Marcello Gomes">
+</picture>
+</div>
+<div class="nome">
+<h1>Marcello Gomes</h1>
+<svg width="19" height="19" viewBox="0 0 24 24" role="img" aria-label="Perfil verificado"><path fill="#3D8BFF" d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3.1 1 3.1-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3-2.6-1.9 1-3.1-1-3.1 2.6-1.9 1-3 3.2.1z"/><path d="M8 12.2l2.7 2.7L16.3 9.3" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<p class="arroba">@marcellopgomes</p>
+<p class="bio">Respeito próprio, posicionamento e relacionamentos. Sem rodeio.</p>
+</header>
+
+<a class="bloco b-desprezado entra e2" href="https://nunca-mais-seja-desprezado.com.br/bio/" data-destino="desprezado" data-utm>
+<div class="recorte">
+<picture class="b1-foto">
+<source type="image/avif" srcset="/assets/img/opt/links-fundo-480.avif 480w, /assets/img/opt/links-fundo-960.avif 960w" sizes="450px">
+<source type="image/webp" srcset="/assets/img/opt/links-fundo-480.webp 480w, /assets/img/opt/links-fundo-960.webp 960w" sizes="450px">
+<img src="/assets/img/opt/links-fundo-960.jpg" srcset="/assets/img/opt/links-fundo-480.jpg 480w, /assets/img/opt/links-fundo-960.jpg 960w" sizes="450px" width="960" height="540" fetchpriority="high" alt="">
+</picture>
+<span class="camada b1-veu" aria-hidden="true"></span>
+<span class="camada b1-base" aria-hidden="true"></span>
+<div class="bloco-txt">
+<h2>Deixe de ser desprezado. <span class="destaque-azul">Volte a ser respeitado.</span></h2>
+<span class="pilula">Quero meu respeito<span class="seta"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+</div>
+</div>
+</a>
+
+<a class="bloco b-arsenal entra e3" href="https://arsenal-homem-blindado.com.br/bio" target="_blank" rel="noopener" data-destino="arsenal" data-utm>
+<div class="recorte">
+<span class="camada b2-veu" aria-hidden="true"></span>
+<picture class="b2-produto">
+<source type="image/avif" srcset="/assets/img/opt/links-arsenal-240.avif 240w, /assets/img/opt/links-arsenal-480.avif 480w" sizes="236px">
+<source type="image/webp" srcset="/assets/img/opt/links-arsenal-240.webp 240w, /assets/img/opt/links-arsenal-480.webp 480w" sizes="236px">
+<img src="/assets/img/opt/links-arsenal-480.png" srcset="/assets/img/opt/links-arsenal-240.png 240w, /assets/img/opt/links-arsenal-480.png 480w" sizes="236px" width="480" height="417" decoding="async" alt="Os manuais do Arsenal Homem Blindado">
+</picture>
+<div class="bloco-txt">
+<h2>A <span class="verdade">Verdade</span><br>Que Ninguém<br>Te Contou</h2>
+<span class="pilula">Quero ser blindado<span class="seta"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+</div>
+</div>
+</a>
+
+<a class="bloco b-wpp entra e4" href="#" data-destino="whatsapp" id="whatsapp">
+<div class="recorte">
+<span class="camada b3-grao" aria-hidden="true"></span>
+<div class="camada celular" aria-hidden="true">
+<div class="tela">
+<div class="tela-topo">
+<img src="/assets/img/opt/links-avatar-120.jpg" width="120" height="120" decoding="async" alt="">
+<div class="tela-nome"><b>Equipe Marcello</b><span>online</span></div>
+</div>
+<div class="conversa">
+<p class="msg msg-eu">Oii, estou com uma dúvida sobre o material<small>14:02</small></p>
+<p class="msg msg-ela">Oi! Claro, pode mandar que a gente te ajuda.<small>14:03</small></p>
+<p class="msg msg-eu">Dá pra ler pelo celular?<small>14:04</small></p>
+</div>
+</div>
+</div>
+<div class="bloco-txt">
+<h2>Ficou com<br>alguma dúvida?</h2>
+<span class="pilula">Chamar no WhatsApp<span class="seta"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span>
+</div>
+</div>
+</a>
+
+<footer class="rodape">
+<a class="insta" href="https://www.instagram.com/marcellopgomes/" target="_blank" rel="noopener" aria-label="Instagram de Marcello Gomes"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
+<small>© 2026 Marcello Gomes</small>
+</footer>
+
+</main>
+
+<script>
+// WhatsApp: o número ainda não foi definido (ver PENDENCIAS.md). Formato 55DDDNUMERO, só dígitos.
+var WHATSAPP_NUMERO = '';
+var WHATSAPP_MENSAGEM = 'Oii, estou com uma dúvida sobre o material';
+
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+
+  // WhatsApp: com número, o bloco abre a conversa com a mensagem pronta. Sem número, ele aparece, mas o clique
+  // não faz nada (e o console avisa no localhost).
+  var wpp = document.getElementById('whatsapp');
+  var numero = WHATSAPP_NUMERO.replace(/\D/g, '');
+  if (numero) {
+    wpp.href = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(WHATSAPP_MENSAGEM);
+    wpp.target = '_blank';
+    wpp.rel = 'noopener';
+  } else {
+    wpp.addEventListener('click', function (e) { e.preventDefault(); });
+    if (local) console.warn('links.html: WHATSAPP_NUMERO vazio; o bloco do WhatsApp não abre a conversa.');
+  }
+
+  // UTMs que chegaram na URL desta página vão para os dois primeiros blocos (sem duplicar as que o link já
+  // tiver). Nada de UTM fixa: no link interno, ela sobrescreveria a origem da sessão no GA4.
+  var utms = [];
+  new URLSearchParams(location.search).forEach(function (valor, chave) {
+    if (/^utm_/i.test(chave)) utms.push([chave, valor]);
+  });
+  if (utms.length) {
+    document.querySelectorAll('a[data-utm]').forEach(function (a) {
+      var url = new URL(a.href);
+      utms.forEach(function (p) { if (!url.searchParams.has(p[0])) url.searchParams.append(p[0], p[1]); });
+      a.href = url.toString();
+    });
+  }
+
+  // Clique em cada bloco para o GA4 (pelo contêiner do GTM). Nenhum evento no pixel. O do WhatsApp só conta
+  // quando o bloco abre a conversa.
+  document.querySelectorAll('a[data-destino]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (a === wpp && !numero) return;
+      (window.dataLayer = window.dataLayer || []).push({ event: 'clique_link', destino: a.getAttribute('data-destino') });
+    });
+  });
+})();
+</script>
+</body>
+</html>
