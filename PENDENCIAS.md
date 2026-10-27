@@ -6,7 +6,7 @@ O produto mudou: o Arsenal Homem Blindado (quatro manuais) deu lugar ao De Despr
 
 - [x] **Checkout:** resolvido. O `CHECKOUTS` tem os quatro links da Eduzz (bio, sdr, tfg, story), e os href dos botões no HTML levam ao padrão.
 - [x] **Link da raiz:** resolvido. A raiz é a página de links do Marcello (`links.html`); só /bio/, /sdr/, /tfg/ e /story/ vendem; `/index.html` e `/links.html` respondem 404 com a `404.html`. O `padrao` do `CHECKOUTS` e os href dos botões ficam com o link da bio, só como segurança.
-- [ ] **Número do WhatsApp da página de links (bloqueia a publicação da raiz):** sem ele, o bloco "Ficou com alguma dúvida?" aparece mas não abre nada. Preencher `WHATSAPP_NUMERO` no topo do script da `links.html` (formato 55DDDNUMERO).
+- [x] **Número do WhatsApp da página de links:** resolvido. `WHATSAPP_NUMERO = '5562994407151'`; o bloco abre a conversa com a mensagem pronta.
 - [ ] **Confirmar com a gestora o pixel e o token nos quatro checkouts:** pixel 1434833234924777 e token da API de Conversões configurados em cada um dos quatro checkouts da Eduzz (bio, sdr, tfg, story), como foi feito no Arsenal, e o InitiateCheckout disparando ao abrir cada um.
 - [ ] Confirmar que os três livros são entregues em PDF e quantas páginas tem cada um.
 - [ ] Confirmar que o que a página promete está de fato no material: as 3 etapas do #caminho, as "respostas para 30 situações de desrespeito" do Chega de Engolir Calado!, o plano de ação de 30 dias, o diagnóstico pessoal, o código de honra e o diário de evolução (#caminho e #oferta).

@@ -54,6 +54,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Performance (revelação sem desfoque nos blocos grandes, imagens a 2x no celular, Lenis depois do load) | aprovada |
 | Página de links do Marcello na raiz do domínio (`links.html`) | aprovada |
 | Página de links: textos novos do Marcello, botões menores, blocos de 188 px, caixa do Arsenal e celular do WhatsApp | aprovada |
+| Página de links: número do WhatsApp do Marcello | aprovada |
 | Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
@@ -554,6 +555,11 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Arsenal: caixa com `min(60%, 210px)`, `right: -28px`, `bottom: -4px`, ocupando a parte de cima do card. Topo da caixa a 25 / 17 / 10 / 9 px da borda de cima, logo "ARSENAL" a 11,7 / 17,6 / 23,5 / 25,8 px do topo do botão e título a 11,2 / 10,2 / 9,2 / 31 px dos livros (360 / 375 / 390 / 430). O logo termina a 46% da altura da imagem (medido nos pixels).
 - WhatsApp: o celular gira pelo topo, então a borda esquerda fica mais à esquerda quanto mais alto o ponto; com o bloco mais baixo, o botão subiu e encostou nele. Medido pela matriz de transformação do navegador. Abaixo de 390 px ele diminui (escala .88 e 8 px para fora em 375; .82, 16 px para fora e no topo em 360: com .88 em 360 ele sairia ~17 px), a mesma inclinação e máscara. Botão / título / saída pela borda: 12,5 / 51,9 / 9 px (360), 15,1 / 39,7 / 4,9 (375), 14,8 / 39,5 / 4,7 (390), 44,8 / 69,5 / 4,7 (430). "Equipe Marcello" e as mensagens inteiros.
 - `scrollWidth` igual à largura em 360, 375, 390 e 430 px. Atenção: o `@container` mede o bloco por dentro da borda (348 px na tela de 390).
+
+### Página de links: número do WhatsApp (2026-10-27)
+
+- `WHATSAPP_NUMERO = '5562994407151'`. O bloco 3 abre `https://wa.me/5562994407151?text=Oii%2C%20estou%20com%20uma%20d%C3%BAvida%20sobre%20o%20material` em nova aba, com `rel="noopener"`. O mesmo href, com `target` e `rel`, foi para o HTML do bloco (antes era `#`), para o link funcionar sem JS como o resto do site.
+- Conferido no navegador, com e sem JS: href certo, nova aba, `clique_link` com `destino: 'whatsapp'` no dataLayer e console limpo (o aviso de número vazio sumiu). Saiu o bloqueador do `PENDENCIAS.md`.
 
 ## Pendências técnicas (do projeto, não do cliente)
 
