@@ -2,6 +2,22 @@
 # cinco rotas vendem. A ordem importa: vale a primeira regra que casar. O "!" força a regra mesmo quando o
 # arquivo existe: o index.html existe de verdade e, sem o "!", seria servido na raiz e em /index.html.
 
+# Arquivos internos do projeto: 404 com a 404.html (forçado, antes de tudo), o mesmo bloqueio do .htaccess.
+# A Netlify não aceita padrão por extensão (*.md): cada .md da raiz vai pelo nome; um .md novo na raiz entra aqui.
+# Os arquivos com ponto (.htaccess, .gitignore), o _redirects e o _headers a Netlify já não publica, e a
+# _entrada/ fica fora do git; as regras dela e do node_modules/ são reserva.
+/docs            /404.html    404!
+/docs/*          /404.html    404!
+/scripts         /404.html    404!
+/scripts/*       /404.html    404!
+/_entrada        /404.html    404!
+/_entrada/*      /404.html    404!
+/node_modules/*  /404.html    404!
+/CLAUDE.md       /404.html    404!
+/PENDENCIAS.md   /404.html    404!
+/PROGRESSO.md    /404.html    404!
+/README.md       /404.html    404!
+
 # Raiz: a página de links (links.html), com o endereço "/" na barra (forçado).
 /             /links.html  200!
 

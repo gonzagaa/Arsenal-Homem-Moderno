@@ -56,6 +56,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Página de links: textos novos do Marcello, botões menores, blocos de 188 px, caixa do Arsenal e celular do WhatsApp | aprovada |
 | Página de links: número do WhatsApp do Marcello | aprovada |
 | Rota nova /cht/ (checkout 39ZR122DWE) | aprovada |
+| Prévia da Netlify sem os arquivos internos | aprovada |
 | Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
@@ -567,6 +568,11 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Pedido do Marcello: `/cht/` serve a página de vendas com o checkout https://chk.eduzz.com/39ZR122DWE. `cht` no `CHECKOUTS`; `.htaccess` com `^(bio|sdr|tfg|story|cht)/?$`; `_redirects` e `_headers` com `/cht` e `/cht/`; comentários do `index.html` e da `404.html`, `docs/copy.md`, `CLAUDE.md` e `PENDENCIAS.md` com a rota (a pendência da gestora vale para os cinco checkouts). Canonical e `og:url` continuam em /bio/ (iguais em todas as rotas).
 - Como as outras, `/cht` sem barra serve a página direto (200, reescrita interna), sem redirecionar para `/cht/`: nenhuma rota redireciona hoje.
 - Conferido num servidor local que lê as regras do próprio `.htaccess`, com o domínio de produção apontado para ele: /bio/, /sdr/, /tfg/, /story/, /cht/, /cht e /CHT/ em 200 com os 7 botões no checkout da rota; `/cht/?utm_source=teste&origem=bio&rastreio=1` com o checkout da cht e só o `utm_source`; / com a página de links; rota inexistente em 404 com a `404.html`. No localhost, `?origem=cht` e `?origem=CHT` levam ao checkout da cht.
+
+### Prévia da Netlify sem os arquivos internos (2026-10-28)
+
+- Na prévia, `/docs/*`, `/CLAUDE.md`, `/PENDENCIAS.md` e `/scripts/*` abriam (200): a Netlify não lê o `.htaccess`. O `_redirects` ganhou, antes de todas as regras, o mesmo bloqueio em 404 forçado (`404!`, com a `404.html`): `/docs`, `/docs/*`, `/scripts`, `/scripts/*`, `/_entrada`, `/_entrada/*`, `/node_modules/*` e os `.md` da raiz pelo nome (`CLAUDE.md`, `PENDENCIAS.md`, `PROGRESSO.md`, `README.md`). A Netlify não aceita padrão por extensão: um `.md` novo na raiz precisa entrar na lista. O `.htaccess` não mudou.
+- Os arquivos com ponto (`.htaccess`, `assets/.htaccess`, `.gitignore`), o `_redirects` e o `_headers` a Netlify já não publicava (404 antes da mudança); a `_entrada/` fica fora do git.
 
 ## Pendências técnicas (do projeto, não do cliente)
 
