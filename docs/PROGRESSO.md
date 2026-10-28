@@ -55,6 +55,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Página de links do Marcello na raiz do domínio (`links.html`) | aprovada |
 | Página de links: textos novos do Marcello, botões menores, blocos de 188 px, caixa do Arsenal e celular do WhatsApp | aprovada |
 | Página de links: número do WhatsApp do Marcello | aprovada |
+| Rota nova /cht/ (checkout 39ZR122DWE) | aprovada |
 | Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
@@ -560,6 +561,12 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 
 - `WHATSAPP_NUMERO = '5562994407151'`. O bloco 3 abre `https://wa.me/5562994407151?text=Oii%2C%20estou%20com%20uma%20d%C3%BAvida%20sobre%20o%20material` em nova aba, com `rel="noopener"`. O mesmo href, com `target` e `rel`, foi para o HTML do bloco (antes era `#`), para o link funcionar sem JS como o resto do site.
 - Conferido no navegador, com e sem JS: href certo, nova aba, `clique_link` com `destino: 'whatsapp'` no dataLayer e console limpo (o aviso de número vazio sumiu). Saiu o bloqueador do `PENDENCIAS.md`.
+
+### Rota nova /cht/ (2026-10-28)
+
+- Pedido do Marcello:  serve a página de vendas com o checkout https://chk.eduzz.com/39ZR122DWE.  no ;  com ;  e  com  e ; comentários do  e da , ,  e  com a rota (a pendência da gestora vale para os cinco checkouts). Canonical e og:url continuam em /bio/ (iguais em todas as rotas).
+- Como as outras,  sem barra serve a página direto (200, reescrita interna), sem redirecionar para : nenhuma rota redireciona hoje.
+- Conferido num servidor local que lê as regras do próprio , com o domínio de produção apontado para ele: /bio/, /sdr/, /tfg/, /story/, /cht/, /cht e /CHT/ em 200 com os 7 botões no checkout da rota; /cht/?utm_source=teste&origem=bio&rastreio=1 com o checkout da cht e só o utm_source; / com a página de links; rota inexistente em 404 com a 404.html. No localhost, ?origem=cht e ?origem=CHT levam ao checkout da cht.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

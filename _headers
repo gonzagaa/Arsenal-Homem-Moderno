@@ -32,6 +32,10 @@
   Cache-Control: no-cache
 /story/
   Cache-Control: no-cache
+/cht
+  Cache-Control: no-cache
+/cht/
+  Cache-Control: no-cache
 
 # Favicons da raiz: 1 semana.
 /favicon.svg

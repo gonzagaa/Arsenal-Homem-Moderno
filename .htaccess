@@ -54,7 +54,7 @@ ErrorDocument 404 /404.html
   RewriteRule (?:^|/)(?:docs|scripts|node_modules|\.git)(?:/|$) - [F,NC,L]
 
   # O pedido direto das duas páginas (/index.html e /links.html, com ou sem query string) responde 404, com a
-  # 404.html: elas só abrem pelos endereços delas (a raiz e as quatro rotas). O THE_REQUEST é a linha do pedido
+  # 404.html: elas só abrem pelos endereços delas (a raiz e as cinco rotas). O THE_REQUEST é a linha do pedido
   # original ("GET / HTTP/1.1") e não muda nas reescritas internas: a raiz servida como links.html (pela
   # reescrita ou pelo DirectoryIndex) e o /bio/ reescrito para o index.html não caem aqui, e a 404.html servida
   # como página de erro fica fora do padrão (sem laço).
@@ -65,10 +65,10 @@ ErrorDocument 404 /404.html
   # string segue junto).
   RewriteRule ^$ /links.html [L]
 
-  # Origens de tráfego: /bio, /sdr, /tfg e /story, com ou sem barra e em qualquer caixa, servem o index.html
+  # Origens de tráfego: /bio, /sdr, /tfg, /story e /cht, com ou sem barra e em qualquer caixa, servem o index.html
   # por reescrita interna (o endereço na barra não muda; a query string segue junto). O script do checkout lê
   # o primeiro segmento do caminho e escolhe o link do CHECKOUTS.
-  RewriteRule ^(bio|sdr|tfg|story)/?$ /index.html [NC,L]
+  RewriteRule ^(bio|sdr|tfg|story|cht)/?$ /index.html [NC,L]
 </IfModule>
 
 # Tipos corretos para os formatos que hospedagens antigas não conhecem.

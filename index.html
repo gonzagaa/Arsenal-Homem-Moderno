@@ -53,7 +53,7 @@ fbq('track', 'PageView');
 <meta name="twitter:image:alt" content="Marcello Gomes sentado em poltrona de couro, com o título: Vou te mostrar como deixar de ser desprezado e voltar a ser respeitado dentro da sua própria casa.">
 <!-- Favicons (o escudo). favicon.ico também fica na raiz, para quem o pede sem ler o <head>.
      Todo arquivo do projeto é pedido a partir da raiz (/assets/..., /favicon...): a mesma página abre em /bio/,
-     /sdr/, /tfg/ e /story/ (reescritas do _redirects), e um caminho relativo apontaria para /bio/assets/... -->
+     /sdr/, /tfg/, /story/ e /cht/ (reescritas do .htaccess e do _redirects), e um caminho relativo apontaria para /bio/assets/... -->
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1422,18 +1422,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Assinatura do Studio Alto Nível (pedido do desenvolvedor): o script insere o rodapé "Desenvolvido por" no fim do <body>. -->
 <script src="https://cdn.studioaltonivel.com/footer.js" defer></script>
 <script>
-// Checkout de cada origem de tráfego. Só as quatro rotas vendem: a página abre em /bio/, /sdr/, /tfg/ e
-// /story/ (o .htaccess e o _redirects reescrevem essas rotas para o /index.html, sem mudar o endereço). O
+// Checkout de cada origem de tráfego. Só as cinco rotas vendem: a página abre em /bio/, /sdr/, /tfg/,
+// /story/ e /cht/ (o .htaccess e o _redirects reescrevem essas rotas para o /index.html, sem mudar o endereço). O
 // primeiro segmento do caminho escolhe o checkout de todos os botões de compra, inclusive o da barra fixa.
-// A raiz não vende: no servidor, / e /index.html respondem 404 (a 404.html). O padrão fica com o link da bio só
-// como segurança, para o caso de a página abrir fora das quatro rotas (como a raiz no Live Server, que não lê
+// A raiz não vende: no servidor, / é a página de links e /index.html responde 404 (a 404.html). O padrão fica com o link da bio só
+// como segurança, para o caso de a página abrir fora das cinco rotas (como a raiz no Live Server, que não lê
 // essas regras). Sem JS, os botões levam ao href do HTML, que é o padrão: se ele mudar, troque também os href.
 var CHECKOUTS = {
   padrao: 'https://chk.eduzz.com/R9JXO4OZ0X',
   bio:    'https://chk.eduzz.com/R9JXO4OZ0X',
   sdr:    'https://chk.eduzz.com/60E2O4KBW3',
   tfg:    'https://chk.eduzz.com/E0DKJ47691',
-  story:  'https://chk.eduzz.com/39VKR26KWR'
+  story:  'https://chk.eduzz.com/39VKR26KWR',
+  cht:    'https://chk.eduzz.com/39ZR122DWE'
 };
 
 // Checkout: todo botão de compra aponta para a Eduzz. Os parâmetros que chegaram na URL da página
@@ -1448,7 +1449,7 @@ var CHECKOUTS = {
   var links = document.querySelectorAll('a[href^="https://chk.eduzz.com/"]');
   var params = new URLSearchParams(location.search);
   // Origem: o primeiro segmento do caminho (/bio/ dá "bio"). O Live Server não lê o _redirects: só no
-  // localhost, ?origem=bio (sdr, tfg, story) simula a rota; em produção, o parâmetro é ignorado.
+  // localhost, ?origem=bio (sdr, tfg, story, cht) simula a rota; em produção, o parâmetro é ignorado.
   var origem = (location.pathname.split('/')[1] || '').toLowerCase();
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) && params.get('origem')) origem = params.get('origem').toLowerCase();
   var checkout = origem !== 'padrao' && Object.prototype.hasOwnProperty.call(CHECKOUTS, origem) ? CHECKOUTS[origem] : CHECKOUTS.padrao;

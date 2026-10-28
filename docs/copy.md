@@ -3,11 +3,12 @@
 Reformulação comercial pedida pelo cliente: página mais curta, direta e orientada à compra. Substitui a copy v2. Use palavra por palavra. O trecho em **negrito** é o destaque (peso 700 com o degradê azul da identidade oficial). O texto vai aqui em caixa normal; na página, os botões e o rótulo do hero aparecem em maiúsculas por CSS.
 
 Domínio: https://nunca-mais-seja-desprezado.com.br/
-Não há página na raiz: só as quatro rotas vendem. Checkouts da Eduzz, um por rota (no `CHECKOUTS` do `index.html`; o padrão fica com o link da bio, só como segurança):
+A raiz é a página de links; só as cinco rotas vendem. Checkouts da Eduzz, um por rota (no `CHECKOUTS` do `index.html`; o padrão fica com o link da bio, só como segurança):
 - /bio/: https://chk.eduzz.com/R9JXO4OZ0X
 - /sdr/: https://chk.eduzz.com/60E2O4KBW3
 - /tfg/: https://chk.eduzz.com/E0DKJ47691
 - /story/: https://chk.eduzz.com/39VKR26KWR
+- /cht/: https://chk.eduzz.com/39ZR122DWE
 
 Saem da página: #virada (palavras empilhadas), #antes-depois e #para-quem.
 

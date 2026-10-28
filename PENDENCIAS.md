@@ -4,17 +4,17 @@ Nada marcado com `.pendente` vai ao ar. Atualize esta lista conforme as resposta
 
 O produto mudou: o Arsenal Homem Blindado (quatro manuais) deu lugar ao De Desprezado a Respeitado (três livros: o principal, O Jogo Sujo dos Relacionamentos e Chega de Engolir Calado!, com os materiais de aplicação prática). Domínio novo: `https://nunca-mais-seja-desprezado.com.br/`.
 
-- [x] **Checkout:** resolvido. O `CHECKOUTS` tem os quatro links da Eduzz (bio, sdr, tfg, story), e os href dos botões no HTML levam ao padrão.
-- [x] **Link da raiz:** resolvido. A raiz é a página de links do Marcello (`links.html`); só /bio/, /sdr/, /tfg/ e /story/ vendem; `/index.html` e `/links.html` respondem 404 com a `404.html`. O `padrao` do `CHECKOUTS` e os href dos botões ficam com o link da bio, só como segurança.
+- [x] **Checkout:** resolvido. O `CHECKOUTS` tem os cinco links da Eduzz (bio, sdr, tfg, story e cht, a rota nova), e os href dos botões no HTML levam ao padrão.
+- [x] **Link da raiz:** resolvido. A raiz é a página de links do Marcello (`links.html`); só /bio/, /sdr/, /tfg/, /story/ e /cht/ vendem; `/index.html` e `/links.html` respondem 404 com a `404.html`. O `padrao` do `CHECKOUTS` e os href dos botões ficam com o link da bio, só como segurança.
 - [x] **Número do WhatsApp da página de links:** resolvido. `WHATSAPP_NUMERO = '5562994407151'`; o bloco abre a conversa com a mensagem pronta.
-- [ ] **Confirmar com a gestora o pixel e o token nos quatro checkouts:** pixel 1434833234924777 e token da API de Conversões configurados em cada um dos quatro checkouts da Eduzz (bio, sdr, tfg, story), como foi feito no Arsenal, e o InitiateCheckout disparando ao abrir cada um.
+- [ ] **Confirmar com a gestora o pixel e o token nos cinco checkouts:** pixel 1434833234924777 e token da API de Conversões configurados em cada um dos cinco checkouts da Eduzz (bio, sdr, tfg, story e cht, a rota nova), como foi feito no Arsenal, e o InitiateCheckout disparando ao abrir cada um.
 - [ ] Confirmar que os três livros são entregues em PDF e quantas páginas tem cada um.
 - [ ] Confirmar que o que a página promete está de fato no material: as 3 etapas do #caminho, as "respostas para 30 situações de desrespeito" do Chega de Engolir Calado!, o plano de ação de 30 dias, o diagnóstico pessoal, o código de honra e o diário de evolução (#caminho e #oferta).
 - [ ] Confirmar as respostas do FAQ: entrega em PDF depois da confirmação do pagamento e que o conteúdo trata de casamentos de longa data.
 - [ ] Preço riscado: a copy v3 não tem preço de referência (a anterior tinha R$ 297 riscado), e a página saiu sem ele. Confirmar que foi de propósito.
 - [ ] Formas de pagamento aceitas (Pix, cartão, boleto) e prazo de liberação no boleto.
 - [x] Hospedagem: resolvido. Hostinger do cliente, com deploy pelo Git; compressão, cache e rotas no `.htaccess` (a Netlify fica só como prévia).
-- [ ] Depois do primeiro deploy na Hostinger, conferir no domínio: `/` abrindo a página de links (com o endereço "/" na barra); /bio/, /sdr/, /tfg/ e /story/ abrindo a página de vendas; `/index.html`, `/links.html` e um endereço inventado respondendo 404 com a `404.html`; http e www indo para https sem www; /docs/, /CLAUDE.md e /.git/config sem abrir; HTML com `Cache-Control: no-cache` e /assets/ com 1 ano; resposta comprimida (gzip ou br). As regras do `.htaccess` não puderam ser testadas num Apache antes; a da raiz usa `[R=404]`, que o LiteSpeed precisa aceitar. Na prévia da Netlify, conferir o mesmo comportamento da raiz, do `/index.html` e das rotas (`_redirects`).
+- [ ] Depois do primeiro deploy na Hostinger, conferir no domínio: `/` abrindo a página de links (com o endereço "/" na barra); /bio/, /sdr/, /tfg/, /story/ e /cht/ abrindo a página de vendas; `/index.html`, `/links.html` e um endereço inventado respondendo 404 com a `404.html`; http e www indo para https sem www; /docs/, /CLAUDE.md e /.git/config sem abrir; HTML com `Cache-Control: no-cache` e /assets/ com 1 ano; resposta comprimida (gzip ou br). As regras do `.htaccess` não puderam ser testadas num Apache antes; a da raiz usa `[R=404]`, que o LiteSpeed precisa aceitar. Na prévia da Netlify, conferir o mesmo comportamento da raiz, do `/index.html` e das rotas (`_redirects`).
 
 ## Marcações `.pendente` na página (0)
 
