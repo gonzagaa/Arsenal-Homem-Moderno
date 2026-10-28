@@ -564,9 +564,9 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 
 ### Rota nova /cht/ (2026-10-28)
 
-- Pedido do Marcello:  serve a página de vendas com o checkout https://chk.eduzz.com/39ZR122DWE.  no ;  com ;  e  com  e ; comentários do  e da , ,  e  com a rota (a pendência da gestora vale para os cinco checkouts). Canonical e og:url continuam em /bio/ (iguais em todas as rotas).
-- Como as outras,  sem barra serve a página direto (200, reescrita interna), sem redirecionar para : nenhuma rota redireciona hoje.
-- Conferido num servidor local que lê as regras do próprio , com o domínio de produção apontado para ele: /bio/, /sdr/, /tfg/, /story/, /cht/, /cht e /CHT/ em 200 com os 7 botões no checkout da rota; /cht/?utm_source=teste&origem=bio&rastreio=1 com o checkout da cht e só o utm_source; / com a página de links; rota inexistente em 404 com a 404.html. No localhost, ?origem=cht e ?origem=CHT levam ao checkout da cht.
+- Pedido do Marcello: `/cht/` serve a página de vendas com o checkout https://chk.eduzz.com/39ZR122DWE. `cht` no `CHECKOUTS`; `.htaccess` com `^(bio|sdr|tfg|story|cht)/?$`; `_redirects` e `_headers` com `/cht` e `/cht/`; comentários do `index.html` e da `404.html`, `docs/copy.md`, `CLAUDE.md` e `PENDENCIAS.md` com a rota (a pendência da gestora vale para os cinco checkouts). Canonical e `og:url` continuam em /bio/ (iguais em todas as rotas).
+- Como as outras, `/cht` sem barra serve a página direto (200, reescrita interna), sem redirecionar para `/cht/`: nenhuma rota redireciona hoje.
+- Conferido num servidor local que lê as regras do próprio `.htaccess`, com o domínio de produção apontado para ele: /bio/, /sdr/, /tfg/, /story/, /cht/, /cht e /CHT/ em 200 com os 7 botões no checkout da rota; `/cht/?utm_source=teste&origem=bio&rastreio=1` com o checkout da cht e só o `utm_source`; / com a página de links; rota inexistente em 404 com a `404.html`. No localhost, `?origem=cht` e `?origem=CHT` levam ao checkout da cht.
 
 ## Pendências técnicas (do projeto, não do cliente)
 
