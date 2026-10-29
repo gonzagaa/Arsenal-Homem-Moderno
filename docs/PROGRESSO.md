@@ -57,6 +57,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Página de links: número do WhatsApp do Marcello | aprovada |
 | Rota nova /cht/ (checkout 39ZR122DWE) | aprovada |
 | Prévia da Netlify sem os arquivos internos | aprovada |
+| Variante do hero com os três livros (`?hero=livros`), para comparação | aprovada |
 | Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
@@ -573,6 +574,15 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 
 - Na prévia, `/docs/*`, `/CLAUDE.md`, `/PENDENCIAS.md` e `/scripts/*` abriam (200): a Netlify não lê o `.htaccess`. O `_redirects` ganhou, antes de todas as regras, o mesmo bloqueio em 404 forçado (`404!`, com a `404.html`): `/docs`, `/docs/*`, `/scripts`, `/scripts/*`, `/_entrada`, `/_entrada/*`, `/node_modules/*` e os `.md` da raiz pelo nome (`CLAUDE.md`, `PENDENCIAS.md`, `PROGRESSO.md`, `README.md`). A Netlify não aceita padrão por extensão: um `.md` novo na raiz precisa entrar na lista. O `.htaccess` não mudou.
 - Os arquivos com ponto (`.htaccess`, `assets/.htaccess`, `.gitignore`), o `_redirects` e o `_headers` a Netlify já não publicava (404 antes da mudança); a `_entrada/` fica fora do git.
+
+### Variante do hero com os três livros, `?hero=livros` (2026-10-29)
+
+- Antes desta rodada, a proposta dos livros por cima da foto (não aprovada) ficou guardada no branch `rascunho/livros-sobre-foto` (também no GitHub); a `main` seguiu sem ela.
+- Variante só por parâmetro: `?hero=livros` troca a foto do Marcello pelo fundo com os três livros (artes `hero-livros-mobile.png` e `hero-livros-desktop.png`, 1882x3344 e 3344x1882, otimizadas nas larguras e no perfil da foto; os títulos ficaram nítidos sem subir a qualidade; 1290 px do celular com 135 KB em AVIF, contra 85 KB da foto). Script no `<head>` (classe `.v-livros` e preload das imagens novas), script depois do `<picture>` (troca das fontes) e CSS sob `.v-livros`. Os preloads da foto ficam: na variante ela também é baixada, sem aparecer (escolha do desenvolvedor). `hero` fora do repasse para o checkout.
+- Sem o parâmetro, a página ficou idêntica à anterior (comparação pixel a pixel da página inteira em 390, 768 e 1440 px: 0 pixel diferente) e as imagens dos livros não são pedidas.
+- Celular: rótulo logo abaixo da base dos livros (espaçador no bloco de texto), botão 10 px mais perto da subheadline; em 390x844, 80 dos 88 px do botão na primeira tela (nas telas baixas, 0 a 19 px). Tablet (761 a 1023 px), a pedido do cliente: o arranjo do celular, com o texto centrado embaixo dos livros (768x1024: rótulo 58 px abaixo da base; 1023x768: 14 px) e as laterais da imagem sumindo em 3%.
+- Desktop: imagem presa na borda direita (pedido do cliente) e ampliada até os livros ficarem 64 px depois do texto, limitada pela altura do hero; bordas que ficam à vista somem num degradê. Centro dos livros 75,6% / 73,8% / 70,2% / 67,4%, folga até o texto 67 / 65 / 71 / 180 px, margem direita 2,9% / 3,1% / 3,5% / 3,8% (1280 / 1440 / 1920 / 2560). Em 2560 a folga passa de 120 px: o hero tem no máximo 920 px de altura e limita os livros.
+- Lighthouse (servidor local parecido com a Hostinger, mediana de 5, alternando): celular com rastreio 95 (foto) e 94 (livros, LCP 2,77 para 2,99 s); desktop com rastreio 100 e 100 (LCP 0,61 s). O LCP é a imagem do fundo do hero nas duas.
 
 ## Pendências técnicas (do projeto, não do cliente)
 

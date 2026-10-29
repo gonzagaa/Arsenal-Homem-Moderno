@@ -28,6 +28,9 @@ const LARGURAS = {
   // Celular até 1290 (iPhone com densidade 3); desktop até 3200 (1440 a 1600px com densidade 2).
   'hero-mobile': [640, 828, 1080, 1290],
   'hero-desktop': [1280, 1600, 1920, 2560, 3200],
+  // Fundo do hero com os três livros (no lugar da foto): as mesmas larguras e o mesmo perfil da foto.
+  'hero-livros-mobile': [640, 828, 1080, 1290],
+  'hero-livros-desktop': [1280, 1600, 1920, 2560, 3200],
   'autor': [400, 640, 900],
   // Capa oficial dourada do livro (1024x1536, a maior versão fica com 1024): até 280px na oferta no desktop
   // (2x) e 44% da tela no celular.
@@ -68,7 +71,7 @@ const HERO = {
   webp: { quality: 82, effort: 6, smartSubsample: true },
   jpg: { quality: 82, mozjpeg: true, progressive: true },
 };
-const HEROS = new Set(['hero-mobile', 'hero-desktop']);
+const HEROS = new Set(['hero-mobile', 'hero-desktop', 'hero-livros-mobile', 'hero-livros-desktop']);
 const TEXTO = {
   avif: { quality: 65, effort: 6, chromaSubsampling: '4:4:4' },
   webp: { quality: 88, effort: 6 },

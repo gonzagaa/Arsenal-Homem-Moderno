@@ -59,6 +59,25 @@ fbq('track', 'PageView');
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#01050F">
 <meta name="color-scheme" content="dark">
+<script>
+// Variante do hero para comparação: ?hero=livros põe a classe .v-livros no <html> antes da pintura e pede com
+// prioridade alta as imagens com os três livros (a do celular até 1023px, a do desktop a partir de 1024px). Os
+// preloads da foto, logo abaixo, ficam como estão: na variante, a foto também é baixada (sem aparecer). Qualquer
+// outro valor é ignorado; o parâmetro não vai para o checkout. As fontes do <picture> são trocadas por um script
+// logo depois dele, e o CSS da variante fica no fim do <style>, sob .v-livros.
+(function () {
+  if (new URLSearchParams(location.search).get('hero') !== 'livros') return;
+  document.documentElement.classList.add('v-livros');
+  var srcset = function (nome, larguras) { return larguras.map(function (l) { return '/assets/img/opt/hero-livros-' + nome + '-' + l + '.avif ' + l + 'w'; }).join(', '); };
+  [['(max-width: 1023px)', srcset('mobile', [640, 828, 1080, 1290]), 'min(100vw, 56.3svh)'],
+   ['(min-width: 1024px)', srcset('desktop', [1280, 1600, 1920, 2560, 3200]), '(min-width: 1800px) 118vw, (min-width: 1440px) 88vw, 70vw']].forEach(function (p) {
+    var l = document.createElement('link');
+    l.rel = 'preload'; l.as = 'image'; l.type = 'image/avif'; l.media = p[0];
+    l.setAttribute('imagesrcset', p[1]); l.setAttribute('imagesizes', p[2]); l.setAttribute('fetchpriority', 'high');
+    document.head.appendChild(l);
+  });
+})();
+</script>
 <link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(max-width: 760px)" imagesrcset="/assets/img/opt/hero-mobile-640.avif 640w, /assets/img/opt/hero-mobile-828.avif 828w, /assets/img/opt/hero-mobile-1080.avif 1080w, /assets/img/opt/hero-mobile-1290.avif 1290w" imagesizes="max(100vw, 56.3svh)">
 <link rel="preload" as="image" type="image/avif" fetchpriority="high" media="(min-width: 761px)" imagesrcset="/assets/img/opt/hero-desktop-1280.avif 1280w, /assets/img/opt/hero-desktop-1600.avif 1600w, /assets/img/opt/hero-desktop-1920.avif 1920w, /assets/img/opt/hero-desktop-2560.avif 2560w, /assets/img/opt/hero-desktop-3200.avif 3200w" imagesizes="max(100vw, clamp(1137px, 177.7svh, 1635px))">
 <!-- Geist local: arquivo variável, subset latino (o mesmo que o Google Fonts serve), licença em assets/fonts/OFL.txt. -->
@@ -1118,6 +1137,52 @@ html body #san-footer-badge{background:#000000!important}
   .tema-vibrante .hero-pill{align-self:center;padding:7px 11px 7px 10px;gap:7px;font-size:11px;letter-spacing:.02em}
   .tema-vibrante .glass{flex-direction:row;align-items:center;gap:10px;padding:10px}
 }
+
+/* Variante do hero para comparação (?hero=livros; o script do <head> põe .v-livros no <html>). O fundo com os três
+   livros no lugar da foto do Marcello. Sem o parâmetro, nada daqui vale.
+   Celular e tablet (até 1023px): a imagem do celular com a largura da tela (ou 56,3% da altura, nas telas largas e
+   baixas), centrada, presa no topo e com a base sumindo no fundo. Um espaçador no começo do bloco de texto faz o
+   rótulo começar logo abaixo da base dos livros (51,2% da altura da imagem); o texto só desce o necessário. O botão
+   fica 10px mais perto da subheadline. */
+@media (max-width:1023px){
+  .v-livros .hero-bg img{display:block;position:static;width:min(100%,56.28svh);height:auto;max-width:none;margin:0 auto;object-fit:fill;object-position:50% 0;-webkit-mask-image:linear-gradient(to bottom,#000 85%,transparent 100%);mask-image:linear-gradient(to bottom,#000 85%,transparent 100%)}
+  .v-livros .hero-copy::before{content:"";flex:none;height:calc(.512 * min(177.68vw, 100svh) - 16px)}
+  .v-livros .hero .lead+div{margin-top:-10px}
+}
+/* Tablet (761 a 1023px): o arranjo do celular, com os livros em cima e o texto centrado embaixo. A imagem fica
+   mais estreita que a tela, então as laterais dela também somem num degradê. */
+@media (min-width:761px) and (max-width:1023px){
+  .v-livros .hero{display:block;min-height:0;padding:0 0 64px;background:var(--abismo)}
+  .v-livros .hero-bg,.v-livros .shade{height:100svh}
+  .v-livros .hero-bg img{-webkit-mask-image:linear-gradient(to bottom,#000 85%,transparent 100%),linear-gradient(to right,transparent 0,#000 3%,#000 97%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,#000 85%,transparent 100%),linear-gradient(to right,transparent 0,#000 3%,#000 97%,transparent 100%);mask-composite:intersect}
+  .v-livros .shade{background:linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.94) 30%,rgba(5,10,20,.4) 52%,rgba(5,10,20,0) 66%)}
+  .v-livros .hero-inner{align-items:center;padding:0 48px}
+  .v-livros .hero-copy{min-height:100svh;max-width:600px;padding-bottom:24px;align-items:center;text-align:center}
+  .v-livros .hero-pill{align-self:center}
+  .v-livros .hero-copy,.v-livros .chips{max-width:600px}
+  .v-livros .chips{justify-content:center}
+}
+/* Desktop (1024px ou mais): a imagem fica presa na borda direita da tela e é ampliada até a borda esquerda dos livros
+   ficar 64px depois do fim do texto. Na arte, os livros vão de 49% a 96,8% da largura e de 27% a 76% da altura
+   (centro em 51,5%, altura de 49%); o lado esquerdo da arte é escuro e vazio e é cortado.
+   - largura: (tela - fim do texto - 64px) / 51%, limitada pela altura do hero (os livros inteiros, 72px acima do
+     pé, onde fica a seta). O fim do texto é o recuo da coluna + a subheadline (28,5em de 18 a 21px, menos ~20px);
+   - na vertical, o centro dos livros em 48% da altura do hero. O que passa do hero é cortado;
+   - quando a imagem é menor que o hero, as bordas de cima, de baixo e da esquerda somem num degradê;
+   - a sombra da esquerda fica só no lado do texto (a arte já é escura ali). */
+@media (min-width:1024px){
+  .v-livros .hero{--hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.5) 0%,rgba(1,5,15,.35) 30%,rgba(1,5,15,0) 46%);--texto-fim:calc(clamp(64px,10.5vw,240px) + 28.5 * clamp(18px,1.3vw,21px) - 20px)}
+  .v-livros .hero-bg{overflow:clip}
+  .v-livros .hero-bg img{
+    --livros-esq:calc(var(--texto-fim) + 64px);
+    --fundo-w:max(400px,min((100cqw - var(--livros-esq)) / .51,(100cqh - 72px) / .49 * 1.7768));
+    position:absolute;right:0;left:auto;top:calc(48cqh - .515 * var(--fundo-w) / 1.7768);
+    width:var(--fundo-w);height:auto;max-width:none;margin:0;object-fit:fill;object-position:50% 0;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 78%,transparent 100%),linear-gradient(to right,transparent 0,#000 10%);
+    -webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 78%,transparent 100%),linear-gradient(to right,transparent 0,#000 10%);
+    mask-composite:intersect}
+}
 </style>
 </head>
 <body>
@@ -1140,6 +1205,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <source type="image/webp" srcset="/assets/img/opt/hero-desktop-1280.webp 1280w, /assets/img/opt/hero-desktop-1600.webp 1600w, /assets/img/opt/hero-desktop-1920.webp 1920w, /assets/img/opt/hero-desktop-2560.webp 2560w, /assets/img/opt/hero-desktop-3200.webp 3200w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="3200" height="1800">
 <img src="/assets/img/opt/hero-desktop-1600.jpg" srcset="/assets/img/opt/hero-desktop-1280.jpg 1280w, /assets/img/opt/hero-desktop-1600.jpg 1600w, /assets/img/opt/hero-desktop-1920.jpg 1920w, /assets/img/opt/hero-desktop-2560.jpg 2560w, /assets/img/opt/hero-desktop-3200.jpg 3200w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="3200" height="1800" fetchpriority="high" alt="Marcello Gomes sentado em poltrona de couro, no escritório com luz azul">
 </picture>
+<script>
+// Variante ?hero=livros (ver o script do <head>): as fontes do <picture> passam a ser o fundo com os três livros,
+// a imagem do celular até 1023px (o tablet segue o arranjo do celular) e a do desktop a partir de 1024px.
+if (document.documentElement.classList.contains('v-livros')) document.querySelector('.hero-bg').innerHTML = '<source media="(max-width: 1023px)" type="image/avif" srcset="/assets/img/opt/hero-livros-mobile-640.avif 640w, /assets/img/opt/hero-livros-mobile-828.avif 828w, /assets/img/opt/hero-livros-mobile-1080.avif 1080w, /assets/img/opt/hero-livros-mobile-1290.avif 1290w" sizes="min(100vw, 56.3svh)" width="1290" height="2292"><source media="(max-width: 1023px)" type="image/webp" srcset="/assets/img/opt/hero-livros-mobile-640.webp 640w, /assets/img/opt/hero-livros-mobile-828.webp 828w, /assets/img/opt/hero-livros-mobile-1080.webp 1080w, /assets/img/opt/hero-livros-mobile-1290.webp 1290w" sizes="min(100vw, 56.3svh)" width="1290" height="2292"><source media="(max-width: 1023px)" srcset="/assets/img/opt/hero-livros-mobile-640.jpg 640w, /assets/img/opt/hero-livros-mobile-828.jpg 828w, /assets/img/opt/hero-livros-mobile-1080.jpg 1080w, /assets/img/opt/hero-livros-mobile-1290.jpg 1290w" sizes="min(100vw, 56.3svh)" width="1290" height="2292"><source media="(min-width: 1024px)" type="image/avif" srcset="/assets/img/opt/hero-livros-desktop-1280.avif 1280w, /assets/img/opt/hero-livros-desktop-1600.avif 1600w, /assets/img/opt/hero-livros-desktop-1920.avif 1920w, /assets/img/opt/hero-livros-desktop-2560.avif 2560w, /assets/img/opt/hero-livros-desktop-3200.avif 3200w" sizes="(min-width: 1800px) 118vw, (min-width: 1440px) 88vw, 70vw" width="3200" height="1800"><source media="(min-width: 1024px)" type="image/webp" srcset="/assets/img/opt/hero-livros-desktop-1280.webp 1280w, /assets/img/opt/hero-livros-desktop-1600.webp 1600w, /assets/img/opt/hero-livros-desktop-1920.webp 1920w, /assets/img/opt/hero-livros-desktop-2560.webp 2560w, /assets/img/opt/hero-livros-desktop-3200.webp 3200w" sizes="(min-width: 1800px) 118vw, (min-width: 1440px) 88vw, 70vw" width="3200" height="1800"><img src="/assets/img/opt/hero-livros-desktop-1600.jpg" srcset="/assets/img/opt/hero-livros-desktop-1280.jpg 1280w, /assets/img/opt/hero-livros-desktop-1600.jpg 1600w, /assets/img/opt/hero-livros-desktop-1920.jpg 1920w, /assets/img/opt/hero-livros-desktop-2560.jpg 2560w, /assets/img/opt/hero-livros-desktop-3200.jpg 3200w" sizes="(min-width: 1800px) 118vw, (min-width: 1440px) 88vw, 70vw" width="3200" height="1800" fetchpriority="high" alt="Os três livros do método sobre uma mesa: O Jogo Sujo dos Relacionamentos, De Desprezado a Respeitado e Chega de Engolir Calado!, de Marcello Gomes">';
+</script>
 <div class="shade" aria-hidden="true"></div>
 <div class="hero-inner">
 <div class="hero-copy">
@@ -1455,6 +1525,7 @@ var CHECKOUTS = {
   var checkout = origem !== 'padrao' && Object.prototype.hasOwnProperty.call(CHECKOUTS, origem) ? CHECKOUTS[origem] : CHECKOUTS.padrao;
   params.delete('rastreio'); // chave de teste do rastreio no localhost, não vai para o checkout
   params.delete('origem'); // chave de teste das rotas no localhost, também não vai
+  params.delete('hero'); // variante do hero para comparação (?hero=livros), também não vai
   links.forEach(function (a) {
     var url = new URL(checkout);
     params.forEach(function (valor, nome) {
