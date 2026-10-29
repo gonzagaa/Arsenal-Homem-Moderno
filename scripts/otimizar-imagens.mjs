@@ -24,11 +24,9 @@ const DESTINO = path.join(ORIGEM, 'opt');
 // sizes do index.html limita o celular a 2x (com densidade alta, ele encolhe e o navegador pede a versão de 2x).
 // Uma largura maior que o original vira o próprio original: nunca amplia.
 const LARGURAS = {
-  // Hero: a foto é cortada pela altura (object-fit: cover), então aparece mais larga que a tela.
-  // Celular até 1290 (iPhone com densidade 3); desktop até 3200 (1440 a 1600px com densidade 2).
-  'hero-mobile': [640, 828, 1080, 1290],
-  'hero-desktop': [1280, 1600, 1920, 2560, 3200],
-  // Fundo do hero com os três livros (no lugar da foto): as mesmas larguras e o mesmo perfil da foto.
+  // Hero: o fundo com os três livros. Celular e tablet até 1290 (iPhone com densidade 3, tablet com 2); desktop até
+  // 3200 (a imagem é ampliada pelos livros: até ~117% da tela em 2560). A foto do Marcello saiu do hero; o original
+  // hero-desktop.png continua em assets/img, porque o og.jpg é gerado dele (scripts/gerar-og.mjs).
   'hero-livros-mobile': [640, 828, 1080, 1290],
   'hero-livros-desktop': [1280, 1600, 1920, 2560, 3200],
   'autor': [400, 640, 900],
@@ -65,13 +63,13 @@ const RETRATO = {
   jpg: { quality: 84, mozjpeg: true, progressive: true },
 };
 const RETRATOS = new Set(['autor', 'capa-oficial-dourada', 'capa-jogo-sujo', 'capa-engolir-calado']);
-// Hero: a primeira coisa que se vê. AVIF no topo da faixa 62 a 68 (o 1290 do celular fica com ~85 KB).
+// Hero: a primeira coisa que se vê. AVIF no topo da faixa 62 a 68 (o 1290 do celular fica com ~135 KB).
 const HERO = {
   avif: { quality: 68, effort: 6, bitdepth: 10 },
   webp: { quality: 82, effort: 6, smartSubsample: true },
   jpg: { quality: 82, mozjpeg: true, progressive: true },
 };
-const HEROS = new Set(['hero-mobile', 'hero-desktop', 'hero-livros-mobile', 'hero-livros-desktop']);
+const HEROS = new Set(['hero-livros-mobile', 'hero-livros-desktop']);
 const TEXTO = {
   avif: { quality: 65, effort: 6, chromaSubsampling: '4:4:4' },
   webp: { quality: 88, effort: 6 },

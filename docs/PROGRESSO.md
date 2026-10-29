@@ -58,6 +58,7 @@ Depois das etapas, rodadas de ajuste de design pedidas pelo desenvolvedor:
 | Rota nova /cht/ (checkout 39ZR122DWE) | aprovada |
 | Prévia da Netlify sem os arquivos internos | aprovada |
 | Variante do hero com os três livros (`?hero=livros`), para comparação | aprovada |
+| Hero oficial com os três livros (fim da comparação ?hero=livros) | aprovada |
 | Preço novo: 12x de R$ 9,83 ou R$ 95 à vista | aprovada |
 
 A regra de parada continua: uma etapa por vez, relatório no formato do `docs/PROMPTS.md`, esperar a palavra APROVADO.
@@ -583,6 +584,14 @@ O cliente reformulou a página para ficar mais curta e direta (`docs/copy.md` v3
 - Celular: rótulo logo abaixo da base dos livros (espaçador no bloco de texto), botão 10 px mais perto da subheadline; em 390x844, 80 dos 88 px do botão na primeira tela (nas telas baixas, 0 a 19 px). Tablet (761 a 1023 px), a pedido do cliente: o arranjo do celular, com o texto centrado embaixo dos livros (768x1024: rótulo 58 px abaixo da base; 1023x768: 14 px) e as laterais da imagem sumindo em 3%.
 - Desktop: imagem presa na borda direita (pedido do cliente) e ampliada até os livros ficarem 64 px depois do texto, limitada pela altura do hero; bordas que ficam à vista somem num degradê. Centro dos livros 75,6% / 73,8% / 70,2% / 67,4%, folga até o texto 67 / 65 / 71 / 180 px, margem direita 2,9% / 3,1% / 3,5% / 3,8% (1280 / 1440 / 1920 / 2560). Em 2560 a folga passa de 120 px: o hero tem no máximo 920 px de altura e limita os livros.
 - Lighthouse (servidor local parecido com a Hostinger, mediana de 5, alternando): celular com rastreio 95 (foto) e 94 (livros, LCP 2,77 para 2,99 s); desktop com rastreio 100 e 100 (LCP 0,61 s). O LCP é a imagem do fundo do hero nas duas.
+
+### Hero oficial com os três livros (2026-10-29)
+
+- O cliente aprovou os livros como hero oficial. A variante virou o padrão em todas as rotas: o `<picture>` e o preload do LCP usam sempre `hero-livros-mobile` (até 1023 px) e `hero-livros-desktop` (a partir de 1024 px); as regras da variante viraram o CSS padrão (sem o `.v-livros`); saíram os dois scripts e as regras da foto que elas substituíam (`object-position` do celular e o `--hero-foto-pos`). `?hero=livros` não tem mais efeito; o `params.delete('hero')` fica, para o parâmetro não chegar ao checkout pelos links que circularam.
+- Conferido pixel a pixel (página inteira, 7 tamanhos de 360x640 a 1920x1080): a página nova sem parâmetro é idêntica à variante anterior com `?hero=livros`, e com `?hero=livros` é idêntica a sem; a foto antiga não é mais pedida. (Os ajustes abaixo vieram depois dessa conferência.)
+- Foto antiga: saíram as 27 versões otimizadas `hero-mobile-*` e `hero-desktop-*` (só o hero as usava) e as entradas delas no `scripts/otimizar-imagens.mjs`. Os originais ficam: o `hero-desktop.png` gera o `og.jpg` e os dois aparecem no mockup.
+- Tablet: o `sizes` da imagem do celular pede no mínimo 645 px a partir de 761 px (também no preload): 768x1024, 820x1180 e 1023x768 em DPR 2 baixam a de 1290; o celular não mudou (390 em 2x baixa a de 828, em 3x a de 1290).
+- Celulares baixos (até 700 px de altura): imagem com 88% da largura (78% até 660 px), 10 px entre rótulo, H1, subheadline e botão, laterais da imagem num degradê de 3%; o rótulo continua 8 px abaixo da base dos livros. Botão na primeira tela: 360x640 de 0 para 48 de 88 px, 375x667 de 7 para 58, 390x664 de 19 para 70; 390x844 sem mudança (80).
 
 ## Pendências técnicas (do projeto, não do cliente)
 
