@@ -92,6 +92,15 @@ const PRODUTO = {
   png: { compressionLevel: 9, palette: true, quality: 90, effort: 10 },
 };
 
+// Livros do hero da página de vendas (assets/img/livros-hero.png, 1776x1149, com transparência; a arte vem
+// pronta e não é recortada): ~310px no celular e ~610px em 1440 (até ~760px), em 1x e 2x. Qualidade acima do
+// produto do Arsenal, para os títulos das capas não perderem nitidez.
+const LIVROS_HERO = {
+  avif: { quality: 72, effort: 6, bitdepth: 10 },
+  webp: { quality: 88, effort: 6, alphaQuality: 92 },
+  png: { compressionLevel: 9, palette: true, quality: 92, effort: 10 },
+};
+
 // Página de links (links.html, a raiz do domínio): originais em assets/img/links/.
 // Foto de perfil (a atual do Instagram dele): 102px na página (120 e 240 cobrem 1x e 2x; 22px no celular desenhado do bloco do WhatsApp) e 480 para o
 // og:image. Foto do bloco 1: ~450px de largura dentro do bloco (480 e 960); o fundo desfocado do desktop usa a de
@@ -186,6 +195,7 @@ for (const nome of NOSSOS) {
 for (const arquivo of await listarPrints()) {
   await gerar(path.join(PRINTS, arquivo), nomeDoPrint(arquivo), LARGURAS_PRINT, TEXTO);
 }
+await gerar(path.join(ORIGEM, 'livros-hero.png'), 'hero-livros', [320, 640, 960, 1280], LIVROS_HERO, undefined, FORMATOS_ALFA);
 for (const [arquivo, nome, larguras, qualidade, formatos] of LINKS) {
   await gerar(path.join(ORIGEM, 'links', arquivo), nome, larguras, qualidade, undefined, formatos);
 }

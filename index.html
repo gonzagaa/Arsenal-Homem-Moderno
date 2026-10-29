@@ -255,9 +255,24 @@ html.lenis{scroll-behavior:auto!important}
    Celular: a foto ocupa a primeira tela (100svh) e o bloco título + texto + botão fica preso
    no pé dela, então o botão aparece sem rolar. Os cards de vidro vêm logo abaixo do botão.
    Com 940px de altura ou mais, eles também cabem na primeira tela sem o texto encostar no rosto. */
-.hero{position:relative;padding-bottom:56px;background:var(--abismo)}
+.hero{--hero-foto-y:0%;--livros-folga:18px;position:relative;padding-bottom:56px;background:var(--abismo)}
 .hero-bg,.shade{position:absolute;top:0;left:0;width:100%;height:640px;height:100svh}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+/* Livros (arte pronta, 1776x1149): camada do tamanho do hero, entre a foto e o texto (z-index 1; o texto tem 2).
+   A base dos livros some (máscara) e o fim do hero corta o que sobrar, também com máscara (sem linha seca).
+   O topo e o centro seguem a foto: as mesmas contas do enquadramento dela, com a barba terminando a 36,5% da
+   altura da foto do celular e a 47,5% da do desktop, e o rosto centrado a 68,2% da largura da do desktop. */
+.hero-livros{display:none;position:absolute;inset:0;z-index:1;overflow:clip;pointer-events:none;-webkit-mask-image:linear-gradient(0deg,transparent 0,#000 64px);mask-image:linear-gradient(0deg,transparent 0,#000 64px)}
+.hero-livros img,.livros-cel img{position:absolute;height:auto;filter:brightness(.95);-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent 100%);mask-image:linear-gradient(to bottom,#000 60%,transparent 100%)}
+/* Celular: os livros são o primeiro item do bloco de texto e ocupam o espaço livre acima do rótulo (um contêiner do
+   tamanho desse espaço). O topo fica 18px abaixo do fim da barba (36,5% da altura da foto) e a largura é de até
+   310px (80% da tela), mas para antes de o rótulo chegar ao título das capas: o rótulo começa no mínimo a 80% da
+   altura dos livros (o título "A RESPEITADO" termina a 78%). Em telas baixas, os livros diminuem um pouco. */
+.livros-cel{display:none}
+@media (max-width:760px){
+  .livros-cel{display:block;position:relative;flex:1 1 0;min-height:0;container-type:size;pointer-events:none}
+  .livros-cel img{--barba:calc(var(--hero-foto-y) + .3648 * max(100svh, 177.68vw));left:50%;top:calc(var(--barba) + var(--livros-folga));width:min(310px,80vw,calc((100cqh + 14px - var(--barba) - var(--livros-folga)) / .8 / .647));transform:translateX(-50%)}
+}
 .shade{pointer-events:none;background:linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.94) 30%,rgba(5,10,20,.4) 52%,rgba(5,10,20,0) 66%)}
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;gap:24px;padding:0 max(22px,env(safe-area-inset-right)) 0 max(22px,env(safe-area-inset-left))}
 .hero-copy{display:flex;flex-direction:column;justify-content:flex-end;gap:24px;min-height:640px;min-height:100svh;padding-bottom:20px}
@@ -279,6 +294,7 @@ html.lenis{scroll-behavior:auto!important}
 @media (max-width:760px) and (min-height:940px){
   .hero{display:flex;flex-direction:column;justify-content:flex-end;min-height:100svh}
   .hero-copy{min-height:0;padding-bottom:0}
+  .hero-inner,.hero-copy{flex:1 0 auto}
 }
 /* Os dois cards lado a lado, em duas colunas iguais. Com o ícone ao lado, cada card pede ~190px e a
    coluna tem 168px em 390px (153px em 360px): o ícone fica em cima do número. */
@@ -294,12 +310,20 @@ html.lenis{scroll-behavior:auto!important}
   /* 3.8svh: o H1 acompanha a altura da tela (700 a 780px de altura subiam sobre a barba). */
   .hero .h1{font-size:min(32px,8.6vw,3.8svh);position:relative;isolation:isolate}
   .hero .h1::before{content:"";position:absolute;z-index:-1;inset:-14% -6%;pointer-events:none;background:radial-gradient(closest-side,rgba(1,5,15,.5) 50%,rgba(1,5,15,0) 100%)}
-  .hero-bg img{object-position:50% -6svh}
+  /* Livros: a foto sobe 26px (além dos 6% da altura; mais que isso, a cabeça encosta no topo) e o bloco de texto desce 64px, para os livros caberem entre a
+     barba e o rótulo; o botão fica 10px mais perto da subheadline. */
+  .hero{--hero-foto-y:calc(-6svh - 26px)}
+  .hero-bg img{object-position:50% var(--hero-foto-y)}
+  .hero-copy{min-height:calc(100svh + 64px)}
+  .hero .lead+div{margin-top:-10px}
+  /* Subheadline em 4 linhas (eram 5): a fonte acompanha a largura da coluna (4,25% dela) até 16,5px; em 360px fica
+     com ~13,4px. Seletor mais forte para valer também nas telas baixas (que fixavam 16px). */
+  .hero .hero-copy .lead{font-size:min(16.5px,calc((100vw - 44px) * .0425));letter-spacing:-.005em}
 }
 /* Telas baixas (a mais comum é o Safari do iPhone com as barras, 390x664): a foto sobe 10% e a subheadline
    fica com 16px, para o H1 não subir sobre a barba (390x664: 18px abaixo dela, 5,5:1). */
 @media (max-width:760px) and (max-height:699px){
-  .hero-bg img{object-position:50% -10svh}
+  .hero{--hero-foto-y:-10svh} /* telas baixas: a foto já sobe 10%, sem os 26px (a cabeça sairia pelo topo) */
   .hero .lead{font-size:16px;line-height:1.55}
   .hero .h1{font-size:min(30px,8.2vw,3.8svh);text-shadow:0 1px 3px rgba(1,5,15,.55),0 2px 22px rgba(1,5,15,.75)}
 }
@@ -322,6 +346,19 @@ html.lenis{scroll-behavior:auto!important}
   /* .hero-bg é contêiner de tamanho: nas fórmulas do enquadramento, 100cqh é a altura real do hero
      (o texto pode deixá-lo mais alto que --hero-h) e 100cqw a largura da foto na tela. */
   .hero-bg{container-type:size}
+  /* Livros: a camada é um contêiner do mesmo tamanho da foto, então as contas usam as mesmas unidades do
+     enquadramento: foto com max(100cqw, 177.7cqh) de largura, deslocada --hero-foto-x na horizontal e 30% na
+     vertical. Centro no rosto, topo 80px abaixo do fim da barba (no tablet, 220px). */
+  .hero-livros{display:block;container-type:size}
+  .hero-livros img{
+    --foto-w:max(100cqw,177.7cqh);--foto-h:max(56.25cqw,100cqh);
+    --rosto-x:calc(var(--hero-foto-x) + .6823 * var(--foto-w));
+    /* 42,4% da largura (610px em 1440), entre 360 e 760px. Nas telas largas e baixas o rosto fica mais perto do
+       texto: a largura também para antes da coluna do texto (o recuo dela + 500px de texto e botão + 24px). */
+    --livros-w:clamp(360px,min(42.4cqw,2 * (var(--rosto-x) - clamp(64px,10.5cqw,240px) - 524px)),760px);
+    left:calc(var(--rosto-x) - var(--livros-w) / 2);
+    top:calc(.3 * (100cqh - var(--foto-h)) + .4754 * var(--foto-h) + 80px);
+    width:var(--livros-w);transform:none}
   .hero-bg img{object-position:var(--hero-foto-pos)}
   .shade{background:var(--hero-sombra-esq),linear-gradient(0deg,#050A14 0%,rgba(5,10,20,.7) 12%,rgba(5,10,20,0) 32%)}
   .hero-inner{width:100%;gap:36px;padding:0 0 0 clamp(24px,6.5vw,128px)}
@@ -340,10 +377,14 @@ html.lenis{scroll-behavior:auto!important}
   .hero-pill{font-size:13px;white-space:nowrap}
   .hero{
     --hero-foto-pos:clamp(calc(100cqw - max(100cqw, 177.7cqh)), calc(72cqw - 121.3cqh), 0px) 30%;
+    --hero-foto-x:clamp(calc(100cqw - max(100cqw, 177.7cqh)), calc(72cqw - 121.3cqh), 0px);
     /* O texto vai até ~45% da largura e a ponta da poltrona (couro com reflexo) fica atrás do fim do H1:
        escuro até 44%, sumindo até 58% (o rosto começa em ~59%). */
     --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.88) 0%,rgba(1,5,15,.84) 32%,rgba(1,5,15,.72) 44%,rgba(1,5,15,.3) 51%,rgba(1,5,15,0) 58%);
   }
+  /* Livros no tablet: o botão grande passa da coluna do texto e chega perto do rosto; os livros ficam menores e
+     mais baixos (220px abaixo da barba), à direita dos cards e abaixo do botão. */
+  .hero-livros img{--livros-w:clamp(260px,36cqw,340px);top:calc(.3 * (100cqh - var(--foto-h)) + .4754 * var(--foto-h) + 220px)}
   /* H1 de três frases em 6 linhas, com o botão na primeira tela até 800x640. */
   .hero .h1{font-size:clamp(30px,3.9vw,38px)}
   .hero-copy,.chips{max-width:min(520px,41vw)}
@@ -352,6 +393,7 @@ html.lenis{scroll-behavior:auto!important}
 @media (min-width:1024px){
   .hero{
     --hero-foto-pos:0% 30%;
+    --hero-foto-x:0px;
     /* Base leve (as estantes aparecem), uma elipse atrás do bloco de texto (decanter e copo)
        e outra na faixa do H1 (abajur). Contraste medido acima de 1366px: subheadline 6:1 ou mais, H1 13:1 ou mais. */
     --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.4) 0%,rgba(1,5,15,.38) 36%,rgba(1,5,15,.28) 54%,rgba(1,5,15,0) 68%),radial-gradient(ellipse 44% 56% at 34% 54%,rgba(1,5,15,.72),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 38% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
@@ -373,6 +415,7 @@ html.lenis{scroll-behavior:auto!important}
 @media (min-width:1024px) and (max-width:1366px){
   .hero{
     --hero-foto-pos:clamp(calc(100cqw - max(100cqw, 177.7cqh)), calc(100cqw - 24px - 132.1cqh), 0px) 30%;
+    --hero-foto-x:clamp(calc(100cqw - max(100cqw, 177.7cqh)), calc(100cqw - 24px - 132.1cqh), 0px);
     /* Aqui o decanter cai atrás do fim da subheadline: elipse mais escura (5,3:1 ou mais medido). */
     --hero-sombra-esq:linear-gradient(90deg,rgba(1,5,15,.42) 0%,rgba(1,5,15,.4) 36%,rgba(1,5,15,.3) 54%,rgba(1,5,15,0) 70%),radial-gradient(ellipse 46% 58% at 36% 56%,rgba(1,5,15,.8),rgba(1,5,15,0)),radial-gradient(ellipse 34% 22% at 38% 25%,rgba(1,5,15,.42),rgba(1,5,15,0));
   }
@@ -1141,8 +1184,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <img src="/assets/img/opt/hero-desktop-1600.jpg" srcset="/assets/img/opt/hero-desktop-1280.jpg 1280w, /assets/img/opt/hero-desktop-1600.jpg 1600w, /assets/img/opt/hero-desktop-1920.jpg 1920w, /assets/img/opt/hero-desktop-2560.jpg 2560w, /assets/img/opt/hero-desktop-3200.jpg 3200w" sizes="max(100vw, clamp(1137px, 177.7svh, 1635px))" width="3200" height="1800" fetchpriority="high" alt="Marcello Gomes sentado em poltrona de couro, no escritório com luz azul">
 </picture>
 <div class="shade" aria-hidden="true"></div>
+<!-- Os três livros do método (arte pronta, com transparência), entre a foto e o texto. Decorativos: o texto
+     fica sempre por cima. Baixa prioridade: a foto e o H1 continuam sendo o que abre a página. Duas cópias: esta
+     camada no tablet e no desktop, e a .livros-cel (dentro do bloco de texto) no celular; cada uma só baixa a
+     imagem na sua faixa de tela (fora dela, o <img> fica com um pixel vazio embutido, sem pedido à rede). -->
+<div class="hero-livros" aria-hidden="true">
+<picture>
+<source media="(min-width: 761px)" type="image/avif" srcset="/assets/img/opt/hero-livros-320.avif 320w, /assets/img/opt/hero-livros-640.avif 640w, /assets/img/opt/hero-livros-960.avif 960w, /assets/img/opt/hero-livros-1280.avif 1280w" sizes="(max-width: 1023px) clamp(260px, 36vw, 340px), clamp(360px, 42.4vw, 760px)">
+<source media="(min-width: 761px)" type="image/webp" srcset="/assets/img/opt/hero-livros-320.webp 320w, /assets/img/opt/hero-livros-640.webp 640w, /assets/img/opt/hero-livros-960.webp 960w, /assets/img/opt/hero-livros-1280.webp 1280w" sizes="(max-width: 1023px) clamp(260px, 36vw, 340px), clamp(360px, 42.4vw, 760px)">
+<source media="(min-width: 761px)" srcset="/assets/img/opt/hero-livros-320.png 320w, /assets/img/opt/hero-livros-640.png 640w, /assets/img/opt/hero-livros-960.png 960w, /assets/img/opt/hero-livros-1280.png 1280w" sizes="(max-width: 1023px) clamp(260px, 36vw, 340px), clamp(360px, 42.4vw, 760px)">
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="1776" height="1149" decoding="async" fetchpriority="low" alt="">
+</picture>
+</div>
 <div class="hero-inner">
 <div class="hero-copy">
+<div class="livros-cel" aria-hidden="true">
+<picture>
+<source media="(max-width: 760px)" type="image/avif" srcset="/assets/img/opt/hero-livros-320.avif 320w, /assets/img/opt/hero-livros-640.avif 640w, /assets/img/opt/hero-livros-960.avif 960w, /assets/img/opt/hero-livros-1280.avif 1280w" sizes="(min-resolution: 2.9dppx) calc(min(310px, 80vw) * .667), (min-resolution: 2.4dppx) calc(min(310px, 80vw) * .8), min(310px, 80vw)">
+<source media="(max-width: 760px)" type="image/webp" srcset="/assets/img/opt/hero-livros-320.webp 320w, /assets/img/opt/hero-livros-640.webp 640w, /assets/img/opt/hero-livros-960.webp 960w, /assets/img/opt/hero-livros-1280.webp 1280w" sizes="(min-resolution: 2.9dppx) calc(min(310px, 80vw) * .667), (min-resolution: 2.4dppx) calc(min(310px, 80vw) * .8), min(310px, 80vw)">
+<source media="(max-width: 760px)" srcset="/assets/img/opt/hero-livros-320.png 320w, /assets/img/opt/hero-livros-640.png 640w, /assets/img/opt/hero-livros-960.png 960w, /assets/img/opt/hero-livros-1280.png 1280w" sizes="(min-resolution: 2.9dppx) calc(min(310px, 80vw) * .667), (min-resolution: 2.4dppx) calc(min(310px, 80vw) * .8), min(310px, 80vw)">
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="1776" height="1149" decoding="async" fetchpriority="low" alt="">
+</picture>
+</div>
 <span class="pill hero-pill reveal-saida">Conheça o método De Desprezado a Respeitado</span>
 <h1 class="h1 reveal-saida">Vou te mostrar como deixar de ser desprezado e <strong class="silver">voltar a ser respeitado dentro da sua própria casa.</strong></h1>
 <p class="lead reveal-saida">Aprenda a se posicionar diante da sua esposa ou namorada, colocar limites e parar de aceitar humilhações calado. <span class="lead-2">Sem precisar brigar, implorar atenção ou viver com medo de <span class="inteira">perdê-la.</span></span></p>
